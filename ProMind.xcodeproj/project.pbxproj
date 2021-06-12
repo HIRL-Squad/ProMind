@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475407D266CE36C009E0B4B /* AppDelegate.swift */; };
 		A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475407F266CE36C009E0B4B /* SceneDelegate.swift */; };
-		A4754082266CE36C009E0B4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4754081266CE36C009E0B4B /* ViewController.swift */; };
-		A4754085266CE36C009E0B4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754083266CE36C009E0B4B /* Main.storyboard */; };
+		A4754082266CE36C009E0B4B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4754081266CE36C009E0B4B /* MainViewController.swift */; };
 		A4754087266CE36F009E0B4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4754086266CE36F009E0B4B /* Assets.xcassets */; };
 		A475408A266CE36F009E0B4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754088266CE36F009E0B4B /* LaunchScreen.storyboard */; };
 		A4754095266CE36F009E0B4B /* ProMindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4754094266CE36F009E0B4B /* ProMindTests.swift */; };
 		A47540A0266CE36F009E0B4B /* ProMindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475409F266CE36F009E0B4B /* ProMindUITests.swift */; };
+		A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754083266CE36C009E0B4B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,7 @@
 		A475407A266CE36C009E0B4B /* ProMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475407D266CE36C009E0B4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A475407F266CE36C009E0B4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A4754081266CE36C009E0B4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A4754081266CE36C009E0B4B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A4754084266CE36C009E0B4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4754086266CE36F009E0B4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4754089266CE36F009E0B4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			children = (
 				A475407D266CE36C009E0B4B /* AppDelegate.swift */,
 				A475407F266CE36C009E0B4B /* SceneDelegate.swift */,
-				A4754081266CE36C009E0B4B /* ViewController.swift */,
+				A4754081266CE36C009E0B4B /* MainViewController.swift */,
 				A4754083266CE36C009E0B4B /* Main.storyboard */,
 				A4754086266CE36F009E0B4B /* Assets.xcassets */,
 				A4754088266CE36F009E0B4B /* LaunchScreen.storyboard */,
@@ -231,9 +231,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */,
 				A475408A266CE36F009E0B4B /* LaunchScreen.storyboard in Resources */,
 				A4754087266CE36F009E0B4B /* Assets.xcassets in Resources */,
-				A4754085266CE36C009E0B4B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4754082266CE36C009E0B4B /* ViewController.swift in Sources */,
+				A4754082266CE36C009E0B4B /* MainViewController.swift in Sources */,
 				A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */,
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
 			);
