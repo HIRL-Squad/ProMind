@@ -14,6 +14,9 @@
 		A475408A266CE36F009E0B4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754088266CE36F009E0B4B /* LaunchScreen.storyboard */; };
 		A4754095266CE36F009E0B4B /* ProMindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4754094266CE36F009E0B4B /* ProMindTests.swift */; };
 		A47540A0266CE36F009E0B4B /* ProMindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475409F266CE36F009E0B4B /* ProMindUITests.swift */; };
+		A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */; };
+		A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */; };
+		A4A3F2EE2687289D004C0F25 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2ED2687289D004C0F25 /* Strings.swift */; };
 		A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754083266CE36C009E0B4B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +52,9 @@
 		A475409B266CE36F009E0B4B /* ProMindUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProMindUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475409F266CE36F009E0B4B /* ProMindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMindUITests.swift; sourceTree = "<group>"; };
 		A47540A1266CE36F009E0B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTMainViewController.swift; sourceTree = "<group>"; };
+		A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTMainViewController.swift; sourceTree = "<group>"; };
+		A4A3F2ED2687289D004C0F25 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +105,15 @@
 		A475407C266CE36C009E0B4B /* ProMind */ = {
 			isa = PBXGroup;
 			children = (
+				A4A3F2ED2687289D004C0F25 /* Strings.swift */,
+				A4A3F2E426871BD4004C0F25 /* Models */,
+				A4A3F2E526871BDB004C0F25 /* Views */,
+				A4A3F2E626871BE2004C0F25 /* Controllers */,
+				A4754086266CE36F009E0B4B /* Assets.xcassets */,
+				A475408B266CE36F009E0B4B /* Info.plist */,
 				A475407D266CE36C009E0B4B /* AppDelegate.swift */,
 				A475407F266CE36C009E0B4B /* SceneDelegate.swift */,
-				A4754081266CE36C009E0B4B /* MainViewController.swift */,
-				A4754083266CE36C009E0B4B /* Main.storyboard */,
-				A4754086266CE36F009E0B4B /* Assets.xcassets */,
 				A4754088266CE36F009E0B4B /* LaunchScreen.storyboard */,
-				A475408B266CE36F009E0B4B /* Info.plist */,
 			);
 			path = ProMind;
 			sourceTree = "<group>";
@@ -126,6 +134,47 @@
 				A47540A1266CE36F009E0B4B /* Info.plist */,
 			);
 			path = ProMindUITests;
+			sourceTree = "<group>";
+		};
+		A4A3F2E426871BD4004C0F25 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A4A3F2E526871BDB004C0F25 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4754083266CE36C009E0B4B /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A4A3F2E626871BE2004C0F25 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4754081266CE36C009E0B4B /* MainViewController.swift */,
+				A4A3F2E9268720B5004C0F25 /* Trail Making Test */,
+				A4A3F2EA268726D4004C0F25 /* Digit Span Test */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A4A3F2E9268720B5004C0F25 /* Trail Making Test */ = {
+			isa = PBXGroup;
+			children = (
+				A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */,
+			);
+			path = "Trail Making Test";
+			sourceTree = "<group>";
+		};
+		A4A3F2EA268726D4004C0F25 /* Digit Span Test */ = {
+			isa = PBXGroup;
+			children = (
+				A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */,
+			);
+			path = "Digit Span Test";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +308,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4754082266CE36C009E0B4B /* MainViewController.swift in Sources */,
+				A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */,
 				A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */,
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
+				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
+				A4A3F2EE2687289D004C0F25 /* Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
