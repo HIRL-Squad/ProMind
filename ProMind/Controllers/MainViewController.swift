@@ -9,9 +9,22 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Animate Label, can consider using CLTypingLabel
+        titleLabel.text = ""
+        var charIdx: Double = 0
+        let titleText = "🧠 ProMind"
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: 0.1 * charIdx, repeats: false) { timer in
+                self.titleLabel.text?.append(letter)
+            }
+            charIdx += 1
+        }
     }
 
     // Use Unconditional Segue instead. Keeping for reference.

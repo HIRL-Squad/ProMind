@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="WDJ-UW-CP3" userLabel="Top Stack View">
-                                <rect key="frame" x="505" y="146" width="170.5" height="257"/>
+                                <rect key="frame" x="453.5" y="146" width="273.5" height="277.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xTp-MN-qtX">
-                                        <rect key="frame" x="0.0" y="0.0" width="170.5" height="170.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="273.5" height="170.5"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProMind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKg-o5-zlG">
-                                        <rect key="frame" x="0.0" y="206.5" width="170.5" height="50.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="42"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🧠 ProMind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKg-o5-zlG">
+                                        <rect key="frame" x="0.0" y="206.5" width="273.5" height="71"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="60"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -36,7 +36,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="ENr-XF-OER" userLabel="Bottom Stack View">
-                                <rect key="frame" x="380" y="470" width="420" height="224"/>
+                                <rect key="frame" x="380" y="494" width="420" height="224"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkQ-hF-uR0">
                                         <rect key="frame" x="0.0" y="0.0" width="420" height="100"/>
@@ -86,13 +86,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Light Grey"/>
                         <constraints>
-                            <constraint firstItem="ENr-XF-OER" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="172" id="9wF-LY-YTZ"/>
+                            <constraint firstItem="ENr-XF-OER" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="196" id="9wF-LY-YTZ"/>
                             <constraint firstItem="WDJ-UW-CP3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="96" id="LU6-gU-mOL"/>
                             <constraint firstItem="ENr-XF-OER" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oey-9A-OvN"/>
                             <constraint firstItem="WDJ-UW-CP3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PpC-Jp-9ZY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FgJ-A2-LvE"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="LKg-o5-zlG" id="xMu-xK-aOd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,17 +126,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trail Making Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sF-wI-R1L">
-                                <rect key="frame" x="405" y="75" width="371" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trail Making Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sF-wI-R1L">
+                                <rect key="frame" x="404.5" y="98" width="371" height="58"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is it?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-tF-AEb">
-                                <rect key="frame" x="107" y="232" width="175" height="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is it? 💬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-tF-AEb">
+                                <rect key="frame" x="107" y="232" width="221" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKG-or-VTE">
+                                <rect key="frame" x="107" y="283" width="965" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Trail making test is one of the most widely adopted neuropsychological tests due to its sensitivity, simplicity and ease of administration. 
+
+It is used to assess processing speed and executive function</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -142,6 +154,8 @@
                         <color key="backgroundColor" name="Light Grey"/>
                         <constraints>
                             <constraint firstItem="uMa-kG-OSC" firstAttribute="bottom" secondItem="2Q2-wj-oz8" secondAttribute="bottom" constant="-64" id="5tf-JR-Mnz"/>
+                            <constraint firstItem="1sF-wI-R1L" firstAttribute="top" secondItem="2Q2-wj-oz8" secondAttribute="top" constant="48" id="ifX-Au-Y4T"/>
+                            <constraint firstItem="1sF-wI-R1L" firstAttribute="centerX" secondItem="aOB-YW-vrW" secondAttribute="centerX" id="s3C-na-4v7"/>
                             <constraint firstItem="uMa-kG-OSC" firstAttribute="centerX" secondItem="aOB-YW-vrW" secondAttribute="centerX" id="y7v-UB-JhV"/>
                         </constraints>
                     </view>
