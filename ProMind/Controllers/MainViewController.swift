@@ -36,24 +36,6 @@ class MainViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    // Use Unconditional Segue instead. Keeping for reference.
-    @IBAction func testSelected(_ sender: UIButton) {
-        //        let test = sender.currentTitle!
-        //
-        //        switch test {
-        //            case Strings.TrailMakingTest:
-        //                navigate(destination: Strings.TMT)
-        //            case Strings.DigitSpanTest:
-        //                navigate(destination: Strings.DST)
-        //            default:
-        //                print("MainViewController.testSelected(): Something went wrong")
-        //        }
-    }
-    
-    //    func navigate(destination: String) {
-    //        self.performSegue(withIdentifier: destination, sender: self)
-    //    }
-    
     // To prepare for new view controller before navigation.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.

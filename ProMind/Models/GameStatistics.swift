@@ -32,4 +32,28 @@ struct GameStatistics {
         
         return statsText
     }
+    
+    func getFormattedGameResults() -> NSMutableAttributedString {
+        let resultsText = NSMutableAttributedString.init()
+        let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 28)]
+
+        let timeTakenText = NSMutableAttributedString(string: "Time Taken: ", attributes: attrs)
+        timeTakenText.append(NSMutableAttributedString(string: "\(totalTimeTaken) s\n"))
+        
+        let circlesText = NSMutableAttributedString(string: "Circles Left: ", attributes: attrs)
+        circlesText.append(NSMutableAttributedString(string: "\(String(format: "%02d", numCirclesLeft))\n"))
+        
+        let errorsText = NSMutableAttributedString(string: "Errors: ", attributes: attrs)
+        errorsText.append(NSMutableAttributedString(string: "\(String(format: "%02d", numErrors))\n"))
+        
+        let liftsText = NSMutableAttributedString(string: "Lifts: ", attributes: attrs)
+        liftsText.append(NSMutableAttributedString(string: String(format: "%02d", numLifts)))
+        
+        resultsText.append(timeTakenText)
+        resultsText.append(circlesText)
+        resultsText.append(errorsText)
+        resultsText.append(liftsText)
+        
+        return resultsText
+    }
 }

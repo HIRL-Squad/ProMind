@@ -11,10 +11,11 @@ struct K {
     static let goToTMTSegue = "MainToTMT"
     static let goToDSTSegue = "MainToDST"
     
-    static let TrailMakingTest = "Trail Making Test"
     static let DigitSpanTest = "Digit Span Test"
     
     struct TMT {
-        static let totalTime = 10
+        static let TrailMakingTest = "Trail Making Test"
+        static let totalTime = 120 // Time in seconds
+        static let goToTMTResultSegue = "GameToTMTResult"
     }
 }

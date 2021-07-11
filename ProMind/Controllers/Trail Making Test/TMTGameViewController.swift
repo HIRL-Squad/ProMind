@@ -56,13 +56,6 @@ class TMTGameViewController: UIViewController {
     var lastScreenshot = UIImage()
     var canDraw: Bool = false
     
-    // For stats
-//    var lastTime: Int = 0 {
-//        didSet {
-//            setStatLabel()
-//        }
-//    }
-    
     var gameStatistics: [GameStatistics] = [GameStatistics(), GameStatistics()]
     
     private func updateStatsLabel() {
@@ -77,16 +70,13 @@ class TMTGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Create a Timer
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        
         // view represents the root view of a View Controller
         /// The bounds of an UIView is the rectangle, expressed as a location (x,y) and size (width,height)
         /// relative to its own coordinate system (0,0).
         /// The frame of an UIView is the rectangle, expressed as a location (x,y) and size (width,height)
         /// relative to the superview it is contained within.
-        h = view.bounds.height
-        w = view.bounds.width - 100
+        h = view.bounds.height - 25
+        w = view.bounds.width - 125
         print("Width=\(w); Height=\(h);")
         
         allPointsCentersArray = [
@@ -100,12 +90,52 @@ class TMTGameViewController: UIViewController {
         numRound = 0
         currentLabels = labels[numRound]
         
-        initGame()
+        createNewCircles()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Create a Timer
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        showDialog()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    private func showDialog() {
+        var title: String
+        var msg: String
+        
+        if numRound == 0 {
+            title = "\(K.TMT.TrailMakingTest) A"
+            msg = "\n\(K.TMT.TrailMakingTest) A is the first part of the test. \n\nIt requires you to connect a series of 25 numbered circles in ascending order\n(i.e., 1-2-3-...-23-24-25)"
+        } else {
+            title = "\(K.TMT.TrailMakingTest) B"
+            msg = "\n\(K.TMT.TrailMakingTest) B is the second part of the test. \n\nIt requires you to connect 25 circles labelled with numbers and letters in the alternating sequence of 1-A-2-B-3-C...)"
+        }
+        
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        
+        alertController.setTitle(font: UIFont.boldSystemFont(ofSize: 24), color: .black)
+        alertController.setMessage(font: UIFont(name: "System", size: 18), color: UIColor(named: "Grey"))
+        
+        alertController.addAction(UIAlertAction(title: "Begin", style: UIAlertAction.Style.default, handler: { _ in
+            self.initGame()
+        }))
+        // alertController.addAction(UIAlertAction(title: "Back", style: UIAlertAction.Style.cancel, handler: { _ in
+        //    self.dismiss(animated: true, completion: nil)
+        // }))
+
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func initGame() {
@@ -125,14 +155,12 @@ class TMTGameViewController: UIViewController {
 
         rigthViewIndex = 0
         currentViewIndex = 0
-
-        createNewCircles()
         
         displayLastScreenshot(reset: true)
         
         startTimer()
     }
-
+    
     private func startTimer(){
         timeLeft = K.TMT.totalTime
         isTimerPlaying = true
@@ -148,7 +176,8 @@ class TMTGameViewController: UIViewController {
             if timeLeft > 0 {
                 timeLeft -= 1
             } else {
-//                lastTime = 301
+                gameStatistics[numRound].totalTimeTaken = 301
+                
                 stopTimer()
                 canDraw = false
 
@@ -158,12 +187,14 @@ class TMTGameViewController: UIViewController {
                         circle.backgroundColor = .red
                     }
                 }
+                
+                endSubTest()
             }
         }
     }
 
     func createNewCircles() {
-        // allPointsCentersArray.shuffle()
+         allPointsCentersArray.shuffle()
 
         for circleView in circleViews {
             circleView.removeFromSuperview()
@@ -172,8 +203,8 @@ class TMTGameViewController: UIViewController {
         
         for idx in 0...allPointsCentersArray.count - 1 {
             let circleView = UIView(frame: CGRect(x: 0, y: 0, width: w[5], height: w[5]))
-            // circleView.center = CGPoint(x: allPointsCentersArray[idx].x + CGFloat(Int.random(in: -30..<30)), y: allPointsCentersArray[idx].y + CGFloat(Int.random(in: -30..<30)))
-            circleView.center = CGPoint(x: allPointsCentersArray[idx].x, y: allPointsCentersArray[idx].y)
+            circleView.center = CGPoint(x: allPointsCentersArray[idx].x + CGFloat(Int.random(in: -30..<30)), y: allPointsCentersArray[idx].y + CGFloat(Int.random(in: -30..<30)))
+            // circleView.center = CGPoint(x: allPointsCentersArray[idx].x, y: allPointsCentersArray[idx].y)
             
             circleView.backgroundColor = .lightGray
             circleView.layer.cornerRadius = w[2.5]
@@ -252,23 +283,11 @@ class TMTGameViewController: UIViewController {
                         
                         
                         if currentViewIndex == currentLabels.count - 1 {
-
-                            gameStatistics[numRound].totalTimeTaken = K.TMT.totalTime - timeLeft
+                            stopTimer()
+                            canDraw = false
                             
-                            if numRound == 0 {
-                                // Enter TMT-B
-                                // Display TMT-B Instructions
-                                numRound = 1
-                                currentLabels = labels[numRound]
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                                    self.initGame()
-                                })
-                            } else {
-                                // End Game
-                                // Present scores
-                            }
-
+                            gameStatistics[numRound].totalTimeTaken = K.TMT.totalTime - timeLeft
+                            endSubTest()
                         }
                         
                     }
@@ -291,24 +310,18 @@ class TMTGameViewController: UIViewController {
 
         canDraw = false
 
-         if timeLeft > 0 {
+        if timeLeft > 0 {
             displayLastScreenshot(reset: false)
-            
-            //            imageView2.removeFromSuperview()
-            //            imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: w, height: h))
-            //            imageView2.backgroundColor = .white
-            //            imageView2.image = lastImage
-            //            myImageView.addSubview(imageView2)
-            //            allImageViews.append(imageView2)
             
             layerCount = 0
             
+            // To revert incorrect connected circle to grey colour
             for circle in circleViews {
                 if (circle.backgroundColor == .red) {
                     circle.backgroundColor = .lightGray
                 }
             }
-         }
+        }
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
@@ -349,6 +362,31 @@ class TMTGameViewController: UIViewController {
         layerCount += 1
         allLayerCount += 1
     }
+    
+    private func endSubTest() {
+        if numRound == 0 {
+            // Enter TMT-B
+            // Display TMT-B Instructions
+            numRound = 1
+            currentLabels = labels[numRound]
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                self.displayLastScreenshot(reset: true)
+                self.createNewCircles()
+                self.showDialog()
+            })
+        } else {
+            // End Game
+            // Present scores
+            self.performSegue(withIdentifier: K.TMT.goToTMTResultSegue, sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let tmtResultViewController = segue.destination as! TMTResultViewController
+        tmtResultViewController.gameResultStatistics = gameStatistics
+    }
+    
 }
 
 extension UIView {
@@ -370,3 +408,47 @@ extension UIView {
         return UIImage()
     }
 }
+
+extension UIAlertController {
+    
+    //Set background color of UIAlertController
+    func setBackgroundColor(color: UIColor) {
+        if let bgView = self.view.subviews.first, let groupView = bgView.subviews.first, let contentView = groupView.subviews.first {
+            contentView.backgroundColor = color
+        }
+    }
+    
+    //Set title font and title color
+    func setTitle(font: UIFont?, color: UIColor?) {
+        guard let title = self.title else { return }
+        let attributeString = NSMutableAttributedString(string: title)//1
+        if let titleFont = font {
+            attributeString.addAttributes([NSAttributedString.Key.font : titleFont], range: NSMakeRange(0, title.utf8.count))
+        }
+        
+        if let titleColor = color {
+            attributeString.addAttributes([NSAttributedString.Key.foregroundColor : titleColor], range: NSMakeRange(0, title.utf8.count))
+        }
+        self.setValue(attributeString, forKey: "attributedTitle")
+    }
+    
+    //Set message font and message color
+    func setMessage(font: UIFont?, color: UIColor?) {
+        guard let message = self.message else { return }
+        let attributeString = NSMutableAttributedString(string: message)
+        if let messageFont = font {
+            attributeString.addAttributes([NSAttributedString.Key.font : messageFont], range: NSMakeRange(0, message.utf8.count))
+        }
+        
+        if let messageColorColor = color {
+            attributeString.addAttributes([NSAttributedString.Key.foregroundColor : messageColorColor], range: NSMakeRange(0, message.utf8.count))
+        }
+        self.setValue(attributeString, forKey: "attributedMessage")
+    }
+    
+    //Set tint color of UIAlertController
+    func setTint(color: UIColor) {
+        self.view.tintColor = color
+    }
+}
+

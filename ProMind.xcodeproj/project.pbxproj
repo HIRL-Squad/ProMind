@@ -19,6 +19,7 @@
 		A4A3F2EE2687289D004C0F25 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2ED2687289D004C0F25 /* Constants.swift */; };
 		A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761926998512009C0B35 /* CGFloat.swift */; };
 		A4A4761C269B0B10009C0B35 /* GameStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761B269B0B0F009C0B35 /* GameStatistics.swift */; };
+		A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */; };
 		A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */; };
 		A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754083266CE36C009E0B4B /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		A4A3F2ED2687289D004C0F25 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A4A4761926998512009C0B35 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		A4A4761B269B0B0F009C0B35 /* GameStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatistics.swift; sourceTree = "<group>"; };
+		A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTResultViewController.swift; sourceTree = "<group>"; };
 		A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +176,7 @@
 			children = (
 				A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */,
 				A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */,
+				A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */,
 			);
 			path = "Trail Making Test";
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
 				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
 				A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */,
+				A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */,
 				A4A3F2EE2687289D004C0F25 /* Constants.swift in Sources */,
 				A4A4761C269B0B10009C0B35 /* GameStatistics.swift in Sources */,
 			);
