@@ -8,17 +8,16 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         // Animate Label, can consider using CLTypingLabel
         titleLabel.text = ""
         var charIdx: Double = 0
-        let titleText = "🧠 ProMind"
+        let titleText = "ProMind"
         for letter in titleText {
             Timer.scheduledTimer(withTimeInterval: 0.1 * charIdx, repeats: false) { timer in
                 self.titleLabel.text?.append(letter)
@@ -26,40 +25,50 @@ class MainViewController: UIViewController {
             charIdx += 1
         }
     }
-
-    // Use Unconditional Segue instead. Keeping for reference.
-    @IBAction func testSelected(_ sender: UIButton) {
-//        let test = sender.currentTitle!
-//
-//        switch test {
-//            case Strings.TrailMakingTest:
-//                navigate(destination: Strings.TMT)
-//            case Strings.DigitSpanTest:
-//                navigate(destination: Strings.DST)
-//            default:
-//                print("MainViewController.testSelected(): Something went wrong")
-//        }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
     
-//    func navigate(destination: String) {
-//        self.performSegue(withIdentifier: destination, sender: self)
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    // Use Unconditional Segue instead. Keeping for reference.
+    @IBAction func testSelected(_ sender: UIButton) {
+        //        let test = sender.currentTitle!
+        //
+        //        switch test {
+        //            case Strings.TrailMakingTest:
+        //                navigate(destination: Strings.TMT)
+        //            case Strings.DigitSpanTest:
+        //                navigate(destination: Strings.DST)
+        //            default:
+        //                print("MainViewController.testSelected(): Something went wrong")
+        //        }
+    }
+    
+    //    func navigate(destination: String) {
+    //        self.performSegue(withIdentifier: destination, sender: self)
+    //    }
     
     // To prepare for new view controller before navigation.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         switch segue.identifier {
-            case Strings.TMT:
-                let tmtMainViewController = segue.destination as! TMTMainViewController // Force downcast UIViewController to TMTMainViewController
-                tmtMainViewController.text = "Sample Data TMT"
-            case Strings.DST:
-                let dstMainViewController = segue.destination as! DSTMainViewController
-                dstMainViewController.text = "Sample Data DST"
-            default:
-                print("MainViewController.prepare(): No segue identifier is matched")
+        case K.goToTMTSegue:
+            let tmtMainViewController = segue.destination as! TMTMainViewController // Force downcast UIViewController to TMTMainViewController
+            tmtMainViewController.text = "Sample Data TMT"
+        case K.goToDSTSegue:
+            let dstMainViewController = segue.destination as! DSTMainViewController
+            dstMainViewController.text = "Sample Data DST"
+        default:
+            print("MainViewController.prepare(): No segue identifier is matched")
         }
-
+        
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="66O-e6-76K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="41y-Iz-qOJ">
     <device id="ipad10_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="WDJ-UW-CP3" userLabel="Top Stack View">
-                                <rect key="frame" x="453.5" y="146" width="273.5" height="277.5"/>
+                                <rect key="frame" x="490.5" y="146" width="199" height="277.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xTp-MN-qtX">
-                                        <rect key="frame" x="0.0" y="0.0" width="273.5" height="170.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="199" height="170.5"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🧠 ProMind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKg-o5-zlG">
-                                        <rect key="frame" x="0.0" y="206.5" width="273.5" height="71"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProMind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKg-o5-zlG">
+                                        <rect key="frame" x="0.0" y="206.5" width="199" height="71"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="60"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="testSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ffc-NZ-atP"/>
-                                            <segue destination="1hR-aD-SHx" kind="show" identifier="TMT" id="9DX-Xv-QN8"/>
+                                            <segue destination="1hR-aD-SHx" kind="show" identifier="MainToTMT" id="9DX-Xv-QN8"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrc-Iq-6Th">
@@ -77,7 +77,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="testSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xQC-Qe-GyE"/>
-                                            <segue destination="Ojt-bW-xGj" kind="presentation" identifier="DST" modalPresentationStyle="fullScreen" id="Vhe-aK-WNi"/>
+                                            <segue destination="Ojt-bW-xGj" kind="show" identifier="MainToDST" id="Vhe-aK-WNi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -125,6 +125,9 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="41y-Iz-qOJ" kind="show" id="hHr-A2-bVm"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trail Making Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sF-wI-R1L">
                                 <rect key="frame" x="404.5" y="98" width="371" height="58"/>
@@ -132,20 +135,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is it? 💬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-tF-AEb">
-                                <rect key="frame" x="107" y="232" width="221" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is it? 💬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-tF-AEb">
+                                <rect key="frame" x="96" y="192" width="221" height="43"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKG-or-VTE">
-                                <rect key="frame" x="107" y="283" width="965" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Trail making test is one of the most widely adopted neuropsychological tests due to its sensitivity, simplicity and ease of administration. 
-
-It is used to assess processing speed and executive function</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKG-or-VTE">
+                                <rect key="frame" x="96" y="259" width="988" height="100.5"/>
+                                <string key="text">Trail making test is one of the most widely adopted neuropsychological tests for assessing processing speed and executive function due to its sensitivity, simplicity and ease of administration. </string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -154,16 +153,91 @@ It is used to assess processing speed and executive function</string>
                         <color key="backgroundColor" name="Light Grey"/>
                         <constraints>
                             <constraint firstItem="uMa-kG-OSC" firstAttribute="bottom" secondItem="2Q2-wj-oz8" secondAttribute="bottom" constant="-64" id="5tf-JR-Mnz"/>
+                            <constraint firstItem="ZKG-or-VTE" firstAttribute="leading" secondItem="2Q2-wj-oz8" secondAttribute="leading" constant="96" id="Gv1-Ke-dtM"/>
+                            <constraint firstItem="ZKG-or-VTE" firstAttribute="top" secondItem="sOH-tF-AEb" secondAttribute="bottom" constant="24" id="Iw3-Nv-AOd"/>
+                            <constraint firstItem="ZKG-or-VTE" firstAttribute="trailing" secondItem="2Q2-wj-oz8" secondAttribute="trailing" constant="-96" id="UnE-GV-RcR"/>
+                            <constraint firstItem="sOH-tF-AEb" firstAttribute="leading" secondItem="2Q2-wj-oz8" secondAttribute="leading" constant="96" id="cea-FA-uRh"/>
                             <constraint firstItem="1sF-wI-R1L" firstAttribute="top" secondItem="2Q2-wj-oz8" secondAttribute="top" constant="48" id="ifX-Au-Y4T"/>
+                            <constraint firstItem="sOH-tF-AEb" firstAttribute="top" secondItem="1sF-wI-R1L" secondAttribute="bottom" constant="36" id="ilQ-w1-38J"/>
                             <constraint firstItem="1sF-wI-R1L" firstAttribute="centerX" secondItem="aOB-YW-vrW" secondAttribute="centerX" id="s3C-na-4v7"/>
                             <constraint firstItem="uMa-kG-OSC" firstAttribute="centerX" secondItem="aOB-YW-vrW" secondAttribute="centerX" id="y7v-UB-JhV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Trail Making Test" id="uPN-6I-9wj"/>
+                    <navigationItem key="navigationItem" title="🧠 ProMind" id="uPN-6I-9wj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88u-Ln-8is" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1550.3389830508474" y="-296.34146341463412"/>
+        </scene>
+        <!--TMT Game View Controller-->
+        <scene sceneID="TXc-3C-g7A">
+            <objects>
+                <viewController id="41y-Iz-qOJ" userLabel="TMT Game View Controller" customClass="TMTGameViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nYa-pU-kie">
+                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="TGd-2c-HID">
+                                <rect key="frame" x="1030" y="200" width="125" height="211.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left: 300 s" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiF-LK-FAe" userLabel="Time Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="5cg-Jv-CTv"/>
+                                            <constraint firstAttribute="width" constant="125" id="DCk-BV-22f"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFz-6v-cJE">
+                                        <rect key="frame" x="0.0" y="77" width="125" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="0sz-p2-9ZI"/>
+                                            <constraint firstAttribute="height" constant="50" id="aOo-1d-3xO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
+                                        <state key="normal" title="Reset" image="gobackward" catalog="system">
+                                            <color key="titleColor" name="AccentColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="41y-Iz-qOJ" eventType="touchUpInside" id="40p-L1-Zii"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="160-wj-oRq">
+                                        <rect key="frame" x="0.0" y="154" width="125" height="57.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="TeP-JE-4cN"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="nca-bz-32J"/>
+                                        </constraints>
+                                        <string key="text">Circles Left: 25
+Errors: 0
+Lifts: 0</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UJv-h1-WdB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TGd-2c-HID" firstAttribute="top" secondItem="UJv-h1-WdB" secondAttribute="top" constant="150" id="OUZ-Ou-d3t"/>
+                            <constraint firstItem="TGd-2c-HID" firstAttribute="trailing" secondItem="UJv-h1-WdB" secondAttribute="trailing" constant="-25" id="Oq0-5n-ntV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ob1-qi-ldi"/>
+                    <connections>
+                        <outlet property="statsLabel" destination="160-wj-oRq" id="LiH-FB-vjx"/>
+                        <outlet property="timerLabel" destination="kiF-LK-FAe" id="OKj-Oh-jgu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IfH-7t-m9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2318" y="-296"/>
         </scene>
         <!--DST Main View Controller-->
         <scene sceneID="pXw-nd-Kn5">
@@ -184,7 +258,7 @@ It is used to assess processing speed and executive function</string>
                         <viewLayoutGuide key="safeArea" id="Yxa-KD-DfS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Digit Span Test" id="kcq-Wn-hbI"/>
+                    <navigationItem key="navigationItem" title="🧠 ProMind" id="kcq-Wn-hbI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SjN-XT-tgZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,6 +272,10 @@ It is used to assess processing speed and executive function</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gnz-JD-bu8">
                         <rect key="frame" x="0.0" y="0.0" width="1180" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="Light Blue"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -211,8 +289,12 @@ It is used to assess processing speed and executive function</string>
     </scenes>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>
+        <image name="gobackward" catalog="system" width="121" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.31400001049041748" green="0.30199998617172241" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Light Blue">
+            <color red="0.88599997758865356" green="0.9100000262260437" blue="0.93300002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Light Grey">
             <color red="0.96100002527236938" green="0.9649999737739563" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

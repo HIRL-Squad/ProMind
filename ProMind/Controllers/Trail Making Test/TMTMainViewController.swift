@@ -14,7 +14,6 @@ class TMTMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("TMTMainViewController.viewDidLoad() loaded successfully:", text ?? "Failed to pass data")
-        // Do any additional setup after loading the view.
     }
     
 //    @IBAction func backButtonPressed(_ sender: UIButton) {

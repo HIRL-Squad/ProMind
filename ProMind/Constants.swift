@@ -7,9 +7,14 @@
 
 import Foundation
 
-struct Strings {
+struct K {
+    static let goToTMTSegue = "MainToTMT"
+    static let goToDSTSegue = "MainToDST"
+    
     static let TrailMakingTest = "Trail Making Test"
-    static let TMT = "TMT"
     static let DigitSpanTest = "Digit Span Test"
-    static let DST = "DST"
+    
+    struct TMT {
+        static let totalTime = 10
+    }
 }

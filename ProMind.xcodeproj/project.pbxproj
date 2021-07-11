@@ -16,7 +16,10 @@
 		A47540A0266CE36F009E0B4B /* ProMindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475409F266CE36F009E0B4B /* ProMindUITests.swift */; };
 		A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */; };
 		A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */; };
-		A4A3F2EE2687289D004C0F25 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2ED2687289D004C0F25 /* Strings.swift */; };
+		A4A3F2EE2687289D004C0F25 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2ED2687289D004C0F25 /* Constants.swift */; };
+		A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761926998512009C0B35 /* CGFloat.swift */; };
+		A4A4761C269B0B10009C0B35 /* GameStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761B269B0B0F009C0B35 /* GameStatistics.swift */; };
+		A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */; };
 		A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754083266CE36C009E0B4B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +57,10 @@
 		A47540A1266CE36F009E0B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTMainViewController.swift; sourceTree = "<group>"; };
 		A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTMainViewController.swift; sourceTree = "<group>"; };
-		A4A3F2ED2687289D004C0F25 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		A4A3F2ED2687289D004C0F25 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A4A4761926998512009C0B35 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		A4A4761B269B0B0F009C0B35 /* GameStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatistics.swift; sourceTree = "<group>"; };
+		A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +111,7 @@
 		A475407C266CE36C009E0B4B /* ProMind */ = {
 			isa = PBXGroup;
 			children = (
-				A4A3F2ED2687289D004C0F25 /* Strings.swift */,
+				A4A3F2ED2687289D004C0F25 /* Constants.swift */,
 				A4A3F2E426871BD4004C0F25 /* Models */,
 				A4A3F2E526871BDB004C0F25 /* Views */,
 				A4A3F2E626871BE2004C0F25 /* Controllers */,
@@ -139,6 +145,8 @@
 		A4A3F2E426871BD4004C0F25 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A4A4761926998512009C0B35 /* CGFloat.swift */,
+				A4A4761B269B0B0F009C0B35 /* GameStatistics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */,
+				A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */,
 			);
 			path = "Trail Making Test";
 			sourceTree = "<group>";
@@ -307,12 +316,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */,
 				A4754082266CE36C009E0B4B /* MainViewController.swift in Sources */,
 				A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */,
 				A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */,
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
 				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
-				A4A3F2EE2687289D004C0F25 /* Strings.swift in Sources */,
+				A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */,
+				A4A3F2EE2687289D004C0F25 /* Constants.swift in Sources */,
+				A4A4761C269B0B10009C0B35 /* GameStatistics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
