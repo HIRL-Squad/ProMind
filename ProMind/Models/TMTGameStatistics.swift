@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct GameStatistics {
+struct TMTGameStatistics {
     var numCirclesLeft: Int = 25
     var numErrors: Int = 0
     var numLifts: Int = 0

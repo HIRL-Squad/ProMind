@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A43E482626BFDFFC0075E6D8 /* DSTGameStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43E482526BFDFFC0075E6D8 /* DSTGameStatistics.swift */; };
+		A46CD4D226A2F97000B2487C /* DSTGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46CD4D126A2F97000B2487C /* DSTGameViewController.swift */; };
 		A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475407D266CE36C009E0B4B /* AppDelegate.swift */; };
 		A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475407F266CE36C009E0B4B /* SceneDelegate.swift */; };
 		A4754082266CE36C009E0B4B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4754081266CE36C009E0B4B /* MainViewController.swift */; };
@@ -18,9 +20,10 @@
 		A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */; };
 		A4A3F2EE2687289D004C0F25 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2ED2687289D004C0F25 /* Constants.swift */; };
 		A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761926998512009C0B35 /* CGFloat.swift */; };
-		A4A4761C269B0B10009C0B35 /* GameStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761B269B0B0F009C0B35 /* GameStatistics.swift */; };
+		A4A4761C269B0B10009C0B35 /* TMTGameStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761B269B0B0F009C0B35 /* TMTGameStatistics.swift */; };
 		A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */; };
 		A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */; };
+		A4AC2AE226C0E2AB00A04064 /* DSTResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AC2AE126C0E2AB00A04064 /* DSTResultViewController.swift */; };
 		A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754083266CE36C009E0B4B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A43E482526BFDFFC0075E6D8 /* DSTGameStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTGameStatistics.swift; sourceTree = "<group>"; };
+		A46CD4D126A2F97000B2487C /* DSTGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTGameViewController.swift; sourceTree = "<group>"; };
 		A475407A266CE36C009E0B4B /* ProMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475407D266CE36C009E0B4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A475407F266CE36C009E0B4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,9 +65,10 @@
 		A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTMainViewController.swift; sourceTree = "<group>"; };
 		A4A3F2ED2687289D004C0F25 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A4A4761926998512009C0B35 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
-		A4A4761B269B0B0F009C0B35 /* GameStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatistics.swift; sourceTree = "<group>"; };
+		A4A4761B269B0B0F009C0B35 /* TMTGameStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameStatistics.swift; sourceTree = "<group>"; };
 		A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTResultViewController.swift; sourceTree = "<group>"; };
 		A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameViewController.swift; sourceTree = "<group>"; };
+		A4AC2AE126C0E2AB00A04064 /* DSTResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				A4A4761926998512009C0B35 /* CGFloat.swift */,
-				A4A4761B269B0B0F009C0B35 /* GameStatistics.swift */,
+				A4A4761B269B0B0F009C0B35 /* TMTGameStatistics.swift */,
+				A43E482526BFDFFC0075E6D8 /* DSTGameStatistics.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */,
+				A46CD4D126A2F97000B2487C /* DSTGameViewController.swift */,
+				A4AC2AE126C0E2AB00A04064 /* DSTResultViewController.swift */,
 			);
 			path = "Digit Span Test";
 			sourceTree = "<group>";
@@ -319,7 +328,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A46CD4D226A2F97000B2487C /* DSTGameViewController.swift in Sources */,
 				A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */,
+				A43E482626BFDFFC0075E6D8 /* DSTGameStatistics.swift in Sources */,
+				A4AC2AE226C0E2AB00A04064 /* DSTResultViewController.swift in Sources */,
 				A4754082266CE36C009E0B4B /* MainViewController.swift in Sources */,
 				A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */,
 				A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */,
@@ -328,7 +340,7 @@
 				A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */,
 				A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */,
 				A4A3F2EE2687289D004C0F25 /* Constants.swift in Sources */,
-				A4A4761C269B0B10009C0B35 /* GameStatistics.swift in Sources */,
+				A4A4761C269B0B10009C0B35 /* TMTGameStatistics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +524,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.nus.u.weekeat-tan.ProMind";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.nus.u-weekeat-tan.ProMind";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -532,7 +545,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.nus.u.weekeat-tan.ProMind";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.nus.u-weekeat-tan.ProMind";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;

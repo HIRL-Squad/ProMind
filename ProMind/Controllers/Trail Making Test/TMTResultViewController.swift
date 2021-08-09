@@ -12,7 +12,7 @@ class TMTResultViewController: UIViewController {
     @IBOutlet weak var resultLabelA: UILabel!
     @IBOutlet weak var resultLabelB: UILabel!
     
-    var gameResultStatistics: [GameStatistics]?
+    var gameResultStatistics: [TMTGameStatistics]?
     
     override func viewDidLoad() {
         super.viewDidLoad()

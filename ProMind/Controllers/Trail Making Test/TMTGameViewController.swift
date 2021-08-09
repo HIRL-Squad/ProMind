@@ -56,7 +56,7 @@ class TMTGameViewController: UIViewController {
     var lastScreenshot = UIImage()
     var canDraw: Bool = false
     
-    var gameStatistics: [GameStatistics] = [GameStatistics(), GameStatistics()]
+    var gameStatistics: [TMTGameStatistics] = [TMTGameStatistics(), TMTGameStatistics()]
     
     private func updateStatsLabel() {
         statsLabel.isHidden = false
@@ -386,7 +386,6 @@ class TMTGameViewController: UIViewController {
         let tmtResultViewController = segue.destination as! TMTResultViewController
         tmtResultViewController.gameResultStatistics = gameStatistics
     }
-    
 }
 
 extension UIView {
