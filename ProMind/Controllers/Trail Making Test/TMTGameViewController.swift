@@ -208,6 +208,7 @@ class TMTGameViewController: UIViewController {
             
             circleView.backgroundColor = .lightGray
             circleView.layer.cornerRadius = w[2.5]
+            // circleView.layer.cornerRadius = circleView.frame.size.width / 2 // Same as w[2.5]...
             circleView.layer.borderWidth = w[0.20]
             circleView.layer.borderColor = UIColor.black.cgColor
             circleView.tag = idx
@@ -236,11 +237,24 @@ class TMTGameViewController: UIViewController {
         firstPoint = currentLocation
         secondPoint = nil
         
+        // printCircleTouchable(circle: circle, currentLocation: currentLocation)
+        
         // To determine if one can draw from that Circle
-        if (((circle.center.x - currentLocation.x) * (circle.center.x - currentLocation.x)) + ((circle.center.y - currentLocation.y) * (circle.center.y - currentLocation.y))).squareRoot() < w[2.2] &&
+        if (((circle.center.x - currentLocation.x) * (circle.center.x - currentLocation.x)) + ((circle.center.y - currentLocation.y) * (circle.center.y - currentLocation.y))).squareRoot() <= w[2.5] && // Original: w[2.2]
             timeLeft != 0 {
             canDraw = true
         }
+    }
+    
+    private func printCircleTouchable(circle: UIView, currentLocation: CGPoint) {
+        print("  circle.center.x: ", circle.center.x)
+        print("currentLocation.x: ", currentLocation.x)
+        print("  circle.center.y: ", circle.center.y)
+        print("currentLocation.y: ", currentLocation.y)
+        print("           w[2.5]: ", w[2.5])
+        
+        print("equation1: ", (((circle.center.x - currentLocation.x) * (circle.center.x - currentLocation.x)) + ((circle.center.y - currentLocation.y) * (circle.center.y - currentLocation.y))).squareRoot())
+        print("equation2: ", (pow(circle.center.x - currentLocation.x, 2) + pow(circle.center.y - currentLocation.y, 2)).squareRoot())
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -258,7 +272,9 @@ class TMTGameViewController: UIViewController {
 
                 for circle in circleViews {
 
-                    if (((circle.center.x - currentLocation.x) * (circle.center.x - currentLocation.x)) + ((circle.center.y - currentLocation.y) * (circle.center.y - currentLocation.y))).squareRoot() < w[2.2] {
+                    // printCircleTouchable(circle: circle, currentLocation: currentLocation)
+                    
+                    if (((circle.center.x - currentLocation.x) * (circle.center.x - currentLocation.x)) + ((circle.center.y - currentLocation.y) * (circle.center.y - currentLocation.y))).squareRoot() <= w[2.5] {
 
                         // Incorrect circle connected
                         if circle.tag > rigthViewIndex {
