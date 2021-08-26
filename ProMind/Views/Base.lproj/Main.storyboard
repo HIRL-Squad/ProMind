@@ -579,14 +579,28 @@ Longest Seq: 0</string>
                         <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE4-2l-e1B" userLabel="Instruction Label">
+                                <rect key="frame" x="280" y="372.5" width="620.5" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="18W-Sy-G3f"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="PhS-8Q-6uB"/>
+                                </constraints>
+                                <string key="text">There are a total of three subtests in Digit Span Test.
+We will go through them one by one.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" name="Light Purple"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lFG-dn-wfO" userLabel="Stats Stack View">
                                 <rect key="frame" x="980" y="250" width="175" height="290"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics  (Temporary - will be hidden in actual  test)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFo-12-1tL" userLabel="Stats Message">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFo-12-1tL" userLabel="Stats Message">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="57.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="UQN-Fx-wKQ"/>
                                         </constraints>
+                                        <string key="text">Statistics 
+(Temporary - will be hidden in actual  test)</string>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                                         <color key="textColor" name="AccentColor"/>
                                         <nil key="highlightedColor"/>
@@ -648,10 +662,30 @@ Longest Seq: 0</string>
                                 <color key="color" name="AccentColor"/>
                             </activityIndicatorView>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="L8G-VY-BhB" userLabel="Action Stack View">
-                                <rect key="frame" x="252" y="644" width="676" height="120"/>
+                                <rect key="frame" x="74" y="644" width="1032" height="120"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKU-Hh-nJ5" userLabel="Reset Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzO-qk-h6w" userLabel="Start Button">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="man-Wp-wr8"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="r35-Gf-RaL"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="startButtonPressed:" destination="do9-eP-ePs" eventType="touchUpInside" id="F30-qI-0DA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKU-Hh-nJ5" userLabel="Reset Button">
+                                        <rect key="frame" x="356" y="0.0" width="320" height="120"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="3PG-V8-h97"/>
@@ -671,7 +705,7 @@ Longest Seq: 0</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofl-f2-yPT">
-                                        <rect key="frame" x="356" y="0.0" width="320" height="120"/>
+                                        <rect key="frame" x="712" y="0.0" width="320" height="120"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="Kwp-64-wXj"/>
@@ -699,9 +733,11 @@ Longest Seq: 0</string>
                             <constraint firstItem="pl0-Jj-NfI" firstAttribute="centerX" secondItem="ZGK-8n-wyq" secondAttribute="centerX" id="5zx-SV-nyS"/>
                             <constraint firstItem="dNR-li-C1O" firstAttribute="bottom" secondItem="L8G-VY-BhB" secondAttribute="bottom" constant="36" id="6ff-tO-rLM"/>
                             <constraint firstItem="lFG-dn-wfO" firstAttribute="trailing" secondItem="dNR-li-C1O" secondAttribute="trailing" constant="-25" id="77P-Ws-j5G"/>
+                            <constraint firstItem="HE4-2l-e1B" firstAttribute="centerX" secondItem="ZGK-8n-wyq" secondAttribute="centerX" id="JWn-0M-gBC"/>
                             <constraint firstItem="L8G-VY-BhB" firstAttribute="centerX" secondItem="ZGK-8n-wyq" secondAttribute="centerX" id="MCF-kU-fNd"/>
                             <constraint firstItem="0pX-MK-38B" firstAttribute="centerX" secondItem="ZGK-8n-wyq" secondAttribute="centerX" id="N9z-4M-9eS"/>
                             <constraint firstItem="0pX-MK-38B" firstAttribute="top" secondItem="pl0-Jj-NfI" secondAttribute="bottom" constant="48" id="NYW-Y1-OZj"/>
+                            <constraint firstItem="HE4-2l-e1B" firstAttribute="centerY" secondItem="ZGK-8n-wyq" secondAttribute="centerY" id="hhe-Tl-I8G"/>
                             <constraint firstItem="lFG-dn-wfO" firstAttribute="top" secondItem="dNR-li-C1O" secondAttribute="top" constant="200" id="kHF-kF-kgt"/>
                             <constraint firstItem="pl0-Jj-NfI" firstAttribute="top" secondItem="dNR-li-C1O" secondAttribute="top" constant="96" id="tEE-Z5-f7y"/>
                         </constraints>
@@ -710,13 +746,17 @@ Longest Seq: 0</string>
                     <connections>
                         <outlet property="activityIndicatorView" destination="0pX-MK-38B" id="Uba-V4-0JZ"/>
                         <outlet property="answerStackView" destination="8gg-V0-AX0" id="rqo-vK-w5b"/>
+                        <outlet property="digitsStackView" destination="pl0-Jj-NfI" id="SFn-DW-l49"/>
                         <outlet property="doneButton" destination="ofl-f2-yPT" id="xzK-U7-H5z"/>
+                        <outlet property="instructionLabel" destination="HE4-2l-e1B" id="Pe2-3M-fEs"/>
                         <outlet property="previousTrialInfo" destination="nwA-Qn-D8p" id="WT5-dN-3Ra"/>
                         <outlet property="questionStackView" destination="a3q-1o-ywx" id="ca1-kN-oZT"/>
                         <outlet property="resetInputButton" destination="WKU-Hh-nJ5" id="CU7-JZ-UfQ"/>
                         <outlet property="roundInfoLabel" destination="HDn-9j-eHl" id="Ku9-x9-uwg"/>
                         <outlet property="speakerImageView" destination="XSm-RR-tNF" id="AFM-rd-tod"/>
+                        <outlet property="startButton" destination="jzO-qk-h6w" id="jEg-Gg-wmN"/>
                         <outlet property="statsLabel" destination="ooR-Vp-ODJ" id="scF-Kt-zme"/>
+                        <outlet property="statsStackView" destination="lFG-dn-wfO" id="GHH-eA-myy"/>
                         <segue destination="AgT-D4-hRO" kind="show" identifier="GameToDSTResult" id="FuJ-2x-tXZ"/>
                     </connections>
                 </viewController>

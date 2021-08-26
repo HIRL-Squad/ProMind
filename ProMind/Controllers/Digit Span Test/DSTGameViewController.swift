@@ -9,36 +9,46 @@ import UIKit
 import AVFoundation
 import Speech
 
-class DSTGameViewController: UIViewController, AVSpeechSynthesizerDelegate {
+class DSTGameViewController: UIViewController {
+    @IBOutlet weak var statsStackView: UIStackView!
+    @IBOutlet weak var digitsStackView: UIStackView! // Speaking Stack View, Answer Stack View
     @IBOutlet weak var questionStackView: UIStackView!
     @IBOutlet weak var answerStackView: UIStackView!
+    
     @IBOutlet weak var speakerImageView: UIImageView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
+    @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var resetInputButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
-        
+
+    @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var roundInfoLabel: UILabel!
     @IBOutlet weak var statsLabel: UILabel!
     @IBOutlet weak var previousTrialInfo: UILabel!
     
+    // Instructions
+    private var isInstructionMode = true
+    
+    // Determine if it's test mode
+    private var isTestMode = false
+    
     // Speech Synthesis
-    private let synthesizer = AVSpeechSynthesizer()
+    // private let synthesizer = AVSpeechSynthesizer()
+    private var synthesizer: AVSpeechSynthesizer?
 
     // Speech Recognition
-    private var isRecording: Bool = false
+    private var isRecording = false
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private var audioEngine: AVAudioEngine! // Object that controls the recording pipeline
     private var audioSession: AVAudioSession!
     
-    private var trialTimer: Timer?
+    // To keep track of the time used for each round
+    private var roundTimer: Timer?
     
-    // private var answerRemainingTime = K.DST.maxAnswerTime
-    // private var answerCountdownTimer: Timer?
-    
-    // Digit Forward, Digit Backward, ...
-    private var numRounds = 0 {
+    // -1: Starting Instructions; 0: Digit Forward, 1: Digit Backward, 2: Digit Sequencing
+    private var numRounds = -1 {
         didSet {
             updateRoundInfoLabel()
         }
@@ -51,13 +61,20 @@ class DSTGameViewController: UIViewController, AVSpeechSynthesizerDelegate {
             if oldValue == K.DST.numDigitsMapping.count {
                 numRounds += 1
                 numTrials = 1
+                
+                instructionLabel.isHidden = false
+                isInstructionMode = true
+                isTestMode = false
+                
+                roundTimer?.invalidate()
+                roundTimer = nil
             }
             
             updateRoundInfoLabel()
         }
     }
     
-    private var isPreviousTrialCorrect = false
+    private var isPreviousTrialCorrect = true
 
     private var currentDigits: [String] = []
     private var currentDigitLabels: [UILabel] = []
@@ -70,18 +87,30 @@ class DSTGameViewController: UIViewController, AVSpeechSynthesizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        statsLabel.isHidden = true
+//        digitsStackView.isHidden = true
+//        startButton.isHidden = true
+//        resetInputButton.isHidden = true
+//        doneButton.isHidden = true
+        
         speakerImageView.isHidden = true
         activityIndicatorView.isHidden = true
-        
         activityIndicatorView.startAnimating()
         
-        updateRoundInfoLabel()
-        updatePreviousTrialLabel()
-        updateStatsLabel()
+        // updateRoundInfoLabel()
+        // updatePreviousTrialLabel()
+        // updateStatsLabel()
         
-        synthesizer.delegate = self
+        initSynthesizer()
         
-        startTrial()
+        speakInstructions()
+        
+        // startTrial()
+    }
+    
+    private func initSynthesizer() {
+        synthesizer = AVSpeechSynthesizer()
+        synthesizer?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,12 +121,6 @@ class DSTGameViewController: UIViewController, AVSpeechSynthesizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkPermissions()
-        
-        trialTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            self.gameStatistics[self.numRounds].totalTime += 1
-            self.updateStatsLabel()
-        }
-        trialTimer!.tolerance = 0.1
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -105,9 +128,54 @@ class DSTGameViewController: UIViewController, AVSpeechSynthesizerDelegate {
         navigationController?.isNavigationBarHidden = false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dstResultViewController = segue.destination as! DSTResultViewController
+        dstResultViewController.gameResultStatistics = gameStatistics
+    }
+    
+    @IBAction func startButtonPressed(_ sender: UIButton) {
+        isInstructionMode = false
+        isTestMode = true
+        
+        instructionLabel.isHidden = true
+        startButton.isHidden = true
+
+        statsStackView.isHidden = false
+        digitsStackView.isHidden = false
+        resetInputButton.isHidden = false
+        doneButton.isHidden = false
+        
+        updateRoundInfoLabel()
+        updatePreviousTrialLabel()
+        updateStatsLabel()
+        
+        startTrial()
+    }
+    
+    @IBAction func resetInputButtonPressed(_ sender: UIButton) {
+        print("Reset pressed")
+        stopRecording(isResetInput: true)
+        startRecording()
+    }
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        print("Done pressed")
+        stopRecording(isResetInput: false)
+    }
+    
     private func startTrial() {
-        initDigits()
-        speakDigits()
+        if isTestMode {
+            if roundTimer == nil {
+                roundTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                    self.gameStatistics[self.numRounds].totalTime += 1
+                    self.updateStatsLabel()
+                }
+                roundTimer!.tolerance = 0.1
+            }
+            
+            initDigits()
+            speakDigits()
+        }
     }
     
     private func initDigits() {
@@ -116,12 +184,16 @@ class DSTGameViewController: UIViewController, AVSpeechSynthesizerDelegate {
         switch numRounds {
         case 0:
             expectedDigits = currentDigits
+            break
         case 1:
             expectedDigits = currentDigits.reversed()
+            break
         case 2:
             expectedDigits = currentDigits.sorted()
+            break
         default:
             handleError(withMessage: "There was no match in numRounds")
+            break
         }
     }
     
@@ -144,224 +216,7 @@ class DSTGameViewController: UIViewController, AVSpeechSynthesizerDelegate {
         }
     }
     
-    private func speakDigits() {
-        speakerImageView.isHidden = false
-        activityIndicatorView.isHidden = true
-        resetInputButton.isHidden = true
-        doneButton.isHidden = true
-        
-        let utterance = AVSpeechUtterance(string: currentDigits.joined(separator: ","))
-        utterance.rate = 0.3
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
-        
-        // AVSpeechSynthesisVoice.speechVoices().forEach({ voice in
-        //   print(voice)
-        // })
-        
-        synthesizer.speak(utterance)
-    }
-    
-    // After speech synthesising is done
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        speakerImageView.isHidden = true
-        startRecording()
-        
-        activityIndicatorView.isHidden = false
-        resetInputButton.isHidden = false
-        doneButton.isHidden = false
-    }
-    
-//    private func startAnswerTimeCountdown() {
-//        if answerCountdownTimer == nil {
-//            self.answerRemainingTime = K.DST.maxAnswerTime
-//            answerCountdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-//                self.answerRemainingTime -= 1
-//
-//                if self.answerRemainingTime < 0 {
-//                    self.answerCountdownTimer?.invalidate()
-//                    self.answerCountdownTimer = nil
-//                    self.stopRecording(isResetInput: false)
-//                }
-//            }
-//        }
-//    }
-    
-    private func startRecording() {
-//        startAnswerTimeCountdown()
-        
-        // 1. Create a recogniser
-        guard let speechRecognizer = SFSpeechRecognizer() else {
-            handleError(withMessage: "Not supported for device's locale.")
-            return
-        }
-        
-        if !speechRecognizer.isAvailable {
-            // Maybe no internet connection
-            handleError(withMessage: "Speech recogniser not available")
-            return
-        }
-        
-        // For on-device recognition
-        if speechRecognizer.supportsOnDeviceRecognition {
-            print("Support on device recognition")
-            recognitionRequest?.requiresOnDeviceRecognition = true
-        }
-                
-        isRecording = true
-
-        // 2. Create a speech recognition request
-        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        guard let recognitionRequest = recognitionRequest else {
-            handleError(withMessage: "Unable to create a SFSpeechAudioBufferRecognitionRequest object")
-            return
-        }
-        recognitionRequest.shouldReportPartialResults = true
-        
-        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
-            // To capture time limit error, etc
-            // guard error == nil else {
-            //    self.handleError(withMessage: "Recognition Task:\n\(error!.localizedDescription)")
-            //    return
-            // }
-            
-            if let result = result {
-                self.resetSpokenDigits()
-                
-                let newResult = result.bestTranscription.formattedString
-                let filteredResult = newResult.filter({ !$0.isWhitespace }) // "23 47" -> "2347"
-                print("New Result: \(newResult), Filtered Result: \(filteredResult), isFinal: \(result.isFinal)")
-                
-                filteredResult.forEach({ self.spokenDigits.append(String($0)) })
-                
-                DispatchQueue.main.async {
-                    if self.isRecording {
-                        for digit in self.spokenDigits {
-                            let digitLabel = self.getLabel(labelText: digit)
-                            self.spokenDigitsLabels.append(digitLabel)
-                            self.answerStackView.addArrangedSubview(digitLabel)
-                        }
-                        
-                        if result.isFinal {
-                            self.stopRecording(isResetInput: false)
-                        }
-                    }
-                }
-                
-            }
-        }
-        
-        // 3. Create a recording and classification pipeline (graphs of audio pipelines)
-        audioEngine = AVAudioEngine()
-        
-        // Input node of the audio engine
-        let inputNode = audioEngine.inputNode
-        
-        // bus -> channel
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        
-        // Install a tap to get chunks of audio (i.e., adding a node to the graph) on the input node.
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
-            // Add the extracted buffers to the recognition request ready to be transcribed
-            self.recognitionRequest?.append(buffer)
-        }
-        
-        // Build the graph
-        audioEngine.prepare()
-        
-        // 4. Start recognising speech
-        do {
-            // Activate the session.
-            audioSession = AVAudioSession.sharedInstance()
-            // try audioSession.setCategory(.record, mode: .spokenAudio, options: .duckOthers)
-            try audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: .duckOthers)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-                        
-            // Start the processing pipeline
-            try audioEngine.start()
-        } catch {
-            handleError(withMessage: "Audio Engine:\n\(error.localizedDescription)")
-        }
-    }
-    
-    @IBAction func resetInputButtonPressed(_ sender: UIButton) {
-        print("Reset pressed")
-        stopRecording(isResetInput: true)
-        startRecording()
-    }
-    
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
-        print("Done pressed")
-        stopRecording(isResetInput: false)
-    }
-    
-    private func stopRecording(isResetInput: Bool) {
-        // ADDED: Cancel the previous task if it's running (isFinal will never become True...?)
-        recognitionTask?.cancel()
-        recognitionTask = nil
-        
-        // End the recognition request.
-        recognitionRequest?.endAudio()
-        recognitionRequest = nil
-        
-        // Stop recording
-        audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0) // Call after audio engine is stopped as it modifies the graph.
-        
-        // Stop our session
-        try? audioSession.setActive(false)
-        audioSession = nil
-        
-        if isResetInput {
-            resetSpokenDigits()
-        } else {
-            print("isResetInput -> False")
-            
-            // answerCountdownTimer?.invalidate()
-            // answerCountdownTimer = nil
-            
-            isRecording = false
-            
-            let isAnswerCorrect = isAnswerCorrect()
-            updateStatsLabel()
-            
-            if isAnswerCorrect {
-                isPreviousTrialCorrect = true // Current Trial is correct (but will be interpreted as the previous trial)
-            } else {
-                
-                // If both previous and current trials are incorrect, then skip to next round
-                if !isPreviousTrialCorrect {
-                    numRounds += 1
-                    numTrials = 0 // Upon exitting from this function, numTrials will be incremented immediately
-                }
-                
-                isPreviousTrialCorrect = false
-            }
-            
-            numTrials += 1
-            updatePreviousTrialLabel()
-            
-            resetSpokenDigits()
-            // resetDigits()
-            
-            speakerImageView.isHidden = true
-            activityIndicatorView.isHidden = true
-            
-            // End of Match
-            if numRounds > 2 {
-                trialTimer?.invalidate()
-                self.performSegue(withIdentifier: K.DST.goToDSTResultSegue, sender: self)
-            } else {
-                startTrial()
-            }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dstResultViewController = segue.destination as! DSTResultViewController
-        dstResultViewController.gameResultStatistics = gameStatistics
-    }
-    
-    private func isAnswerCorrect() -> Bool {
+    private func checkAnswer() -> Bool {
         print("Spoken Digits: \(spokenDigits)")
         print("Expected Digits: \(expectedDigits)")
         
@@ -398,10 +253,253 @@ class DSTGameViewController: UIViewController, AVSpeechSynthesizerDelegate {
         let ac = UIAlertController(title: "An error occured", message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
+    }
+}
 
-        // Disable record button.
-        // doneButton.isEnabled = false
-        // doneButton.setTitle("Not available.", for: .normal)
+// MARK: - SpeechSynthesizer-related Functions
+extension DSTGameViewController : AVSpeechSynthesizerDelegate {
+    private func speakInstructions() {
+        statsStackView.isHidden = true
+        digitsStackView.isHidden = true
+        startButton.isHidden = true
+        resetInputButton.isHidden = true
+        doneButton.isHidden = true
+        
+        let instructionText = K.DST.instructions[numRounds + 1]
+        instructionLabel.text = instructionText
+
+        print("Reading instructions for round \(numRounds + 1)...")
+        
+        let utterance = AVSpeechUtterance(string: instructionText)
+        utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
+        utterance.rate = 0.35
+        
+        synthesizer?.speak(utterance)
+        
+        switch numRounds {
+        case -1:
+            numRounds += 1
+            break
+        case 0, 1, 2:
+            isInstructionMode = false            
+            break
+        default:
+            print("No matching num rounds while reading instructions...")
+            break
+        }
+    }
+    
+    private func speakDigits() {
+        speakerImageView.isHidden = false
+        activityIndicatorView.isHidden = true
+        resetInputButton.isHidden = true
+        doneButton.isHidden = true
+        
+        let utterance = AVSpeechUtterance(string: currentDigits.joined(separator: ","))
+        utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
+        utterance.rate = 0.3 // On average, 1 second per character. Actual rate depends on the length of the character.
+        
+        // AVSpeechSynthesisVoice.speechVoices().forEach({ voice in
+        //   print(voice)
+        // })
+        
+        synthesizer?.speak(utterance)
+    }
+    
+    // After speech synthesising is done
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        if isInstructionMode {
+            speakInstructions()
+        } else {
+            if !isTestMode {
+                startButton.isHidden = false
+            }
+        }
+        
+        if isTestMode {
+            speakerImageView.isHidden = true
+            startRecording()
+            
+            activityIndicatorView.isHidden = false
+            resetInputButton.isHidden = false
+            doneButton.isHidden = false
+        }
+    }
+}
+
+// MARK: - SpeechRecognizer-related Functions
+extension DSTGameViewController {
+    private func startRecording() {
+        // 1. Create a recogniser
+        guard let speechRecognizer = SFSpeechRecognizer() else {
+            handleError(withMessage: "Not supported for device's locale.")
+            return
+        }
+        
+        if !speechRecognizer.isAvailable {
+            // Maybe no internet connection
+            handleError(withMessage: "Speech recogniser not available")
+            return
+        }
+        
+        // For on-device recognition
+        if speechRecognizer.supportsOnDeviceRecognition {
+            print("Support on device recognition")
+            recognitionRequest?.requiresOnDeviceRecognition = true
+        }
+                
+        isRecording = true
+
+        // 2. Create a speech recognition request
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        guard let recognitionRequest = recognitionRequest else {
+            handleError(withMessage: "Unable to create a SFSpeechAudioBufferRecognitionRequest object")
+            return
+        }
+        recognitionRequest.shouldReportPartialResults = true
+        
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+            // To capture time limit error, etc
+            guard error == nil else {
+                // self.handleError(withMessage: "Recognition Task:\n\(error!.localizedDescription)")
+                print("Recognition Task :: Error occurred...\(error!.localizedDescription)")
+                return
+            }
+            
+            if let result = result {
+                self.resetSpokenDigits()
+                
+                let newResult = result.bestTranscription.formattedString
+                let filteredResult = newResult.filter({ !$0.isWhitespace }) // "23 47" -> "2347"
+                print("New Result: \(newResult), Filtered Result: \(filteredResult), isFinal: \(result.isFinal)")
+                
+                filteredResult.forEach({ self.spokenDigits.append(String($0)) })
+                
+                DispatchQueue.main.async {
+                    if self.isRecording {
+                        for digit in self.spokenDigits {
+                            let digitLabel = self.getLabel(labelText: digit)
+                            self.spokenDigitsLabels.append(digitLabel)
+                            self.answerStackView.addArrangedSubview(digitLabel)
+                        }
+                        
+                        if result.isFinal {
+                            self.stopRecording(isResetInput: false)
+                        }
+                    }
+                }
+            } else {
+                print("Recognition Task :: No result received...")
+                // self.stopRecording(isResetInput: false)
+            }
+        }
+        
+        // 3. Create a recording and classification pipeline (graphs of audio pipelines)
+        audioEngine = AVAudioEngine()
+        
+        // Input node of the audio engine
+        let inputNode = audioEngine.inputNode
+        
+        // bus -> channel
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        
+        // Install a tap to get chunks of audio (i.e., adding a node to the graph) on the input node.
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
+            // Add the extracted buffers to the recognition request ready to be transcribed
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        // Build the graph
+        audioEngine.prepare()
+        
+        // 4. Start recognising speech
+        do {
+            // Activate the session.
+            audioSession = AVAudioSession.sharedInstance()
+            // try audioSession.setCategory(.record, mode: .spokenAudio, options: .duckOthers)
+            try audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: .duckOthers)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+                        
+            // Start the processing pipeline
+            try audioEngine.start()
+        } catch {
+            handleError(withMessage: "Audio Engine:\n\(error.localizedDescription)")
+        }
+    }
+    
+    private func stopRecording(isResetInput: Bool) {
+        // ADDED: Cancel the previous task if it's running (isFinal will never become True...?)
+        recognitionTask?.cancel()
+        recognitionTask = nil
+        
+        // End the recognition request.
+        recognitionRequest?.endAudio()
+        recognitionRequest = nil
+        
+        // Stop recording
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0) // Call after audio engine is stopped as it modifies the graph.
+        
+        // Stop our session
+        try? audioSession?.setActive(false)
+        audioSession = nil
+        
+        if isResetInput {
+            resetSpokenDigits()
+        } else {
+            print("isResetInput -> False")
+            
+            isRecording = false
+            
+            let isAnswerCorrect = checkAnswer()
+            updateStatsLabel()
+            
+            if isAnswerCorrect {
+                isPreviousTrialCorrect = true // Current Trial is correct (but will be interpreted as the previous trial)
+            } else {
+                
+                // If both previous and current trials are incorrect, then skip to next round
+                if !isPreviousTrialCorrect {
+                    isPreviousTrialCorrect = true
+                    numRounds += 1
+                    numTrials = 0 // Upon exitting from this function, numTrials will be incremented immediately
+                    
+                    instructionLabel.isHidden = false
+                    isInstructionMode = true
+                    isTestMode = false
+                    
+                    roundTimer?.invalidate()
+                    roundTimer = nil
+                } else {
+                    isPreviousTrialCorrect = false
+                }
+            }
+            
+            numTrials += 1
+            updatePreviousTrialLabel()
+            
+            resetSpokenDigits()
+            // resetDigits()
+            
+            speakerImageView.isHidden = true
+            activityIndicatorView.isHidden = true
+            
+            // End of Match
+            if numRounds > 2 {
+                roundTimer?.invalidate()
+                self.performSegue(withIdentifier: K.DST.goToDSTResultSegue, sender: self)
+            } else {
+                if isTestMode {
+                    startTrial()
+                    return
+                }
+                
+                if isInstructionMode {
+                    speakInstructions()
+                    return
+                }
+            }
+        }
     }
 }
 
