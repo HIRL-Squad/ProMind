@@ -33,6 +33,7 @@ class TMTResultViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        splitViewController?.preferredDisplayMode = .oneBesideSecondary
         navigationController?.popToRootViewController(animated: true)
     }
 

@@ -7,10 +7,9 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-    
+class TestSelectionViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,15 +24,20 @@ class MainViewController: UIViewController {
             charIdx += 1
         }
     }
+    @IBAction func backBarButtonPressed(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+        self.splitViewController?.preferredDisplayMode = .oneBesideSecondary
+        
+//        dismiss(animated: true) {
+//            self.splitViewController?.preferredDisplayMode = .oneBesideSecondary
+//        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.isNavigationBarHidden = false
+        
+        // To prevent showing subject profile.
+        splitViewController?.preferredDisplayMode = .secondaryOnly
     }
     
     // To prepare for new view controller before navigation.
@@ -41,12 +45,10 @@ class MainViewController: UIViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         switch segue.identifier {
-        case K.goToTMTSegue:
-            let tmtMainViewController = segue.destination as! TMTMainViewController // Force downcast UIViewController to TMTMainViewController
-            tmtMainViewController.text = "Sample Data TMT"
-        case K.goToDSTSegue:
-            let dstMainViewController = segue.destination as! DSTMainViewController
-            dstMainViewController.text = "Sample Data DST"
+        case K.goToTMTSegue,
+             K.goToDSTSegue:
+            print("MainViewController.prepare(): Going to \(segue.identifier!)")
+            break
         default:
             print("MainViewController.prepare(): No segue identifier is matched")
         }

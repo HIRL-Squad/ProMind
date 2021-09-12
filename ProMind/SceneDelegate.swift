@@ -17,6 +17,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+//        print(window?.rootViewController)
+//        guard let splitViewController = window?.rootViewController as? UISplitViewController else {
+//            fatalError("Cannot downcast to SplitViewController")
+//        }
+//        
+//        print(splitViewController.viewControllers)
+//        guard let leftNavController = splitViewController.viewControllers.first as? UINavigationController else {
+//            fatalError("Cannot downcast to UINavigationController")
+//        }
+//        
+//        guard let rightNavController = splitViewController.viewControllers.last as? UINavigationController else {
+//            fatalError("Cannot downcast to UINavigationController")
+//        }
+//        
+//        print(leftNavController.viewControllers)
+//        print(rightNavController.viewControllers)
+//        
+//        guard let masterViewController = leftNavController.viewControllers.first as? SubjectProfileMasterViewController else {
+//            fatalError("Cannot downcast to SubjectProfileMasterViewController")
+//        }
+//        
+//        guard let detailViewController = rightNavController.viewControllers.first as? SubjectProfileDetailViewController else {
+//            fatalError("Cannot downcast to SubjectProfileDetailViewController")
+//        }
+//
+//        let firstSubject = masterViewController.subjects.first
+//        detailViewController.subject = firstSubject
+//        
+//        masterViewController.delegate = detailViewController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
