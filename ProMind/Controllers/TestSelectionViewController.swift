@@ -13,6 +13,8 @@ class TestSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Subject.shared.subjectId: \(Subject.shared.subjectId ?? "No Subject ID")")
+        
         // Animate Label, can consider using CLTypingLabel
         titleLabel.text = ""
         var charIdx: Double = 0

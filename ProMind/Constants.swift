@@ -15,6 +15,10 @@ struct K {
     static let goToTMTSegue = "MainToTMT" // to change
     static let goToDSTSegue = "MainToDST" // to change
     
+    struct URL {
+        static let createSubject = "http://54.169.58.137/api/subject"
+    }
+    
     struct SubjectProfile {
         static let subjectType = "subjectType"
         static let site = "site"
@@ -49,12 +53,12 @@ struct K {
         
         struct Master {
             static let questions = [
-                K.SubjectProfile.subjectType: [Subject.SubjectType.TRIAL.rawValue, Subject.SubjectType.TEST.rawValue],
+                K.SubjectProfile.subjectType: [SubjectType.TRIAL.rawValue, SubjectType.TEST.rawValue],
                 K.SubjectProfile.site: ["Lions Befrienders", "Alexandra Hospital", "Outram Community Hospital", "Others"],
                 
                 K.SubjectProfile.educationLevel: [" ", "No Formal Education", "Primary 6 and Below", "Secondary 5 and Below", "ITE Diploma", "A-Level/Higher Level Certificate", "Polytechnic Diploma", "Bachelor's Degree", "Postgraduate Degree (Masters and Above)"],
                 K.SubjectProfile.ethnicity: ["Chinese", "Malay", "Indian", "Others"],
-                K.SubjectProfile.dominantHand: [Subject.DominantHand.Left.rawValue, Subject.DominantHand.Right.rawValue],
+                K.SubjectProfile.dominantHand: [DominantHand.Left.rawValue, DominantHand.Right.rawValue],
                 K.SubjectProfile.annualIncome: ["Do not wish to disclose", "No income", "Below 10000", "10000-19999", "20000-29999", "30000-39999", "40000-49999", "50000-59999", "60000-79999", "80000-99999", "100000-119999", "120000-149999", "150000-199999", "200000 and above"],
                 K.SubjectProfile.housingType: ["HDB Rental Apartment", "HDB Studio Apartment", "HDB 2-Room Apartment", "HDB 3-Room Apartment", "HDB 4-Room Apartment", "HDB 5-Room/Executive Apartment", "Condominium Apartment", "Landed Property"],
                 K.SubjectProfile.livingArrangement: ["Living Alone", "Living with Helper", "Living with Family", "Living in a Nursing Home"],

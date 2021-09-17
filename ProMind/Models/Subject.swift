@@ -13,19 +13,19 @@ protocol SubjectDelegate: AnyObject {
     func subject(_ subject: Subject, didUpdateSarcfScores scores: [Int])
 }
 
-class Subject {
-    enum SubjectType: String {
-        case TRIAL, TEST
-    }
-    
-    enum Gender: String {
-        case Male, Female
-    }
-    
-    enum DominantHand: String {
-        case Left, Right
-    }
-    
+enum SubjectType: String {
+    case TRIAL, TEST
+}
+
+enum Gender: String, Codable {
+    case Male, Female
+}
+
+enum DominantHand: String {
+    case Left, Right
+}
+
+class Subject: Codable {
     static var shared = Subject()
     
     weak var delegate: SubjectDelegate?
@@ -66,9 +66,34 @@ class Subject {
     var diagnosis: String?
     var generalNote: String?
     
+    enum CodingKeys: String, CodingKey {
+        case subjectType
+        case site
+        case birthDate
+        case subjectId
+        case isPatient
+        
+        case occupation
+        case gender
+        case educationLevel
+        case ethnicity
+        case dominantHand
+        case annualIncome
+        case housingType
+        case livingArrangement
+        
+        case sarcfScores
+    }
+    
     init() {
         self.birthDate = 946684800 // 01-01-2000 00:00:00 +0800
     }
+    
+//    required init(from decoder: Decoder) throws {
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        indexPath = try values.decode([Int].self, forKey: .indexPath)
+//        locationInText = try values.decode(Int.self, forKey: .locationInText)
+//    }
     
     private func setSubjectId() {
         if let birthDate = self.birthDate, let mobileNumber = self.mobileNumber {

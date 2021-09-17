@@ -37,6 +37,7 @@ class SubjectProfileMasterViewController: UITableViewController {
     weak var delegate: MasterViewControllerDelegate?
     
     private var isSaveButtonPressed = false
+    private var canProceedToSave = true
     private var currentIndexPath: IndexPath?
         
     override func viewDidLoad() {
@@ -67,6 +68,8 @@ class SubjectProfileMasterViewController: UITableViewController {
         
         let detailViewController = rightNavController.viewControllers.first as? SubjectProfileDetailViewController
         detailViewController?.delegate = self
+        
+        displayLoadingIndicator()
     }
 
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
@@ -113,6 +116,7 @@ class SubjectProfileMasterViewController: UITableViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         print("saveButtonPressed")
         
+        canProceedToSave = true
         isSaveButtonPressed = true
         
         // To reset all pre-selected rows (so, there is no need to implement didDeselectOption).
@@ -120,23 +124,92 @@ class SubjectProfileMasterViewController: UITableViewController {
             for row in 0 ..< tableView.numberOfRows(inSection: section) {
                 let cell = tableView.cellForRow(at: IndexPath(row: row, section: section))
                 
-                print("Section \(section) Row \(row): \(cell?.reuseIdentifier): \(Subject.shared[cell?.reuseIdentifier ?? ""])")
+                // print("Section \(section) Row \(row): \(cell?.reuseIdentifier): \(Subject.shared[cell?.reuseIdentifier ?? ""])")
                 
                 if let identifier = cell?.reuseIdentifier, let value = Subject.shared[identifier] {
                      print("\(identifier): \(value)")
                     
                     if value is NSNull {
                         cell?.backgroundColor = UIColor(named: "Light Red")
+                        canProceedToSave = false
                     } else {
                         cell?.backgroundColor = .white
                     }
                 }
-                
-                // print()
             }
         }
+        
+        if canProceedToSave {
+            let url = URL(string: K.URL.createSubject)
+            guard let requestUrl = url else { fatalError() }
+            var request = URLRequest(url: requestUrl)
+            request.httpMethod = "POST"
+            // Set HTTP Request Header
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            do {
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = .prettyPrinted
                 
-        // performSegue(withIdentifier: K.goToTestSelectionSegue, sender: self)
+                let jsonData = try encoder.encode(Subject.shared)
+                print("POST Data: \n\(String(data: jsonData, encoding: .utf8)!)")
+                
+                request.httpBody = jsonData
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Error occurred when sending a POST request: \(error.localizedDescription)")
+                        
+                        // Possible connection error
+                        // Save to cache for persistent later
+                        
+                        return
+                    }
+                    
+                    guard let resp = response as? HTTPURLResponse else {
+                        return
+                    }
+                    
+                    print("Response Code: \(resp.statusCode)")
+                }
+                
+                task.resume()
+            } catch let encodingError {
+                print("Unexpected error occurred while encoding: \(encodingError)")
+            }
+            
+            performSegue(withIdentifier: K.goToTestSelectionSegue, sender: self)
+        } else {
+            displayAlert(title: "Insufficient Information", message: "Please fill up all the necessary information", dismissalTime: .milliseconds(3000))
+        }
+    }
+    
+    private func displayLoadingIndicator() {
+//        var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(50, 10, 37, 37)) as UIActivityIndicatorView
+//        loadingIndicator.center = self.view.center;
+//        loadingIndicator.hidesWhenStopped = true
+//        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+//        loadingIndicator.startAnimating();
+    }
+    
+    private func displayAlert(title: String?, message: String?, dismissalTime: DispatchTimeInterval?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        var isDismissed = false
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
+            isDismissed = true
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        if let time = dismissalTime {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+                if !isDismissed {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     // MARK: - Table View
@@ -156,7 +229,6 @@ class SubjectProfileMasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         if isSaveButtonPressed {
             if let identifier = cell.reuseIdentifier, let value = Subject.shared[identifier] {
 //                 print("\(identifier): \(value)")
