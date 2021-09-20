@@ -14,11 +14,7 @@ class TMTGameViewController: UIViewController {
     var w: CGFloat = 0.0
     var h: CGFloat = 0.0
     
-    var drawSize: CGFloat = 5.0
-    var drawColor = UIColor.blue
-    
     var myImageView = UIImageView()
-    var imageView2 = UIImageView()
     var allImageViews = [UIImageView]()
     
     var firstPoint: CGPoint?
@@ -34,10 +30,6 @@ class TMTGameViewController: UIViewController {
     var currentViewIndex = 0
     
     var allPointsCentersArray: [CGPoint] = []
-    let labels = [
-        ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],
-        ["1","A","2","B","3","C","4","D","5","E","6","F","7","G","8","H","9","I","10","J","11","K","12","L","13"]
-    ]
     var numRound = 0
     var currentLabels: [String] = []
 
@@ -88,7 +80,7 @@ class TMTGameViewController: UIViewController {
         ]
         
         numRound = 0
-        currentLabels = labels[numRound]
+        currentLabels = K.TMT.labels[numRound]
         
         createNewCircles()
     }
@@ -370,8 +362,8 @@ class TMTGameViewController: UIViewController {
 
         line.lineCap = CAShapeLayerLineCap.round
         line.path = linePath.cgPath
-        line.strokeColor = drawColor.cgColor
-        line.lineWidth = drawSize
+        line.strokeColor = K.TMT.drawColor.cgColor
+        line.lineWidth = K.TMT.drawSize
 
         allLines[layerCount] = line
         self.allImageViews[allImageViews.count - 1].layer.addSublayer(allLines[layerCount]!)
@@ -384,7 +376,7 @@ class TMTGameViewController: UIViewController {
             // Enter TMT-B
             // Display TMT-B Instructions
             numRound = 1
-            currentLabels = labels[numRound]
+            currentLabels = K.TMT.labels[numRound]
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 self.displayLastScreenshot(reset: true)
@@ -401,26 +393,6 @@ class TMTGameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tmtResultViewController = segue.destination as! TMTResultViewController
         tmtResultViewController.gameResultStatistics = gameStatistics
-    }
-}
-
-extension UIView {
-    func takeScreenshot() -> UIImage {
-        // Begin context
-        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
-
-        // Draw view in that context
-        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
-
-        // And finally, get image
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        if image != nil {
-            return image!
-        }
-
-        return UIImage()
     }
 }
 

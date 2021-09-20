@@ -5,7 +5,7 @@
 //  Created by Tan Wee Keat on 26/6/21.
 //
 
-import Foundation
+import UIKit
 
 struct K {
     static let fontTypeNormal = "HelveticaNeue"
@@ -14,6 +14,11 @@ struct K {
     static let goToTestSelectionSegue = "SubjectProfileToTestSelection"
     static let goToTMTSegue = "MainToTMT" // to change
     static let goToDSTSegue = "MainToDST" // to change
+    
+    struct UtteranceRate {
+        static let instruction: Float = 0.4
+        static let digits: Float = 0.3 // On average, 1 second per character. Actual rate depends on the length of the character.
+    }
     
     struct URL {
         static let createSubject = "http://54.169.58.137/api/subject"
@@ -92,9 +97,45 @@ struct K {
     }
     
     struct TMT {
+        static let labels = [
+            ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],
+            ["1","A","2","B","3","C","4","D","5","E","6","F","7","G","8","H","9","I","10","J","11","K","12","L","13"]
+        ]
+        
         static let TrailMakingTest = "Trail Making Test"
-        static let totalTime = 5 // Time in seconds
+        static let totalTime = 30 // Time in seconds
         static let goToTMTResultSegue = "GameToTMTResult"
+        
+        static let drawSize: CGFloat = 5.0
+        static let drawColor = UIColor.blue
+        
+        static let instructions = [
+            [
+//                "0", "1", "2", "3", "4", "5", "6", "7",
+                "There are a total of two subtests in Trail Making Test.", // 0
+                "Let's start with Trail Making Test A.", // 1
+                "Look at the circles below. You have to connect them in ascending order.", // 2
+                "For example, 1 has to be connected to 2.", // 3
+                "Then, 2 has to be connected to 3.", // 4
+                "Now, try to connect 3 to 4.", // 5
+                "Good job! Please complete the rest on your own!", // 6
+                "Well done! You may now begin the test or restart the tutorial." // 7
+            ],
+            [
+//                "0", "1", "2", "3", "4", "5", "6", "7",
+                "Well done on completing Trail Making Test A.", // 0
+                "Let us proceed with Trail Making Test B.", // 1
+                "Look at the circles with numbers and letters below. You have to connect them in the alternating sequence.", // 2
+                "For example, 1 has to be connected to A.", // 3
+                "Then, A has to be connected to 2.", // 4
+                "Now, try to connect 2 to B.", // 5
+                "Good job! Please complete the rest on your own!", // 6
+                "Well done! You may now begin the test or restart the tutorial." // 7
+            ]
+
+        ]
+        
+        static let mistakeMessages = "That is not the correct move!"
     }
     
     struct DST {

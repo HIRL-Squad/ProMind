@@ -272,7 +272,7 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         
         let utterance = AVSpeechUtterance(string: instructionText)
         utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
-        utterance.rate = 0.35
+        utterance.rate = K.UtteranceRate.instruction
         
         synthesizer?.speak(utterance)
         
@@ -297,7 +297,7 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         
         let utterance = AVSpeechUtterance(string: currentDigits.joined(separator: ","))
         utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
-        utterance.rate = 0.3 // On average, 1 second per character. Actual rate depends on the length of the character.
+        utterance.rate = K.UtteranceRate.digits // On average, 1 second per character. Actual rate depends on the length of the character.
         
         // AVSpeechSynthesisVoice.speechVoices().forEach({ voice in
         //   print(voice)

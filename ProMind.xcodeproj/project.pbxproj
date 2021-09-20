@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A403CA5C26F47CDA00AA6F9B /* TMTTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403CA5B26F47CDA00AA6F9B /* TMTTutorialViewController.swift */; };
+		A403CA5E26F64D7400AA6F9B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403CA5D26F64D7300AA6F9B /* UIView.swift */; };
 		A4121EE926D8A4BF00F4CFE9 /* SubjectProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4121EE726D8A4BF00F4CFE9 /* SubjectProfileDetailViewController.swift */; };
 		A4121EEC26D8F9F400F4CFE9 /* SubjectProfileMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4121EEB26D8F9F400F4CFE9 /* SubjectProfileMasterViewController.swift */; };
 		A437EB2726DCA78E00755A72 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A437EB2626DCA78E00755A72 /* Subject.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A403CA5B26F47CDA00AA6F9B /* TMTTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTutorialViewController.swift; sourceTree = "<group>"; };
+		A403CA5D26F64D7300AA6F9B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A4121EE726D8A4BF00F4CFE9 /* SubjectProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4121EEB26D8F9F400F4CFE9 /* SubjectProfileMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectProfileMasterViewController.swift; sourceTree = "<group>"; };
 		A437EB2626DCA78E00755A72 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 		A4A3F2E426871BD4004C0F25 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A403CA5D26F64D7300AA6F9B /* UIView.swift */,
 				A4A4761926998512009C0B35 /* CGFloat.swift */,
 				A4A4761B269B0B0F009C0B35 /* TMTGameStatistics.swift */,
 				A43E482526BFDFFC0075E6D8 /* DSTGameStatistics.swift */,
@@ -194,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */,
+				A403CA5B26F47CDA00AA6F9B /* TMTTutorialViewController.swift */,
 				A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */,
 				A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */,
 			);
@@ -344,6 +350,7 @@
 				A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */,
 				A43E482626BFDFFC0075E6D8 /* DSTGameStatistics.swift in Sources */,
 				A4AC2AE226C0E2AB00A04064 /* DSTResultViewController.swift in Sources */,
+				A403CA5C26F47CDA00AA6F9B /* TMTTutorialViewController.swift in Sources */,
 				A4754082266CE36C009E0B4B /* TestSelectionViewController.swift in Sources */,
 				A4121EE926D8A4BF00F4CFE9 /* SubjectProfileDetailViewController.swift in Sources */,
 				A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */,
@@ -352,6 +359,7 @@
 				A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */,
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
 				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
+				A403CA5E26F64D7400AA6F9B /* UIView.swift in Sources */,
 				A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */,
 				A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */,
 				A4A3F2EE2687289D004C0F25 /* Constants.swift in Sources */,
