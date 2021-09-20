@@ -34,7 +34,7 @@ class TMTGameViewController: UIViewController {
     var currentLabels: [String] = []
 
     var timer = Timer()
-    var timeLeft: Int = K.TMT.totalTime {
+    var timeLeft: Int = K.TMT.numCirclesTimeMapping[25]! {
         didSet {
             let timerText = NSMutableAttributedString(string: "Time Left: ", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)])
             timerText.append(NSMutableAttributedString(string: "\(timeLeft) s"))
@@ -154,7 +154,7 @@ class TMTGameViewController: UIViewController {
     }
     
     private func startTimer(){
-        timeLeft = K.TMT.totalTime
+        timeLeft = K.TMT.numCirclesTimeMapping[25]!
         isTimerPlaying = true
     }
 
@@ -294,7 +294,7 @@ class TMTGameViewController: UIViewController {
                             stopTimer()
                             canDraw = false
                             
-                            gameStatistics[numRound].totalTimeTaken = K.TMT.totalTime - timeLeft
+                            gameStatistics[numRound].totalTimeTaken = K.TMT.numCirclesTimeMapping[25]! - timeLeft
                             endSubTest()
                         }
                         

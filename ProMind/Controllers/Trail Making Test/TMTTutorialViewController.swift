@@ -21,7 +21,7 @@ class TMTTutorialViewController: UIViewController {
     // Speech Synthesis
     private var synthesizer: AVSpeechSynthesizer?
     private var instructionState = 0
-    
+        
     // ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"]
     // ["1","A","2","B","3","C","4","D","5","E","6","F","7","G","8","H","9","I","10","J","11","K","12","L","13"]
     var currentLabels: [String] = []
@@ -53,7 +53,7 @@ class TMTTutorialViewController: UIViewController {
     
     var numRound = 0
     var timer = Timer()
-    var timeLeft: Int = K.TMT.totalTime {
+    var timeLeft: Int = 0 {
         didSet {
             let timerText = NSMutableAttributedString(string: "Time Left: ", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)])
             timerText.append(NSMutableAttributedString(string: "\(timeLeft) s"))
@@ -72,6 +72,10 @@ class TMTTutorialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        print("Width: \(view.frame.width)")
+        print("Height: \(view.frame.height)")
+        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         initTutorial(state: 0)
 //        initTest()
@@ -93,7 +97,17 @@ class TMTTutorialViewController: UIViewController {
         instructionLabel.text = message
     }
     
+    private func getNumCircles() -> Int {
+        return TMTResultViewController.numCircles
+    }
+    
+    private func getTotalTime() -> Int {
+        return K.TMT.numCirclesTimeMapping[getNumCircles()]!
+    }
+    
     private func initTutorial(state: Int) {
+        navigationController?.isNavigationBarHidden = false
+        
         instructionLabel.isHidden = false
         tutorialView.isHidden = false
         
@@ -106,8 +120,16 @@ class TMTTutorialViewController: UIViewController {
         tutViewWidth = tutorialView.bounds.width
         tutViewHeight = tutorialView.bounds.height
         
-        tutorialView.layer.borderWidth = 2.0
+        tutorialView.layer.borderWidth = K.borderWidth
         tutorialView.layer.borderColor = UIColor(named: "Purple")?.cgColor
+        
+        tutCircleCenterPoints = [
+            CGPoint(x: tutViewWidth[12], y: tutViewHeight[08]), CGPoint(x: tutViewWidth[28], y: tutViewHeight[31]), CGPoint(x: tutViewWidth[48], y: tutViewHeight[72]), CGPoint(x: tutViewWidth[14], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[67], y: tutViewHeight[11]),
+            CGPoint(x: tutViewWidth[09], y: tutViewHeight[53]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[51]), CGPoint(x: tutViewWidth[72], y: tutViewHeight[48]), CGPoint(x: tutViewWidth[28], y: tutViewHeight[67]), CGPoint(x: tutViewWidth[74], y: tutViewHeight[72]),
+            CGPoint(x: tutViewWidth[15], y: tutViewHeight[66]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[09]), CGPoint(x: tutViewWidth[32], y: tutViewHeight[11]), CGPoint(x: tutViewWidth[88], y: tutViewHeight[48]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[89]),
+            CGPoint(x: tutViewWidth[87], y: tutViewHeight[72]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[27]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[33]), CGPoint(x: tutViewWidth[74], y: tutViewHeight[28]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[93]),
+            CGPoint(x: tutViewWidth[13], y: tutViewHeight[87]), CGPoint(x: tutViewWidth[27], y: tutViewHeight[87]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[13]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[47]), CGPoint(x: tutViewWidth[72], y: tutViewHeight[93])
+        ]
         
 //        tutCircleCenterPoints = [
 //            CGPoint(x: tutViewWidth[10], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[10]),
@@ -117,14 +139,13 @@ class TMTTutorialViewController: UIViewController {
 //            CGPoint(x: tutViewWidth[10], y: tutViewHeight[90]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[90]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[90])
 //        ]
         
-        tutCircleCenterPoints = [
-            CGPoint(x: tutViewWidth[10], y: tutViewHeight[15]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[35]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[55]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[75]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[90]),
-            CGPoint(x: tutViewWidth[30], y: tutViewHeight[15]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[35]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[55]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[75]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[90]),
-            CGPoint(x: tutViewWidth[50], y: tutViewHeight[15]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[35]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[55]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[75]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[90]),
-            CGPoint(x: tutViewWidth[70], y: tutViewHeight[15]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[35]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[55]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[75]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[90]),
-            CGPoint(x: tutViewWidth[90], y: tutViewHeight[15]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[35]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[55]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[75]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[90]),
-        ]
-        
+//        tutCircleCenterPoints = [
+//            CGPoint(x: tutViewWidth[10], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[90]),
+//            CGPoint(x: tutViewWidth[30], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[90]),
+//            CGPoint(x: tutViewWidth[50], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[90]),
+//            CGPoint(x: tutViewWidth[70], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[90]),
+//            CGPoint(x: tutViewWidth[90], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[90]),
+//        ]
         
         currentLabels = K.TMT.labels[numRound] // Start with Round 0
         
@@ -146,6 +167,8 @@ class TMTTutorialViewController: UIViewController {
     }
     
     private func initTest() {
+        navigationController?.isNavigationBarHidden = true
+        
         instructionLabel.isHidden = true
         tutorialView.isHidden = true
         
@@ -156,14 +179,14 @@ class TMTTutorialViewController: UIViewController {
         displayLastScreenshot(reset: true, displayView: view)
         
         testViewWidth = view.bounds.width - 125
-        testViewHeight = view.bounds.height - 25
+        testViewHeight = view.bounds.height
         
         testCircleCenterPoints = [
-            CGPoint(x: testViewWidth[10], y: testViewHeight[15]), CGPoint(x: testViewWidth[10], y: testViewHeight[35]), CGPoint(x: testViewWidth[10], y: testViewHeight[55]), CGPoint(x: testViewWidth[10], y: testViewHeight[75]), CGPoint(x: testViewWidth[10], y: testViewHeight[90]),
-            CGPoint(x: testViewWidth[30], y: testViewHeight[15]), CGPoint(x: testViewWidth[30], y: testViewHeight[35]), CGPoint(x: testViewWidth[30], y: testViewHeight[55]), CGPoint(x: testViewWidth[30], y: testViewHeight[75]), CGPoint(x: testViewWidth[30], y: testViewHeight[90]),
-            CGPoint(x: testViewWidth[50], y: testViewHeight[15]), CGPoint(x: testViewWidth[50], y: testViewHeight[35]), CGPoint(x: testViewWidth[50], y: testViewHeight[55]), CGPoint(x: testViewWidth[50], y: testViewHeight[75]), CGPoint(x: testViewWidth[50], y: testViewHeight[90]),
-            CGPoint(x: testViewWidth[70], y: testViewHeight[15]), CGPoint(x: testViewWidth[70], y: testViewHeight[35]), CGPoint(x: testViewWidth[70], y: testViewHeight[55]), CGPoint(x: testViewWidth[70], y: testViewHeight[75]), CGPoint(x: testViewWidth[70], y: testViewHeight[90]),
-            CGPoint(x: testViewWidth[90], y: testViewHeight[15]), CGPoint(x: testViewWidth[90], y: testViewHeight[35]), CGPoint(x: testViewWidth[90], y: testViewHeight[55]), CGPoint(x: testViewWidth[90], y: testViewHeight[75]), CGPoint(x: testViewWidth[90], y: testViewHeight[90]),
+            CGPoint(x: testViewWidth[10], y: testViewHeight[10]), CGPoint(x: testViewWidth[10], y: testViewHeight[30]), CGPoint(x: testViewWidth[10], y: testViewHeight[50]), CGPoint(x: testViewWidth[10], y: testViewHeight[70]), CGPoint(x: testViewWidth[10], y: testViewHeight[90]),
+            CGPoint(x: testViewWidth[30], y: testViewHeight[10]), CGPoint(x: testViewWidth[30], y: testViewHeight[30]), CGPoint(x: testViewWidth[30], y: testViewHeight[50]), CGPoint(x: testViewWidth[30], y: testViewHeight[70]), CGPoint(x: testViewWidth[30], y: testViewHeight[90]),
+            CGPoint(x: testViewWidth[50], y: testViewHeight[10]), CGPoint(x: testViewWidth[50], y: testViewHeight[30]), CGPoint(x: testViewWidth[50], y: testViewHeight[50]), CGPoint(x: testViewWidth[50], y: testViewHeight[70]), CGPoint(x: testViewWidth[50], y: testViewHeight[90]),
+            CGPoint(x: testViewWidth[70], y: testViewHeight[10]), CGPoint(x: testViewWidth[70], y: testViewHeight[30]), CGPoint(x: testViewWidth[70], y: testViewHeight[50]), CGPoint(x: testViewWidth[70], y: testViewHeight[70]), CGPoint(x: testViewWidth[70], y: testViewHeight[90]),
+            CGPoint(x: testViewWidth[90], y: testViewHeight[10]), CGPoint(x: testViewWidth[90], y: testViewHeight[30]), CGPoint(x: testViewWidth[90], y: testViewHeight[50]), CGPoint(x: testViewWidth[90], y: testViewHeight[70]), CGPoint(x: testViewWidth[90], y: testViewHeight[90]),
         ]
         
         currentLabels = K.TMT.labels[numRound] // Start with Round 0
@@ -178,7 +201,7 @@ class TMTTutorialViewController: UIViewController {
         actionButtonsStackView.isHidden = true
         statsStackView.isHidden = false
         
-        gameStatistics[numRound].numCirclesLeft = currentLabels.count
+        gameStatistics[numRound].numCirclesLeft = getNumCircles()
         gameStatistics[numRound].numErrors = 0
         gameStatistics[numRound].numLifts = 0
         updateStatsLabel()
@@ -188,7 +211,7 @@ class TMTTutorialViewController: UIViewController {
     }
     
     private func startTimer(){
-        timeLeft = K.TMT.totalTime
+        timeLeft = getTotalTime()
         isTimerPlaying = true
     }
 
@@ -202,7 +225,7 @@ class TMTTutorialViewController: UIViewController {
             if timeLeft > 0 {
                 timeLeft -= 1
             } else {
-                gameStatistics[numRound].totalTimeTaken = 301
+                gameStatistics[numRound].totalTimeTaken = getTotalTime() + 1
 
                 stopTimer()
                 canDraw = false
@@ -249,9 +272,9 @@ class TMTTutorialViewController: UIViewController {
             for circleView in tutCircleViews {
                 circleView.backgroundColor = .lightGray
             }
+            tutorialView.isHidden = true
             
-            let text = "There are a total of 25 circles. Please connect them without lifting the stylus as much as possible. You have \(K.TMT.totalTime) seconds. You may begin now."
-            
+            let text = "There are a total of \(getNumCircles()) circles. Please connect them without lifting the stylus as much as possible. You have \(getTotalTime()) seconds."
             setInstructionLabelText(message: text)
             speak(text: text, preUtteranceDelay: 0.5)
             
@@ -290,7 +313,7 @@ class TMTTutorialViewController: UIViewController {
     private func createNewTutCircles() {
         tutCircleViews = removeCirclesFromView(circleViews: tutCircleViews)
         
-        for idx in 0...tutCircleCenterPoints.count - 1 {
+        for idx in 0...getNumCircles() - 1 {
             let tutCircleView = createCircleView(
                 idx: idx,
                 width: tutViewWidth,
@@ -307,13 +330,13 @@ class TMTTutorialViewController: UIViewController {
         testCircleViews = removeCirclesFromView(circleViews: testCircleViews)
         testCircleCenterPoints.shuffle()
         
-        for idx in 0...testCircleCenterPoints.count - 1 {
+        for idx in 0...getNumCircles() - 1 {
             let testCircleView = createCircleView(
                 idx: idx,
                 width: testViewWidth,
                 height: testViewHeight,
-                centerX: testCircleCenterPoints[idx].x + CGFloat(Int.random(in: -30..<30)),
-                centerY: testCircleCenterPoints[idx].y + CGFloat(Int.random(in: -30..<30))
+                centerX: testCircleCenterPoints[idx].x + CGFloat(Int.random(in: -35..<35)),
+                centerY: testCircleCenterPoints[idx].y + CGFloat(Int.random(in: -35..<35))
             )
             view.addSubview(testCircleView)
             testCircleViews.append(testCircleView)
@@ -529,6 +552,8 @@ extension TMTTutorialViewController {
                     if isTutorial {
                         if instructionState == 5 {
                             instructionState += 1
+                            canTouch = false
+                            canDraw = false
                             speakInstructions()
                         } else {
                             instructionLabel.isHidden = true
@@ -540,7 +565,7 @@ extension TMTTutorialViewController {
                 }
                 
                 // Finished connecting all circles
-                if currentCircleIndex == currentLabels.count - 1 {
+                if currentCircleIndex == getNumCircles() - 1 {
                     canDraw = false
                                            
                     if isTutorial {
@@ -552,8 +577,8 @@ extension TMTTutorialViewController {
                     } else {
                         stopTimer()
                         
-                        gameStatistics[numRound].totalTimeTaken = K.TMT.totalTime - timeLeft
-                        // endSubTest()
+                        gameStatistics[numRound].totalTimeTaken = K.TMT.numCirclesTimeMapping[TMTResultViewController.numCircles]! - timeLeft
+                        endSubTest()
                     }
                 }
                 
@@ -637,8 +662,8 @@ extension TMTTutorialViewController {
             view.backgroundColor = preBackgroundColour
         }
         
-        UIView.animate(withDuration: 0.5, delay: delay, options: [.curveLinear, .autoreverse, .repeat]) {
-            view.alpha = 0.35
+        UIView.animate(withDuration: K.animateDuration, delay: delay, options: [.curveLinear, .autoreverse, .repeat]) {
+            view.alpha = K.animateAlpha
         } completion: { _ in
             return
         }

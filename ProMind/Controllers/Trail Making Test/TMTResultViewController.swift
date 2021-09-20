@@ -8,7 +8,8 @@
 import UIKit
 
 class TMTResultViewController: UIViewController {
-
+    static var numCircles = 25
+    
     @IBOutlet weak var resultLabelA: UILabel!
     @IBOutlet weak var resultLabelB: UILabel!
     
@@ -33,6 +34,7 @@ class TMTResultViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        // RESET EVERYTHING!!
         splitViewController?.preferredDisplayMode = .oneBesideSecondary
         navigationController?.popToRootViewController(animated: true)
     }

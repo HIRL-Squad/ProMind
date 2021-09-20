@@ -545,7 +545,7 @@
                                         <rect key="frame" x="116" y="802" width="288" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oQC-Cc-ieV" id="XO9-WS-7Zw">
-                                            <rect key="frame" x="0.0" y="0.0" width="262.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="262.5" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Question 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="coe-9V-F86" userLabel="Question 2">
@@ -1096,7 +1096,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="Hrl-iw-jrF" kind="show" id="6j5-j3-LE0"/>
+                                    <action selector="beginButtonPressed:" destination="1hR-aD-SHx" eventType="touchUpInside" id="b49-dd-8uv"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trail Making Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sF-wI-R1L">
@@ -1105,38 +1105,72 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="orL-Fy-8im">
-                                <rect key="frame" x="96" y="191.5" width="988" height="167.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="h23-fi-irk">
+                                <rect key="frame" x="96" y="191.5" width="988" height="334.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is it? 💬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-tF-AEb">
-                                        <rect key="frame" x="0.0" y="0.0" width="221" height="43"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKG-or-VTE">
-                                        <rect key="frame" x="0.0" y="67" width="988" height="100.5"/>
-                                        <string key="text">Trail making test is one of the most widely adopted neuropsychological tests for assessing processing speed and executive function due to its sensitivity, simplicity and ease of administration. </string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="orL-Fy-8im">
+                                        <rect key="frame" x="0.0" y="0.0" width="988" height="167.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is it? 💬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-tF-AEb">
+                                                <rect key="frame" x="0.0" y="0.0" width="221" height="43"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKG-or-VTE">
+                                                <rect key="frame" x="0.0" y="67" width="988" height="100.5"/>
+                                                <string key="text">Trail making test is one of the most widely adopted neuropsychological tests for assessing processing speed and executive function due to its sensitivity, simplicity and ease of administration. </string>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="V7o-9f-vMW">
+                                        <rect key="frame" x="0.0" y="227.5" width="750" height="107"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Circles 🔮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBc-l4-eNr">
+                                                <rect key="frame" x="0.0" y="0.0" width="345.5" height="43"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" translatesAutoresizingMaskIntoConstraints="NO" id="o90-cn-aHz">
+                                                <rect key="frame" x="0.0" y="67" width="750" height="41"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="750" id="bip-Fw-h2N"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="rtq-y2-Dlb"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Ten: 10"/>
+                                                    <segment title="Fifteen: 15"/>
+                                                    <segment title="Twenty: 20"/>
+                                                    <segment title="Twenty-Five: 25"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Q2-wj-oz8"/>
                         <color key="backgroundColor" name="Light Grey"/>
                         <constraints>
-                            <constraint firstItem="orL-Fy-8im" firstAttribute="top" secondItem="1sF-wI-R1L" secondAttribute="bottom" constant="36" id="2Xc-Lk-n9u"/>
+                            <constraint firstAttribute="trailing" secondItem="h23-fi-irk" secondAttribute="trailing" constant="96" id="3BY-zs-iwO"/>
                             <constraint firstItem="uMa-kG-OSC" firstAttribute="bottom" secondItem="2Q2-wj-oz8" secondAttribute="bottom" constant="-64" id="5tf-JR-Mnz"/>
-                            <constraint firstAttribute="trailing" secondItem="orL-Fy-8im" secondAttribute="trailing" constant="96" id="JJr-cF-Ty2"/>
-                            <constraint firstItem="orL-Fy-8im" firstAttribute="leading" secondItem="2Q2-wj-oz8" secondAttribute="leading" constant="96" id="cFd-dW-Mbb"/>
+                            <constraint firstItem="h23-fi-irk" firstAttribute="leading" secondItem="2Q2-wj-oz8" secondAttribute="leading" constant="96" id="FYI-K6-Zn4"/>
+                            <constraint firstItem="h23-fi-irk" firstAttribute="top" secondItem="1sF-wI-R1L" secondAttribute="bottom" constant="36" id="Gtn-Ub-k4J"/>
                             <constraint firstItem="1sF-wI-R1L" firstAttribute="top" secondItem="2Q2-wj-oz8" secondAttribute="top" constant="48" id="ifX-Au-Y4T"/>
                             <constraint firstItem="1sF-wI-R1L" firstAttribute="centerX" secondItem="aOB-YW-vrW" secondAttribute="centerX" id="s3C-na-4v7"/>
                             <constraint firstItem="uMa-kG-OSC" firstAttribute="centerX" secondItem="aOB-YW-vrW" secondAttribute="centerX" id="y7v-UB-JhV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="🧠 ProMind" id="uPN-6I-9wj"/>
+                    <connections>
+                        <outlet property="numberOfCirclesSegmentedControl" destination="o90-cn-aHz" id="N9n-26-igb"/>
+                        <outlet property="numberOfCirclesStackView" destination="V7o-9f-vMW" id="OXN-ai-4sO"/>
+                        <segue destination="Hrl-iw-jrF" kind="show" identifier="TMTMainToTMTGame" id="A15-0l-DtF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88u-Ln-8is" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1151,7 +1185,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are a total of two subtests in Trail Making Test." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRh-mH-Yom" userLabel="Instruction Label">
-                                <rect key="frame" x="278.5" y="101" width="623" height="75"/>
+                                <rect key="frame" x="278.5" y="86" width="623" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="9m8-iY-bbs"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="ymY-tR-BxI"/>
@@ -1161,10 +1195,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ocw-7K-giZ">
-                                <rect key="frame" x="96" y="200" width="988" height="480"/>
+                                <rect key="frame" x="96" y="173" width="988" height="525"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="480" id="5eK-QZ-JPt" userLabel="height = 500"/>
+                                    <constraint firstAttribute="height" constant="525" id="5eK-QZ-JPt"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="KDU-kQ-Baf" userLabel="Action Stack View">
@@ -1274,9 +1308,9 @@ Lifts: 0</string>
                             <constraint firstItem="Ocw-7K-giZ" firstAttribute="leading" secondItem="zMP-Yw-Mhm" secondAttribute="leading" constant="96" id="9YM-n8-9Yg"/>
                             <constraint firstItem="zMP-Yw-Mhm" firstAttribute="trailing" secondItem="Ocw-7K-giZ" secondAttribute="trailing" constant="96" id="CeE-4B-JkY"/>
                             <constraint firstItem="sRh-mH-Yom" firstAttribute="centerX" secondItem="7Ia-Nr-2DO" secondAttribute="centerX" id="KI3-8v-Ymz"/>
-                            <constraint firstItem="KDU-kQ-Baf" firstAttribute="top" secondItem="Ocw-7K-giZ" secondAttribute="bottom" constant="36" id="KsL-D4-6UN"/>
+                            <constraint firstItem="KDU-kQ-Baf" firstAttribute="top" secondItem="Ocw-7K-giZ" secondAttribute="bottom" constant="18" id="KsL-D4-6UN"/>
                             <constraint firstItem="lEW-gu-Bb8" firstAttribute="top" secondItem="zMP-Yw-Mhm" secondAttribute="top" constant="100" id="Uz7-MU-b10"/>
-                            <constraint firstItem="Ocw-7K-giZ" firstAttribute="top" secondItem="sRh-mH-Yom" secondAttribute="bottom" constant="24" id="Wbh-BX-v9z"/>
+                            <constraint firstItem="Ocw-7K-giZ" firstAttribute="top" secondItem="sRh-mH-Yom" secondAttribute="bottom" constant="12" id="Wbh-BX-v9z"/>
                             <constraint firstItem="KDU-kQ-Baf" firstAttribute="centerX" secondItem="7Ia-Nr-2DO" secondAttribute="centerX" id="gga-m3-ttG"/>
                             <constraint firstItem="lEW-gu-Bb8" firstAttribute="trailing" secondItem="zMP-Yw-Mhm" secondAttribute="trailing" constant="-25" id="gwN-3X-Co2"/>
                         </constraints>
@@ -1289,7 +1323,7 @@ Lifts: 0</string>
                         <outlet property="statsStackView" destination="lEW-gu-Bb8" id="0KN-J7-StD"/>
                         <outlet property="timerLabel" destination="nyq-TK-SRo" id="EhW-Xf-olI"/>
                         <outlet property="tutorialView" destination="Ocw-7K-giZ" id="SF1-RT-qiH"/>
-                        <segue destination="UYv-nf-qgr" kind="show" identifier="GameToTMTResult" id="9KA-Ld-Jat"/>
+                        <segue destination="UYv-nf-qgr" kind="show" identifier="TMTGameToTMTResult" id="9KA-Ld-Jat"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubd-ih-aNC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

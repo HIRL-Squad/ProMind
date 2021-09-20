@@ -9,6 +9,10 @@ import UIKit
 
 struct K {
     static let fontTypeNormal = "HelveticaNeue"
+    static let fontTypeMedium = "HelveticaNeue-Medium"
+    static let borderWidth: CGFloat = 2.0
+    static let animateDuration: TimeInterval = 0.30
+    static let animateAlpha: CGFloat = 0.25
     
     static let goToSubjectProfileSegue = "LoadSubjectOptionToSubjectProfile"
     static let goToTestSelectionSegue = "SubjectProfileToTestSelection"
@@ -102,9 +106,17 @@ struct K {
             ["1","A","2","B","3","C","4","D","5","E","6","F","7","G","8","H","9","I","10","J","11","K","12","L","13"]
         ]
         
+        // Number of circles to total time mapping - time in seconds
+        static let numCirclesTimeMapping = [
+            10: 120,
+            15: 180,
+            20: 240,
+            25: 300
+        ]
+        
         static let TrailMakingTest = "Trail Making Test"
-        static let totalTime = 30 // Time in seconds
-        static let goToTMTResultSegue = "GameToTMTResult"
+        static let goToTMTGameSegue = "TMTMainToTMTGame"
+        static let goToTMTResultSegue = "TMTGameToTMTResult"
         
         static let drawSize: CGFloat = 5.0
         static let drawColor = UIColor.blue
@@ -112,7 +124,7 @@ struct K {
         static let instructions = [
             [
 //                "0", "1", "2", "3", "4", "5", "6", "7",
-                "There are a total of two subtests in Trail Making Test.", // 0
+                "There are two subtests in Trail Making Test.", // 0
                 "Let's start with Trail Making Test A.", // 1
                 "Look at the circles below. You have to connect them in ascending order.", // 2
                 "For example, 1 has to be connected to 2.", // 3
