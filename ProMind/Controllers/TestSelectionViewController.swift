@@ -26,13 +26,10 @@ class TestSelectionViewController: UIViewController {
             charIdx += 1
         }
     }
+    
     @IBAction func backBarButtonPressed(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
         self.splitViewController?.preferredDisplayMode = .oneBesideSecondary
-        
-//        dismiss(animated: true) {
-//            self.splitViewController?.preferredDisplayMode = .oneBesideSecondary
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -21,6 +21,8 @@ class TMTTutorialViewController: UIViewController {
     // Speech Synthesis
     private var synthesizer: AVSpeechSynthesizer?
     private var instructionState = 0
+    
+    private var isFirstChangeInSubview = true // To handle the subview change upon first loading
         
     // ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"]
     // ["1","A","2","B","3","C","4","D","5","E","6","F","7","G","8","H","9","I","10","J","11","K","12","L","13"]
@@ -72,18 +74,39 @@ class TMTTutorialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad()")
                 
         print("Width: \(view.frame.width)")
         print("Height: \(view.frame.height)")
-        
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        initTutorial(state: 0)
-//        initTest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        
+        print("viewWillAppear()")
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//            self.initTutorial(state: 0)
+//        }
+//        initTest()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        print("viewDidLayoutSubviews()")
+        
+        if isFirstChangeInSubview {
+            isFirstChangeInSubview = false
+            print("tutorialView.bounds.width: \(self.tutorialView.bounds.width)")
+            print("tutorialView.bounds.height: \(self.tutorialView.bounds.height)")
+            self.initTutorial(state: 0)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear()")
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

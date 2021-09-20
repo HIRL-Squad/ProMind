@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s7Z-uq-a9W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zLr-yt-x0z">
     <device id="ipad10_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -545,7 +545,7 @@
                                         <rect key="frame" x="116" y="802" width="288" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oQC-Cc-ieV" id="XO9-WS-7Zw">
-                                            <rect key="frame" x="0.0" y="0.0" width="262.5" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="262.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Question 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="coe-9V-F86" userLabel="Question 2">
@@ -1063,24 +1063,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="1180" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="1hR-aD-SHx" kind="relationship" relationship="rootViewController" id="TPI-2j-CM6"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N7o-fk-81t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1550" y="-1092"/>
+            <point key="canvasLocation" x="115" y="50"/>
         </scene>
         <!--TMT Main View Controller-->
         <scene sceneID="E7L-4c-Mf8">
             <objects>
                 <viewController id="1hR-aD-SHx" userLabel="TMT Main View Controller" customClass="TMTMainViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aOB-YW-vrW">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-kG-OSC">
-                                <rect key="frame" x="380" y="636" width="420" height="100"/>
+                                <rect key="frame" x="1124" y="636" width="420" height="100"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="420" id="24b-hA-zyQ"/>
@@ -1100,16 +1097,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trail Making Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sF-wI-R1L">
-                                <rect key="frame" x="404.5" y="98" width="371" height="57.5"/>
+                                <rect key="frame" x="1148.5" y="98" width="371" height="57.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="h23-fi-irk">
-                                <rect key="frame" x="96" y="191.5" width="988" height="334.5"/>
+                                <rect key="frame" x="96" y="191.5" width="2476" height="267.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="orL-Fy-8im">
-                                        <rect key="frame" x="0.0" y="0.0" width="988" height="167.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="2476" height="100.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is it? 💬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-tF-AEb">
                                                 <rect key="frame" x="0.0" y="0.0" width="221" height="43"/>
@@ -1118,7 +1115,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKG-or-VTE">
-                                                <rect key="frame" x="0.0" y="67" width="988" height="100.5"/>
+                                                <rect key="frame" x="0.0" y="67" width="2476" height="33.5"/>
                                                 <string key="text">Trail making test is one of the most widely adopted neuropsychological tests for assessing processing speed and executive function due to its sensitivity, simplicity and ease of administration. </string>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                                 <nil key="textColor"/>
@@ -1127,7 +1124,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="V7o-9f-vMW">
-                                        <rect key="frame" x="0.0" y="227.5" width="750" height="107"/>
+                                        <rect key="frame" x="0.0" y="160.5" width="475" height="107"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Circles 🔮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBc-l4-eNr">
                                                 <rect key="frame" x="0.0" y="0.0" width="345.5" height="43"/>
@@ -1136,7 +1133,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" translatesAutoresizingMaskIntoConstraints="NO" id="o90-cn-aHz">
-                                                <rect key="frame" x="0.0" y="67" width="750" height="41"/>
+                                                <rect key="frame" x="0.0" y="67" width="475" height="41"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="750" id="bip-Fw-h2N"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="rtq-y2-Dlb"/>
@@ -1169,7 +1166,7 @@
                     <connections>
                         <outlet property="numberOfCirclesSegmentedControl" destination="o90-cn-aHz" id="N9n-26-igb"/>
                         <outlet property="numberOfCirclesStackView" destination="V7o-9f-vMW" id="OXN-ai-4sO"/>
-                        <segue destination="Hrl-iw-jrF" kind="show" identifier="TMTMainToTMTGame" id="A15-0l-DtF"/>
+                        <segue destination="Hrl-iw-jrF" kind="showDetail" identifier="TMTMainToTMTGame" id="A15-0l-DtF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88u-Ln-8is" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1181,11 +1178,11 @@
             <objects>
                 <viewController id="Hrl-iw-jrF" customClass="TMTTutorialViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Ia-Nr-2DO">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are a total of two subtests in Trail Making Test." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRh-mH-Yom" userLabel="Instruction Label">
-                                <rect key="frame" x="278.5" y="86" width="623" height="75"/>
+                                <rect key="frame" x="118.5" y="86" width="623" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="9m8-iY-bbs"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="ymY-tR-BxI"/>
@@ -1195,14 +1192,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ocw-7K-giZ">
-                                <rect key="frame" x="96" y="173" width="988" height="525"/>
+                                <rect key="frame" x="96" y="173" width="667.5" height="525"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="525" id="5eK-QZ-JPt"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="KDU-kQ-Baf" userLabel="Action Stack View">
-                                <rect key="frame" x="386" y="716" width="408" height="60"/>
+                                <rect key="frame" x="226" y="716" width="408" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukS-wc-Awc" userLabel="Start Button">
                                         <rect key="frame" x="0.0" y="0.0" width="180" height="60"/>
@@ -1247,7 +1244,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lEW-gu-Bb8" userLabel="Stats Stack View">
-                                <rect key="frame" x="1030" y="150" width="125" height="313"/>
+                                <rect key="frame" x="709.5" y="150" width="125" height="313"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics (Temporary - will be hidden during actual  test)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QC-ep-M8C" userLabel="Stats Message">
                                         <rect key="frame" x="0.0" y="0.0" width="125" height="95.5"/>
@@ -1323,7 +1320,7 @@ Lifts: 0</string>
                         <outlet property="statsStackView" destination="lEW-gu-Bb8" id="0KN-J7-StD"/>
                         <outlet property="timerLabel" destination="nyq-TK-SRo" id="EhW-Xf-olI"/>
                         <outlet property="tutorialView" destination="Ocw-7K-giZ" id="SF1-RT-qiH"/>
-                        <segue destination="UYv-nf-qgr" kind="show" identifier="TMTGameToTMTResult" id="9KA-Ld-Jat"/>
+                        <segue destination="UYv-nf-qgr" kind="showDetail" identifier="TMTGameToTMTResult" id="9KA-Ld-Jat"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubd-ih-aNC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1416,17 +1413,34 @@ Lifts: 0</string>
             <objects>
                 <viewController id="UYv-nf-qgr" userLabel="TMT Result View Controller" customClass="TMTResultViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Zn-EZ-3uR">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHf-6a-zk5">
-                                <rect key="frame" x="504" y="98" width="172" height="57.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VPz-8t-2km" userLabel="General Stack View">
+                                <rect key="frame" x="233" y="167.5" width="394" height="94"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Circles: 25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjZ-fK-I3z">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="43"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Time Given: 300 s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2U-Fi-ckm">
+                                        <rect key="frame" x="0.0" y="51" width="394" height="43"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings ⚙️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHf-6a-zk5">
+                                <rect key="frame" x="305" y="86" width="250" height="57.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="120" translatesAutoresizingMaskIntoConstraints="NO" id="NhI-JO-KTK" userLabel="Results Stack View">
-                                <rect key="frame" x="309.5" y="251.5" width="561" height="213"/>
+                                <rect key="frame" x="149.5" y="309.5" width="561" height="213"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="It5-te-3Id" userLabel="TMT-A Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="220.5" height="213"/>
@@ -1453,7 +1467,7 @@ Lifts: 0</string>
                                         <rect key="frame" x="340.5" y="0.0" width="220.5" height="213"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TMT-B" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uc-bh-Ros">
-                                                <rect key="frame" x="54.5" y="0.0" width="112" height="43"/>
+                                                <rect key="frame" x="54" y="0.0" width="112" height="43"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                                 <color key="textColor" name="Purple"/>
                                                 <nil key="highlightedColor"/>
@@ -1473,7 +1487,7 @@ Lifts: 0</string>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBx-um-00r">
-                                <rect key="frame" x="430" y="672" width="320" height="80"/>
+                                <rect key="frame" x="270" y="672" width="320" height="80"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="01W-1H-Sey"/>
@@ -1498,16 +1512,20 @@ Lifts: 0</string>
                         <constraints>
                             <constraint firstItem="4An-WP-dGG" firstAttribute="bottom" secondItem="YBx-um-00r" secondAttribute="bottom" constant="48" id="5UJ-KT-r02"/>
                             <constraint firstItem="YBx-um-00r" firstAttribute="centerX" secondItem="9Zn-EZ-3uR" secondAttribute="centerX" id="Hf2-ZB-cRO"/>
-                            <constraint firstItem="NhI-JO-KTK" firstAttribute="top" secondItem="lHf-6a-zk5" secondAttribute="bottom" constant="96" id="ePF-zb-QFK"/>
+                            <constraint firstItem="VPz-8t-2km" firstAttribute="top" secondItem="lHf-6a-zk5" secondAttribute="bottom" constant="24" id="POE-IM-3Yx"/>
                             <constraint firstItem="lHf-6a-zk5" firstAttribute="centerX" secondItem="9Zn-EZ-3uR" secondAttribute="centerX" id="eRF-p2-jCs"/>
+                            <constraint firstItem="VPz-8t-2km" firstAttribute="centerX" secondItem="9Zn-EZ-3uR" secondAttribute="centerX" id="edD-ex-Ryg"/>
                             <constraint firstItem="NhI-JO-KTK" firstAttribute="centerX" secondItem="9Zn-EZ-3uR" secondAttribute="centerX" id="pwS-op-EO1"/>
-                            <constraint firstItem="lHf-6a-zk5" firstAttribute="top" secondItem="4An-WP-dGG" secondAttribute="top" constant="48" id="vTC-IB-e1i"/>
+                            <constraint firstItem="lHf-6a-zk5" firstAttribute="top" secondItem="4An-WP-dGG" secondAttribute="top" constant="36" id="vTC-IB-e1i"/>
+                            <constraint firstItem="NhI-JO-KTK" firstAttribute="top" secondItem="VPz-8t-2km" secondAttribute="bottom" constant="48" id="zwW-nP-YxH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Trail Making Test" id="hNQ-3d-o3e"/>
+                    <navigationItem key="navigationItem" title="🧠 ProMind" id="hNQ-3d-o3e"/>
                     <connections>
+                        <outlet property="numCirclesLabel" destination="rjZ-fK-I3z" id="5sF-om-Rhl"/>
                         <outlet property="resultLabelA" destination="BtC-YK-MBa" id="xVw-m1-gyC"/>
                         <outlet property="resultLabelB" destination="A4N-1W-JWW" id="Z4h-iy-uDf"/>
+                        <outlet property="totalTimeLabel" destination="d2U-Fi-ckm" id="79f-G7-AVd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmH-jl-gCk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1904,7 +1922,6 @@ We will go through them one by one.</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9KA-Ld-Jat"/>
-        <segue reference="TPI-2j-CM6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>
