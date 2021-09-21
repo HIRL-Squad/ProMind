@@ -49,12 +49,6 @@ class SubjectProfileMasterViewController: UITableViewController {
         super.viewDidLoad()
         
         print("SubjectProfileMasterViewController :: viewDidLoad")
-        print("enterFromLoadSubjectOption: \(enterFromLoadSubjectOption)")
-        
-        if !enterFromLoadSubjectOption {
-            self.dismiss(animated: true, completion: nil)
-        }
-        
         print("isLoadingSubject: \(isLoadingSubject)")
         
         Subject.shared.delegate = self
@@ -80,6 +74,16 @@ class SubjectProfileMasterViewController: UITableViewController {
         
         if isLoadingSubject {
             displayLoadSubjectAlert()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("SubjectProfileMasterViewController :: viewWillAppear")
+        print("enterFromLoadSubjectOption: \(enterFromLoadSubjectOption)")
+        
+        if !enterFromLoadSubjectOption {
+            self.dismiss(animated: true, completion: nil)
         }
     }
 
@@ -271,8 +275,9 @@ class SubjectProfileMasterViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.displayAlert(
                         title: "Subject Loaded",
-                        message: "Subject Demographic:\n\(subject.toString())",
+                        message: "\(subject.toString())",
                         action: UIAlertAction(title: "Begin", style: .default, handler: { _ in
+                            self.enterFromLoadSubjectOption = false
                             self.performSegue(withIdentifier: K.goToTestSelectionSegue, sender: self)
                         }),
                         dismissalTime: nil
