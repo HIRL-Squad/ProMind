@@ -156,8 +156,7 @@ class TMTResultViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
-        // RESET EVERYTHING!!
+    @IBAction func doneButtonPressed(_ sender: UIButton) {        
         splitViewController?.preferredDisplayMode = .oneBesideSecondary
         navigationController?.popToRootViewController(animated: true)
     }

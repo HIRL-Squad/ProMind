@@ -18,7 +18,7 @@ enum SubjectType: String {
 }
 
 enum Gender: String, Codable {
-    case Male, Female
+    case Male, Female, Private
 }
 
 enum DominantHand: String {
@@ -136,6 +136,32 @@ class Subject: Codable {
         return digest.map {
             String(format: "%02hhx", $0)
         }.joined()
+    }
+    
+    func toString() -> String {
+        let subjectIdText = "Subject ID: \(subjectId ?? "N.A.")"
+        let subjectTypeText = "Subject Type: \(subjectType ?? "N.A.")"
+        let siteText = "Site: \(site ?? "N.A.")"
+        
+        let birthDate = Date(timeIntervalSince1970: Double(birthDate!))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_US")
+        let birthDateText = "Birth Date: \(dateFormatter.string(from: birthDate))"
+        
+        let genderText = "Gender: \(gender ?? Gender.Private)"
+        let educationLevelText = "Education Level: \(educationLevel ?? "N.A.")"
+        let ethnicityText = "Ethnicity: \(ethnicity ?? "N.A.")"
+        
+        return "" +
+            "\(subjectIdText)\n" +
+            "\(subjectTypeText)\n" +
+            "\(siteText)\n" +
+            "\(birthDateText)\n" +
+            "\(genderText)\n" +
+            "\(ethnicityText)\n" +
+            "\(educationLevelText)\n"
     }
 }
 

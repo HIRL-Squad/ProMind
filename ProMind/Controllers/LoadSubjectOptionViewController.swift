@@ -9,8 +9,21 @@ import UIKit
 
 class LoadSubjectOptionViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Consider using CLTypingLabel
+        titleLabel.text = ""
+        var charIdx: Double = 0
+        let titleText = "ProMind"
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: 0.1 * charIdx, repeats: false) { timer in
+                self.titleLabel.text?.append(letter)
+            }
+            charIdx += 1
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -23,15 +36,19 @@ class LoadSubjectOptionViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    @IBAction func createNewSubjectButtonPressed(_ sender: UIButton) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let splitViewController = segue.destination as? UISplitViewController,
+              let leftNavController = splitViewController.viewControllers.first as? UINavigationController,
+              let subjectProfileMasterViewController = leftNavController.viewControllers.first as? SubjectProfileMasterViewController else {
+            fatalError("LoadSubjectOptionViewController: Errors occurred while downcasting to SubjectProfileMasterViewController.")
+        }
         
-        performSegue(withIdentifier: K.goToSubjectProfileSegue, sender: self)
-        
-    }
-    
-    @IBAction func loadSubjectFromCloudButtonPressed(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: K.goToSubjectProfileSegue, sender: self)
-        
+        if segue.identifier == K.goToSubjectProfileToCreateNewSubjectSegue {
+            subjectProfileMasterViewController.isLoadingSubject = false
+            subjectProfileMasterViewController.enterFromLoadSubjectOption = true
+        } else if segue.identifier == K.goToSubjectProfileToLoadSubjectSegue {
+            subjectProfileMasterViewController.isLoadingSubject = true
+            subjectProfileMasterViewController.enterFromLoadSubjectOption = true
+        }
     }
 }

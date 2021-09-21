@@ -190,7 +190,7 @@ class TMTTutorialViewController: UIViewController {
     }
     
     private func initTest() {
-        navigationController?.isNavigationBarHidden = true
+        // navigationController?.isNavigationBarHidden = true
         
         instructionLabel.isHidden = true
         tutorialView.isHidden = true
@@ -290,6 +290,7 @@ class TMTTutorialViewController: UIViewController {
         if isTutorial {
             isTutorial = false
             
+            navigationController?.isNavigationBarHidden = true
             actionButtonsStackView.isHidden = true
             displayLastScreenshot(reset: true, displayView: tutorialView) // Reset display from Tutorial
             for circleView in tutCircleViews {

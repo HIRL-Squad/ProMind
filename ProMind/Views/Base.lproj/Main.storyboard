@@ -569,18 +569,18 @@
                                         <rect key="frame" x="116" y="845.5" width="288" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2lP-8S-xch" id="DtC-3b-bGH">
-                                            <rect key="frame" x="0.0" y="0.0" width="270.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="262.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Question 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OKz-tB-Bcv" userLabel="Question 3">
-                                                    <rect key="frame" x="15" y="13" width="78" height="19"/>
+                                                    <rect key="frame" x="16" y="13" width="78" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dft-dU-QY4" userLabel="Value">
-                                                    <rect key="frame" x="258" y="13" width="4.5" height="19"/>
+                                                    <rect key="frame" x="250" y="13" width="4.5" height="19"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" name="Grey"/>
@@ -992,8 +992,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="oaz-33-qlI">
-                                <rect key="frame" x="290" y="278" width="600" height="264"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="xgT-RB-rQE" userLabel="Logo Stack View">
+                                <rect key="frame" x="490.5" y="79.5" width="199" height="277.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="3tv-AL-jhS">
+                                        <rect key="frame" x="0.0" y="0.0" width="199" height="170.5"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProMind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Xo-vm-o1M">
+                                        <rect key="frame" x="0.0" y="206.5" width="199" height="71"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3tv-AL-jhS" firstAttribute="centerX" secondItem="xgT-RB-rQE" secondAttribute="centerX" id="Taz-oo-KAj"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="oaz-33-qlI" userLabel="Action Stack View">
+                                <rect key="frame" x="290" y="446" width="600" height="248"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhj-RM-bjp">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
@@ -1007,30 +1024,30 @@
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
+                                                <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="createNewSubjectButtonPressed:" destination="zLr-yt-x0z" eventType="touchUpInside" id="V1o-Pd-ckF"/>
+                                            <segue destination="vs9-75-A2C" kind="presentation" identifier="LoadSubjectOptionToSubjectProfileCreateSubject" modalPresentationStyle="fullScreen" id="ODG-FU-P34"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bu-bD-am2">
-                                        <rect key="frame" x="0.0" y="164" width="600" height="100"/>
+                                        <rect key="frame" x="0.0" y="148" width="600" height="100"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="Pgu-Qf-oEU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
-                                        <state key="normal" title="Load Subject from Cloud">
+                                        <state key="normal" title="Load Subject">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
+                                                <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="loadSubjectFromCloudButtonPressed:" destination="zLr-yt-x0z" eventType="touchUpInside" id="oeU-hQ-xYj"/>
+                                            <segue destination="vs9-75-A2C" kind="presentation" identifier="LoadSubjectOptionToSubjectProfileLoadSubject" modalPresentationStyle="fullScreen" id="Af1-SV-aQ9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1042,13 +1059,15 @@
                         <viewLayoutGuide key="safeArea" id="o2T-Pl-1UT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oaz-33-qlI" firstAttribute="centerY" secondItem="lVt-21-XJK" secondAttribute="centerY" id="IwJ-2I-Wi3"/>
+                            <constraint firstItem="xgT-RB-rQE" firstAttribute="centerX" secondItem="lVt-21-XJK" secondAttribute="centerX" id="Chk-5x-nBF"/>
+                            <constraint firstItem="xgT-RB-rQE" firstAttribute="centerY" secondItem="lVt-21-XJK" secondAttribute="centerY" constant="-192" id="GLK-q9-oFT"/>
+                            <constraint firstItem="oaz-33-qlI" firstAttribute="centerY" secondItem="lVt-21-XJK" secondAttribute="centerY" constant="160" id="IwJ-2I-Wi3"/>
                             <constraint firstItem="oaz-33-qlI" firstAttribute="centerX" secondItem="lVt-21-XJK" secondAttribute="centerX" id="gl4-au-kKa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3hy-Hc-4pN"/>
                     <connections>
-                        <segue destination="vs9-75-A2C" kind="presentation" identifier="LoadSubjectOptionToSubjectProfile" modalPresentationStyle="fullScreen" id="99f-fa-S7U"/>
+                        <outlet property="titleLabel" destination="8Xo-vm-o1M" id="w3J-XP-nmD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fW1-Py-WPc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1073,7 +1092,7 @@
             <objects>
                 <viewController id="1hR-aD-SHx" userLabel="TMT Main View Controller" customClass="TMTMainViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aOB-YW-vrW">
-                        <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="859" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-kG-OSC">
@@ -1178,7 +1197,7 @@
             <objects>
                 <viewController id="Hrl-iw-jrF" customClass="TMTTutorialViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Ia-Nr-2DO">
-                        <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="859" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are a total of two subtests in Trail Making Test." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRh-mH-Yom" userLabel="Instruction Label">
@@ -1413,7 +1432,7 @@ Lifts: 0</string>
             <objects>
                 <viewController id="UYv-nf-qgr" userLabel="TMT Result View Controller" customClass="TMTResultViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Zn-EZ-3uR">
-                        <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="859" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VPz-8t-2km" userLabel="General Stack View">
@@ -1537,7 +1556,7 @@ Lifts: 0</string>
             <objects>
                 <viewController id="AgT-D4-hRO" userLabel="DST Result View Controller" customClass="DSTResultViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YjF-ZQ-u9M">
-                        <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="859" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FL-Wv-PXJ">
@@ -1731,7 +1750,7 @@ Longest Seq: 0</string>
             <objects>
                 <viewController id="do9-eP-ePs" userLabel="DST Game View Controller" customClass="DSTGameViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZGK-8n-wyq">
-                        <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="859" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE4-2l-e1B" userLabel="Instruction Label">
@@ -1922,6 +1941,7 @@ We will go through them one by one.</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9KA-Ld-Jat"/>
+        <segue reference="ODG-FU-P34"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>

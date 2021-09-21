@@ -36,6 +36,11 @@ class SubjectProfileMasterViewController: UITableViewController {
     
     weak var delegate: MasterViewControllerDelegate?
     
+    var enterFromLoadSubjectOption = false
+    var isLoadingSubject = false
+    var alertMobileNumberTextField: UITextField?
+    var alertBirthDatePicker: UIDatePicker?
+    
     private var isSaveButtonPressed = false
     private var canProceedToSave = true
     private var currentIndexPath: IndexPath?
@@ -44,14 +49,18 @@ class SubjectProfileMasterViewController: UITableViewController {
         super.viewDidLoad()
         
         print("SubjectProfileMasterViewController :: viewDidLoad")
+        print("enterFromLoadSubjectOption: \(enterFromLoadSubjectOption)")
+        
+        if !enterFromLoadSubjectOption {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        print("isLoadingSubject: \(isLoadingSubject)")
         
         Subject.shared.delegate = self
         
         mobileNumberTextField.delegate = self
         occupationTextField.delegate = self
-        
-        // tableView.layer.borderColor = UIColor(named: "Grey")?.cgColor
-        // tableView.layer.borderWidth = 1.0
         
         // To handle tap events, specifically hide keyboard on tap.
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -69,7 +78,9 @@ class SubjectProfileMasterViewController: UITableViewController {
         let detailViewController = rightNavController.viewControllers.first as? SubjectProfileDetailViewController
         detailViewController?.delegate = self
         
-        displayLoadingIndicator()
+        if isLoadingSubject {
+            displayLoadSubjectAlert()
+        }
     }
 
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
@@ -140,75 +151,204 @@ class SubjectProfileMasterViewController: UITableViewController {
         }
         
         if canProceedToSave {
-            let url = URL(string: K.URL.createSubject)
-            guard let requestUrl = url else { fatalError() }
-            var request = URLRequest(url: requestUrl)
-            request.httpMethod = "POST"
-            // Set HTTP Request Header
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            do {
-                let encoder = JSONEncoder()
-                encoder.outputFormatting = .prettyPrinted
-                
-                let jsonData = try encoder.encode(Subject.shared)
-                print("POST Data: \n\(String(data: jsonData, encoding: .utf8)!)")
-                
-                request.httpBody = jsonData
-                let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                    if let error = error {
-                        print("Error occurred when sending a POST request: \(error.localizedDescription)")
-                        
-                        // Possible connection error
-                        // Save to cache for persistent later
-                        
-                        return
-                    }
-                    
-                    guard let resp = response as? HTTPURLResponse else {
-                        return
-                    }
-                    
-                    print("Response Code: \(resp.statusCode)")
-                }
-                
-                task.resume()
-            } catch let encodingError {
-                print("Unexpected error occurred while encoding: \(encodingError)")
-            }
-            
+            saveSubject()
             performSegue(withIdentifier: K.goToTestSelectionSegue, sender: self)
         } else {
-            displayAlert(title: "Insufficient Information", message: "Please fill up all the necessary information", dismissalTime: .milliseconds(3000))
+            displayAlert(
+                title: "Insufficient Information",
+                message: "Please fill up all the necessary information",
+                action: UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }),
+                dismissalTime: .milliseconds(3000)
+            )
         }
     }
     
-    private func displayLoadingIndicator() {
-//        var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(50, 10, 37, 37)) as UIActivityIndicatorView
-//        loadingIndicator.center = self.view.center;
-//        loadingIndicator.hidesWhenStopped = true
-//        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-//        loadingIndicator.startAnimating();
-    }
-    
-    private func displayAlert(title: String?, message: String?, dismissalTime: DispatchTimeInterval?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        var isDismissed = false
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
-            isDismissed = true
-            alert.dismiss(animated: true, completion: nil)
+    private func displayLoadSubjectAlert() {
+        // Pop up an alert to prompt users to key in birthDate and last 4 digits of mobile number
+        let alert = UIAlertController(title: "Load Subject", message: "Please enter your mobile number and select your birth date to load your personal credentials.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Load", style: .default, handler: { action in
+            // Get request
+            self.loadSubject()
         }))
         
+        alert.addTextField { textField in
+            self.alertMobileNumberTextField = textField
+            textField.placeholder = "Last 4 digits of mobile number"
+            textField.keyboardType = .phonePad
+            textField.delegate = self
+        }
+        
+        let datePicker = UIDatePicker(frame: CGRect(origin: CGPoint(x: 15, y: 155), size: CGSize(width: 0, height: 0)))
+//            let datePicker = UIDatePicker()
+        datePicker.date = Date(timeIntervalSince1970: 946684800)
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact
+        self.alertBirthDatePicker = datePicker
+        
+        alert.view.addSubview(datePicker)
+        alert.view.addConstraint(NSLayoutConstraint(item: alert.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 250))
+
         self.present(alert, animated: true, completion: nil)
+    }
+        
+    private func loadSubject() {
+        // If successful, load the information
+        guard let textField = alertMobileNumberTextField,
+              let mobileNumber = textField.text,
+              let datePicker = alertBirthDatePicker else {
+            print("Mobile Number or Birth Date not selected.")
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+                        
+        let birthDate = Int64(datePicker.date.timeIntervalSince1970)
+        let subjectId = "\(mobileNumber)@\(birthDate)"
+        print("subjectId: \(subjectId)")
+        
+        let url = URL(string: "\(K.URL.getSubject)/\(subjectId)")
+        guard let requestUrl = url else { fatalError() }
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data,
+                  let response = response as? HTTPURLResponse,
+                  error == nil else {
+                print("Error occurred when sending a GET request: \(error?.localizedDescription ?? "Unknown Error")")
+                
+                DispatchQueue.main.async {
+                    self.displayAlert(
+                        title: "Subject Not Found",
+                        message: "The subject that you are looking for does not exist. Please create a new subject instead.\nError:\n\(error?.localizedDescription ?? "Unknown Error")",
+                        action: UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }),
+                        dismissalTime: nil
+                    )
+                }
+                
+                return
+            }
+            
+            guard (200 ... 299) ~= response.statusCode else {
+                print("Status Code should be 2xx, but is \(response.statusCode)")
+                print("Response = \(response)")
+                
+                DispatchQueue.main.async {
+                    self.displayAlert(
+                        title: "Subject Not Found",
+                        message: "The subject that you are looking for does not exist. Please create a new subject instead.\nResponse:\n\(response)",
+                        action: UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true, completion: nil)
+                            }
+                        }),
+                        dismissalTime: nil
+                    )
+                }
+                
+                return
+            }
+                        
+            let responseString = String(data: data, encoding: .utf8)
+            print("subject:\n\(responseString ?? "Unable to decode response")")
+            
+            do {
+                let decoder = JSONDecoder()
+                let subject = try decoder.decode(Subject.self, from: data)
+                
+                Subject.shared = subject
+                
+                DispatchQueue.main.async {
+                    self.displayAlert(
+                        title: "Subject Loaded",
+                        message: "Subject Demographic:\n\(subject.toString())",
+                        action: UIAlertAction(title: "Begin", style: .default, handler: { _ in
+                            self.performSegue(withIdentifier: K.goToTestSelectionSegue, sender: self)
+                        }),
+                        dismissalTime: nil
+                    )
+                }
+            } catch {
+                print("Error occurred while decoding Subject")
+            }
+
+
+        }
+            
+        task.resume()
+        // Else, let the user know and prompt them to return to main screen to create new subject.
+    }
+    
+    private func displayAlert(title: String?, message: String?, action: UIAlertAction?, dismissalTime: DispatchTimeInterval?) {
+        let alert: UIAlertController? = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        if let action = action {
+            alert?.addAction(action)
+        }
+        
+        self.present(alert!, animated: true, completion: nil)
         
         if let time = dismissalTime {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
-                if !isDismissed {
-                    alert.dismiss(animated: true, completion: nil)
-                }
+                alert?.dismiss(animated: true, completion: nil)
             }
+        }
+    }
+    
+    private func saveSubject() {
+        print("Saving Subject")
+        
+        let url = URL(string: K.URL.createSubject)
+        guard let requestUrl = url else { fatalError() }
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "POST"
+        // Set HTTP Request Header
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let jsonBody = try encoder.encode(Subject.shared)
+            print("POST Data: \n\(String(data: jsonBody, encoding: .utf8)!)")
+            request.httpBody = jsonBody
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data,
+                      let response = response as? HTTPURLResponse,
+                      error == nil else {
+                    print("Error occurred when sending a POST request: \(error?.localizedDescription ?? "Unknown Error")")
+                    
+                    // Possible connection error
+                    // Save to cache for persistent later
+                    
+                    return
+                }
+                
+                guard (200...299) ~= response.statusCode else {
+                    print("Status Code should be 2xx, but is \(response.statusCode)")
+                    print("Response = \(response)")
+                    return
+                }
+                
+                print("Response Code: \(response.statusCode)")
+                let responseString = String(data: data, encoding: .utf8)
+                print("Response String = \(responseString ?? "Unable to decode response")")
+            }
+            
+            task.resume()
+        } catch let encodingError {
+            print("Unexpected error occurred while encoding: \(encodingError)")
         }
     }
     
@@ -268,7 +408,7 @@ extension SubjectProfileMasterViewController: DetailViewControllerDelegate {
 extension SubjectProfileMasterViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Constraints only apply to Mobile Number
-        if textField == mobileNumberTextField {
+        if textField == mobileNumberTextField || textField == alertMobileNumberTextField {
             // if backspace is pressed, return true
             if string == "" {
                 return true
@@ -292,6 +432,7 @@ extension SubjectProfileMasterViewController: UITextFieldDelegate {
     @objc func handleTap() {
         // Dismiss keyboard
         mobileNumberTextField.resignFirstResponder()
+        alertMobileNumberTextField?.resignFirstResponder()
         occupationTextField.resignFirstResponder()
     }
 }
