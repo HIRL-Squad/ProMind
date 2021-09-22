@@ -8,14 +8,14 @@
 import UIKit
 import AVFoundation
 import Speech
+import SwiftyGif
 
 class DSTGameViewController: UIViewController {
     @IBOutlet weak var statsStackView: UIStackView!
-    @IBOutlet weak var digitsStackView: UIStackView! // Speaking Stack View, Answer Stack View
-    @IBOutlet weak var questionStackView: UIStackView!
+    @IBOutlet weak var digitsStackView: UIStackView! // Answer Stack View
     @IBOutlet weak var answerStackView: UIStackView!
     
-    @IBOutlet weak var speakerImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBOutlet weak var startButton: UIButton!
@@ -47,6 +47,10 @@ class DSTGameViewController: UIViewController {
     // To keep track of the time used for each round
     private var roundTimer: Timer?
     
+    // To keep track of the time used for each trial (60 seconds)
+    private var trialTimeCounter = 60
+    private var trialCountdownTimer: Timer?
+    
     // -1: Starting Instructions; 0: Digit Forward, 1: Digit Backward, 2: Digit Sequencing
     private var numRounds = -1 {
         didSet {
@@ -77,7 +81,6 @@ class DSTGameViewController: UIViewController {
     private var isPreviousTrialCorrect = true
 
     private var currentDigits: [String] = []
-    private var currentDigitLabels: [UILabel] = []
     private var expectedDigits: [String] = [] // The digits that the trial is expecting
     private var spokenDigits: [String] = []
     private var spokenDigitsLabels: [UILabel] = []
@@ -87,13 +90,6 @@ class DSTGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        statsLabel.isHidden = true
-//        digitsStackView.isHidden = true
-//        startButton.isHidden = true
-//        resetInputButton.isHidden = true
-//        doneButton.isHidden = true
-        
-        speakerImageView.isHidden = true
         activityIndicatorView.isHidden = true
         activityIndicatorView.startAnimating()
         
@@ -102,7 +98,6 @@ class DSTGameViewController: UIViewController {
         // updateStatsLabel()
         
         initSynthesizer()
-        
         speakInstructions()
         
         // startTrial()
@@ -133,6 +128,11 @@ class DSTGameViewController: UIViewController {
         dstResultViewController.gameResultStatistics = gameStatistics
     }
     
+    private func loadAvatarGif() {
+        let gif = try! UIImage(gifName: "avatar_2.gif")
+        avatarImageView.setGifImage(gif, loopCount: -1)
+    }
+    
     @IBAction func startButtonPressed(_ sender: UIButton) {
         isInstructionMode = false
         isTestMode = true
@@ -140,7 +140,8 @@ class DSTGameViewController: UIViewController {
         instructionLabel.isHidden = true
         startButton.isHidden = true
 
-        statsStackView.isHidden = false
+        // statsStackView.isHidden = false
+        statsStackView.isHidden = true // Do not show stats in actual production
         digitsStackView.isHidden = false
         resetInputButton.isHidden = false
         doneButton.isHidden = false
@@ -148,6 +149,10 @@ class DSTGameViewController: UIViewController {
         updateRoundInfoLabel()
         updatePreviousTrialLabel()
         updateStatsLabel()
+        
+        loadAvatarGif()
+        avatarImageView.layer.borderWidth = K.borderWidth
+        avatarImageView.layer.borderColor = UIColor.black.cgColor
         
         startTrial()
     }
@@ -173,13 +178,46 @@ class DSTGameViewController: UIViewController {
                 roundTimer!.tolerance = 0.1
             }
             
+            trialCountdownTimer?.invalidate()
+
+            // Start animating avatar when the app is about to present digits
+            avatarImageView.startAnimatingGif()
             initDigits()
             speakDigits()
         }
     }
+
+    @objc func updateTrialTimeCounter() {
+        if trialTimeCounter == 0 {
+            print("Time's up! Sending Answers...")
+            stopRecording(isResetInput: false)
+        } else if trialTimeCounter > 0 {
+            print("\(trialTimeCounter) seconds to the end of the trial")
+            trialTimeCounter -= 1
+        }
+    }
     
     private func initDigits() {
-        displayDigits()
+        guard let numDigits = K.DST.numDigitsMapping[numTrials] else {
+            handleError(withMessage: "Something wrong while retrieving number of digits")
+            return
+        }
+        
+        currentDigits = []
+        
+        for idx in 0..<numDigits {
+            var digit = K.DST.digits.randomElement()!
+            
+            if idx > 0 {
+                // To remove consecutive "2"
+                while digit == "2" && digit == currentDigits[idx-1] {
+                    digit = K.DST.digits.randomElement()!
+                    print("Reshuffled number as the previous digit is \(currentDigits[idx-1]) and the current digit is also \(digit)")
+                }
+            }
+
+            currentDigits.append(digit)
+        }
         
         switch numRounds {
         case 0:
@@ -197,28 +235,12 @@ class DSTGameViewController: UIViewController {
         }
     }
     
-    private func displayDigits() {
-        guard let numDigits = K.DST.numDigitsMapping[numTrials] else {
-            handleError(withMessage: "Something wrong while retrieving number of digits")
-            return
-        }
-        
-        resetCurrentDigits()
-        
-        for _ in 0..<numDigits {
-            if let digit = K.DST.digits.randomElement() {
-                currentDigits.append(digit)
-                
-                let digitLabel = getLabel(labelText: digit)
-                currentDigitLabels.append(digitLabel)
-                questionStackView.addArrangedSubview(digitLabel)
-            }
-        }
-    }
-    
     private func checkAnswer() -> Bool {
-        print("Spoken Digits: \(spokenDigits)")
+        trialCountdownTimer?.invalidate()
+        
+        print("Presented Digits: \(currentDigits)")
         print("Expected Digits: \(expectedDigits)")
+        print("Spoken Digits: \(spokenDigits)")
         
         if spokenDigits == expectedDigits {
             gameStatistics[numRounds].maxDigits = K.DST.numDigitsMapping[numTrials] ?? 0
@@ -230,14 +252,6 @@ class DSTGameViewController: UIViewController {
         
         gameStatistics[numRounds].currentSequence = 0
         return false
-    }
-    
-    private func resetCurrentDigits() {
-        currentDigits.removeAll()
-        currentDigitLabels.forEach { label in
-            label.removeFromSuperview()
-            // questionStackView.removeArrangedSubview(label)
-        }
     }
     
     private func resetSpokenDigits() {
@@ -290,18 +304,17 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
     }
     
     private func speakDigits() {
-        speakerImageView.isHidden = false
         activityIndicatorView.isHidden = true
-        resetInputButton.isHidden = true
-        doneButton.isHidden = true
+        resetInputButton.isEnabled = false
+        doneButton.isEnabled = false
+        resetInputButton.backgroundColor = .lightGray
+        doneButton.backgroundColor = .lightGray
+//        resetInputButton.isHidden = true
+//        doneButton.isHidden = true
         
         let utterance = AVSpeechUtterance(string: currentDigits.joined(separator: ","))
         utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
         utterance.rate = K.UtteranceRate.digits // On average, 1 second per character. Actual rate depends on the length of the character.
-        
-        // AVSpeechSynthesisVoice.speechVoices().forEach({ voice in
-        //   print(voice)
-        // })
         
         synthesizer?.speak(utterance)
     }
@@ -317,12 +330,19 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         }
         
         if isTestMode {
-            speakerImageView.isHidden = true
+            // Start count down after digits are presented
+            trialTimeCounter = 60
+            trialCountdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTrialTimeCounter), userInfo: nil, repeats: true)
+            
             startRecording()
             
             activityIndicatorView.isHidden = false
-            resetInputButton.isHidden = false
-            doneButton.isHidden = false
+            resetInputButton.isEnabled = true
+            doneButton.isEnabled = true
+            resetInputButton.backgroundColor = UIColor(named: "Purple")
+            doneButton.backgroundColor = UIColor(named: "Purple")
+//            resetInputButton.isHidden = false
+//            doneButton.isHidden = false
         }
     }
 }
@@ -330,6 +350,10 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
 // MARK: - SpeechRecognizer-related Functions
 extension DSTGameViewController {
     private func startRecording() {
+        // Load the first frame when waiting for inputs from users, so to show the smile face.
+        loadAvatarGif()
+        avatarImageView.stopAnimatingGif()
+        
         // 1. Create a recogniser
         guard let speechRecognizer = SFSpeechRecognizer() else {
             handleError(withMessage: "Not supported for device's locale.")
@@ -384,6 +408,7 @@ extension DSTGameViewController {
                         }
                         
                         if result.isFinal {
+                            print("result.isFinal: \(result.isFinal)")
                             self.stopRecording(isResetInput: false)
                         }
                     }
@@ -417,7 +442,7 @@ extension DSTGameViewController {
             // Activate the session.
             audioSession = AVAudioSession.sharedInstance()
             // try audioSession.setCategory(.record, mode: .spokenAudio, options: .duckOthers)
-            try audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: .duckOthers)
+            try audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: .mixWithOthers)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
                         
             // Start the processing pipeline
@@ -444,11 +469,11 @@ extension DSTGameViewController {
         try? audioSession?.setActive(false)
         audioSession = nil
         
+        print("isResetInput: \(isResetInput)")
+        
         if isResetInput {
             resetSpokenDigits()
-        } else {
-            print("isResetInput -> False")
-            
+        } else {            
             isRecording = false
             
             let isAnswerCorrect = checkAnswer()
@@ -479,9 +504,6 @@ extension DSTGameViewController {
             updatePreviousTrialLabel()
             
             resetSpokenDigits()
-            // resetDigits()
-            
-            speakerImageView.isHidden = true
             activityIndicatorView.isHidden = true
             
             // End of Match
@@ -570,39 +592,35 @@ extension DSTGameViewController {
                 case .denied:
                     // User said no
                     print("Denied!")
-                    self.handlePermissionFailed()
+                    self.handlePermissionFailed(msg: "Denied")
                     break
                 case .restricted:
                     // Device isn't permitted
                     print("Restricted!")
-                    self.handlePermissionFailed()
+                    self.handlePermissionFailed(msg: "Restricted")
                     break
                 case .notDetermined:
                     // Don't know yet
                     print("Not Determined!")
-                    self.handlePermissionFailed()
+                    self.handlePermissionFailed(msg: "Not Determined")
                     break
                 default:
                     print("Something went wrong while requesting authorisation for speech recognition!")
-                    self.handlePermissionFailed()
+                    self.handlePermissionFailed(msg: "Unknown")
                 }
             }
         }
     }
     
-    private func handlePermissionFailed() {
+    private func handlePermissionFailed(msg: String) {
         // Present an alert asking the user to change their settings.
         let ac = UIAlertController(title: "This app must have access to speech recognition to work.",
-                                   message: "Please consider updating your settings.", preferredStyle: .alert)
+                                   message: "Code: \(msg)! Please consider updating your settings.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Open settings", style: .default) { _ in
             let url = URL(string: UIApplication.openSettingsURLString)!
             UIApplication.shared.open(url)
         })
         ac.addAction(UIAlertAction(title: "Close", style: .cancel))
         present(ac, animated: true)
-        
-        // Disable the record button.
-        // doneButton.isEnabled = false
-        // doneButton.setTitle("Speech recognition not available.", for: .normal)
     }
 }
