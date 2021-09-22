@@ -192,7 +192,7 @@ class DSTGameViewController: UIViewController {
             print("Time's up! Sending Answers...")
             stopRecording(isResetInput: false)
         } else if trialTimeCounter > 0 {
-            print("\(trialTimeCounter) seconds to the end of the trial")
+            // print("\(trialTimeCounter) seconds to the end of the trial")
             trialTimeCounter -= 1
         }
     }

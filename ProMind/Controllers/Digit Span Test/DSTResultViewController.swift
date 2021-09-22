@@ -19,12 +19,12 @@ class DSTResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Subject.shared.subjectId = "1234@946684800"
-        gameResultStatistics = [
-            DSTGameStatistics(totalTime: 72, numCorrectTrials: 5, currentSequence: 7, longestSequence: 5, maxDigits: 6),
-            DSTGameStatistics(totalTime: 123, numCorrectTrials: 4, currentSequence: 5, longestSequence: 2, maxDigits: 5),
-            DSTGameStatistics(totalTime: 157, numCorrectTrials: 3, currentSequence: 3, longestSequence: 1, maxDigits: 4)
-        ]
+//        Subject.shared.subjectId = "1234@946684800"
+//        gameResultStatistics = [
+//            DSTGameStatistics(totalTime: 72, numCorrectTrials: 5, currentSequence: 7, longestSequence: 5, maxDigits: 6),
+//            DSTGameStatistics(totalTime: 123, numCorrectTrials: 4, currentSequence: 5, longestSequence: 2, maxDigits: 5),
+//            DSTGameStatistics(totalTime: 157, numCorrectTrials: 3, currentSequence: 3, longestSequence: 1, maxDigits: 4)
+//        ]
         
         congratulate()
         showResults()

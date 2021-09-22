@@ -86,14 +86,11 @@ class TMTTutorialViewController: UIViewController {
         
         print("viewWillAppear()")
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            self.initTutorial(state: 0)
-//        }
 //        initTest()
     }
     
     override func viewDidLayoutSubviews() {
-        print("viewDidLayoutSubviews()")
+//        print("viewDidLayoutSubviews()")
         
         if isFirstChangeInSubview {
             isFirstChangeInSubview = false
@@ -201,8 +198,8 @@ class TMTTutorialViewController: UIViewController {
         displayLastScreenshot(reset: true, displayView: tutorialView)
         displayLastScreenshot(reset: true, displayView: view)
         
-        testViewWidth = view.bounds.width - 125
-        testViewHeight = view.bounds.height
+        testViewWidth = view.bounds.width - 50
+        testViewHeight = view.bounds.height - 50
         
         testCircleCenterPoints = [
             CGPoint(x: testViewWidth[10], y: testViewHeight[10]), CGPoint(x: testViewWidth[10], y: testViewHeight[30]), CGPoint(x: testViewWidth[10], y: testViewHeight[50]), CGPoint(x: testViewWidth[10], y: testViewHeight[70]), CGPoint(x: testViewWidth[10], y: testViewHeight[90]),
@@ -222,7 +219,8 @@ class TMTTutorialViewController: UIViewController {
         canDraw = false
         
         actionButtonsStackView.isHidden = true
-        statsStackView.isHidden = false
+        statsStackView.isHidden = true // Do not show stats in production
+//        statsStackView.isHidden = false
         
         gameStatistics[numRound].numCirclesLeft = getNumCircles()
         gameStatistics[numRound].numErrors = 0
@@ -359,8 +357,8 @@ class TMTTutorialViewController: UIViewController {
                 idx: idx,
                 width: testViewWidth,
                 height: testViewHeight,
-                centerX: testCircleCenterPoints[idx].x + CGFloat(Int.random(in: -35..<35)),
-                centerY: testCircleCenterPoints[idx].y + CGFloat(Int.random(in: -35..<35))
+                centerX: testCircleCenterPoints[idx].x + CGFloat(Int.random(in: -20..<40)),
+                centerY: testCircleCenterPoints[idx].y + CGFloat(Int.random(in: -20..<40))
             )
             view.addSubview(testCircleView)
             testCircleViews.append(testCircleView)
