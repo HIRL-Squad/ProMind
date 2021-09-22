@@ -17,7 +17,7 @@ protocol MasterViewControllerDelegate: AnyObject {
     ///     - masterViewController: The MasterViewController instance that invokes this method.
     ///     - question: The selected question.
     ///     - options: The list of options available for selection for a given question.
-    func masterViewController(_ masterViewController: SubjectProfileMasterViewController, didSelectQuestion question: String, optionsForQuestion options: [String])
+    func masterViewController(_ masterViewController: SubjectProfileMasterViewController, didSelectQuestion question: String, optionsForQuestion options: [String]?)
 }
 
 // We automatically conform to UITableViewDelegate because we are using UITableViewController
@@ -33,6 +33,7 @@ class SubjectProfileMasterViewController: UITableViewController {
     @IBOutlet weak var occupationTextField: UITextField!
     
     @IBOutlet weak var sarcfScoreLabel: UILabel!
+    @IBOutlet weak var comorbidityScoreLabel: UILabel!
     
     weak var delegate: MasterViewControllerDelegate?
     
@@ -56,11 +57,6 @@ class SubjectProfileMasterViewController: UITableViewController {
         mobileNumberTextField.delegate = self
         occupationTextField.delegate = self
         
-        // To handle tap events, specifically hide keyboard on tap.
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        tap.cancelsTouchesInView = false
-        splitViewController?.view.addGestureRecognizer(tap)
-        
         splitViewController?.preferredDisplayMode = .oneBesideSecondary // To display both master and detail views together
         splitViewController?.presentsWithGesture = false // To prevent users from showing/hiding master view
                 
@@ -71,6 +67,12 @@ class SubjectProfileMasterViewController: UITableViewController {
         
         let detailViewController = rightNavController.viewControllers.first as? SubjectProfileDetailViewController
         detailViewController?.delegate = self
+        
+        // To handle tap events, specifically hide keyboard on tap.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tap.cancelsTouchesInView = false
+        splitViewController?.view.addGestureRecognizer(tap)
+        // detailViewController?.containerView?.addGestureRecognizer(tap) // To fix
         
         if isLoadingSubject {
             displayLoadSubjectAlert()
@@ -101,23 +103,6 @@ class SubjectProfileMasterViewController: UITableViewController {
     
     @IBAction func birthDateValueChanged(_ sender: UIDatePicker) {
         Subject.shared.birthDate = Int64(sender.date.timeIntervalSince1970)
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == mobileNumberTextField {
-            textField.keyboardType = .numberPad
-        } else {
-            textField.keyboardType = .asciiCapable
-        }
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == mobileNumberTextField {
-            Subject.shared.mobileNumber = textField.text
-        } else {
-            Subject.shared.occupation = textField.text
-        }
     }
     
     @IBAction func genderValueChanged(_ sender: UISegmentedControl) {
@@ -156,6 +141,7 @@ class SubjectProfileMasterViewController: UITableViewController {
         
         if canProceedToSave {
             saveSubject()
+            enterFromLoadSubjectOption = false // TEST
             performSegue(withIdentifier: K.goToTestSelectionSegue, sender: self)
         } else {
             displayAlert(
@@ -166,7 +152,7 @@ class SubjectProfileMasterViewController: UITableViewController {
                         self.dismiss(animated: true, completion: nil)
                     }
                 }),
-                dismissalTime: .milliseconds(3000)
+                dismissalTime: .milliseconds(1500)
             )
         }
     }
@@ -185,7 +171,6 @@ class SubjectProfileMasterViewController: UITableViewController {
         alert.addTextField { textField in
             self.alertMobileNumberTextField = textField
             textField.placeholder = "Last 4 digits of mobile number"
-            textField.keyboardType = .phonePad
             textField.delegate = self
         }
         
@@ -195,6 +180,8 @@ class SubjectProfileMasterViewController: UITableViewController {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .compact
         self.alertBirthDatePicker = datePicker
+        
+        // Try to add constraints again later
         
         alert.view.addSubview(datePicker)
         alert.view.addConstraint(NSLayoutConstraint(item: alert.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 250))
@@ -368,7 +355,8 @@ class SubjectProfileMasterViewController: UITableViewController {
         }
         
         // Inform DetailViewController that a cell has been selected
-        if let identifier = cell.reuseIdentifier, let options = K.SubjectProfile.Master.questions[identifier] {
+        if let identifier = cell.reuseIdentifier {
+            let options = K.SubjectProfile.Master.questions[identifier]
             delegate?.masterViewController(self, didSelectQuestion: identifier, optionsForQuestion: options)
         }
     }
@@ -407,10 +395,31 @@ extension SubjectProfileMasterViewController: DetailViewControllerDelegate {
             detailLabel.text = option
         }
     }
+    
+    func detailViewController(_ detailViewController: SubjectProfileDetailViewController, selectedQuestion question: String, didSelectOptions options: [String]) {
+        print("SubjectProfileMasterViewController :: Options Selected: \(options)")
+    }
 }
 
 // MARK: - UITextFieldDelegate Implementation
 extension SubjectProfileMasterViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == mobileNumberTextField || textField == alertMobileNumberTextField {
+            textField.keyboardType = .numberPad
+        } else {
+            textField.keyboardType = .asciiCapable
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == mobileNumberTextField {
+            Subject.shared.mobileNumber = textField.text
+        } else {
+            Subject.shared.occupation = textField.text
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Constraints only apply to Mobile Number
         if textField == mobileNumberTextField || textField == alertMobileNumberTextField {
@@ -457,5 +466,9 @@ extension SubjectProfileMasterViewController: SubjectDelegate {
             }
         }
         sarcfScoreLabel.text = "\(totalScore)"
+    }
+    
+    func subject(_ subject: Subject, didUpdateCharlestonComorbidity charlestonComorbidity: [String]) {
+        comorbidityScoreLabel.text = "\(charlestonComorbidity.count)"
     }
 }

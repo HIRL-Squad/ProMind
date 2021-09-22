@@ -10,6 +10,7 @@ import UIKit
 struct K {
     static let fontTypeNormal = "HelveticaNeue"
     static let fontTypeMedium = "HelveticaNeue-Medium"
+    static let borderWidthThin: CGFloat = 1.5
     static let borderWidth: CGFloat = 2.0
     static let animateDuration: TimeInterval = 0.30
     static let animateAlpha: CGFloat = 0.25
@@ -37,6 +38,7 @@ struct K {
         static let site = "site"
         static let isPatient = "isPatient"
         static let birthDate = "birthDate"
+        static let mobileNumber = "mobileNumber"
         static let subjectId = "subjectId"
         static let occupation = "occupation"
         static let gender = "gender"
@@ -56,9 +58,11 @@ struct K {
         
         static let medicationHistory = "medicationHistory"
         static let charlestonComorbidity = "charlestonComorbidity"
+        static let bloodMeasurements = "bloodMeasurements"
         static let bloodPressure = "bloodPressure"
         static let cholesterolLDL = "cholesterolLDL"
         static let bloodGlucose = "bloodGlucose"
+        static let testScores = "testScores"
         static let mmseScore = "mmseScore"
         static let mocaScore = "mocaScore"
         static let diagnosis = "diagnosis"
@@ -69,7 +73,7 @@ struct K {
                 K.SubjectProfile.subjectType: [SubjectType.TRIAL.rawValue, SubjectType.TEST.rawValue],
                 K.SubjectProfile.site: ["Lions Befrienders", "Alexandra Hospital", "Outram Community Hospital", "Others"],
                 
-                K.SubjectProfile.educationLevel: [" ", "No Formal Education", "Primary 6 and Below", "Secondary 5 and Below", "ITE Diploma", "A-Level/Higher Level Certificate", "Polytechnic Diploma", "Bachelor's Degree", "Postgraduate Degree (Masters and Above)"],
+                K.SubjectProfile.educationLevel: ["No Formal Education", "Primary 6 and Below", "Secondary 5 and Below", "ITE Diploma", "A-Level/Higher Level Certificate", "Polytechnic Diploma", "Bachelor's Degree", "Postgraduate Degree (Masters and Above)"],
                 K.SubjectProfile.ethnicity: ["Chinese", "Malay", "Indian", "Others"],
                 K.SubjectProfile.dominantHand: [DominantHand.Left.rawValue, DominantHand.Right.rawValue],
                 K.SubjectProfile.annualIncome: ["Do not wish to disclose", "No income", "Below 10000", "10000-19999", "20000-29999", "30000-39999", "40000-49999", "50000-59999", "60000-79999", "80000-99999", "100000-119999", "120000-149999", "150000-199999", "200000 and above"],
@@ -81,6 +85,14 @@ struct K {
                 K.SubjectProfile.question3: ["None (0 point)", "Some (1 point)", "A lot or unable (2 points)"],
                 K.SubjectProfile.question4: ["None (0 point)", "Some (1 point)", "A lot or unable (2 points)"],
                 K.SubjectProfile.question5: ["None (0 point)", "1 to 3 falls (1 point)", "4 or more falls (2 points)"],
+                
+                K.SubjectProfile.diagnosis: ["No Cognitive Impairment", "Mild Cognitive Impairment", "Mild Dementia", "Moderate Dementia"],
+                K.SubjectProfile.charlestonComorbidity: [
+                    "High Blood Pressure", "High Cholesterol", "Diabetes Mellitus", "Mild Cognitive Impairment", "Dementia", "Myocardial Infarction (e.g., Heart Attack)",
+                    "Heart Failure (e.g., shortness of breath on exertion, waking up at night feeling breathless)", "Peripheral Vascular Disease (e.g., Gangrene)",
+                    "Stroke or Transient Ischemic Attack", "Chronic Obstructive Pulmonary Disease (COPD)", "Connective Tissue Disease", "Peptic Ulcer Disease (e.g., Stomach Ulcer)",
+                    "Liver Disease", "Hemiplegia", "Moderate to Severe Chronic Kidney Disease", "Solid Tumour", "Leukemia", "Lymphoma", "AIDS"
+                ]
             ]
         }
 
@@ -101,6 +113,15 @@ struct K {
                 K.SubjectProfile.question4: "4. How much difficulty do you have climbing a flight of 10 stairs?",
                 K.SubjectProfile.question5: "5. How many times have you fallen in the last year?",
             ]
+            
+            static let medicationHistoryPlaceholder = "Medication History"
+            static let bloodPressureSystolicPlaceholder = "Top Number in mmHg (e.g., 120)"
+            static let bloodPressureDiastolicPlaceholder = "Bottom Number in mmHg (e.g., 80)"
+            static let bloodGlucosePlaceholder = "Haemoglobin A1c Percentage (e.g., 5.4%)"
+            static let cholesterolPlaceholder = "Bad Cholesterol Level in mg/dL (e.g. 120)"
+            static let mmsePlaceholder = "MMSE Score (e.g., 15)"
+            static let mocaPlaceholder = "MoCA Score (e.g., 15)"
+            static let generalNotePlaceHolder = "General Note"
         }
     }
     

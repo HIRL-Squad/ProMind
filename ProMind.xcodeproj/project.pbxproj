@@ -17,6 +17,7 @@
 		A46CD4D226A2F97000B2487C /* DSTGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46CD4D126A2F97000B2487C /* DSTGameViewController.swift */; };
 		A470A61226FAEB1800C1DED3 /* avatar_1.gif in Resources */ = {isa = PBXBuildFile; fileRef = A470A61126FAEB1800C1DED3 /* avatar_1.gif */; };
 		A470A61426FAF09000C1DED3 /* avatar_2.gif in Resources */ = {isa = PBXBuildFile; fileRef = A470A61326FAF09000C1DED3 /* avatar_2.gif */; };
+		A470A61626FB2DFE00C1DED3 /* UITextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A470A61526FB2DFE00C1DED3 /* UITextFieldWithPadding.swift */; };
 		A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475407D266CE36C009E0B4B /* AppDelegate.swift */; };
 		A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475407F266CE36C009E0B4B /* SceneDelegate.swift */; };
 		A4754082266CE36C009E0B4B /* TestSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4754081266CE36C009E0B4B /* TestSelectionViewController.swift */; };
@@ -66,6 +67,7 @@
 		A46CD4D126A2F97000B2487C /* DSTGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTGameViewController.swift; sourceTree = "<group>"; };
 		A470A61126FAEB1800C1DED3 /* avatar_1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = avatar_1.gif; sourceTree = "<group>"; };
 		A470A61326FAF09000C1DED3 /* avatar_2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = avatar_2.gif; sourceTree = "<group>"; };
+		A470A61526FB2DFE00C1DED3 /* UITextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldWithPadding.swift; sourceTree = "<group>"; };
 		A475407A266CE36C009E0B4B /* ProMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475407D266CE36C009E0B4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A475407F266CE36C009E0B4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			children = (
 				A403CA5D26F64D7300AA6F9B /* UIView.swift */,
 				A49251CE26FA41B600267027 /* UIImageView.swift */,
+				A470A61526FB2DFE00C1DED3 /* UITextFieldWithPadding.swift */,
 				A4A4761926998512009C0B35 /* CGFloat.swift */,
 				A4A4761B269B0B0F009C0B35 /* TMTGameStatistics.swift */,
 				A43E482526BFDFFC0075E6D8 /* DSTGameStatistics.swift */,
@@ -443,6 +446,7 @@
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
 				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
 				A403CA5E26F64D7400AA6F9B /* UIView.swift in Sources */,
+				A470A61626FB2DFE00C1DED3 /* UITextFieldWithPadding.swift in Sources */,
 				A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */,
 				A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */,
 				A49251CF26FA41B600267027 /* UIImageView.swift in Sources */,

@@ -8,6 +8,7 @@ target 'ProMind' do
   # Pods for ProMind
   # pod 'Gifu', '~> 3.2.0'
   pod 'SwiftyGif'
+  pod 'IQKeyboardManagerSwift'
 
   # target 'ProMindTests' do
   #   inherit! :search_paths

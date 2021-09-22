@@ -442,7 +442,7 @@ extension DSTGameViewController {
             // Activate the session.
             audioSession = AVAudioSession.sharedInstance()
             // try audioSession.setCategory(.record, mode: .spokenAudio, options: .duckOthers)
-            try audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: .mixWithOthers)
+            try audioSession.setCategory(.playAndRecord, mode: .spokenAudio, options: .duckOthers)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
                         
             // Start the processing pipeline
@@ -455,6 +455,7 @@ extension DSTGameViewController {
     private func stopRecording(isResetInput: Bool) {
         // ADDED: Cancel the previous task if it's running (isFinal will never become True...?)
         recognitionTask?.cancel()
+        // recognitionTask?.finish() // TEST
         recognitionTask = nil
         
         // End the recognition request.

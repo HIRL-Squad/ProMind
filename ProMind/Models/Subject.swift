@@ -11,6 +11,7 @@ import CryptoKit
 protocol SubjectDelegate: AnyObject {
     func subject(_ subject: Subject, didSetSubjectId subjectId: String?)
     func subject(_ subject: Subject, didUpdateSarcfScores scores: [Int])
+    func subject(_ subject: Subject, didUpdateCharlestonComorbidity charlestonComorbidity: [String])
 }
 
 enum SubjectType: String {
@@ -57,8 +58,12 @@ class Subject: Codable {
     var sarcfScores = [Int](repeating: -1, count: 5)
     
     var medicationHistory: String?
-    var charlestonComorbidity: [String]?
-    var bloodPressure: [Int]?
+    var charlestonComorbidity = [String]() {
+        didSet {
+            delegate?.subject(self, didUpdateCharlestonComorbidity: charlestonComorbidity)
+        }
+    }
+    var bloodPressure = [Int?](repeating: 0, count: 2) // Need to fix being instantiated as nil
     var cholesterolLDL: Double?
     var bloodGlucose: Double?
     var mmseScore: Int?
@@ -83,17 +88,21 @@ class Subject: Codable {
         case livingArrangement
         
         case sarcfScores
+        
+        case medicationHistory
+        case charlestonComorbidity
+        case bloodPressure
+        case bloodGlucose
+        case cholesterolLDL
+        case mmseScore
+        case mocaScore
+        case diagnosis
+        case generalNote
     }
     
     init() {
         self.birthDate = 946684800 // 01-01-2000 00:00:00 +0800
     }
-    
-//    required init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        indexPath = try values.decode([Int].self, forKey: .indexPath)
-//        locationInText = try values.decode(Int.self, forKey: .locationInText)
-//    }
     
     private func setSubjectId() {
         if let birthDate = self.birthDate, let mobileNumber = self.mobileNumber {
@@ -161,7 +170,7 @@ class Subject: Codable {
             "\(birthDateText)\n" +
             "\(genderText)\n" +
             "\(ethnicityText)\n" +
-            "\(educationLevelText)\n"
+            "\(educationLevelText)"
     }
 }
 
@@ -170,72 +179,80 @@ extension Subject {
         get {
             // If return nil as AnyObject, it will be casted to <null>
             switch key {
-            case "subjectType":
+            case K.SubjectProfile.subjectType:
                 return subjectType as AnyObject // <null> if nil
-            case "site":
+            case K.SubjectProfile.site:
                 return site as AnyObject // <null> if nil
-            case "isPatient":
+            case K.SubjectProfile.isPatient:
                 return isPatient as AnyObject // <null> if nil
-            case "birthDate":
+            case K.SubjectProfile.birthDate:
                 return birthDate as AnyObject // <null> if nil
-            case "mobileNumber":
+            case K.SubjectProfile.mobileNumber:
                 return mobileNumber as AnyObject // <null> if nil
-            case "occupation":
+            case K.SubjectProfile.occupation:
                 return occupation as AnyObject // <null> if nil
-            case "gender":
+            case K.SubjectProfile.gender:
                 return gender as AnyObject // <null> if nil
-            case "educationLevel":
+            case K.SubjectProfile.educationLevel:
                 return educationLevel as AnyObject // <null> if nil
-            case "ethnicity":
+            case K.SubjectProfile.ethnicity:
                 return ethnicity as AnyObject // <null> if nil
-            case "dominantHand":
+            case K.SubjectProfile.dominantHand:
                 return dominantHand as AnyObject // <null> if nil
-            case "annualIncome":
+            case K.SubjectProfile.annualIncome:
                 return annualIncome as AnyObject // <null> if nil
-            case "housingType":
+            case K.SubjectProfile.housingType:
                 return housingType as AnyObject // <null> if nil
-            case "livingArrangement":
+            case K.SubjectProfile.livingArrangement:
                 return livingArrangement as AnyObject // <null> if nil
-            case "question1", "question2", "question3", "question4", "question5":
+            case K.SubjectProfile.question1, K.SubjectProfile.question2, K.SubjectProfile.question3, K.SubjectProfile.question4, K.SubjectProfile.question5:
                 let optionSelected = getSarcfScore(question: key)
                 
                 // If unselected, return <null>. Else, get the option in String representation, e.g., None (0 point)
                 return optionSelected == -1 ? NSNull() : K.SubjectProfile.Master.questions[key]?[optionSelected] as AnyObject
+            case K.SubjectProfile.charlestonComorbidity:
+                return charlestonComorbidity as AnyObject
+            case K.SubjectProfile.diagnosis:
+                return diagnosis == nil ? nil : diagnosis as AnyObject // NSNull is different from nil
             default:
                 return nil // nil
             }
-        }
+        }        
         set(newValue) {
             switch key {
-            case "subjectType":
+            case K.SubjectProfile.subjectType:
                 subjectType = newValue as? String
-            case "site":
+            case K.SubjectProfile.site:
                 site = newValue as? String
-            case "isPatient":
+            case K.SubjectProfile.isPatient:
                 isPatient = newValue as? Bool
-            case "birthDate":
+            case K.SubjectProfile.birthDate:
                 birthDate = newValue as? Int64
-            case "mobileNumber":
+            case K.SubjectProfile.mobileNumber:
                 mobileNumber = newValue as? String
-            case "occupation":
+            case K.SubjectProfile.occupation:
                 occupation = newValue as? String
-            case "gender":
+            case K.SubjectProfile.gender:
                 gender = Gender(rawValue: newValue as! String)
-            case "educationLevel":
+            case K.SubjectProfile.educationLevel:
                 educationLevel = newValue as? String
-            case "ethnicity":
+            case K.SubjectProfile.ethnicity:
                 ethnicity = newValue as? String
-            case "dominantHand":
+            case K.SubjectProfile.dominantHand:
                 dominantHand = newValue as? String
-            case "annualIncome":
+            case K.SubjectProfile.annualIncome:
                 annualIncome = newValue as? String
-            case "housingType":
+            case K.SubjectProfile.housingType:
                 housingType = newValue as? String
-            case "livingArrangement":
+            case K.SubjectProfile.livingArrangement:
                 livingArrangement = newValue as? String
-            case "question1", "question2", "question3", "question4", "question5":
+            case K.SubjectProfile.question1, K.SubjectProfile.question2, K.SubjectProfile.question3, K.SubjectProfile.question4, K.SubjectProfile.question5:
                 guard let value = newValue as? String else { return }
                 setSarcfScore(question: key, value: value)
+            case K.SubjectProfile.charlestonComorbidity:
+                charlestonComorbidity = newValue as! [String]
+            case K.SubjectProfile.diagnosis:
+                diagnosis = newValue as? String
             default:
                 break
             }
