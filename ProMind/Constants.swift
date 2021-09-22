@@ -19,7 +19,7 @@ struct K {
     static let goToTestSelectionSegue = "SubjectProfileToTestSelection"
     static let goToTMTSegue = "MainToTMT" // to change
     static let goToDSTSegue = "MainToDST" // to change
-    
+        
     struct UtteranceRate {
         static let instruction: Float = 0.4
         static let digits: Float = 0.3 // On average, 1 second per character. Actual rate depends on the length of the character.
@@ -29,6 +29,7 @@ struct K {
         static let createSubject = "http://54.169.58.137/api/subject"
         static let getSubject = "http://54.169.58.137/api/subject"
         static let saveTMTResult = "http://54.169.58.137/api/results/trail-making"
+        static let saveDSTResult = "http://54.169.58.137/api/results/digit-span"
     }
     
     struct SubjectProfile {
@@ -151,6 +152,7 @@ struct K {
         ]
         
         static let mistakeMessages = "That is not the correct move!"
+        static let finishMessage = "Congratulations. You have completed the Trail Making Test. Please refer to your results on the screen."
     }
     
     struct DST {
@@ -181,5 +183,7 @@ struct K {
              9:7, 10:7,
             11:8, 12:8
         ]
+        
+        static let finishMessage = "Congratulations. You have completed the Digit Span Test. Please refer to your results on the screen."
     }
 }

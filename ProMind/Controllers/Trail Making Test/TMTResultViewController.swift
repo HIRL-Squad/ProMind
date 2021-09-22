@@ -8,11 +8,6 @@
 import UIKit
 import Speech
 
-// TODO:
-// 1. Congrats on completion.
-// 2. Show results.
-// 3. Send HTTP POST to save results.
-
 class TMTResultViewController: UIViewController {
     static var numCircles = 25 // Default is 25
     
@@ -41,10 +36,10 @@ class TMTResultViewController: UIViewController {
     
     private func congratulate() {
         synthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: "Congratulations. You have completed the Trail Making Test. Please refer to your results on the screen.")
+        let utterance = AVSpeechUtterance(string: K.TMT.finishMessage)
         utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
         utterance.rate = K.UtteranceRate.instruction
-        utterance.preUtteranceDelay = 1.0
+        utterance.preUtteranceDelay = 0.5
         synthesizer?.speak(utterance)
     }
     
@@ -150,10 +145,6 @@ class TMTResultViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.setHidesBackButton(true, animated: true)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {        
