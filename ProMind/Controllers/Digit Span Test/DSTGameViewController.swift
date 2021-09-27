@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVFoundation
 import Speech
 import SwiftyGif
 
