@@ -62,11 +62,6 @@ class TMTResultViewController: UIViewController {
     }
     
     private func getTMTResultsJson() -> Data? {
-        guard let subjectId = Subject.shared.subjectId else {
-            print("Subject ID not available!")
-            return nil
-        }
-        
         guard let resultStats = gameResultStatistics else {
             print("TMT Result not available!")
             return nil
@@ -83,7 +78,6 @@ class TMTResultViewController: UIViewController {
                 resultStats[1].totalTimeTaken
             ],
             "date": Int64(Date.init().timeIntervalSince1970),
-            "subjectId": subjectId,
             "numStartingCircles": TMTResultViewController.numCircles,
             "numCirclesLeft": [
                 resultStats[0].numCirclesLeft,

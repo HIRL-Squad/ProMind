@@ -17,9 +17,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>ProMind needs to get access to your microphone for you to answer Digit Span Test.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>ProMind requires your permission to process your answers to Digit Span Test.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -62,11 +66,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>ProMind needs to get access to your microphone for you to answer Digit Span Test.</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>ProMind requires your permission to process your answers to Digit Span Test.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>ProMind requests to create and store snapshots of User Interface.</string>
 </dict>
 </plist>

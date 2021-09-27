@@ -16,15 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="n6q-F6-Goa">
-                                <rect key="frame" x="325" y="505" width="170.5" height="170.5"/>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="xcj-vz-TYB" userLabel="Logo Stack View">
+                                <rect key="frame" x="310.5" y="451.5" width="199" height="277.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Jva-If-sJJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="199" height="170.5"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProMind" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8H6-Dq-mvH">
+                                        <rect key="frame" x="0.0" y="206.5" width="199" height="71"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Jva-If-sJJ" firstAttribute="centerX" secondItem="xcj-vz-TYB" secondAttribute="centerX" id="IdO-HC-Px7"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="n6q-F6-Goa" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Jb1-e7-MUK"/>
-                            <constraint firstItem="n6q-F6-Goa" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LMo-GJ-AAh"/>
+                            <constraint firstItem="xcj-vz-TYB" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="2B0-Ue-I9P"/>
+                            <constraint firstItem="xcj-vz-TYB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6yK-im-qAB"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -33,6 +47,11 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="8H6-Dq-mvH">
+            <size key="intrinsicContentSize" width="199" height="71"/>
+        </designable>
+    </designables>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>
         <systemColor name="systemBackgroundColor">

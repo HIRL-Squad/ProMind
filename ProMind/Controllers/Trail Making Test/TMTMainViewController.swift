@@ -20,8 +20,6 @@ class TMTMainViewController: UIViewController {
         let font = UIFont(name: K.fontTypeNormal, size: 18) ?? UIFont.systemFont(ofSize: 18)
         numberOfCirclesSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         numberOfCirclesSegmentedControl.selectedSegmentIndex = -1
-        
-        print("TMTMainViewController.viewDidLoad() loaded successfully:", text ?? "Failed to pass data")
     }
     
     @IBAction func beginButtonPressed(_ sender: UIButton) {

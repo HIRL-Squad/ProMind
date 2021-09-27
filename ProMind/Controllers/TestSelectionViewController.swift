@@ -6,37 +6,26 @@
 //
 
 import UIKit
+import CLTypingLabel
 
 class TestSelectionViewController: UIViewController {
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: CLTypingLabel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("Subject.shared.subjectId: \(Subject.shared.subjectId ?? "No Subject ID")")
-        
-        // Animate Label, can consider using CLTypingLabel
-        titleLabel.text = ""
-        var charIdx: Double = 0
-        let titleText = "ProMind"
-        for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: 0.1 * charIdx, repeats: false) { timer in
-                self.titleLabel.text?.append(letter)
-            }
-            charIdx += 1
-        }
-    }
-    
-    @IBAction func backBarButtonPressed(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
-        self.splitViewController?.preferredDisplayMode = .oneBesideSecondary
+                
+        titleLabel.text = K.appName
+        titleLabel.charInterval = K.charIntervalRate
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // To prevent showing subject profile.
-        splitViewController?.preferredDisplayMode = .secondaryOnly
+        splitViewController?.preferredDisplayMode = .secondaryOnly // Only show the Detail view (To prevent showing subject profile).
+    }
+    
+    @IBAction func backBarButtonPressed(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+        self.splitViewController?.preferredDisplayMode = .oneBesideSecondary // Show both Master and Detail views.
     }
     
     // To prepare for new view controller before navigation.

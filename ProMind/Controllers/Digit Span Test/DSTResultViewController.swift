@@ -49,11 +49,6 @@ class DSTResultViewController: UIViewController {
     }
     
     private func getTMTResultsJson() -> Data? {
-        guard let subjectId = Subject.shared.subjectId else {
-            print("Subject ID not available!")
-            return nil
-        }
-        
         guard let resultStats = gameResultStatistics else {
             print("DST Result not available!")
             return nil
@@ -61,7 +56,6 @@ class DSTResultViewController: UIViewController {
         
         let body: [String: Any] = [
             "experimentType": "baseline",
-            "subjectId": subjectId,
             "date": Int64(Date.init().timeIntervalSince1970),
             "longestSequence": [
                 resultStats[0].longestSequence,

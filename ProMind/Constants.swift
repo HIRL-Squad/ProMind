@@ -8,6 +8,9 @@
 import UIKit
 
 struct K {
+    static let appName = "ProMind"
+    static let charIntervalRate = 0.15
+    
     static let fontTypeNormal = "HelveticaNeue"
     static let fontTypeMedium = "HelveticaNeue-Medium"
     static let borderWidthThin: CGFloat = 1.5
@@ -15,9 +18,8 @@ struct K {
     static let animateDuration: TimeInterval = 0.30
     static let animateAlpha: CGFloat = 0.25
     
-    static let goToSubjectProfileToCreateNewSubjectSegue = "LoadSubjectOptionToSubjectProfileCreateSubject"
-    static let goToSubjectProfileToLoadSubjectSegue = "LoadSubjectOptionToSubjectProfileLoadSubject"
-    static let goToTestSelectionSegue = "SubjectProfileToTestSelection"
+    static let goToExperimentProfileSegue = "InitialToExperimentProfile"
+    static let goToTestSelectionSegue = "ExperimentProfileToTestSelection"
     static let goToTMTSegue = "MainToTMT" // to change
     static let goToDSTSegue = "MainToDST" // to change
         
@@ -33,95 +35,34 @@ struct K {
         static let saveDSTResult = "http://54.169.58.137/api/results/digit-span"
     }
     
-    struct SubjectProfile {
-        static let subjectType = "subjectType"
-        static let site = "site"
-        static let isPatient = "isPatient"
-        static let birthDate = "birthDate"
-        static let mobileNumber = "mobileNumber"
-        static let subjectId = "subjectId"
-        static let occupation = "occupation"
+    struct ExperimentProfile {
+        static let experimentType = "experimentType"
+        static let age = "age"
         static let gender = "gender"
         static let educationLevel = "educationLevel"
         static let ethnicity = "ethnicity"
-        static let dominantHand = "dominantHand"
+        
         static let annualIncome = "annualIncome"
-        static let housingType = "housingType"
-        static let livingArrangement = "livingArrangement"
         
-        static let sarcfScores = "sarcfScores"
-        static let question1 = "question1"
-        static let question2 = "question2"
-        static let question3 = "question3"
-        static let question4 = "question4"
-        static let question5 = "question5"
-        
-        static let medicationHistory = "medicationHistory"
-        static let charlestonComorbidity = "charlestonComorbidity"
-        static let bloodMeasurements = "bloodMeasurements"
-        static let bloodPressure = "bloodPressure"
-        static let cholesterolLDL = "cholesterolLDL"
-        static let bloodGlucose = "bloodGlucose"
-        static let testScores = "testScores"
-        static let mmseScore = "mmseScore"
-        static let mocaScore = "mocaScore"
-        static let diagnosis = "diagnosis"
-        static let generalNote = "generalNote"
+        static let remarks = "generalNote"
         
         struct Master {
             static let questions = [
-                K.SubjectProfile.subjectType: [SubjectType.TRIAL.rawValue, SubjectType.TEST.rawValue],
-                K.SubjectProfile.site: ["Lions Befrienders", "Alexandra Hospital", "Outram Community Hospital", "Others"],
-                
-                K.SubjectProfile.educationLevel: ["No Formal Education", "Primary 6 and Below", "Secondary 5 and Below", "ITE Diploma", "A-Level/Higher Level Certificate", "Polytechnic Diploma", "Bachelor's Degree", "Postgraduate Degree (Masters and Above)"],
-                K.SubjectProfile.ethnicity: ["Chinese", "Malay", "Indian", "Others"],
-                K.SubjectProfile.dominantHand: [DominantHand.Left.rawValue, DominantHand.Right.rawValue],
-                K.SubjectProfile.annualIncome: ["Do not wish to disclose", "No income", "Below 10000", "10000-19999", "20000-29999", "30000-39999", "40000-49999", "50000-59999", "60000-79999", "80000-99999", "100000-119999", "120000-149999", "150000-199999", "200000 and above"],
-                K.SubjectProfile.housingType: ["HDB Rental Apartment", "HDB Studio Apartment", "HDB 2-Room Apartment", "HDB 3-Room Apartment", "HDB 4-Room Apartment", "HDB 5-Room/Executive Apartment", "Condominium Apartment", "Landed Property"],
-                K.SubjectProfile.livingArrangement: ["Living Alone", "Living with Helper", "Living with Family", "Living in a Nursing Home"],
-                
-                K.SubjectProfile.question1: ["None (0 point)", "Some (1 point)", "A lot or unable (2 points)"],
-                K.SubjectProfile.question2: ["None (0 point)", "Some (1 point)", "A lot, use aids or unable (2 points)"],
-                K.SubjectProfile.question3: ["None (0 point)", "Some (1 point)", "A lot or unable (2 points)"],
-                K.SubjectProfile.question4: ["None (0 point)", "Some (1 point)", "A lot or unable (2 points)"],
-                K.SubjectProfile.question5: ["None (0 point)", "1 to 3 falls (1 point)", "4 or more falls (2 points)"],
-                
-                K.SubjectProfile.diagnosis: ["No Cognitive Impairment", "Mild Cognitive Impairment", "Mild Dementia", "Moderate Dementia"],
-                K.SubjectProfile.charlestonComorbidity: [
-                    "High Blood Pressure", "High Cholesterol", "Diabetes Mellitus", "Mild Cognitive Impairment", "Dementia", "Myocardial Infarction (e.g., Heart Attack)",
-                    "Heart Failure (e.g., shortness of breath on exertion, waking up at night feeling breathless)", "Peripheral Vascular Disease (e.g., Gangrene)",
-                    "Stroke or Transient Ischemic Attack", "Chronic Obstructive Pulmonary Disease (COPD)", "Connective Tissue Disease", "Peptic Ulcer Disease (e.g., Stomach Ulcer)",
-                    "Liver Disease", "Hemiplegia", "Moderate to Severe Chronic Kidney Disease", "Solid Tumour", "Leukemia", "Lymphoma", "AIDS"
-                ]
+                K.ExperimentProfile.experimentType: [ExperimentType.Trial.rawValue, ExperimentType.Test.rawValue],
+                K.ExperimentProfile.educationLevel: ["No Formal Education", "Primary 6 and Below", "Secondary 5 and Below", "ITE Diploma", "A-Level/Higher Level Certificate", "Polytechnic Diploma", "Bachelor's Degree", "Postgraduate Degree (Masters and Above)"],
+                K.ExperimentProfile.ethnicity: ["Chinese", "Malay", "Indian", "Others"],
+                K.ExperimentProfile.annualIncome: ["Do not wish to disclose", "No income", "Below 10000", "10000-19999", "20000-29999", "30000-39999", "40000-49999", "50000-59999", "60000-79999", "80000-99999", "100000-119999", "120000-149999", "150000-199999", "200000 and above"],
             ]
         }
 
         struct Detail {
             static let sectionTitles = [
-                K.SubjectProfile.subjectType: "Subject Type",
-                K.SubjectProfile.site: "Site",
-                K.SubjectProfile.educationLevel: "Education Level",
-                K.SubjectProfile.ethnicity: "Ethnicity",
-                K.SubjectProfile.dominantHand: "Dominant Hand",
-                K.SubjectProfile.annualIncome: "Annual Income",
-                K.SubjectProfile.housingType: "Housing Type",
-                K.SubjectProfile.livingArrangement: "Living Arrangement",
-                
-                K.SubjectProfile.question1: "1. How much difficulty do you have in lifting and carrying a load of 4.5 kg?",
-                K.SubjectProfile.question2: "2. How much difficulty do you have walking across a room?",
-                K.SubjectProfile.question3: "3. How much difficulty do you have transferring from a chair or a bed?",
-                K.SubjectProfile.question4: "4. How much difficulty do you have climbing a flight of 10 stairs?",
-                K.SubjectProfile.question5: "5. How many times have you fallen in the last year?",
+                K.ExperimentProfile.experimentType: "Experiment Type",
+                K.ExperimentProfile.educationLevel: "Education Level",
+                K.ExperimentProfile.ethnicity: "Ethnicity",
+                K.ExperimentProfile.annualIncome: "Annual Income"
             ]
-            
-            static let medicationHistoryPlaceholder = "Medication History"
-            static let bloodPressureSystolicPlaceholder = "Top Number in mmHg (e.g., 120)"
-            static let bloodPressureDiastolicPlaceholder = "Bottom Number in mmHg (e.g., 80)"
-            static let bloodGlucosePlaceholder = "Haemoglobin A1c Percentage (e.g., 5.4%)"
-            static let cholesterolPlaceholder = "Bad Cholesterol Level in mg/dL (e.g. 120)"
-            static let mmsePlaceholder = "MMSE Score (e.g., 15)"
-            static let mocaPlaceholder = "MoCA Score (e.g., 15)"
-            static let generalNotePlaceHolder = "General Note"
+            static let remarksPlaceholder = "Remarks"
         }
     }
     

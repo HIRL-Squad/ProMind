@@ -7,6 +7,7 @@ target 'ProMind' do
 
   # Pods for ProMind
   # pod 'Gifu', '~> 3.2.0'
+  pod 'CLTypingLabel'
   pod 'SwiftyGif'
   pod 'IQKeyboardManagerSwift'
 

@@ -115,7 +115,7 @@ class DSTGameViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkPermissions()
+        // checkPermissions()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -577,51 +577,5 @@ extension DSTGameViewController {
     private func updateStatsLabel() {
         statsLabel.isHidden = false
         statsLabel.attributedText = gameStatistics[numRounds].getFormattedGameStats()
-    }
-}
-
-// MARK: - Permissions-related Control
-extension DSTGameViewController {
-    private func checkPermissions() {
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-            DispatchQueue.main.async {
-                switch authStatus {
-                case .authorized:
-                    // Good to go
-                    print("Authorised!")
-                    break
-                case .denied:
-                    // User said no
-                    print("Denied!")
-                    self.handlePermissionFailed(msg: "Denied")
-                    break
-                case .restricted:
-                    // Device isn't permitted
-                    print("Restricted!")
-                    self.handlePermissionFailed(msg: "Restricted")
-                    break
-                case .notDetermined:
-                    // Don't know yet
-                    print("Not Determined!")
-                    self.handlePermissionFailed(msg: "Not Determined")
-                    break
-                default:
-                    print("Something went wrong while requesting authorisation for speech recognition!")
-                    self.handlePermissionFailed(msg: "Unknown")
-                }
-            }
-        }
-    }
-    
-    private func handlePermissionFailed(msg: String) {
-        // Present an alert asking the user to change their settings.
-        let ac = UIAlertController(title: "This app must have access to speech recognition to work.",
-                                   message: "Code: \(msg)! Please consider updating your settings.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Open settings", style: .default) { _ in
-            let url = URL(string: UIApplication.openSettingsURLString)!
-            UIApplication.shared.open(url)
-        })
-        ac.addAction(UIAlertAction(title: "Close", style: .cancel))
-        present(ac, animated: true)
     }
 }
