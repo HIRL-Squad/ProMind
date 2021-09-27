@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A1472194EA3CD9BF63592183 /* Pods_ProMind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5175792F98A3CBC84883239 /* Pods_ProMind.framework */; };
-		A403CA5C26F47CDA00AA6F9B /* TMTTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403CA5B26F47CDA00AA6F9B /* TMTTutorialViewController.swift */; };
+		A403CA5C26F47CDA00AA6F9B /* TMTGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403CA5B26F47CDA00AA6F9B /* TMTGameViewController.swift */; };
 		A403CA5E26F64D7400AA6F9B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403CA5D26F64D7300AA6F9B /* UIView.swift */; };
 		A4121EE926D8A4BF00F4CFE9 /* ExperimentProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4121EE726D8A4BF00F4CFE9 /* ExperimentProfileDetailViewController.swift */; };
 		A4121EEC26D8F9F400F4CFE9 /* ExperimentProfileMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4121EEB26D8F9F400F4CFE9 /* ExperimentProfileMasterViewController.swift */; };
@@ -25,7 +25,6 @@
 		A475408A266CE36F009E0B4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754088266CE36F009E0B4B /* LaunchScreen.storyboard */; };
 		A4754095266CE36F009E0B4B /* ProMindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4754094266CE36F009E0B4B /* ProMindTests.swift */; };
 		A47540A0266CE36F009E0B4B /* ProMindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475409F266CE36F009E0B4B /* ProMindUITests.swift */; };
-		A49251CF26FA41B600267027 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49251CE26FA41B600267027 /* UIImageView.swift */; };
 		A49251DC26FA52E400267027 /* example.gif in Resources */ = {isa = PBXBuildFile; fileRef = A49251DB26FA52E400267027 /* example.gif */; };
 		A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */; };
 		A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */; };
@@ -33,7 +32,7 @@
 		A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761926998512009C0B35 /* CGFloat.swift */; };
 		A4A4761C269B0B10009C0B35 /* TMTGameStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761B269B0B0F009C0B35 /* TMTGameStatistics.swift */; };
 		A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */; };
-		A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */; };
+		A4AB6A81269354D7005C1D8A /* TMTGameViewControllerOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AB6A80269354D7005C1D8A /* TMTGameViewControllerOld.swift */; };
 		A4AC2AE226C0E2AB00A04064 /* DSTResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AC2AE126C0E2AB00A04064 /* DSTResultViewController.swift */; };
 		A4BDE3472701A5220094EE66 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDE3462701A5220094EE66 /* Utils.swift */; };
 		A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754083266CE36C009E0B4B /* Main.storyboard */; };
@@ -59,7 +58,7 @@
 
 /* Begin PBXFileReference section */
 		8D5DBA1ED0199BEB55BE2A6B /* Pods-ProMind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProMind.debug.xcconfig"; path = "Target Support Files/Pods-ProMind/Pods-ProMind.debug.xcconfig"; sourceTree = "<group>"; };
-		A403CA5B26F47CDA00AA6F9B /* TMTTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTutorialViewController.swift; sourceTree = "<group>"; };
+		A403CA5B26F47CDA00AA6F9B /* TMTGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameViewController.swift; sourceTree = "<group>"; };
 		A403CA5D26F64D7300AA6F9B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A4121EE726D8A4BF00F4CFE9 /* ExperimentProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4121EEB26D8F9F400F4CFE9 /* ExperimentProfileMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentProfileMasterViewController.swift; sourceTree = "<group>"; };
@@ -83,7 +82,6 @@
 		A475409B266CE36F009E0B4B /* ProMindUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProMindUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475409F266CE36F009E0B4B /* ProMindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMindUITests.swift; sourceTree = "<group>"; };
 		A47540A1266CE36F009E0B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A49251CE26FA41B600267027 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A49251DB26FA52E400267027 /* example.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = example.gif; sourceTree = "<group>"; };
 		A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTMainViewController.swift; sourceTree = "<group>"; };
 		A4A3F2EB268726F7004C0F25 /* DSTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTMainViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +89,7 @@
 		A4A4761926998512009C0B35 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		A4A4761B269B0B0F009C0B35 /* TMTGameStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameStatistics.swift; sourceTree = "<group>"; };
 		A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTResultViewController.swift; sourceTree = "<group>"; };
-		A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameViewController.swift; sourceTree = "<group>"; };
+		A4AB6A80269354D7005C1D8A /* TMTGameViewControllerOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameViewControllerOld.swift; sourceTree = "<group>"; };
 		A4AC2AE126C0E2AB00A04064 /* DSTResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTResultViewController.swift; sourceTree = "<group>"; };
 		A4BDE3462701A5220094EE66 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A4E0D41B26D7DD26006D6399 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 				A475408B266CE36F009E0B4B /* Info.plist */,
 				A475407D266CE36C009E0B4B /* AppDelegate.swift */,
 				A475407F266CE36C009E0B4B /* SceneDelegate.swift */,
-				A4754088266CE36F009E0B4B /* LaunchScreen.storyboard */,
 			);
 			path = ProMind;
 			sourceTree = "<group>";
@@ -206,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				A403CA5D26F64D7300AA6F9B /* UIView.swift */,
-				A49251CE26FA41B600267027 /* UIImageView.swift */,
 				A470A61526FB2DFE00C1DED3 /* UITextFieldWithPadding.swift */,
 				A4A4761926998512009C0B35 /* CGFloat.swift */,
 				A4A4761B269B0B0F009C0B35 /* TMTGameStatistics.swift */,
@@ -219,6 +215,7 @@
 		A4A3F2E526871BDB004C0F25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4754088266CE36F009E0B4B /* LaunchScreen.storyboard */,
 				A4754083266CE36C009E0B4B /* Main.storyboard */,
 			);
 			path = Views;
@@ -241,9 +238,9 @@
 			isa = PBXGroup;
 			children = (
 				A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */,
-				A403CA5B26F47CDA00AA6F9B /* TMTTutorialViewController.swift */,
-				A4AB6A80269354D7005C1D8A /* TMTGameViewController.swift */,
+				A403CA5B26F47CDA00AA6F9B /* TMTGameViewController.swift */,
 				A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */,
+				A4AB6A80269354D7005C1D8A /* TMTGameViewControllerOld.swift */,
 			);
 			path = "Trail Making Test";
 			sourceTree = "<group>";
@@ -439,7 +436,7 @@
 				A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */,
 				A43E482626BFDFFC0075E6D8 /* DSTGameStatistics.swift in Sources */,
 				A4AC2AE226C0E2AB00A04064 /* DSTResultViewController.swift in Sources */,
-				A403CA5C26F47CDA00AA6F9B /* TMTTutorialViewController.swift in Sources */,
+				A403CA5C26F47CDA00AA6F9B /* TMTGameViewController.swift in Sources */,
 				A4754082266CE36C009E0B4B /* TestSelectionViewController.swift in Sources */,
 				A4121EE926D8A4BF00F4CFE9 /* ExperimentProfileDetailViewController.swift in Sources */,
 				A4BDE3472701A5220094EE66 /* Utils.swift in Sources */,
@@ -451,9 +448,8 @@
 				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
 				A403CA5E26F64D7400AA6F9B /* UIView.swift in Sources */,
 				A470A61626FB2DFE00C1DED3 /* UITextFieldWithPadding.swift in Sources */,
-				A4AB6A81269354D7005C1D8A /* TMTGameViewController.swift in Sources */,
+				A4AB6A81269354D7005C1D8A /* TMTGameViewControllerOld.swift in Sources */,
 				A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */,
-				A49251CF26FA41B600267027 /* UIImageView.swift in Sources */,
 				A4A3F2EE2687289D004C0F25 /* Constants.swift in Sources */,
 				A437EB2726DCA78E00755A72 /* Experiment.swift in Sources */,
 				A4A4761C269B0B10009C0B35 /* TMTGameStatistics.swift in Sources */,

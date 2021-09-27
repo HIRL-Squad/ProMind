@@ -40,6 +40,47 @@ class Experiment: Codable {
         case remarks
     }
     
+    func getExperimentBody() -> [String: Any] {
+        var body: [String: Any] = [:]
+        
+        guard let experimentType = self.experimentType else {
+            fatalError("Experiment Type is nil")
+        }
+        
+        body["experimentType"] = experimentType.rawValue
+        body["experimentDate"] = Int64(Date.init().timeIntervalSince1970)
+
+        if experimentType == .Trial {
+            return body
+        }
+        
+        if let age = self.age {
+            body["subjectAge"] = age
+        }
+        
+        if let gender = self.gender {
+            body["subjectGender"] = gender.rawValue
+        }
+        
+        if let educationLevel = self.educationLevel {
+            body["subjectEducationLevel"] = educationLevel
+        }
+        
+        if let ethnicity = self.ethnicity {
+            body["subjectEthnicity"] = ethnicity
+        }
+        
+        if let annualIncome = self.annualIncome {
+            body["subjectAnnualIncome"] = annualIncome
+        }
+        
+        if let remarks = self.remarks {
+            body["remarks"] = remarks
+        }
+        
+        return body
+    }
+    
     func toString() -> String {
         let experimentTypeText = "Experiment Type:\n\(experimentType?.rawValue ?? "N.A.")"
         let ageText = "Age:\n\(age != nil ? "\(age!)" : "N.A.")"

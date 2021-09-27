@@ -94,10 +94,11 @@ struct K {
                 "Let's start with Trail Making Test A.", // 1
                 "Look at the circles below. You have to connect them in ascending order.", // 2
                 "For example, 1 has to be connected to 2.", // 3
-                "Then, 2 has to be connected to 3.", // 4
-                "Now, try to connect 3 to 4.", // 5
-                "Good job! Please complete the rest on your own!", // 6
-                "Well done! You may now begin the test or restart the tutorial." // 7
+                "Next, 2 has to be connected to 3.", // 4
+                "Then, 3 needs to be connected to 4.", // 5
+                "Now, try to connect 4 to 5.", // 6
+                "Good job! Please complete the rest on your own!", // 7
+                "Well done! You may now begin the test or restart the tutorial." // 8
             ],
             [
 //                "0", "1", "2", "3", "4", "5", "6", "7",
@@ -105,12 +106,12 @@ struct K {
                 "Let us proceed with Trail Making Test B.", // 1
                 "Look at the circles with numbers and letters below. You have to connect them in the alternating sequence.", // 2
                 "For example, 1 has to be connected to A.", // 3
-                "Then, A has to be connected to 2.", // 4
-                "Now, try to connect 2 to B.", // 5
-                "Good job! Please complete the rest on your own!", // 6
-                "Well done! You may now begin the test or restart the tutorial." // 7
+                "Next, A has to be connected to 2.", // 4
+                "Then, 2 needs to be connected to B.", // 5
+                "Now, try to connect B to 3.", // 6
+                "Good job! Please complete the rest on your own!", // 7
+                "Well done! You may now begin the test or restart the tutorial." // 8
             ]
-
         ]
         
         static let mistakeMessages = "That is not the correct move!"
@@ -122,18 +123,12 @@ struct K {
         static let goToDSTResultSegue = "GameToDSTResult"
         
         static let instructions = [
+//            "-1", "0", "1", "2",
             "There are three subtests in Digit Span Test. We will go through them one by one.",
             "First, we will start with Digit Forward. In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the exact sequence as presented within 1 minute. Once repeated, you can press the Done button to proceed to the next question, or you may press the Reset Input button to repeat the numbers again. When you are ready, press Start.",
             "Next, we will proceed with Digit Backward. In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the reverse order as presented, within 1 minute. For example, if the number is 3 7 2, you need to repeat as 2 7 3. Once repeated, you can press the Done button to proceed to the next question, or you may press the Reset Input button to repeat the numbers again. When you are ready, press Start.",
             "Finally, we will start with Digit Sequencing. In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in ascending order, within 1 minute. For example, if the number is 7 2 4, you need to repeat as 2 4 7. Once repeated, you can press the Done button to proceed to the next question, or you may press the Reset Input button to repeat the numbers again. When you are ready, press Start."
         ]
-        
-//        static let instructions = [
-//            "-1",
-//            "0",
-//            "1",
-//            "2",
-//        ]
         
         static let digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         // Mappings of number of trials to number of digits       

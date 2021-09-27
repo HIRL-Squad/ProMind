@@ -454,7 +454,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-kG-OSC">
-                                <rect key="frame" x="220" y="636" width="420" height="100"/>
+                                <rect key="frame" x="1124" y="636" width="420" height="100"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="420" id="24b-hA-zyQ"/>
@@ -474,16 +474,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trail Making Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sF-wI-R1L">
-                                <rect key="frame" x="244.5" y="98" width="371" height="57.5"/>
+                                <rect key="frame" x="1148.5" y="98" width="371" height="57.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="h23-fi-irk">
-                                <rect key="frame" x="96" y="191.5" width="667.5" height="368"/>
+                                <rect key="frame" x="96" y="191.5" width="2476" height="267.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="orL-Fy-8im">
-                                        <rect key="frame" x="0.0" y="0.0" width="667.5" height="201"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="2476" height="100.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is it? 💬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-tF-AEb">
                                                 <rect key="frame" x="0.0" y="0.0" width="221" height="43"/>
@@ -492,7 +492,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKG-or-VTE">
-                                                <rect key="frame" x="0.0" y="67" width="667.5" height="134"/>
+                                                <rect key="frame" x="0.0" y="67" width="2476" height="33.5"/>
                                                 <string key="text">Trail making test is one of the most widely adopted neuropsychological tests for assessing processing speed and executive function due to its sensitivity, simplicity and ease of administration. </string>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
                                                 <nil key="textColor"/>
@@ -501,7 +501,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="V7o-9f-vMW">
-                                        <rect key="frame" x="0.0" y="261" width="475" height="107"/>
+                                        <rect key="frame" x="0.0" y="160.5" width="475" height="107"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Circles 🔮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBc-l4-eNr">
                                                 <rect key="frame" x="0.0" y="0.0" width="345.5" height="43"/>
@@ -550,10 +550,10 @@
             </objects>
             <point key="canvasLocation" x="884" y="-296"/>
         </scene>
-        <!--Tutorial View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="ViO-Y2-qfU">
             <objects>
-                <viewController id="Hrl-iw-jrF" customClass="TMTTutorialViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Hrl-iw-jrF" customClass="TMTGameViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Ia-Nr-2DO">
                         <rect key="frame" x="0.0" y="0.0" width="859.5" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -655,9 +655,6 @@
                                         <state key="normal" title="Reset" image="gobackward" catalog="system">
                                             <color key="titleColor" name="AccentColor"/>
                                         </state>
-                                        <connections>
-                                            <action selector="resetButtonPressed:" destination="41y-Iz-qOJ" eventType="touchUpInside" id="6Ji-UE-DRr"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szh-H4-5cN">
                                         <rect key="frame" x="0.0" y="255.5" width="125" height="57.5"/>
@@ -702,88 +699,7 @@ Lifts: 0</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubd-ih-aNC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1676" y="-1043"/>
-        </scene>
-        <!--TMT Game View Controller-->
-        <scene sceneID="TXc-3C-g7A">
-            <objects>
-                <viewController id="41y-Iz-qOJ" userLabel="TMT Game View Controller" customClass="TMTGameViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nYa-pU-kie">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TGd-2c-HID" userLabel="Stats Stack View">
-                                <rect key="frame" x="1030" y="100" width="125" height="313"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics (Temporary - will be hidden during actual  test)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-Gc-zZ2" userLabel="Stats Message">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="95.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="SUC-5A-tSv"/>
-                                            <constraint firstAttribute="width" constant="125" id="ZT6-df-uLM"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
-                                        <color key="textColor" name="AccentColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Left: 300 s" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiF-LK-FAe" userLabel="Time Label">
-                                        <rect key="frame" x="0.0" y="115.5" width="125" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="5cg-Jv-CTv"/>
-                                            <constraint firstAttribute="width" constant="125" id="DCk-BV-22f"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" name="AccentColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFz-6v-cJE">
-                                        <rect key="frame" x="0.0" y="185.5" width="125" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="0sz-p2-9ZI"/>
-                                            <constraint firstAttribute="height" constant="50" id="aOo-1d-3xO"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="tintColor" name="AccentColor"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
-                                        <state key="normal" title="Reset" image="gobackward" catalog="system">
-                                            <color key="titleColor" name="AccentColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="resetButtonPressed:" destination="41y-Iz-qOJ" eventType="touchUpInside" id="40p-L1-Zii"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="160-wj-oRq">
-                                        <rect key="frame" x="0.0" y="255.5" width="125" height="57.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="TeP-JE-4cN"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="nca-bz-32J"/>
-                                        </constraints>
-                                        <string key="text">Circles Left: 25
-Errors: 0
-Lifts: 0</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" name="AccentColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="UJv-h1-WdB"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="TGd-2c-HID" firstAttribute="top" secondItem="UJv-h1-WdB" secondAttribute="top" constant="100" id="OUZ-Ou-d3t"/>
-                            <constraint firstItem="TGd-2c-HID" firstAttribute="trailing" secondItem="UJv-h1-WdB" secondAttribute="trailing" constant="-25" id="Oq0-5n-ntV"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Ob1-qi-ldi"/>
-                    <connections>
-                        <outlet property="statsLabel" destination="160-wj-oRq" id="LiH-FB-vjx"/>
-                        <outlet property="timerLabel" destination="kiF-LK-FAe" id="OKj-Oh-jgu"/>
-                        <segue destination="UYv-nf-qgr" kind="show" identifier="GameToTMTResult" id="Oym-43-IzN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IfH-7t-m9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1676" y="-296"/>
+            <point key="canvasLocation" x="1628" y="-296"/>
         </scene>
         <!--TMT Result View Controller-->
         <scene sceneID="H0Q-GB-w6O">
@@ -907,7 +823,7 @@ Lifts: 0</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmH-jl-gCk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2421" y="-296"/>
+            <point key="canvasLocation" x="2356" y="-296"/>
         </scene>
         <!--DST Result View Controller-->
         <scene sceneID="PV2-Ib-KIM">
@@ -1030,7 +946,7 @@ Longest Seq: 0</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ff9-F1-sQo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2421" y="437"/>
+            <point key="canvasLocation" x="2356" y="437"/>
         </scene>
         <!--DST Main View Controller-->
         <scene sceneID="pXw-nd-Kn5">
@@ -1292,12 +1208,9 @@ We will go through them one by one.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjm-ZA-Tcq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1676" y="437"/>
+            <point key="canvasLocation" x="1628" y="437"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="9KA-Ld-Jat"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>

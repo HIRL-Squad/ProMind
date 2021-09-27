@@ -9,7 +9,7 @@ import UIKit
 import Speech
 //import AVFoundation
 
-class TMTTutorialViewController: UIViewController {
+class TMTGameViewController: UIViewController {
     @IBOutlet weak var statsStackView: UIStackView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var statsLabel: UILabel!
@@ -387,7 +387,7 @@ class TMTTutorialViewController: UIViewController {
 }
 
 // MARK: - SpeechSynthesizer-related Functions
-extension TMTTutorialViewController: AVSpeechSynthesizerDelegate {
+extension TMTGameViewController: AVSpeechSynthesizerDelegate {
     private func initSynthesizer() {
         synthesizer = AVSpeechSynthesizer()
         synthesizer?.delegate = self
@@ -480,7 +480,7 @@ extension TMTTutorialViewController: AVSpeechSynthesizerDelegate {
 }
 
 // MARK: - Touch Event Related
-extension TMTTutorialViewController {
+extension TMTGameViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if isTutorial {
@@ -646,7 +646,7 @@ extension TMTTutorialViewController {
 }
 
 // MARK: - Line Drawing
-extension TMTTutorialViewController {
+extension TMTGameViewController {
     // Only used during Tutorial
     private func drawLines(idx1: Int, idx2: Int) {
         displayLastScreenshot(reset: false, displayView: tutorialView)
@@ -677,7 +677,7 @@ extension TMTTutorialViewController {
 }
 
 // MARK: - Flash Views
-extension TMTTutorialViewController {
+extension TMTGameViewController {
     // consider stop animination after speech later
     private func flash(view: UIView, preBackgroundColour: UIColor, delay: TimeInterval) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
@@ -711,7 +711,7 @@ extension TMTTutorialViewController {
 }
 
 // MARK: - For experimenting with drawing
-extension TMTTutorialViewController {
+extension TMTGameViewController {
     private func testDrawing(idx1: Int, idx2: Int) {
         // displayLastScreenshot()
         // If it is meant to reset the whole screen, remove all the lines.

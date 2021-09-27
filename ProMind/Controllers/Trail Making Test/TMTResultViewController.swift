@@ -22,7 +22,9 @@ class TMTResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        Subject.shared.subjectId = "4567@948153600"
+//        Experiment.shared.experimentType = .Test
+//        Experiment.shared.age = 24
+//        Experiment.shared.gender = .Male
 //        gameResultStatistics = [
 //            TMTGameStatistics(numCirclesLeft: 0, numErrors: 2, numLifts: 3, totalTimeTaken: 124),
 //            TMTGameStatistics(numCirclesLeft: 0, numErrors: 5, numLifts: 8, totalTimeTaken: 179)
@@ -67,27 +69,15 @@ class TMTResultViewController: UIViewController {
             return nil
         }
         
-        let body: [String: Any] = [
-            "experimentType": "baseline",
-            "numErrors": [
-                resultStats[0].numErrors,
-                resultStats[1].numErrors
-            ],
-            "totalTimeTaken": [
-                resultStats[0].totalTimeTaken,
-                resultStats[1].totalTimeTaken
-            ],
-            "date": Int64(Date.init().timeIntervalSince1970),
-            "numStartingCircles": TMTResultViewController.numCircles,
-            "numCirclesLeft": [
-                resultStats[0].numCirclesLeft,
-                resultStats[1].numCirclesLeft
-            ],
-            "numLifts": [
-                resultStats[0].numLifts,
-                resultStats[1].numLifts
-            ]
-        ]
+        var body: [String: Any] = Experiment.shared.getExperimentBody()
+        
+        body["numStartingCircles"] = TMTResultViewController.numCircles
+        body["totalTimeTaken"] = [resultStats[0].totalTimeTaken, resultStats[1].totalTimeTaken]
+        body["numCirclesLeft"] = [resultStats[0].numCirclesLeft, resultStats[1].numCirclesLeft]
+        body["numErrors"] = [resultStats[0].numErrors, resultStats[1].numErrors]
+        body["numLifts"] = [resultStats[0].numLifts, resultStats[1].numLifts]
+        
+        print("body: \(body)")
         
         return try? JSONSerialization.data(withJSONObject: body, options: [])
     }
@@ -95,45 +85,10 @@ class TMTResultViewController: UIViewController {
     private func saveResults() {
         print("Saving TMT Results")
         
-        guard let jsonBody = getTMTResultsJson() else {
-            print("Failed to get TMT results in JSON")
-            return
-        }
-
+        let httpBody = getTMTResultsJson()
         let url = URL(string: K.URL.saveTMTResult)
-        guard let requestUrl = url else { fatalError() }
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "POST"
-        request.httpBody = jsonBody
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data,
-                  let response = response as? HTTPURLResponse,
-                  error == nil else {
-                
-                print("Error occurred when sending a POST request: \(error?.localizedDescription ?? "Unknown Error")")
-                
-                // Possible connection error
-                // Save to cache for persistent later
-                
-                return
-            }
-
-            guard (200 ... 299) ~= response.statusCode else {
-                print("Status Code should be 2xx, but is \(response.statusCode)")
-                print("Response = \(response)")
-                return
-            }
-
-            print("Response Code: \(response.statusCode)")
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("Response String = \(responseString ?? "Unable to decode response")")
-        }
-            
-        task.resume()
+        Utils.postRequest(url: url, httpBody: httpBody)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -19,7 +19,7 @@ class TMTMainViewController: UIViewController {
         
         let font = UIFont(name: K.fontTypeNormal, size: 18) ?? UIFont.systemFont(ofSize: 18)
         numberOfCirclesSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
-        numberOfCirclesSegmentedControl.selectedSegmentIndex = -1
+        // numberOfCirclesSegmentedControl.selectedSegmentIndex = -1
     }
     
     @IBAction func beginButtonPressed(_ sender: UIButton) {
@@ -67,10 +67,5 @@ class TMTMainViewController: UIViewController {
                 TMTResultViewController.numCircles = 25
             }
         }
-    }
-    
-    //    @IBAction func backButtonPressed(_ sender: UIButton) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-    
+    }    
 }
