@@ -23,8 +23,9 @@ class TMTResultViewController: UIViewController {
         super.viewDidLoad()
         
 //        Experiment.shared.experimentType = .Test
-//        Experiment.shared.age = 24
+//        Experiment.shared.age = 99
 //        Experiment.shared.gender = .Male
+//        Experiment.shared.remarks = "Test with Data Init in TMT"
 //        gameResultStatistics = [
 //            TMTGameStatistics(numCirclesLeft: 0, numErrors: 2, numLifts: 3, totalTimeTaken: 124),
 //            TMTGameStatistics(numCirclesLeft: 0, numErrors: 5, numLifts: 8, totalTimeTaken: 179)
@@ -63,6 +64,15 @@ class TMTResultViewController: UIViewController {
         }
     }
     
+    private func saveResults() {
+        print("Saving TMT Results")
+        
+        let httpBody = getTMTResultsJson()
+        let url = URL(string: K.URL.saveTMTResult)
+        
+        Utils.postRequest(url: url, httpBody: httpBody)
+    }
+    
     private func getTMTResultsJson() -> Data? {
         guard let resultStats = gameResultStatistics else {
             print("TMT Result not available!")
@@ -70,7 +80,6 @@ class TMTResultViewController: UIViewController {
         }
         
         var body: [String: Any] = Experiment.shared.getExperimentBody()
-        
         body["numStartingCircles"] = TMTResultViewController.numCircles
         body["totalTimeTaken"] = [resultStats[0].totalTimeTaken, resultStats[1].totalTimeTaken]
         body["numCirclesLeft"] = [resultStats[0].numCirclesLeft, resultStats[1].numCirclesLeft]
@@ -80,15 +89,6 @@ class TMTResultViewController: UIViewController {
         print("body: \(body)")
         
         return try? JSONSerialization.data(withJSONObject: body, options: [])
-    }
-    
-    private func saveResults() {
-        print("Saving TMT Results")
-        
-        let httpBody = getTMTResultsJson()
-        let url = URL(string: K.URL.saveTMTResult)
-        
-        Utils.postRequest(url: url, httpBody: httpBody)
     }
     
     override func viewWillAppear(_ animated: Bool) {

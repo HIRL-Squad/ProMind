@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zLr-yt-x0z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AgT-D4-hRO">
     <device id="ipad10_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -1028,7 +1028,7 @@ Longest Seq: 0</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE4-2l-e1B" userLabel="Instruction Label">
-                                <rect key="frame" x="119.5" y="372.5" width="620.5" height="75"/>
+                                <rect key="frame" x="119.5" y="276.5" width="620.5" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="18W-Sy-G3f"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="PhS-8Q-6uB"/>
@@ -1183,7 +1183,7 @@ We will go through them one by one.</string>
                             <constraint firstItem="L8G-VY-BhB" firstAttribute="centerX" secondItem="ZGK-8n-wyq" secondAttribute="centerX" id="MCF-kU-fNd"/>
                             <constraint firstItem="0pX-MK-38B" firstAttribute="centerX" secondItem="ZGK-8n-wyq" secondAttribute="centerX" id="N9z-4M-9eS"/>
                             <constraint firstItem="0pX-MK-38B" firstAttribute="bottom" secondItem="L8G-VY-BhB" secondAttribute="top" constant="-72" id="NYW-Y1-OZj"/>
-                            <constraint firstItem="HE4-2l-e1B" firstAttribute="centerY" secondItem="ZGK-8n-wyq" secondAttribute="centerY" id="hhe-Tl-I8G"/>
+                            <constraint firstItem="HE4-2l-e1B" firstAttribute="centerY" secondItem="ZGK-8n-wyq" secondAttribute="centerY" constant="-96" id="hhe-Tl-I8G"/>
                             <constraint firstItem="lFG-dn-wfO" firstAttribute="top" secondItem="dNR-li-C1O" secondAttribute="top" constant="200" id="kHF-kF-kgt"/>
                             <constraint firstItem="pl0-Jj-NfI" firstAttribute="centerX" secondItem="ZGK-8n-wyq" secondAttribute="centerX" id="pY0-Pp-66e"/>
                             <constraint firstItem="pl0-Jj-NfI" firstAttribute="top" secondItem="dNR-li-C1O" secondAttribute="top" constant="48" id="vco-6D-R4H"/>

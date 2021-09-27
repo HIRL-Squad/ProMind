@@ -19,7 +19,10 @@ class DSTResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        Subject.shared.subjectId = "1234@946684800"
+//        Experiment.shared.experimentType = .Test
+//        Experiment.shared.age = 99
+//        Experiment.shared.gender = .Male
+//        Experiment.shared.remarks = "Test with Data Init in DST"
 //        gameResultStatistics = [
 //            DSTGameStatistics(totalTime: 72, numCorrectTrials: 5, currentSequence: 7, longestSequence: 5, maxDigits: 6),
 //            DSTGameStatistics(totalTime: 123, numCorrectTrials: 4, currentSequence: 5, longestSequence: 2, maxDigits: 5),
@@ -48,82 +51,30 @@ class DSTResultViewController: UIViewController {
         }
     }
     
-    private func getTMTResultsJson() -> Data? {
+    private func saveResults() {
+        print("Saving DST Results")
+        
+        let httpBody = getDSTResultsJson()
+        let url = URL(string: K.URL.saveDSTResult)
+        
+        Utils.postRequest(url: url, httpBody: httpBody)
+    }
+    
+    private func getDSTResultsJson() -> Data? {
         guard let resultStats = gameResultStatistics else {
             print("DST Result not available!")
             return nil
         }
         
-        let body: [String: Any] = [
-            "experimentType": "baseline",
-            "date": Int64(Date.init().timeIntervalSince1970),
-            "longestSequence": [
-                resultStats[0].longestSequence,
-                resultStats[1].longestSequence,
-                resultStats[2].longestSequence,
-            ],
-            "numCorrectTrials": [
-                resultStats[0].numCorrectTrials,
-                resultStats[1].numCorrectTrials,
-                resultStats[2].numCorrectTrials,
-            ],
-            "totalTimeTaken": [
-                resultStats[0].totalTime,
-                resultStats[1].totalTime,
-                resultStats[2].totalTime
-            ],
-            "maxDigits": [
-                resultStats[0].maxDigits,
-                resultStats[1].maxDigits,
-                resultStats[2].maxDigits,
-            ]
-        ]
+        var body: [String: Any] = Experiment.shared.getExperimentBody()
+        body["longestSequence"] = [resultStats[0].longestSequence, resultStats[1].longestSequence, resultStats[2].longestSequence]
+        body["numCorrectTrials"] = [resultStats[0].numCorrectTrials, resultStats[1].numCorrectTrials, resultStats[2].numCorrectTrials]
+        body["maxDigits"] = [resultStats[0].maxDigits, resultStats[1].maxDigits, resultStats[2].maxDigits]
+        body["totalTimeTaken"] = [resultStats[0].totalTime, resultStats[1].totalTime, resultStats[2].totalTime]
+        
+        print("body: \(body)")
         
         return try? JSONSerialization.data(withJSONObject: body, options: [])
-    }
-    
-    private func saveResults() {
-        print("Saving DST Results")
-        
-        guard let jsonBody = getTMTResultsJson() else {
-            print("Failed to get DST results in JSON")
-            return
-        }
-
-        let url = URL(string: K.URL.saveDSTResult)
-        guard let requestUrl = url else { fatalError() }
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "POST"
-        request.httpBody = jsonBody
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data,
-                  let response = response as? HTTPURLResponse,
-                  error == nil else {
-                
-                print("Error occurred when sending a POST request: \(error?.localizedDescription ?? "Unknown Error")")
-                
-                // Possible connection error
-                // Save to cache for persistent later
-                
-                return
-            }
-
-            guard (200 ... 299) ~= response.statusCode else {
-                print("Status Code should be 2xx, but is \(response.statusCode)")
-                print("Response = \(response)")
-                return
-            }
-
-            print("Response Code: \(response.statusCode)")
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("Response String = \(responseString ?? "Unable to decode response")")
-        }
-            
-        task.resume()
     }
     
     override func viewWillAppear(_ animated: Bool) {
