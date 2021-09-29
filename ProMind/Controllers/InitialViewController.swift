@@ -24,8 +24,8 @@ class InitialViewController: UIViewController {
                         if granted {
                             print("AVAudioSession :: Granted!")
                             
-                            // TODO: Update time to 5 seconds
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                            // TODO: Update time to 3 seconds
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                                 self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
                             }
                             

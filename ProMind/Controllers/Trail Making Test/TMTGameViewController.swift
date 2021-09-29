@@ -109,7 +109,7 @@ class TMTGameViewController: UIViewController {
     }
     
     private func getNumCircles() -> Int {
-        return TMTResultViewController.numCircles
+        return isTutorial ? K.TMT.tutNumCircles : TMTResultViewController.numCircles
     }
     
     private func getTotalTime() -> Int {
@@ -135,11 +135,16 @@ class TMTGameViewController: UIViewController {
         tutorialView.layer.borderColor = UIColor(named: "Purple")?.cgColor
         
         tutCircleCenterPoints = [
-            CGPoint(x: tutViewWidth[12], y: tutViewHeight[08]), CGPoint(x: tutViewWidth[28], y: tutViewHeight[31]), CGPoint(x: tutViewWidth[48], y: tutViewHeight[72]), CGPoint(x: tutViewWidth[72], y: tutViewHeight[48]), CGPoint(x: tutViewWidth[67], y: tutViewHeight[11]),
-            CGPoint(x: tutViewWidth[09], y: tutViewHeight[53]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[51]), CGPoint(x: tutViewWidth[14], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[28], y: tutViewHeight[67]), CGPoint(x: tutViewWidth[74], y: tutViewHeight[72]),
-            CGPoint(x: tutViewWidth[15], y: tutViewHeight[66]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[09]), CGPoint(x: tutViewWidth[32], y: tutViewHeight[11]), CGPoint(x: tutViewWidth[88], y: tutViewHeight[48]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[89]),
-            CGPoint(x: tutViewWidth[87], y: tutViewHeight[72]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[27]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[33]), CGPoint(x: tutViewWidth[74], y: tutViewHeight[28]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[93]),
-            CGPoint(x: tutViewWidth[13], y: tutViewHeight[87]), CGPoint(x: tutViewWidth[27], y: tutViewHeight[87]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[13]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[47]), CGPoint(x: tutViewWidth[72], y: tutViewHeight[93])
+            CGPoint(x: tutViewWidth[12], y: tutViewHeight[17]),
+            CGPoint(x: tutViewWidth[23], y: tutViewHeight[53]),
+            CGPoint(x: tutViewWidth[48], y: tutViewHeight[72]),
+            CGPoint(x: tutViewWidth[72], y: tutViewHeight[48]),
+            CGPoint(x: tutViewWidth[87], y: tutViewHeight[14]),
+            CGPoint(x: tutViewWidth[17], y: tutViewHeight[78]),
+            CGPoint(x: tutViewWidth[47], y: tutViewHeight[51]),
+            CGPoint(x: tutViewWidth[42], y: tutViewHeight[20]),
+            CGPoint(x: tutViewWidth[67], y: tutViewHeight[83]),
+            CGPoint(x: tutViewWidth[92], y: tutViewHeight[66]),
         ]
         
         currentLabels = K.TMT.labels[numRound] // Start with Round 0
