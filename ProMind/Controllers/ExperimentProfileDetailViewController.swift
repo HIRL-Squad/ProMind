@@ -17,6 +17,12 @@ protocol DetailViewControllerDelegate: AnyObject {
     ///     - question: The current question being updated.
     ///     - option: The selected option for a given question.
     func detailViewController(_ detailViewController: ExperimentProfileDetailViewController, selectedQuestion question: String, didSelectOption option: String)
+    
+    /// To update MasterViewController TableView after when startButton is pressed.
+    /// - Parameters:
+    ///     - detailViewController: The DetailViewController instance that invokes this method.
+    ///     - didPressStartButton: The start button that was pressed.
+    func detailViewController(_ detailViewController: ExperimentProfileDetailViewController, didPressStartButton: UIButton)
 }
 
 class ExperimentProfileDetailViewController: UIViewController {
@@ -49,6 +55,10 @@ class ExperimentProfileDetailViewController: UIViewController {
         masterViewController?.delegate = self
     }
     
+    @IBAction func startButtonPressed(_ sender: UIButton) {
+        delegate?.detailViewController(self, didPressStartButton: sender)
+    }
+    
     private func resetContainerView() {
         optionChoiceTableView?.removeFromSuperview()
         optionChoiceTableView = nil
@@ -72,7 +82,8 @@ class ExperimentProfileDetailViewController: UIViewController {
         textField.delegate = self
         textField.placeholder = placeholder
         textField.text = text
-        textField.autocorrectionType = .no
+        // textField.autocorrectionType = .no
+        textField.backgroundColor = .white
         textField.layer.borderWidth = K.borderWidthThin
         textField.layer.borderColor = UIColor.black.cgColor
         

@@ -22,7 +22,6 @@ protocol MasterViewControllerDelegate: AnyObject {
 // We automatically conform to UITableViewDelegate because we are using UITableViewController
 class ExperimentProfileMasterViewController: UITableViewController {
     @IBOutlet weak var ageTextField: UITextField!
-    @IBOutlet weak var startButton: UIButton!
     
     weak var delegate: MasterViewControllerDelegate?
     
@@ -89,7 +88,104 @@ class ExperimentProfileMasterViewController: UITableViewController {
         }
     }
     
-    @IBAction func startButtonPressed(_ sender: UIButton) {
+    private func displayAlert(_ alert: UIAlertController, actions: [UIAlertAction], autoDismissalTime: DispatchTimeInterval? = nil) {
+        for action in actions {
+            alert.addAction(action)
+        }
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        if let dismissalTime = autoDismissalTime {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dismissalTime) {
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+// MARK: - UITableViewController Implementation
+extension ExperimentProfileMasterViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return Experiment.shared.experimentType == .Trial ? 1 : 3
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentIndexPath = indexPath
+        
+        print("Selected section \(indexPath.section), row \(indexPath.row)")
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else {
+            fatalError("ExperimentProfileMasterViewController :: Unable to retrieve tableViewCell from indexPath")
+        }
+        
+        // Inform DetailViewController that a cell has been selected
+        if let identifier = cell.reuseIdentifier {
+            let options = K.ExperimentProfile.Master.questions[identifier]
+            delegate?.masterViewController(self, didSelectQuestion: identifier, optionsForQuestion: options)
+        }
+    }
+}
+
+extension ExperimentProfileMasterViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.keyboardType = .numberPad
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // if backspace is pressed, return true
+        if string == "" {
+            return true
+        }
+        
+        // return true if number is provided and if the length of the text is less than three (0 - 99)
+        if let _ = string.rangeOfCharacter(from: .decimalDigits), let text = textField.text {
+            return text.count < 2
+        }
+    
+        return false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // Dismiss keyboard
+        return true
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if textField == ageTextField {
+            if let age = textField.text {
+                Experiment.shared.age = Int(age)
+            }
+        }
+    }
+
+    @objc func handleTap() {
+        ageTextField.resignFirstResponder() // Dismiss keyboard
+    }
+}
+
+// MARK: - DetailViewControllerDelegate Implementations
+extension ExperimentProfileMasterViewController: DetailViewControllerDelegate {
+    func detailViewController(_ detailViewController: ExperimentProfileDetailViewController, selectedQuestion question: String, didSelectOption option: String) {
+        print("ExperimentProfileMasterViewController :: Question : \(question) | Option Selected: \(option)")
+        
+        if question == K.ExperimentProfile.experimentType {
+            print("Experiment Type!")
+            
+            DispatchQueue.main.async { // Reload data must be done in main thread
+                self.tableView.reloadData()
+                self.tableView.selectRow(at: self.currentIndexPath, animated: false, scrollPosition: .none)
+            }
+        }
+        
+        if let cell = tableView.cellForRow(at: currentIndexPath) {
+            let tableViewLabels = cell.contentView.subviews // Views of a Table View Cell, e.g., [UILabel("ExperimentType"), UILabel("Trial")]
+            let detailLabel = tableViewLabels[1] as! UILabel // Get the second element because that is the label to display the chosen option
+            detailLabel.text = option
+        }
+    }
+    
+    func detailViewController(_ detailViewController: ExperimentProfileDetailViewController, didPressStartButton: UIButton) {
         print("startButtonPressed")
         
         canStart = true
@@ -173,142 +269,6 @@ class ExperimentProfileMasterViewController: UITableViewController {
                 ],
                 autoDismissalTime: .milliseconds(2000)
             )
-        }
-    }
-    
-    private func displayAlert(_ alert: UIAlertController, actions: [UIAlertAction], autoDismissalTime: DispatchTimeInterval? = nil) {
-        for action in actions {
-            alert.addAction(action)
-        }
-        
-        self.present(alert, animated: true, completion: nil)
-        
-        if let dismissalTime = autoDismissalTime {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dismissalTime) {
-                alert.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-    
-    private func saveSubject() {
-//        let url = URL(string: K.URL.createSubject)
-//        guard let requestUrl = url else { fatalError() }
-//        var request = URLRequest(url: requestUrl)
-//        request.httpMethod = "POST"
-//        // Set HTTP Request Header
-//        request.setValue("application/json", forHTTPHeaderField: "Accept")
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        do {
-//            let encoder = JSONEncoder()
-//            encoder.outputFormatting = .prettyPrinted
-//            let jsonBody = try encoder.encode(Experiment.shared)
-//            print("POST Data: \n\(String(data: jsonBody, encoding: .utf8)!)")
-//            request.httpBody = jsonBody
-//
-//            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//                guard let data = data,
-//                      let response = response as? HTTPURLResponse,
-//                      error == nil else {
-//                    print("Error occurred when sending a POST request: \(error?.localizedDescription ?? "Unknown Error")")
-//
-//                    // Possible connection error
-//                    // Save to cache for persistent later
-//
-//                    return
-//                }
-//
-//                guard (200...299) ~= response.statusCode else {
-//                    print("Status Code should be 2xx, but is \(response.statusCode)")
-//                    print("Response = \(response)")
-//                    return
-//                }
-//
-//                print("Response Code: \(response.statusCode)")
-//                let responseString = String(data: data, encoding: .utf8)
-//                print("Response String = \(responseString ?? "Unable to decode response")")
-//            }
-//
-//            task.resume()
-//        } catch let encodingError {
-//            print("Unexpected error occurred while encoding: \(encodingError)")
-//        }
-    }
-}
-
-// MARK: - UITableViewController Implementation
-extension ExperimentProfileMasterViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentIndexPath = indexPath
-        
-        print("Selected section \(indexPath.section), row \(indexPath.row)")
-        
-        guard let cell = tableView.cellForRow(at: indexPath) else {
-            fatalError("ExperimentProfileMasterViewController :: Unable to retrieve tableViewCell from indexPath")
-        }
-        
-        // Inform DetailViewController that a cell has been selected
-        if let identifier = cell.reuseIdentifier {
-            let options = K.ExperimentProfile.Master.questions[identifier]
-            delegate?.masterViewController(self, didSelectQuestion: identifier, optionsForQuestion: options)
-        }
-    }
-}
-
-extension ExperimentProfileMasterViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        textField.keyboardType = .numberPad
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // if backspace is pressed, return true
-        if string == "" {
-            return true
-        }
-        
-        // return true if number is provided and if the length of the text is less than three (0 - 99)
-        if let _ = string.rangeOfCharacter(from: .decimalDigits), let text = textField.text {
-            return text.count < 2
-        }
-    
-        return false
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() // Dismiss keyboard
-        return true
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        if textField == ageTextField {
-            if let age = textField.text {
-                Experiment.shared.age = Int(age)
-            }
-        }
-    }
-
-    @objc func handleTap() {
-        ageTextField.resignFirstResponder() // Dismiss keyboard
-    }
-}
-
-// MARK: - DetailViewControllerDelegate Implementations
-extension ExperimentProfileMasterViewController: DetailViewControllerDelegate {
-    func detailViewController(_ detailViewController: ExperimentProfileDetailViewController, selectedQuestion question: String, didSelectOption option: String) {
-        print("ExperimentProfileMasterViewController :: Question : \(question) | Option Selected: \(option)")
-        
-//        if question == K.ExperimentProfile.experimentType && Experiment.shared.experimentType == .Trial {
-//            Experiment.shared = Experiment()
-//            DispatchQueue.main.async { // Reload data must be done in main thread
-//                self.tableView.reloadData()
-//            }
-//        }
-        
-        if let cell = tableView.cellForRow(at: currentIndexPath) {
-            let tableViewLabels = cell.contentView.subviews // Views of a Table View Cell, e.g., [UILabel("ExperimentType"), UILabel("Trial")]
-            let detailLabel = tableViewLabels[1] as! UILabel // Get the second element because that is the label to display the chosen option
-            detailLabel.text = option
         }
     }
 }

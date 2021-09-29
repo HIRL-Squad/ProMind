@@ -113,17 +113,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="859" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-eM-ybQ">
-                                <rect key="frame" x="0.0" y="50" width="859.5" height="750"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-eM-ybQ" userLabel="Main Container View">
+                                <rect key="frame" x="0.0" y="50" width="859.5" height="645"/>
+                                <color key="backgroundColor" name="Light Grey"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iiz-rn-HTD" userLabel="Button Container View">
+                                <rect key="frame" x="0.0" y="695" width="859.5" height="125"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FcW-if-u4f">
+                                        <rect key="frame" x="305" y="16" width="250" height="77"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="ded-di-niN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" name="Light Grey"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="startButtonPressed:" destination="cXD-Qj-kxR" eventType="touchUpInside" id="VYQ-de-o7C"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Light Grey"/>
+                                <constraints>
+                                    <constraint firstItem="FcW-if-u4f" firstAttribute="centerX" secondItem="Iiz-rn-HTD" secondAttribute="centerX" id="3vV-Pj-iW8"/>
+                                    <constraint firstAttribute="height" constant="125" id="9ja-vM-g7i"/>
+                                    <constraint firstAttribute="bottom" secondItem="FcW-if-u4f" secondAttribute="bottom" constant="32" id="CO2-pZ-jog"/>
+                                    <constraint firstItem="FcW-if-u4f" firstAttribute="top" secondItem="Iiz-rn-HTD" secondAttribute="top" constant="16" id="XhJ-Jd-iwW"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MkR-JC-Xgq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pPw-eM-ybQ" firstAttribute="leading" secondItem="MkR-JC-Xgq" secondAttribute="leading" id="4EM-cd-54q"/>
+                            <constraint firstItem="Iiz-rn-HTD" firstAttribute="top" secondItem="pPw-eM-ybQ" secondAttribute="bottom" id="BhK-N6-aD5"/>
+                            <constraint firstAttribute="bottom" secondItem="Iiz-rn-HTD" secondAttribute="bottom" id="CYK-ki-bwo"/>
                             <constraint firstItem="MkR-JC-Xgq" firstAttribute="trailing" secondItem="pPw-eM-ybQ" secondAttribute="trailing" id="QYg-5c-Izb"/>
-                            <constraint firstItem="MkR-JC-Xgq" firstAttribute="bottom" secondItem="pPw-eM-ybQ" secondAttribute="bottom" id="Thj-bZ-Lrp"/>
+                            <constraint firstItem="MkR-JC-Xgq" firstAttribute="trailing" secondItem="Iiz-rn-HTD" secondAttribute="trailing" id="WHQ-j0-0uf"/>
+                            <constraint firstItem="Iiz-rn-HTD" firstAttribute="leading" secondItem="MkR-JC-Xgq" secondAttribute="leading" id="mz7-57-gG9"/>
                             <constraint firstItem="pPw-eM-ybQ" firstAttribute="top" secondItem="MkR-JC-Xgq" secondAttribute="top" id="udW-0R-RKd"/>
                         </constraints>
                     </view>
@@ -326,42 +360,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="" id="h1y-KS-hbQ" userLabel="Save">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="60" id="iLL-Q2-fzs">
-                                        <rect key="frame" x="116" y="489.5" width="288" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iLL-Q2-fzs" id="w5i-g9-vgN">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifm-LR-b8N">
-                                                    <rect key="frame" x="0.0" y="0.0" width="288" height="60"/>
-                                                    <color key="backgroundColor" name="AccentColor"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
-                                                    <state key="normal" title="Start">
-                                                        <color key="titleColor" name="Light Grey"/>
-                                                    </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="15"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="startButtonPressed:" destination="1zm-LS-HYb" eventType="touchUpInside" id="yqj-nk-jW2"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Ifm-LR-b8N" secondAttribute="trailing" id="LOk-rY-20e"/>
-                                                <constraint firstItem="Ifm-LR-b8N" firstAttribute="leading" secondItem="w5i-g9-vgN" secondAttribute="leading" id="eYI-Lu-bvM"/>
-                                                <constraint firstItem="Ifm-LR-b8N" firstAttribute="top" secondItem="w5i-g9-vgN" secondAttribute="top" id="fJg-go-2FT"/>
-                                                <constraint firstAttribute="bottom" secondItem="Ifm-LR-b8N" secondAttribute="bottom" id="xPy-Yu-CIn"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="1zm-LS-HYb" id="2YW-ae-afJ"/>
@@ -371,7 +369,6 @@
                     <navigationItem key="navigationItem" title="Experiment Profile" id="gV7-Dx-Bny"/>
                     <connections>
                         <outlet property="ageTextField" destination="5Uq-wf-HNn" id="JzI-92-Z1r"/>
-                        <outlet property="startButton" destination="Ifm-LR-b8N" id="xod-Wa-0xv"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="ExperimentProfileToTestSelection" id="HcA-5Q-IUB"/>
                     </connections>
                 </tableViewController>

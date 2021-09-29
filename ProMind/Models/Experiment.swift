@@ -83,6 +83,11 @@ class Experiment: Codable {
     
     func toString() -> String {
         let experimentTypeText = "Experiment Type:\n\(experimentType?.rawValue ?? "N.A.")"
+        
+        if experimentType == .Trial {
+            return "\(experimentTypeText)"
+        }
+        
         let ageText = "Age:\n\(age != nil ? "\(age!)" : "N.A.")"
         let genderText = "Gender:\n\(gender?.rawValue ?? "N.A.")"
         let educationLevelText = "Education Level:\n\(educationLevel ?? "N.A.")"
