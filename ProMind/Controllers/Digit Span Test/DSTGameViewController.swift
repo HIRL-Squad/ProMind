@@ -56,7 +56,7 @@ class DSTGameViewController: UIViewController {
     // -1: Starting Instructions; 0: Digit Forward, 1: Digit Backward, 2: Digit Sequencing
     private var numRounds = -1 {
         didSet {
-            updateRoundInfoLabel()
+             updateRoundInfoLabel()
         }
     }
     
@@ -64,19 +64,19 @@ class DSTGameViewController: UIViewController {
     private var numTrials = 1 {
         didSet {
             // Once numTrials = 12 (i.e., numDigits = 8), proceed to next round.
-            if oldValue == K.DST.numDigitsMapping.count {
-                numRounds += 1
-                numTrials = 1
-                
-                instructionLabel.isHidden = false
-                isInstructionMode = true
-                isTestMode = false
-                
-                roundTimer?.invalidate()
-                roundTimer = nil
-            }
+//            if oldValue == K.DST.numDigitsMapping.count {
+//                numRounds += 1
+//                numTrials = 1
+//
+//                instructionLabel.isHidden = false
+//                isInstructionMode = true
+//                isTestMode = false
+//
+//                roundTimer?.invalidate()
+//                roundTimer = nil
+//            }
             
-            updateRoundInfoLabel()
+             updateRoundInfoLabel()
         }
     }
     
@@ -118,11 +118,6 @@ class DSTGameViewController: UIViewController {
         synthesizer?.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // navigationController?.isNavigationBarHidden = true
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         synthesizer?.stopSpeaking(at: .immediate)
@@ -133,8 +128,6 @@ class DSTGameViewController: UIViewController {
         trialCountdownTimer = nil
         roundTimer?.invalidate()
         roundTimer = nil
-        
-        navigationController?.isNavigationBarHidden = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -168,6 +161,7 @@ class DSTGameViewController: UIViewController {
         instructionLabel.isHidden = true
         startButton.isHidden = true
 
+        // statsStackView.isHidden = false
         statsStackView.isHidden = true // Do not show stats in actual production
         digitsStackView.isHidden = false
         resetInputButton.isHidden = false
@@ -187,16 +181,8 @@ class DSTGameViewController: UIViewController {
         resetInputAndDoneButtons(enabled: false)
     }
     
-    @IBAction func resetInputButtonPressed(_ sender: UIButton) {
-        print("Reset pressed")
-        stopRecording(isResetInput: true)
-        startRecording()
-    }
-    
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
-        print("Done pressed")
-        stopRecording(isResetInput: false)
-    }
+    @IBAction func resetInputButtonPressed(_ sender: UIButton) { stopRecording(isResetInput: true); startRecording(); }
+    @IBAction func doneButtonPressed(_ sender: UIButton) { stopRecording(isResetInput: false) }
     
     private func startTrial() {
         if isTestMode {
@@ -507,29 +493,44 @@ extension DSTGameViewController {
             let isAnswerCorrect = checkAnswer()
             updateStatsLabel()
             
-            if isAnswerCorrect {
-                isPreviousTrialCorrect = true // Current Trial is correct (but will be interpreted as the previous trial)
-            } else {
+            func proceedToNextRound() {
+                numRounds += 1
+                numTrials = 0 // Upon exitting from this function, numTrials will be incremented immediately
                 
-                // If both previous and current trials are incorrect, then skip to next round
-                if !isPreviousTrialCorrect {
+                instructionLabel.isHidden = false
+                isInstructionMode = true
+                isTestMode = false
+                
+                roundTimer?.invalidate()
+                roundTimer = nil
+            }
+            
+            if isAnswerCorrect { // Current trial is CORRECT
+                isPreviousTrialCorrect = true
+            } else {             // Current trial is INCORRECT
+                if !isPreviousTrialCorrect { // Both Previous and Current trials are INCORRECT, goto next round
                     isPreviousTrialCorrect = true
-                    numRounds += 1
-                    numTrials = 0 // Upon exitting from this function, numTrials will be incremented immediately
-                    
-                    instructionLabel.isHidden = false
-                    isInstructionMode = true
-                    isTestMode = false
-                    
-                    roundTimer?.invalidate()
-                    roundTimer = nil
-                } else {
+                    proceedToNextRound()
+//                    numRounds += 1
+//                    numTrials = 0
+//
+//                    instructionLabel.isHidden = false
+//                    isInstructionMode = true
+//                    isTestMode = false
+//
+//                    roundTimer?.invalidate()
+//                    roundTimer = nil
+                } else {                     // Previous trial was correct, but current trial is INCORRECT
                     isPreviousTrialCorrect = false
                 }
             }
             
+            if numTrials == K.DST.numDigitsMapping.count { // Once numTrials = 12 (i.e., numDigits = 8), proceed to next round.
+                proceedToNextRound()
+            }
+            
             numTrials += 1
-            updatePreviousTrialLabel()
+            // updatePreviousTrialLabel()
             
             resetSpokenDigits()
             // To hide everything before starting a new trial
@@ -602,17 +603,18 @@ extension DSTGameViewController: CoachMarksControllerDataSource, CoachMarksContr
             arrowOrientation: coachMark.arrowOrientation
         )
         
-        coachViews.bodyView.hintLabel.font = UIFont(name: K.fontTypeMedium, size: 16)
+        coachViews.bodyView.hintLabel.font = UIFont(name: K.fontTypeNormal, size: 16)
+        coachViews.bodyView.nextLabel.font = UIFont(name: K.fontTypeMedium, size: 16)
         
         switch index {
         case 0:
             coachViews.bodyView.hintLabel.text = "To start the test"
             coachViews.bodyView.nextLabel.text = "Begin"
         case 1:
-            coachViews.bodyView.hintLabel.text = "To reset your recorded numbers later"
+            coachViews.bodyView.hintLabel.text = "For resetting your recorded numbers"
             coachViews.bodyView.nextLabel.text = "Ok"
         case 2:
-            coachViews.bodyView.hintLabel.text = "To submit your recorded numbers later"
+            coachViews.bodyView.hintLabel.text = "For submitting your recorded numbers"
             coachViews.bodyView.nextLabel.text = "Ok"
         default:
             break
