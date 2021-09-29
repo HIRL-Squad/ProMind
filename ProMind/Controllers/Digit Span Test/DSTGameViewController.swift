@@ -8,6 +8,7 @@
 import UIKit
 import Speech
 import SwiftyGif
+import Instructions
 
 class DSTGameViewController: UIViewController {
     @IBOutlet weak var statsStackView: UIStackView!
@@ -15,6 +16,7 @@ class DSTGameViewController: UIViewController {
     @IBOutlet weak var answerStackView: UIStackView!
     
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var checkMarkStackView: UIStackView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBOutlet weak var startButton: UIButton!
@@ -28,6 +30,7 @@ class DSTGameViewController: UIViewController {
     
     // Instructions
     private var isInstructionMode = true
+    private let coachMarksController = CoachMarksController()
     
     // Determine if it's test mode
     private var isTestMode = false
@@ -89,12 +92,20 @@ class DSTGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkMarkStackView.isHidden = true
         activityIndicatorView.isHidden = true
         activityIndicatorView.startAnimating()
         
         // updateRoundInfoLabel()
         // updatePreviousTrialLabel()
         // updateStatsLabel()
+        
+        self.coachMarksController.dataSource = self
+        self.coachMarksController.delegate = self
+        
+        self.coachMarksController.overlay.areTouchEventsForwarded = true
+        self.coachMarksController.overlay.isUserInteractionEnabled = true
+        self.coachMarksController.overlay.backgroundColor = .clear
         
         initSynthesizer()
         speakInstructions()
@@ -109,16 +120,20 @@ class DSTGameViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // checkPermissions()
+        // navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        synthesizer?.stopSpeaking(at: .immediate)
+        synthesizer = nil
+        stopRecognitionTask()
+        
+        trialCountdownTimer?.invalidate()
+        trialCountdownTimer = nil
+        roundTimer?.invalidate()
+        roundTimer = nil
+        
         navigationController?.isNavigationBarHidden = false
     }
     
@@ -132,6 +147,20 @@ class DSTGameViewController: UIViewController {
         avatarImageView.setGifImage(gif, loopCount: -1)
     }
     
+    private func resetInputAndDoneButtons(enabled: Bool = false) {
+        if enabled {
+            resetInputButton.isEnabled = true
+            doneButton.isEnabled = true
+            resetInputButton.backgroundColor = UIColor(named: "Purple")
+            doneButton.backgroundColor = UIColor(named: "Purple")
+        } else {
+            resetInputButton.isEnabled = false
+            doneButton.isEnabled = false
+            resetInputButton.backgroundColor = .lightGray
+            doneButton.backgroundColor = .lightGray
+        }
+    }
+    
     @IBAction func startButtonPressed(_ sender: UIButton) {
         isInstructionMode = false
         isTestMode = true
@@ -139,7 +168,6 @@ class DSTGameViewController: UIViewController {
         instructionLabel.isHidden = true
         startButton.isHidden = true
 
-        // statsStackView.isHidden = false
         statsStackView.isHidden = true // Do not show stats in actual production
         digitsStackView.isHidden = false
         resetInputButton.isHidden = false
@@ -152,8 +180,11 @@ class DSTGameViewController: UIViewController {
         loadAvatarGif()
         avatarImageView.layer.borderWidth = K.borderWidth
         avatarImageView.layer.borderColor = UIColor.black.cgColor
+        avatarImageView.stopAnimatingGif()
         
-        startTrial()
+        self.coachMarksController.flow.showNext() // Show next instruction immediately when "Start" is pressed.
+        
+        resetInputAndDoneButtons(enabled: false)
     }
     
     @IBAction func resetInputButtonPressed(_ sender: UIButton) {
@@ -208,8 +239,8 @@ class DSTGameViewController: UIViewController {
             var digit = K.DST.digits.randomElement()!
             
             if idx > 0 {
-                // To remove consecutive "2"
-                while digit == "2" && digit == currentDigits[idx-1] {
+                // To remove consecutive "2" and "4"
+                while (digit == "2" || digit == "4") && digit == currentDigits[idx-1] {
                     digit = K.DST.digits.randomElement()!
                     print("Reshuffled number as the previous digit is \(currentDigits[idx-1]) and the current digit is also \(digit)")
                 }
@@ -238,8 +269,8 @@ class DSTGameViewController: UIViewController {
         trialCountdownTimer?.invalidate()
         
         print("Presented Digits: \(currentDigits)")
-        print("Expected Digits: \(expectedDigits)")
-        print("Spoken Digits: \(spokenDigits)")
+        print(" Expected Digits: \(expectedDigits)")
+        print("   Spoken Digits: \(spokenDigits)")
         
         if spokenDigits == expectedDigits {
             gameStatistics[numRounds].maxDigits = K.DST.numDigitsMapping[numTrials] ?? 0
@@ -294,7 +325,7 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
             numRounds += 1
             break
         case 0, 1, 2:
-            isInstructionMode = false            
+            isInstructionMode = false
             break
         default:
             print("No matching num rounds while reading instructions...")
@@ -303,13 +334,9 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
     }
     
     private func speakDigits() {
-        activityIndicatorView.isHidden = true
-        resetInputButton.isEnabled = false
-        doneButton.isEnabled = false
-        resetInputButton.backgroundColor = .lightGray
-        doneButton.backgroundColor = .lightGray
-//        resetInputButton.isHidden = true
-//        doneButton.isHidden = true
+        checkMarkStackView.isHidden = true
+        activityIndicatorView.isHidden = false
+        resetInputAndDoneButtons(enabled: false)
         
         let utterance = AVSpeechUtterance(string: currentDigits.joined(separator: ","))
         utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
@@ -323,8 +350,9 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         if isInstructionMode {
             speakInstructions()
         } else {
-            if !isTestMode {
+            if !isTestMode { // After instructions are delivered, but before starting the test.
                 startButton.isHidden = false
+                self.coachMarksController.start(in: .currentWindow(of: self))
             }
         }
         
@@ -335,13 +363,9 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
             
             startRecording()
             
-            activityIndicatorView.isHidden = false
-            resetInputButton.isEnabled = true
-            doneButton.isEnabled = true
-            resetInputButton.backgroundColor = UIColor(named: "Purple")
-            doneButton.backgroundColor = UIColor(named: "Purple")
-//            resetInputButton.isHidden = false
-//            doneButton.isHidden = false
+            checkMarkStackView.isHidden = false
+            activityIndicatorView.isHidden = true
+            resetInputAndDoneButtons(enabled: true)
         }
     }
 }
@@ -451,15 +475,19 @@ extension DSTGameViewController {
         }
     }
     
-    private func stopRecording(isResetInput: Bool) {
+    private func stopRecognitionTask() {
         // ADDED: Cancel the previous task if it's running (isFinal will never become True...?)
-        recognitionTask?.cancel()
+        recognitionTask?.cancel() // Will cause (kAFAssistantErrorDomain error 216.)
         // recognitionTask?.finish() // TEST
         recognitionTask = nil
         
         // End the recognition request.
         recognitionRequest?.endAudio()
         recognitionRequest = nil
+    }
+    
+    private func stopRecording(isResetInput: Bool) {
+        stopRecognitionTask()
         
         // Stop recording
         audioEngine.stop()
@@ -504,6 +532,8 @@ extension DSTGameViewController {
             updatePreviousTrialLabel()
             
             resetSpokenDigits()
+            // To hide everything before starting a new trial
+            checkMarkStackView.isHidden = true
             activityIndicatorView.isHidden = true
             
             // End of Match
@@ -523,6 +553,75 @@ extension DSTGameViewController {
             }
         }
     }
+}
+
+extension DSTGameViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+    // The number of coach marks to display
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 3
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, willHide coachMark: CoachMark, at index: Int) {
+        switch index {
+        case 0:
+            startButtonPressed(startButton)
+        case 2:
+            // Trial only starts when user finishes navigating the instructions
+            coachMarksController.stop(immediately: true)
+            startTrial()
+        default:
+            break
+        }
+    }
+    
+    // To customize how a coach mark will position and appear
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        print("Index: \(index)")
+        
+        switch index {
+        case 0:
+            return coachMarksController.helper.makeCoachMark(for: startButton)
+        case 1:
+            return coachMarksController.helper.makeCoachMark(for: resetInputButton)
+        case 2:
+            return coachMarksController.helper.makeCoachMark(for: doneButton)
+        default:
+            return coachMarksController.helper.makeCoachMark()
+        }
+    }
+    
+    // The third one supplies two views (much like cellForRowAtIndexPath) in the form a Tuple. The body view is mandatory, as it's the core of the coach mark. The arrow view is optional.
+    func coachMarksController(
+        _ coachMarksController: CoachMarksController,
+        coachMarkViewsAt index: Int,
+        madeFrom coachMark: CoachMark
+    ) -> (bodyView: UIView & CoachMarkBodyView, arrowView: (UIView & CoachMarkArrowView)?) {
+        
+        let coachViews = coachMarksController.helper.makeDefaultCoachViews(
+            withArrow: true,
+            arrowOrientation: coachMark.arrowOrientation
+        )
+        
+        coachViews.bodyView.hintLabel.font = UIFont(name: K.fontTypeMedium, size: 16)
+        
+        switch index {
+        case 0:
+            coachViews.bodyView.hintLabel.text = "To start the test"
+            coachViews.bodyView.nextLabel.text = "Begin"
+        case 1:
+            coachViews.bodyView.hintLabel.text = "To reset your recorded numbers later"
+            coachViews.bodyView.nextLabel.text = "Ok"
+        case 2:
+            coachViews.bodyView.hintLabel.text = "To submit your recorded numbers later"
+            coachViews.bodyView.nextLabel.text = "Ok"
+        default:
+            break
+        }
+        
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+    }
+    
+    
 }
 
 // MARK: - Label-related Functions

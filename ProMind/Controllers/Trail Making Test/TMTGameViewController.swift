@@ -135,28 +135,12 @@ class TMTGameViewController: UIViewController {
         tutorialView.layer.borderColor = UIColor(named: "Purple")?.cgColor
         
         tutCircleCenterPoints = [
-            CGPoint(x: tutViewWidth[12], y: tutViewHeight[08]), CGPoint(x: tutViewWidth[28], y: tutViewHeight[31]), CGPoint(x: tutViewWidth[48], y: tutViewHeight[72]), CGPoint(x: tutViewWidth[14], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[67], y: tutViewHeight[11]),
-            CGPoint(x: tutViewWidth[09], y: tutViewHeight[53]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[51]), CGPoint(x: tutViewWidth[72], y: tutViewHeight[48]), CGPoint(x: tutViewWidth[28], y: tutViewHeight[67]), CGPoint(x: tutViewWidth[74], y: tutViewHeight[72]),
+            CGPoint(x: tutViewWidth[12], y: tutViewHeight[08]), CGPoint(x: tutViewWidth[28], y: tutViewHeight[31]), CGPoint(x: tutViewWidth[48], y: tutViewHeight[72]), CGPoint(x: tutViewWidth[72], y: tutViewHeight[48]), CGPoint(x: tutViewWidth[67], y: tutViewHeight[11]),
+            CGPoint(x: tutViewWidth[09], y: tutViewHeight[53]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[51]), CGPoint(x: tutViewWidth[14], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[28], y: tutViewHeight[67]), CGPoint(x: tutViewWidth[74], y: tutViewHeight[72]),
             CGPoint(x: tutViewWidth[15], y: tutViewHeight[66]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[09]), CGPoint(x: tutViewWidth[32], y: tutViewHeight[11]), CGPoint(x: tutViewWidth[88], y: tutViewHeight[48]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[89]),
             CGPoint(x: tutViewWidth[87], y: tutViewHeight[72]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[27]), CGPoint(x: tutViewWidth[92], y: tutViewHeight[33]), CGPoint(x: tutViewWidth[74], y: tutViewHeight[28]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[93]),
             CGPoint(x: tutViewWidth[13], y: tutViewHeight[87]), CGPoint(x: tutViewWidth[27], y: tutViewHeight[87]), CGPoint(x: tutViewWidth[47], y: tutViewHeight[13]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[47]), CGPoint(x: tutViewWidth[72], y: tutViewHeight[93])
         ]
-        
-//        tutCircleCenterPoints = [
-//            CGPoint(x: tutViewWidth[10], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[10]),
-//            CGPoint(x: tutViewWidth[10], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[70]),
-//            CGPoint(x: tutViewWidth[10], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[90]),
-//            CGPoint(x: tutViewWidth[90], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[90]),
-//            CGPoint(x: tutViewWidth[10], y: tutViewHeight[90]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[90]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[90])
-//        ]
-        
-//        tutCircleCenterPoints = [
-//            CGPoint(x: tutViewWidth[10], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[10], y: tutViewHeight[90]),
-//            CGPoint(x: tutViewWidth[30], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[30], y: tutViewHeight[90]),
-//            CGPoint(x: tutViewWidth[50], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[50], y: tutViewHeight[90]),
-//            CGPoint(x: tutViewWidth[70], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[70], y: tutViewHeight[90]),
-//            CGPoint(x: tutViewWidth[90], y: tutViewHeight[10]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[30]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[50]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[70]), CGPoint(x: tutViewWidth[90], y: tutViewHeight[90]),
-//        ]
         
         currentLabels = K.TMT.labels[numRound] // Start with Round 0
         
@@ -285,7 +269,7 @@ class TMTGameViewController: UIViewController {
             }
             tutorialView.isHidden = true
             
-            let text = "There are a total of \(getNumCircles()) circles. Please connect them without lifting the stylus (or digital pen) as much as possible. You have \(getTotalTime()) seconds."
+            let text = "There are a total of \(getNumCircles()) circles.\nPlease connect them without lifting the stylus, or digital pen, as much as possible.\nYou have \(getTotalTime()) seconds."
             setInstructionLabelText(message: text)
             speak(text: text, preUtteranceDelay: 0.5)
             

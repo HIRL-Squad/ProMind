@@ -36,7 +36,7 @@ class DSTResultViewController: UIViewController {
     
     private func congratulate() {
         synthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: K.TMT.finishMessage)
+        let utterance = AVSpeechUtterance(string: K.DST.finishMessage)
         utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
         utterance.rate = K.UtteranceRate.instruction
         utterance.preUtteranceDelay = 0.5

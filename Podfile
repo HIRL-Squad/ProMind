@@ -10,7 +10,8 @@ target 'ProMind' do
   pod 'CLTypingLabel'
   pod 'SwiftyGif'
   pod 'IQKeyboardManagerSwift'
-
+  pod 'Instructions', '~> 2.1.0'
+  
   # target 'ProMindTests' do
   #   inherit! :search_paths
   #   # Pods for testing

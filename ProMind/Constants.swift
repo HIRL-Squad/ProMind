@@ -92,7 +92,7 @@ struct K {
 //                "0", "1", "2", "3", "4", "5", "6", "7",
                 "There are two subtests in Trail Making Test.", // 0
                 "Let's start with Trail Making Test A.", // 1
-                "Look at the circles below. You have to connect them in ascending order.", // 2
+                "Look at the circles below.\nYou have to connect them in ascending order, without lifting the stylus, or digital pen, as much as possible.", // 2
                 "For example, 1 has to be connected to 2.", // 3
                 "Next, 2 has to be connected to 3.", // 4
                 "Then, 3 needs to be connected to 4.", // 5
@@ -104,7 +104,7 @@ struct K {
 //                "0", "1", "2", "3", "4", "5", "6", "7",
                 "Well done on completing Trail Making Test A.", // 0
                 "Let us proceed with Trail Making Test B.", // 1
-                "Look at the circles with numbers and letters below. You have to connect them in the alternating sequence.", // 2
+                "Look at the circles with numbers and letters below.\nYou have to connect them in the alternating sequence, without lifting the stylus, or digital pen, as much as possible.", // 2
                 "For example, 1 has to be connected to A.", // 3
                 "Next, A has to be connected to 2.", // 4
                 "Then, 2 needs to be connected to B.", // 5
@@ -123,25 +123,25 @@ struct K {
         static let goToDSTResultSegue = "GameToDSTResult"
         
         static let instructions = [
-            "-1", "0", "1", "2",
-//            "There are three subtests in Digit Span Test. We will go through them one by one.",
-//
-//            "First, we will start with Digit Forward.\n\n" +
-//            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the exact sequence as presented within 1 minute.\n\n" +
-//            "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
-//            "When you are ready, press 'Start'.",
-//
-//            "Next, we will proceed with Digit Backward.\n\n" +
-//            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the reverse order as presented, within 1 minute.\n" +
-//            "For example, if the number is 3 7 2, you need to repeat as 2 7 3.\n\n" +
-//            "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
-//            "When you are ready, press 'Start'.",
-//
-//            "Finally, we will start with Digit Sequencing.\n\n" +
-//            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in ascending order, within 1 minute.\n" +
-//            "For example, if the number is 7 2 4, you need to repeat as 2 4 7.\n\n" +
-//            "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
-//            "When you are ready, press 'Start'."
+//            "-1", "0", "1", "2",
+            "There are three subtests in Digit Span Test. We will go through them one by one.",
+
+            "First, we will start with Digit Forward.\n\n" +
+            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the exact sequence as presented, within 1 minute.\n\n" +
+            "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
+            "When you are ready, press 'Start'.",
+
+            "Next, we will proceed with Digit Backward.\n\n" +
+            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the reverse order as presented, within 1 minute.\n" +
+            "For example, if the number is 3 7 2, you need to repeat as 2 7 3.\n\n" +
+            "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
+            "When you are ready, press 'Start'.",
+
+            "Finally, we will start with Digit Sequencing.\n\n" +
+            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in ascending order, within 1 minute.\n" +
+            "For example, if the number is 7 2 4, you need to repeat as 2 4 7.\n\n" +
+            "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
+            "When you are ready, press 'Start'."
         ]
         
         static let digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
