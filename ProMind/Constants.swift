@@ -24,7 +24,7 @@ struct K {
     static let goToDSTSegue = "MainToDST" // to change
         
     struct UtteranceRate {
-        static let instruction: Float = 0.4
+        static let instruction: Float = 0.35
         static let digits: Float = 0.3 // On average, 1 second per character. Actual rate depends on the length of the character.
     }
     
@@ -129,19 +129,19 @@ struct K {
             "There are three subtests in Digit Span Test. We will go through them one by one.",
 
             "First, we will start with Digit Forward.\n\n" +
-            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the exact sequence as presented, within 1 minute.\n\n" +
+            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the EXACT sequence as presented, within ONE minute.\n\n" +
             "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
             "When you are ready, press 'Start'.",
 
             "Next, we will proceed with Digit Backward.\n\n" +
-            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the reverse order as presented, within 1 minute.\n" +
-            "For example, if the number is 3 7 2, you need to repeat as 2 7 3.\n\n" +
+            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in the REVERSE order as presented, within ONE minute.\n\n" +
+            "As an example, if the number is 3 7 2 5, you need to repeat as 5 2 7 3.\n\n" +
             "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
             "When you are ready, press 'Start'.",
 
-            "Finally, we will start with Digit Sequencing.\n\n" +
-            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in ascending order, within 1 minute.\n" +
-            "For example, if the number is 7 2 4, you need to repeat as 2 4 7.\n\n" +
+            "Finally, we will end with Digit Sequencing.\n\n" +
+            "In this subtest, a series of numbers will be presented to you, and you need to repeat the numbers in ASCENDING order, within ONE minute.\n\n" +
+            "As an example, if the number is 7 2 4 3, you need to repeat as 2 3 4 7.\n\n" +
             "Once repeated, you can press the 'Done' button to proceed to the next question, or you may press the 'Reset Input' button to repeat the numbers again.\n\n" +
             "When you are ready, press 'Start'."
         ]

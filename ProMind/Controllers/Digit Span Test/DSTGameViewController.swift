@@ -225,10 +225,11 @@ class DSTGameViewController: UIViewController {
             var digit = K.DST.digits.randomElement()!
             
             if idx > 0 {
-                // To remove consecutive "2" and "4"
-                while (digit == "2" || digit == "4") && digit == currentDigits[idx-1] {
+                // To remove consecutive "2" and "4" (numbers)
+                while (digit == "0" || digit == "1" || digit == "2" || digit == "3" || digit == "4" || digit == "5" ||
+                        digit == "6" || digit == "7" || digit == "8" || digit == "9") && digit == currentDigits[idx-1] {
+                    print("Reshuffling number as the previous digit is \(currentDigits[idx-1]) and the current digit is also \(digit)")
                     digit = K.DST.digits.randomElement()!
-                    print("Reshuffled number as the previous digit is \(currentDigits[idx-1]) and the current digit is also \(digit)")
                 }
             }
 
@@ -296,7 +297,8 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         doneButton.isHidden = true
         
         let instructionText = K.DST.instructions[numRounds + 1]
-        instructionLabel.text = instructionText
+        // instructionLabel.text = instructionText
+        instructionLabel.text = ""
 
         print("Reading instructions for round \(numRounds + 1)...")
         
@@ -329,6 +331,34 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         utterance.rate = K.UtteranceRate.digits // On average, 1 second per character. Actual rate depends on the length of the character.
         
         synthesizer?.speak(utterance)
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {
+        let speechString = utterance.speechString
+        let startIdx = speechString.index(speechString.startIndex, offsetBy: characterRange.lowerBound)
+        let endIdx = speechString.index(speechString.startIndex, offsetBy: characterRange.upperBound)
+        
+        let speechWord = speechString[startIdx..<endIdx]
+        
+        // print("willSpeakRangeOfSpeechString: \(characterRange); lowerBound: \(characterRange.lowerBound); upperBound: \(characterRange.upperBound); speechWord: \(speechWord)")
+        
+        if instructionLabel.text == "" {
+            instructionLabel.text = "\(speechString[startIdx..<endIdx]) "
+        } else {
+            instructionLabel.text = "\(instructionLabel.text ?? "")\(speechString[startIdx..<endIdx]) "
+            
+            if speechWord.lowercased().contains("forward") ||
+                speechWord.lowercased().contains("backward") ||
+                speechWord.lowercased().contains("sequencing") ||
+                speechWord.lowercased().contains("minute") ||
+                speechWord.lowercased().contains("again") ||
+                speechWord.lowercased().contains("3.") ||
+                speechWord.lowercased().contains("7.") {
+                
+                instructionLabel.text = "\(instructionLabel.text ?? "")\n\n"
+            }
+            
+        }
     }
     
     // After speech synthesising is done

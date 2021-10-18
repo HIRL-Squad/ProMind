@@ -17,6 +17,9 @@ class TMTMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Temporary set circles to be permanently 25
+        numberOfCirclesStackView.isHidden = true
+        
         let font = UIFont(name: K.fontTypeNormal, size: 18) ?? UIFont.systemFont(ofSize: 18)
         numberOfCirclesSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         // numberOfCirclesSegmentedControl.selectedSegmentIndex = -1
