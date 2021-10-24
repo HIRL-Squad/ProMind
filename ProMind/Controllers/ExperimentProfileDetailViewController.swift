@@ -108,7 +108,7 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
         
         switch question {
         case K.ExperimentProfile.remarks:
-            let label = initUILabel(text: "Remarks (Maximum 80 characters)")
+            let label = initUILabel(text: "Occupation/Faculty/Course of Study (Maximum 80 characters)")
             containerView.addSubview(label)
             activateConstraints(view: label, constraints: [
                 NSLayoutConstraint(item: label, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1.0, constant: 32),

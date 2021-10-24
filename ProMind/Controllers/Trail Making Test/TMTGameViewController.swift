@@ -274,7 +274,7 @@ class TMTGameViewController: UIViewController {
             }
             tutorialView.isHidden = true
             
-            let text = "There are a total of \(getNumCircles()) circles.\nPlease connect them without lifting the stylus, or digital pen, as much as possible.\nYou have \(getTotalTime()) seconds."
+            let text = "There are a total of \(getNumCircles()) circles.\nPlease connect them without lifting the stylus as much as possible.\nYou have \(getTotalTime()) seconds."
             setInstructionLabelText(message: text)
             speak(text: text, preUtteranceDelay: 0.5)
             

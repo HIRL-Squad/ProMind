@@ -634,6 +634,8 @@ extension DSTGameViewController: CoachMarksControllerDataSource, CoachMarksContr
         )
         
         coachViews.bodyView.hintLabel.font = UIFont(name: K.fontTypeNormal, size: 16)
+        
+        coachViews.bodyView.nextLabel.textColor = .red
         coachViews.bodyView.nextLabel.font = UIFont(name: K.fontTypeMedium, size: 16)
         
         switch index {
@@ -642,10 +644,10 @@ extension DSTGameViewController: CoachMarksControllerDataSource, CoachMarksContr
             coachViews.bodyView.nextLabel.text = "Begin"
         case 1:
             coachViews.bodyView.hintLabel.text = "For resetting your recorded numbers"
-            coachViews.bodyView.nextLabel.text = "Ok"
+            coachViews.bodyView.nextLabel.text = "OK"
         case 2:
             coachViews.bodyView.hintLabel.text = "For submitting your recorded numbers"
-            coachViews.bodyView.nextLabel.text = "Ok"
+            coachViews.bodyView.nextLabel.text = "OK"
         default:
             break
         }

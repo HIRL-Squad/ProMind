@@ -37,6 +37,12 @@ class TMTResultViewController: UIViewController {
         saveResults()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        synthesizer?.stopSpeaking(at: .immediate)
+        synthesizer = nil
+    }
+    
     private func congratulate() {
         synthesizer = AVSpeechSynthesizer()
         let utterance = AVSpeechUtterance(string: K.TMT.finishMessage)
