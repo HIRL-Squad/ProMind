@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zLr-yt-x0z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zLr-yt-x0z">
     <device id="ipad10_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -217,7 +218,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please input your age." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Uq-wf-HNn">
-                                                    <rect key="frame" x="16" y="0.5" width="256" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="356" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="43.5" id="62X-IW-Ga0"/>
                                                     </constraints>
@@ -240,7 +241,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="fUh-4L-wmq">
-                                                    <rect key="frame" x="12" y="6" width="264" height="33"/>
+                                                    <rect key="frame" x="12" y="6" width="364" height="32.5"/>
                                                     <segments>
                                                         <segment title="Male"/>
                                                         <segment title="Female"/>
@@ -869,19 +870,19 @@ Lifts: 0</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="120" translatesAutoresizingMaskIntoConstraints="NO" id="bq4-o8-vvH" userLabel="Results Stack View">
-                                <rect key="frame" x="19.5" y="251.5" width="821" height="179.5"/>
+                                <rect key="frame" x="5.5" y="251.5" width="849" height="179.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="kdZ-fo-ZgV" userLabel="DST Forward Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="189" height="179.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="203" height="179.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVR-dr-uid">
-                                                <rect key="frame" x="23" y="0.0" width="143" height="43"/>
+                                                <rect key="frame" x="30" y="0.0" width="143" height="43"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                                 <color key="textColor" name="Purple"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnt-XF-kRP">
-                                                <rect key="frame" x="0.0" y="79" width="189" height="100.5"/>
+                                                <rect key="frame" x="7" y="79" width="189" height="100.5"/>
                                                 <string key="text">Time Taken: 0 s
 Correct Trials: 0
 Longest Seq: 0</string>
@@ -892,16 +893,16 @@ Longest Seq: 0</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="SFD-Ka-tAt" userLabel="DST Backward Stack View">
-                                        <rect key="frame" x="309" y="0.0" width="189" height="179.5"/>
+                                        <rect key="frame" x="323" y="0.0" width="203" height="179.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backward" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdT-2s-Ia7">
-                                                <rect key="frame" x="8" y="0.0" width="173" height="43"/>
+                                                <rect key="frame" x="15" y="0.0" width="173" height="43"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                                 <color key="textColor" name="Purple"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="joj-vK-PSd">
-                                                <rect key="frame" x="0.0" y="79" width="189" height="100.5"/>
+                                                <rect key="frame" x="7" y="79" width="189" height="100.5"/>
                                                 <string key="text">Time Taken: 0 s
 Correct Trials: 0
 Longest Seq: 0</string>
@@ -912,16 +913,16 @@ Longest Seq: 0</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="m2L-a7-nAl" userLabel="DST Sequencing Stack View">
-                                        <rect key="frame" x="618" y="0.0" width="203" height="179.5"/>
+                                        <rect key="frame" x="645.5" y="0.0" width="203" height="179.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sequencing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jau-Ty-rXo">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sequencing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jau-Ty-rXo">
                                                 <rect key="frame" x="0.0" y="0.0" width="203" height="43"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                                                 <color key="textColor" name="Purple"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gII-gi-kVe">
-                                                <rect key="frame" x="7" y="79" width="189" height="100.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gII-gi-kVe">
+                                                <rect key="frame" x="0.0" y="79" width="0.0" height="100.5"/>
                                                 <string key="text">Time Taken: 0 s
 Correct Trials: 0
 Longest Seq: 0</string>
@@ -1038,7 +1039,7 @@ Longest Seq: 0</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE4-2l-e1B" userLabel="Instruction Label">
-                                <rect key="frame" x="119.5" y="137" width="620.5" height="450"/>
+                                <rect key="frame" x="119" y="137" width="621.5" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="18W-Sy-G3f"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="PhS-8Q-6uB"/>
