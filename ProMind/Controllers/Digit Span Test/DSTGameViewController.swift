@@ -296,14 +296,27 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         resetInputButton.isHidden = true
         doneButton.isHidden = true
         
-        let instructionText = K.DST.instructions[numRounds + 1]
+        // Set instructionText to NSLocalizadString. 
+        let instructionText = K.DST.instructions[numRounds + 1].localized
         // instructionLabel.text = instructionText
         instructionLabel.text = ""
 
         print("Reading instructions for round \(numRounds + 1)...")
         
         let utterance = AVSpeechUtterance(string: instructionText)
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
+        
+        // Change synthesizer voice based on app language setting.
+        let appLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+        switch appLanguage {
+        case "en":
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        case "ms":
+            utterance.voice = AVSpeechSynthesisVoice(language: "ms")
+        case "zhHans":
+            utterance.voice = AVSpeechSynthesisVoice(language: "zhHans")
+        default:
+            fatalError("Unsupported Language in Language Setting! ")
+        }
         utterance.rate = K.UtteranceRate.instruction
         
         synthesizer?.speak(utterance)
@@ -327,7 +340,20 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         resetInputAndDoneButtons(enabled: false)
         
         let utterance = AVSpeechUtterance(string: currentDigits.joined(separator: ","))
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
+        
+        // Change synthesizer voice based on app language setting.
+        let appLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+        switch appLanguage {
+        case "en":
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        case "ms":
+            utterance.voice = AVSpeechSynthesisVoice(language: "ms")
+        case "zhHans":
+            utterance.voice = AVSpeechSynthesisVoice(language: "zhHans")
+        default:
+            fatalError("Unsupported Language in Language Setting! ")
+        }
+        
         utterance.rate = K.UtteranceRate.digits // On average, 1 second per character. Actual rate depends on the length of the character.
         
         synthesizer?.speak(utterance)

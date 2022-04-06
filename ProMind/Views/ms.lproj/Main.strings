@@ -1,0 +1,222 @@
+
+/* Class = "UILabel"; text = "TMT-B"; ObjectID = "0uc-bh-Ros"; */
+"0uc-bh-Ros.text" = "TMT-B";
+
+/* Class = "UILabel"; text = "Trail Making Test"; ObjectID = "1sF-wI-R1L"; */
+"1sF-wI-R1L.text" = "Trail Making Test";
+
+/* Class = "UITextField"; placeholder = "Please input your age."; ObjectID = "5Uq-wf-HNn"; */
+"5Uq-wf-HNn.placeholder" = "Please input your age.";
+
+/* Class = "UITableViewSection"; headerTitle = "Miscellaneous"; ObjectID = "6WY-41-e8Q"; */
+"6WY-41-e8Q.headerTitle" = "Miscellaneous";
+
+/* Class = "UITableViewSection"; headerTitle = "Experiment"; ObjectID = "7MS-3S-PdD"; */
+"7MS-3S-PdD.headerTitle" = "Experiment";
+
+/* Class = "UILabel"; text = "Statistics (Temporary - will be hidden during actual  test)"; ObjectID = "7QC-ep-M8C"; */
+"7QC-ep-M8C.text" = "Statistics (Temporary - will be hidden during actual  test)";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "8FL-Wv-PXJ"; */
+"8FL-Wv-PXJ.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "You may start to repeat the digits verbally now"; ObjectID = "8Gj-Hx-tPU"; */
+"8Gj-Hx-tPU.text" = "You may start to repeat the digits verbally now";
+
+/* Class = "UILabel"; text = "Digit span test is the other widely adopted neuropsychological tests for assessing attention efficiency and short term memory."; ObjectID = "8ed-Pd-814"; */
+"8ed-Pd-814.text" = "Digit span test is the other widely adopted neuropsychological tests for assessing attention efficiency and short term memory.";
+
+/* Class = "UINavigationItem"; title = "🗣 Digit Span Test"; ObjectID = "9qh-Wm-HPu"; */
+"9qh-Wm-HPu.title" = "🗣 Digit Span Test";
+
+/* Class = "UILabel"; text = "Time Taken: 300 s\nCircles Left: 25\nErrors: 0\nLifts: 0"; ObjectID = "A4N-1W-JWW"; */
+"A4N-1W-JWW.text" = "Time Taken: 300 s\nCircles Left: 25\nErrors: 0\nLifts: 0";
+
+/* Class = "UILabel"; text = "Annual Income"; ObjectID = "BgP-7L-WOx"; */
+"BgP-7L-WOx.text" = "Annual Income";
+
+/* Class = "UILabel"; text = "Time Taken: 300 s\nCircles Left: 25\nErrors: 0\nLifts: 0"; ObjectID = "BtC-YK-MBa"; */
+"BtC-YK-MBa.text" = "Time Taken: 300 s\nCircles Left: 25\nErrors: 0\nLifts: 0";
+
+/* Class = "UILabel"; text = "Statistics \n(Temporary - will be hidden in actual  test)"; ObjectID = "DFo-12-1tL"; */
+"DFo-12-1tL.text" = "Statistics \n(Temporary - will be hidden in actual  test)";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "FcW-if-u4f"; */
+"FcW-if-u4f.normalTitle" = "Start";
+
+/* Class = "UINavigationItem"; title = "Test Selection"; ObjectID = "FgJ-A2-LvE"; */
+"FgJ-A2-LvE.title" = "Test Selection";
+
+/* Class = "UILabel"; text = " "; ObjectID = "FsY-BE-8bW"; */
+"FsY-BE-8bW.text" = " ";
+
+/* Class = "UILabel"; text = "TMT-A"; ObjectID = "GZ8-zJ-cfO"; */
+"GZ8-zJ-cfO.text" = "TMT-A";
+
+/* Class = "UILabel"; text = "Number of Circles 🔮"; ObjectID = "HBc-l4-eNr"; */
+"HBc-l4-eNr.text" = "Number of Circles 🔮";
+
+/* Class = "UILabel"; text = " Round: 1 Trial: 1"; ObjectID = "HDn-9j-eHl"; */
+"HDn-9j-eHl.text" = " Round: 1 Trial: 1";
+
+/* Class = "UILabel"; text = "There are a total of three subtests in Digit Span Test.\nWe will go through them one by one."; ObjectID = "HE4-2l-e1B"; */
+"HE4-2l-e1B.text" = "There are a total of three subtests in Digit Span Test.\nWe will go through them one by one.";
+
+/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "Hw5-IA-G4T"; */
+"Hw5-IA-G4T.normalTitle" = "Reset";
+
+/* Class = "UILabel"; text = "Sequencing"; ObjectID = "Jau-Ty-rXo"; */
+"Jau-Ty-rXo.text" = "Sequencing";
+
+/* Class = "UILabel"; text = "What is it? 💬"; ObjectID = "K5j-GD-S5s"; */
+"K5j-GD-S5s.text" = "What is it? 💬";
+
+/* Class = "UILabel"; text = "Backward"; ObjectID = "KdT-2s-Ia7"; */
+"KdT-2s-Ia7.text" = "Backward";
+
+/* Class = "UILabel"; text = "ProMind"; ObjectID = "LKg-o5-zlG"; */
+"LKg-o5-zlG.text" = "ProMind";
+
+/* Class = "UILabel"; text = "Education Level (Current)"; ObjectID = "MEG-Jg-Dxb"; */
+"MEG-Jg-Dxb.text" = "Education Level (Current)";
+
+/* Class = "UITableViewSection"; headerTitle = "Personal Information"; ObjectID = "Myq-BO-6SV"; */
+"Myq-BO-6SV.headerTitle" = "Personal Information";
+
+/* Class = "UILabel"; text = "Experiment Type"; ObjectID = "OGP-zk-v7o"; */
+"OGP-zk-v7o.text" = "Experiment Type";
+
+/* Class = "UILabel"; text = "Circles Left: 25\nErrors: 0\nLifts: 0"; ObjectID = "Szh-H4-5cN"; */
+"Szh-H4-5cN.text" = "Circles Left: 25\nErrors: 0\nLifts: 0";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "UOY-AJ-52t"; */
+"UOY-AJ-52t.title" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Begin"; ObjectID = "Vmj-d8-pap"; */
+"Vmj-d8-pap.normalTitle" = "Begin";
+
+/* Class = "UIButton"; normalTitle = "Reset Answer"; ObjectID = "WKU-Hh-nJ5"; */
+"WKU-Hh-nJ5.normalTitle" = "Reset Answer";
+
+/* Class = "UILabel"; text = "Ethnicity"; ObjectID = "XT4-0i-wnb"; */
+"XT4-0i-wnb.text" = "Ethnicity";
+
+/* Class = "UIButton"; normalTitle = "Begin"; ObjectID = "XXf-Gh-jW7"; */
+"XXf-Gh-jW7.normalTitle" = "Begin";
+
+/* Class = "UILabel"; text = " "; ObjectID = "Xyv-2A-y3d"; */
+"Xyv-2A-y3d.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "YBx-um-00r"; */
+"YBx-um-00r.normalTitle" = "Done";
+
+/* Class = "UILabel"; text = "Remarks"; ObjectID = "YzB-2N-M63"; */
+"YzB-2N-M63.text" = "Remarks";
+
+/* Class = "UILabel"; text = "Trail making test is one of the most widely adopted neuropsychological tests for assessing processing speed and executive function due to its sensitivity, simplicity and ease of administration. "; ObjectID = "ZKG-or-VTE"; */
+"ZKG-or-VTE.text" = "Trail making test is one of the most widely adopted neuropsychological tests for assessing processing speed and executive function due to its sensitivity, simplicity and ease of administration. ";
+
+/* Class = "UILabel"; text = "ProMind is provided by THE PROVIDER 'as is' and 'with all faults.' ProMind is not intended for clinical diagnosis. Should you wish for a clinical diagnosis, please consult a specialist or a psychologist for a neuropsychological assessment."; ObjectID = "bAf-0z-gvo"; */
+"bAf-0z-gvo.text" = "ProMind is provided by THE PROVIDER 'as is' and 'with all faults.' ProMind is not intended for clinical diagnosis. Should you wish for a clinical diagnosis, please consult a specialist or a psychologist for a neuropsychological assessment.";
+
+/* Class = "UILabel"; text = "Time Taken: 0 s\nCorrect Trials: 0\nLongest Seq: 0"; ObjectID = "bnt-XF-kRP"; */
+"bnt-XF-kRP.text" = "Time Taken: 0 s\nCorrect Trials: 0\nLongest Seq: 0";
+
+/* Class = "UILabel"; text = " "; ObjectID = "cQ7-Sw-eqG"; */
+"cQ7-Sw-eqG.text" = " ";
+
+/* Class = "UILabel"; text = "Digit Span Test"; ObjectID = "d0X-n6-aWp"; */
+"d0X-n6-aWp.text" = "Digit Span Test";
+
+/* Class = "UILabel"; text = "Total Time Given: 300 s"; ObjectID = "d2U-Fi-ckm"; */
+"d2U-Fi-ckm.text" = "Total Time Given: 300 s";
+
+/* Class = "UISegmentedControl"; fUh-4L-wmq.segmentTitles[0] = "Male"; ObjectID = "fUh-4L-wmq"; */
+"fUh-4L-wmq.segmentTitles[0]" = "Male";
+
+/* Class = "UISegmentedControl"; fUh-4L-wmq.segmentTitles[1] = "Female"; ObjectID = "fUh-4L-wmq"; */
+"fUh-4L-wmq.segmentTitles[1]" = "Female";
+
+/* Class = "UILabel"; text = "Time Taken: 0 s\nCorrect Trials: 0\nLongest Seq: 0"; ObjectID = "gII-gi-kVe"; */
+"gII-gi-kVe.text" = "Time Taken: 0 s\nCorrect Trials: 0\nLongest Seq: 0";
+
+/* Class = "UINavigationItem"; title = "Experiment Profile"; ObjectID = "gV7-Dx-Bny"; */
+"gV7-Dx-Bny.title" = "Experiment Profile";
+
+/* Class = "UINavigationItem"; title = "✏️ Trail Making Test"; ObjectID = "hNQ-3d-o3e"; */
+"hNQ-3d-o3e.title" = "✏️ Trail Making Test";
+
+/* Class = "UIButton"; normalTitle = "Trail Making Test"; ObjectID = "hkQ-hF-uR0"; */
+"hkQ-hF-uR0.normalTitle" = "Trail Making Test";
+
+/* Class = "UILabel"; text = "(Please choose one)"; ObjectID = "j9s-u5-JWX"; */
+"j9s-u5-JWX.text" = "(Please choose one)";
+
+/* Class = "UILabel"; text = "Time Taken: 0 s\nCorrect Trials: 0\nLongest Seq: 0"; ObjectID = "joj-vK-PSd"; */
+"joj-vK-PSd.text" = "Time Taken: 0 s\nCorrect Trials: 0\nLongest Seq: 0";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "jzO-qk-h6w"; */
+"jzO-qk-h6w.normalTitle" = "Start";
+
+/* Class = "UINavigationItem"; title = "🧠 ProMind"; ObjectID = "kcq-Wn-hbI"; */
+"kcq-Wn-hbI.title" = "🧠 ProMind";
+
+/* Class = "UILabel"; text = "Settings ⚙️"; ObjectID = "lHf-6a-zk5"; */
+"lHf-6a-zk5.text" = "Settings ⚙️";
+
+/* Class = "UILabel"; text = "Forward"; ObjectID = "lVR-dr-uid"; */
+"lVR-dr-uid.text" = "Forward";
+
+/* Class = "UILabel"; text = "Previous Trials Digits: 123 Spoken Digits: 123"; ObjectID = "nwA-Qn-D8p"; */
+"nwA-Qn-D8p.text" = "Previous Trials Digits: 123 Spoken Digits: 123";
+
+/* Class = "UILabel"; text = "Time Left: 300 s"; ObjectID = "nyq-TK-SRo"; */
+"nyq-TK-SRo.text" = "Time Left: 300 s";
+
+/* Class = "UISegmentedControl"; o90-cn-aHz.segmentTitles[0] = "Ten: 10"; ObjectID = "o90-cn-aHz"; */
+"o90-cn-aHz.segmentTitles[0]" = "Ten: 10";
+
+/* Class = "UISegmentedControl"; o90-cn-aHz.segmentTitles[1] = "Fifteen: 15"; ObjectID = "o90-cn-aHz"; */
+"o90-cn-aHz.segmentTitles[1]" = "Fifteen: 15";
+
+/* Class = "UISegmentedControl"; o90-cn-aHz.segmentTitles[2] = "Twenty: 20"; ObjectID = "o90-cn-aHz"; */
+"o90-cn-aHz.segmentTitles[2]" = "Twenty: 20";
+
+/* Class = "UISegmentedControl"; o90-cn-aHz.segmentTitles[3] = "Twenty-Five: 25"; ObjectID = "o90-cn-aHz"; */
+"o90-cn-aHz.segmentTitles[3]" = "Twenty-Five: 25";
+
+/* Class = "UIButton"; normalTitle = "Submit Answer"; ObjectID = "ofl-f2-yPT"; */
+"ofl-f2-yPT.normalTitle" = "Submit Answer";
+
+/* Class = "UILabel"; text = "Results 💯"; ObjectID = "ogJ-VN-o1G"; */
+"ogJ-VN-o1G.text" = "Results 💯";
+
+/* Class = "UILabel"; text = "Time Taken: 0 s Correct Trials: 0 Longest Seq: 0"; ObjectID = "ooR-Vp-ODJ"; */
+"ooR-Vp-ODJ.text" = "Time Taken: 0 s Correct Trials: 0 Longest Seq: 0";
+
+/* Class = "UILabel"; text = " "; ObjectID = "rVg-cZ-KdV"; */
+"rVg-cZ-KdV.text" = " ";
+
+/* Class = "UILabel"; text = "Number of Circles: 25"; ObjectID = "rjZ-fK-I3z"; */
+"rjZ-fK-I3z.text" = "Number of Circles: 25";
+
+/* Class = "UILabel"; text = "What is it? 💬"; ObjectID = "sOH-tF-AEb"; */
+"sOH-tF-AEb.text" = "What is it? 💬";
+
+/* Class = "UILabel"; text = "There are a total of two subtests in Trail Making Test."; ObjectID = "sRh-mH-Yom"; */
+"sRh-mH-Yom.text" = "There are a total of two subtests in Trail Making Test.";
+
+/* Class = "UIButton"; normalTitle = "Begin"; ObjectID = "uMa-kG-OSC"; */
+"uMa-kG-OSC.normalTitle" = "Begin";
+
+/* Class = "UINavigationItem"; title = "🧠 ProMind"; ObjectID = "uPN-6I-9wj"; */
+"uPN-6I-9wj.title" = "🧠 ProMind";
+
+/* Class = "UIButton"; normalTitle = "Restart"; ObjectID = "ukS-wc-Awc"; */
+"ukS-wc-Awc.normalTitle" = "Restart";
+
+/* Class = "UILabel"; text = " "; ObjectID = "vey-t6-Vvj"; */
+"vey-t6-Vvj.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Digit Span Test"; ObjectID = "wrc-Iq-6Th"; */
+"wrc-Iq-6Th.normalTitle" = "Digit Span Test";

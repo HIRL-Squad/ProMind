@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import LanguageManager_iOS
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
 
+        // Set default language to English when app is first launching.
+        LanguageManager.shared.defaultLanguage = .en
+        
         return true
     }
 

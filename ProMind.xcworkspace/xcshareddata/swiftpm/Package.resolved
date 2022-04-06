@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "languagemanager-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Abedalkareem/LanguageManager-iOS",
+      "state" : {
+        "revision" : "2dc6f13772167b00cf596a2900db57d863b18711",
+        "version" : "1.2.6"
+      }
+    }
+  ],
+  "version" : 2
+}

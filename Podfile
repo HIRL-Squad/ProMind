@@ -11,6 +11,7 @@ target 'ProMind' do
   pod 'SwiftyGif'
   pod 'IQKeyboardManagerSwift'
   pod 'Instructions', '~> 2.1.0'
+  pod 'LanguageManager-iOS'
   
   # target 'ProMindTests' do
   #   inherit! :search_paths

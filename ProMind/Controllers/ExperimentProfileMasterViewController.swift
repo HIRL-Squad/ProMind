@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 
 /**
  The delegate of SubjectMasterDetailViewController must conform to MasterViewControllerDelegate.
@@ -19,15 +20,87 @@ protocol MasterViewControllerDelegate: AnyObject {
     func masterViewController(_ masterViewController: ExperimentProfileMasterViewController, didSelectQuestion question: String, optionsForQuestion options: [String]?)
 }
 
+
+/**
+ Use extension to add a "localized" method to all String instances which updates global setting UserDefault to change app language at run time.
+ **/
+extension String {
+    var localized: String {
+        if let _ = UserDefaults.standard.string(forKey: "i18n_language") {} else {
+            // UserDefaults.standard.set("en", forKey: "i18n_language")
+            UserDefaults.standard.synchronize()
+        }
+
+        let lang = UserDefaults.standard.string(forKey: "i18n_language")
+
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        
+        guard let path = path else {
+            return NSLocalizedString(self, comment: "")
+        }
+        
+        let bundle = Bundle(path: path)
+
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+    }
+}
+ 
+
 // We automatically conform to UITableViewDelegate because we are using UITableViewController
 class ExperimentProfileMasterViewController: UITableViewController {
     @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var LanguageSwitch: UISegmentedControl!
     
     weak var delegate: MasterViewControllerDelegate?
     
     private var canStart = true
     private var currentIndexPath = IndexPath(row: 0, section: 0)
+    
+    @IBAction func LanguageSwitch(_ sender: UISegmentedControl) {
         
+        switch (sender).selectedSegmentIndex {
+        case 0:
+            // Override the global setting for app language
+            UserDefaults.standard.set("en", forKey: "i18n_language")
+            // Return to the initial view of main storyboard to re-render all UI.
+            LanguageManager.shared.setLanguage(language: .en)
+                { title -> UIViewController in
+                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                  return storyboard.instantiateInitialViewController()!
+                } animation: { view in
+                  view.transform = CGAffineTransform(scaleX: 2, y: 2)
+                  view.alpha = 0
+                }
+        case 1:
+            // Overrides the global setting for app language
+            UserDefaults.standard.set("ms", forKey: "i18n_language")
+            // Return to the initial view of main storyboard to re-render all UI.
+            LanguageManager.shared.setLanguage(language: .ms)
+                { title -> UIViewController in
+                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                  return storyboard.instantiateInitialViewController()!
+                } animation: { view in
+                  view.transform = CGAffineTransform(scaleX: 2, y: 2)
+                  view.alpha = 0
+                }
+        case 2:
+            // Overrides the global setting for app language
+            UserDefaults.standard.set("zhHans", forKey: "i18n_language")
+            // Return to the initial view of main storyboard to re-render all UI.
+            LanguageManager.shared.setLanguage(language: .zhHans)
+                { title -> UIViewController in
+                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                  return storyboard.instantiateInitialViewController()!
+                } animation: { view in
+                  view.transform = CGAffineTransform(scaleX: 2, y: 2)
+                  view.alpha = 0
+                }
+        default:
+            break
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -106,7 +179,8 @@ class ExperimentProfileMasterViewController: UITableViewController {
 // MARK: - UITableViewController Implementation
 extension ExperimentProfileMasterViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return Experiment.shared.experimentType == .Trial ? 1 : 3
+        // Edittd (1 : 3 -> 2: 4): Added a new section: Language
+        return Experiment.shared.experimentType == .Trial ? 2 : 4
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,6 +35,8 @@
 		A4BDE3472701A5220094EE66 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDE3462701A5220094EE66 /* Utils.swift */; };
 		A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4754083266CE36C009E0B4B /* Main.storyboard */; };
 		A4E0D41C26D7DD26006D6399 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0D41B26D7DD26006D6399 /* InitialViewController.swift */; };
+		D91E8B7527E7B54900089FA4 /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = D91E8B7427E7B54900089FA4 /* LanguageManager-iOS */; };
+		D96D066327E799FA00F53AEB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D96D066527E799FA00F53AEB /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,10 @@
 		A4E0D41B26D7DD26006D6399 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		ABF8D6C5EC931200C73F3749 /* Pods-ProMind.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProMind.release.xcconfig"; path = "Target Support Files/Pods-ProMind/Pods-ProMind.release.xcconfig"; sourceTree = "<group>"; };
 		C5175792F98A3CBC84883239 /* Pods_ProMind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProMind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D96D065F27E799DD00F53AEB /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D96D066027E799DD00F53AEB /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Main.strings; sourceTree = "<group>"; };
+		D96D066427E799FA00F53AEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D96D066627E799FE00F53AEB /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D91E8B7527E7B54900089FA4 /* LanguageManager-iOS in Frameworks */,
 				A1472194EA3CD9BF63592183 /* Pods_ProMind.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +146,7 @@
 		A4754071266CE36C009E0B4B = {
 			isa = PBXGroup;
 			children = (
+				D96D066527E799FA00F53AEB /* Localizable.strings */,
 				A475407C266CE36C009E0B4B /* ProMind */,
 				A4754093266CE36F009E0B4B /* ProMindTests */,
 				A475409E266CE36F009E0B4B /* ProMindUITests */,
@@ -267,6 +275,9 @@
 			dependencies = (
 			);
 			name = ProMind;
+			packageProductDependencies = (
+				D91E8B7427E7B54900089FA4 /* LanguageManager-iOS */,
+			);
 			productName = ProMind;
 			productReference = A475407A266CE36C009E0B4B /* ProMind.app */;
 			productType = "com.apple.product-type.application";
@@ -336,8 +347,12 @@
 			knownRegions = (
 				en,
 				Base,
+				ms,
 			);
 			mainGroup = A4754071266CE36C009E0B4B;
+			packageReferences = (
+				D91E8B7327E7B54900089FA4 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
+			);
 			productRefGroup = A475407B266CE36C009E0B4B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -355,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */,
+				D96D066327E799FA00F53AEB /* Localizable.strings in Resources */,
 				A470A61226FAEB1800C1DED3 /* avatar_1.gif in Resources */,
 				A475408A266CE36F009E0B4B /* LaunchScreen.storyboard in Resources */,
 				A470A61426FAF09000C1DED3 /* avatar_2.gif in Resources */,
@@ -484,6 +500,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A4754084266CE36C009E0B4B /* Base */,
+				D96D066027E799DD00F53AEB /* ms */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -492,8 +509,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				A4754089266CE36F009E0B4B /* Base */,
+				D96D065F27E799DD00F53AEB /* ms */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D96D066527E799FA00F53AEB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D96D066427E799FA00F53AEB /* en */,
+				D96D066627E799FE00F53AEB /* ms */,
+			);
+			name = Localizable.strings;
+			path = ProMind/Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -503,6 +531,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -564,6 +593,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -789,6 +819,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D91E8B7327E7B54900089FA4 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Abedalkareem/LanguageManager-iOS";
+			requirement = {
+				kind = exactVersion;
+				version = 1.2.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D91E8B7427E7B54900089FA4 /* LanguageManager-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D91E8B7327E7B54900089FA4 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
+			productName = "LanguageManager-iOS";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A4754072266CE36C009E0B4B /* Project object */;
 }

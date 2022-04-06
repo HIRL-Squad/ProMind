@@ -381,7 +381,13 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
             return
         }
         
-        let instruction = instructions[instructionState] // To get instructions for either test A or B
+        // let instructionString = instructions[instructionState]
+        
+        // let instruction = NSLocalizedString(instructionString, comment: "Localize TMT & DST Instructions")
+        
+        // To get instructions for either test A or B. Set instruction to NSLocalizedString.
+        let instruction = instructions[instructionState].localized
+        
         setInstructionLabelText(message: instruction)
 
         switch instructionState {
@@ -412,7 +418,20 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
     
     private func speak(text: String, preUtteranceDelay: TimeInterval) {
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
+        
+        // Change synthesizer voice based on app language setting.
+        let appLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+        switch appLanguage {
+        case "en":
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        case "ms":
+            utterance.voice = AVSpeechSynthesisVoice(language: "ms")
+        case "zhHans":
+            utterance.voice = AVSpeechSynthesisVoice(language: "zhHans")
+        default:
+            fatalError("Unsupported Language in Language Setting! ")
+        }
+        
         utterance.rate = K.UtteranceRate.instruction
         utterance.preUtteranceDelay = preUtteranceDelay
         synthesizer?.speak(utterance)
