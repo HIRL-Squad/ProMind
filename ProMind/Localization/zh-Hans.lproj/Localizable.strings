@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  ProMind
+
+  Created by HAIKUO YU on 21/3/22.
+  
+*/
+
+// MARK: - Digit Span Test
+
+// Forward Number Span
+"This is part of your memory and concentration task. " = "这是您记忆力和注意力任务的一部分。";
+"You will hear some numbers. " = "您会听到一些数字。";
+"Once done, you will hear a bell, like so: " = "数字播报完成后，您会听到一声铃声，像这样：";
+"(Bell Sound)" = "（铃声）";
+"When you hear the bell, repeat the numbers in the same order. " = "当您听到铃声时，请以相同的数字顺序重复数字。 ";
+"For example, if you hear: " = "比如，当您听到：";
+"You would say: " = "您应该说：";
+"If you hear: " = "如果您听到：";
+"What would you say? " = "请问您应该怎么说呢？";
+"That is incorrect, you would say: " = "您说错了，您应该说：";
+"Good job, now let’s do the actual test. " = "太棒了，现在让我们正式进入测试吧。";
+"Ready? " = "准备好了吗？";
+"Go! " = "开始！";
+
+// Backwards Number Span
+"Now, let’s move on to the second task. " = "现在，我们来继续第二个任务。";
+"You will hear some numbers. " = "您会听到一些数字。";
+"Once done, you will hear a bell, like so: " = "数字播报完成后，您会听到一声铃声，像这样：";
+"(Bell Sound)" = "（铃声）";
+"This time, you will have to repeat the numbers backwards. " = "这一次，您将倒着重复这个数字。";
+"For example, if you hear: " = "比如，当您听到：";
+"you would say: " = "您应该说：";
+"If you hear: " = "如果您听到：";
+"What would you say? " = "请问您应该怎么说呢？";
+"That is incorrect, you would say: " = "您说错了，您应该说：";
+"Good job, now let's do the actual test. " = "太棒了，现在让我们正式进入测试吧。";
+"Ready? " = "准备好了吗？";
+"Go! " = "开始！";
+
+// MARK: - Trail Making Test

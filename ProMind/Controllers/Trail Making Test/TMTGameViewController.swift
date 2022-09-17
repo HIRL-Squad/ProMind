@@ -421,17 +421,8 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
         
         // Change synthesizer voice based on app language setting.
         let appLanguage = UserDefaults.standard.string(forKey: "i18n_language")
-        switch appLanguage {
-        case "en":
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        case "ms":
-            utterance.voice = AVSpeechSynthesisVoice(language: "ms")
-        case "zhHans":
-            utterance.voice = AVSpeechSynthesisVoice(language: "zhHans")
-        default:
-            fatalError("Unsupported Language in Language Setting! ")
-        }
         
+        utterance.voice = AVSpeechSynthesisVoice(language: appLanguage)
         utterance.rate = K.UtteranceRate.instruction
         utterance.preUtteranceDelay = preUtteranceDelay
         synthesizer?.speak(utterance)

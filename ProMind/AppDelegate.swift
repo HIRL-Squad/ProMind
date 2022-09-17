@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
 
         // Set default language to English when app is first launching.
-        LanguageManager.shared.defaultLanguage = .en
+        // LanguageManager.shared.defaultLanguage = .en
         
         return true
     }

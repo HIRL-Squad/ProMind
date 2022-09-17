@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings
+  ProMind
+
+  Created by HAIKUO YU on 21/3/22.
+  
+*/
+
+// MARK: - Digit Span Test
+
+/// Forward Number Span
+"This is part of your memory and concentration task. " = "Ini adalah sebahagian dari latihan memori dan konsentrasi anda. ";
+"You will hear some numbers. " = "Anda akan mendengar beberapa numbor. ";
+"Once done, you will hear a bell, like so: " = "Kemudian, anda akan dengar bunyi loceng seperti ini: ";
+"(Bell Sound)" = "(Bunyi Loceng)";
+"When you hear the bell, repeat the numbers in the same order. " = "Apabila anda dengar bunyi loceng, ulang nombor-nomborya dalam urutan yang sama. ";
+"For example, if you hear: " = "Contohnya, sekiranya anda dengar: ";
+"You would say: " = "Anda perlu ulang: ";
+"If you hear: " = "Kalau anda dengar: ";
+"What would you say? " = "cuba ulang nombor-nombornya? ";
+"That is incorrect, you would say: " = "Salah, anda harus ulang: ";
+"Good job, now let’s do the actual test. " = "Baik, sekarang, ayuh kita lakukan ujian pertama. ";
+"Ready? " = "Sedia? ";
+"Go! " = "Mula! ";
+
+// Backwards Number Span
+"Now, let’s move on to the second task. " = "Sekarang, ayuh kita buat latihan kedua. ";
+"You will hear some numbers. " = "Anda akan mendengar beberapa numbor. ";
+"Once done, you will hear a bell, like so: " = "Kemudian, anda akan dengar bunyi loceng seperti ini: ";
+"(Bell Sound)" = "(Bunyi Loceng)";
+"This time, you will have to repeat the numbers backwards. " = "Kali ini, anda harus ulang nombor-nombornya dari belakang. ";
+"For example, if you hear: " = "Contohnya, sekiranya anda dengar: ";
+"you would say: " = "Anda perlu ulang: ";
+"If you hear: " = "Kalau anda dengar: ";
+"What would you say? " = "cuba ulang nombor-nombornya? ";
+"That is incorrect, you would say: " = "Salah, anda harus ulang: ";
+"Good job, now let's do the actual test. " = "Baik, sekarang, ayuh kita lakukan ujian pertama. ";
+"Ready? " = "Sedia? ";
+"Go! " = "Mula! ";
+
+// MARK: - Trail Making Test
+
+
+
+

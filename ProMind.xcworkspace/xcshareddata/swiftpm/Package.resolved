@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "devicekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/devicekit/DeviceKit",
+      "state" : {
+        "branch" : "master",
+        "revision" : "8e2432f99915c6aa03d73b50152bf64dc87d0813"
+      }
+    },
+    {
       "identity" : "languagemanager-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Abedalkareem/LanguageManager-iOS",

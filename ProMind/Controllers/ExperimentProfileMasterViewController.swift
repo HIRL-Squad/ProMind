@@ -27,7 +27,7 @@ protocol MasterViewControllerDelegate: AnyObject {
 extension String {
     var localized: String {
         if let _ = UserDefaults.standard.string(forKey: "i18n_language") {} else {
-            // UserDefaults.standard.set("en", forKey: "i18n_language")
+            UserDefaults.standard.set("en", forKey: "i18n_language")
             UserDefaults.standard.synchronize()
         }
 
@@ -49,52 +49,21 @@ extension String {
 // We automatically conform to UITableViewDelegate because we are using UITableViewController
 class ExperimentProfileMasterViewController: UITableViewController {
     @IBOutlet weak var ageTextField: UITextField!
-    @IBOutlet weak var LanguageSwitch: UISegmentedControl!
+    @IBOutlet weak var languageSwitch: UISegmentedControl!
     
     weak var delegate: MasterViewControllerDelegate?
     
     private var canStart = true
     private var currentIndexPath = IndexPath(row: 0, section: 0)
     
-    @IBAction func LanguageSwitch(_ sender: UISegmentedControl) {
-        
+    private let appLanguage = AppLanguage()
+    
+    @IBAction func languageSwitch(_ sender: UISegmentedControl) {
         switch (sender).selectedSegmentIndex {
         case 0:
-            // Override the global setting for app language
-            UserDefaults.standard.set("en", forKey: "i18n_language")
-            // Return to the initial view of main storyboard to re-render all UI.
-            LanguageManager.shared.setLanguage(language: .en)
-                { title -> UIViewController in
-                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                  return storyboard.instantiateInitialViewController()!
-                } animation: { view in
-                  view.transform = CGAffineTransform(scaleX: 2, y: 2)
-                  view.alpha = 0
-                }
+            appLanguage.setLanguage(.English)
         case 1:
-            // Overrides the global setting for app language
-            UserDefaults.standard.set("ms", forKey: "i18n_language")
-            // Return to the initial view of main storyboard to re-render all UI.
-            LanguageManager.shared.setLanguage(language: .ms)
-                { title -> UIViewController in
-                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                  return storyboard.instantiateInitialViewController()!
-                } animation: { view in
-                  view.transform = CGAffineTransform(scaleX: 2, y: 2)
-                  view.alpha = 0
-                }
-        case 2:
-            // Overrides the global setting for app language
-            UserDefaults.standard.set("zhHans", forKey: "i18n_language")
-            // Return to the initial view of main storyboard to re-render all UI.
-            LanguageManager.shared.setLanguage(language: .zhHans)
-                { title -> UIViewController in
-                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                  return storyboard.instantiateInitialViewController()!
-                } animation: { view in
-                  view.transform = CGAffineTransform(scaleX: 2, y: 2)
-                  view.alpha = 0
-                }
+            appLanguage.setLanguage(.Malay)
         default:
             break
         }
@@ -141,6 +110,19 @@ class ExperimentProfileMasterViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let currentLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+        
+        switch currentLanguage {
+        case "en":
+            languageSwitch.selectedSegmentIndex = 0
+        case "ms":
+            languageSwitch.selectedSegmentIndex = 1
+        default:
+            print("User language is neither English nor Malay!")
+        }
+        
+        
         print("ExperimentProfileMasterViewController :: viewWillAppear")
         // Experiment.shared = Experiment()
     }
