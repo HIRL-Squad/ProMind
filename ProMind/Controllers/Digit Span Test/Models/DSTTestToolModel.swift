@@ -66,7 +66,7 @@ class RepeatingTimer {
             throw TimerError.nilTestType
         }
         
-        notificationBroadcast.post(name: "Timer Increment \(viewModel)", object: (testType, counter))
+        notificationBroadcast.post("Timer Increment \(viewModel)", object: (testType, counter))
     }
 }
 
@@ -203,10 +203,10 @@ class SpokenResultFilter {
         }
         
         if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: filteredResult)) {
-            notificationBroadcast.post(name: "Legal Spoken Result \(viewModel)", object: nil)
+            notificationBroadcast.post("Legal Spoken Result \(viewModel)", object: nil)
         } else {
             filteredResult = "   " // Empty string will result in "Out of bounds" for extension UILabel func setCharacterSpacing().
-            notificationBroadcast.post(name: "Illegal Spoken Result \(viewModel)", object: nil)
+            notificationBroadcast.post("Illegal Spoken Result \(viewModel)", object: nil)
         }
         
         return filteredResult

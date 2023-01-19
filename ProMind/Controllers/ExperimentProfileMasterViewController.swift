@@ -56,7 +56,7 @@ class ExperimentProfileMasterViewController: UITableViewController {
     private var canStart = true
     private var currentIndexPath = IndexPath(row: 0, section: 0)
     
-    private let appLanguage = AppLanguage()
+    private let appLanguage = AppLanguage.shared
     
     @IBAction func languageSwitch(_ sender: UISegmentedControl) {
         switch (sender).selectedSegmentIndex {
@@ -64,6 +64,8 @@ class ExperimentProfileMasterViewController: UITableViewController {
             appLanguage.setLanguage(.English)
         case 1:
             appLanguage.setLanguage(.Malay)
+        case 2:
+            appLanguage.setLanguage(.Chinese)
         default:
             break
         }
@@ -111,15 +113,18 @@ class ExperimentProfileMasterViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let currentLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+        let currentLanguage = appLanguage.getCurrentLanguage()
         
         switch currentLanguage {
         case "en":
             languageSwitch.selectedSegmentIndex = 0
         case "ms":
             languageSwitch.selectedSegmentIndex = 1
+        case "zh-Hans":
+            languageSwitch.selectedSegmentIndex = 2
         default:
-            print("User language is neither English nor Malay!")
+            print("User language is neither English, Malay nor Chinese!")
+            print(currentLanguage)
         }
         
         
@@ -236,8 +241,11 @@ extension ExperimentProfileMasterViewController: DetailViewControllerDelegate {
         
         if let cell = tableView.cellForRow(at: currentIndexPath) {
             let tableViewLabels = cell.contentView.subviews // Views of a Table View Cell, e.g., [UILabel("ExperimentType"), UILabel("Trial")]
-            let detailLabel = tableViewLabels[1] as! UILabel // Get the second element because that is the label to display the chosen option
-            detailLabel.text = option
+            if tableViewLabels.count >= 2 {
+                let detailLabel = tableViewLabels[1] as! UILabel // Get the second element because that is the label to display the chosen option
+                detailLabel.text = option
+            }
+            
         }
     }
     
@@ -293,7 +301,7 @@ extension ExperimentProfileMasterViewController: DetailViewControllerDelegate {
             }
         }
 
-        if canStart {
+        if canStart { 
             let alert = UIAlertController(
                 title: "Experiment Details",
                 message: "Please confirm your experiment details below.\n\n\(Experiment.shared.toString())",

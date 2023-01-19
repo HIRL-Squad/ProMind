@@ -31,6 +31,7 @@ enum SFSpeechDigitNumberRecognizerError: Error {
     case recognizerIsUnavailable
     case unableToCreateBufferRecognitionRequestObject
     case nilDigitLabel
+    case illegalApplicationLanguageReceived
 }
 
 enum RecognitionTaskError: Error {

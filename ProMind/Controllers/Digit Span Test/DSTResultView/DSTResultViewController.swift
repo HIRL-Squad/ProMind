@@ -13,7 +13,7 @@ class DSTResultViewController: UIViewController {
     @IBOutlet weak var backwardResultLabel: UILabel!
     @IBOutlet weak var sequencingResultLabel: UILabel!
     
-    private let appLanguage = AppLanguage()
+    private let appLanguage = AppLanguage.shared
     private var synthesizer: AVSpeechSynthesizer?
     var gameResultStatistics: [DSTGameStatistics]?
     
@@ -85,7 +85,7 @@ class DSTResultViewController: UIViewController {
         print("HttpBody: \(String(describing: httpBody))")
         print("URL: \(String(describing: url))")
         
-        // Utils.postRequest(url: url, httpBody: httpBody)
+        Utils.postRequest(url: url, httpBody: httpBody)
     }
     
     private func getDSTResultsJson() async -> Data? {

@@ -9,7 +9,7 @@ import UIKit
 import Speech
 
 class TMTResultViewController: UIViewController {
-    static var numCircles = 25 // Default is 25
+    static var numCircles = 15 // Default is 25
     
     @IBOutlet weak var numCirclesLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
@@ -30,7 +30,7 @@ class TMTResultViewController: UIViewController {
 //            TMTGameStatistics(numCirclesLeft: 0, numErrors: 2, numLifts: 3, totalTimeTaken: 124),
 //            TMTGameStatistics(numCirclesLeft: 0, numErrors: 5, numLifts: 8, totalTimeTaken: 179)
 //        ]
-        
+        synthesizer = AVSpeechSynthesizer()
         congratulate()
         showSettings()
         showResults()
@@ -44,18 +44,20 @@ class TMTResultViewController: UIViewController {
     }
     
     private func congratulate() {
-        synthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: K.TMT.finishMessage)
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_Aaron_en-US_compact")
-        utterance.rate = K.UtteranceRate.instruction
+        let utterance = AVSpeechUtterance(string: K.TMT.finishMessage.localized)
+        let appLanguage = AppLanguage.shared.getCurrentLanguage()
+        
+        utterance.voice = AVSpeechSynthesisVoice(language: appLanguage)
+        utterance.rate = 0.4
         utterance.preUtteranceDelay = 0.5
+        
         synthesizer?.speak(utterance)
     }
     
     private func showSettings() {
         let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 36)]
         let numCirclesText = NSMutableAttributedString(string: "Number of Circles: ", attributes: attrs)
-        numCirclesText.append(NSMutableAttributedString(string: "\(TMTResultViewController.numCircles)"))
+        numCirclesText.append(NSMutableAttributedString(string: "\(15)"))
         numCirclesLabel.attributedText = numCirclesText
         
         let totalTimeText = NSMutableAttributedString(string: "Total Time Given: ", attributes: attrs)
@@ -86,7 +88,7 @@ class TMTResultViewController: UIViewController {
         }
         
         var body: [String: Any] = Experiment.shared.getExperimentBody()
-        body["numStartingCircles"] = TMTResultViewController.numCircles
+        body["numStartingCircles"] = 15
         body["totalTimeTaken"] = [resultStats[0].totalTimeTaken, resultStats[1].totalTimeTaken]
         body["numCirclesLeft"] = [resultStats[0].numCirclesLeft, resultStats[1].numCirclesLeft]
         body["numErrors"] = [resultStats[0].numErrors, resultStats[1].numErrors]

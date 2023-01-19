@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import DeviceKit
 import Instructions
+import AVFAudio
 
 class DSTMainViewController: UIViewController {
     
@@ -24,12 +25,12 @@ class DSTMainViewController: UIViewController {
     
     
     @IBAction func resetAnswerButtonPressed(_ sender: UIButton) {
-        notification.post(name: "Reset Answer Button Pressed \(mainViewModel)", object: nil)
+        notification.post("Reset Answer Button Pressed \(mainViewModel)", object: nil)
         hideUnrecognizedReminder()
     }
     
     @IBAction func submitAnswerButtonPressed(_ sender: UIButton) {
-        notification.post(name: "Submit Answer Button Pressed \(mainViewModel)", object: nil)
+        notification.post("Submit Answer Button Pressed \(mainViewModel)", object: nil)
     }
     
     /// We use singleton pattern here for those two ViewModels.
@@ -37,14 +38,13 @@ class DSTMainViewController: UIViewController {
     @ObservedObject var instructionSpeaking = DSTMainInstructionSpeakingViewModel.shared
     @ObservedObject var speechRecognition = DSTMainSpeechRecognitionViewModel.shared
     
+    private let appLanguage = AppLanguage.shared
     private let notification = NotificationBroadcast()
     private let mainViewModel = DSTViewModels.DSTMainViewModel
     private let coachMarksController = CoachMarksController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,37 +65,43 @@ class DSTMainViewController: UIViewController {
         
         instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
         instructionSpeaking.resetSpeechStatus()
+        
+        speechRecognition.updateRecognizerLanguage(withCode: appLanguage.getCurrentLanguage())
         speechRecognition.resetRecognizer()
         
         UIOptimization()
         
         /// Set up Notification Observer.
-        notification.addObserver(self, selector: #selector(updateUILabelText(notification:)), name: "Instruction Text \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(playBellSound), name: "Play Bell Sound \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(loadGifImage), name: "Display Gif Image \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(displayUIAlert(notification:)), name: "Display UIAlert \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(updateDigitLabel(notification:)), name: "Update Digit Label \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(startRecognitionTask), name: "Start Recognition Task \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(showRecognizerButtons), name: "Show Recognizer Buttons \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(resetDigitLabel), name: "Reset Digit Label \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(playGifImage), name: "Play Gif Image \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(stopPlayingGif), name: "Stop Playing Gif \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(showBeginButton), name: "Show Begin Button \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(setDigitRectangle(notification:)), name: "Set Digit Rectangle \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(removeDigitRectangle(notification:)), name: "Remove Digit Rectangle \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(showUnrecognizedReminder), name: "Illegal Spoken Result \(mainViewModel)", object: nil)
-        notification.addObserver(self, selector: #selector(hideUnrecognizedReminder), name: "Legal Spoken Result \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(updateUILabelText(notification:)), "Instruction Text \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(playBellSound), "Play Bell Sound \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(loadGifImage), "Display Gif Image \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(displayUIAlert(notification:)), "Display UIAlert \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(updateDigitLabel(notification:)), "Update Digit Label \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(startRecognitionTask), "Start Recognition Task \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(showRecognizerButtons), "Show Recognizer Buttons \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(resetDigitLabel), "Reset Digit Label \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(playGifImage), "Play Gif Image \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(stopPlayingGif), "Stop Playing Gif \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(showBeginButton), "Show Begin Button \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(setDigitRectangle(notification:)), "Set Digit Rectangle \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(removeDigitRectangle(notification:)), "Remove Digit Rectangle \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(mainViewModel)", object: nil)
+        
+        NetworkMonitor.shared.stopMonitoring()
+        NetworkMonitor.shared.startMonitoring()
+        
+        if NetworkMonitor.shared.isConnected {
+            print("Internet :: Connected!")
+        } else {
+            print("Internet :: Not Connected!")
+            presentAlertForInternet(title: "No Internet Connection", msg: "This app needs Internet access to enable speech recognition and submit test results!")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         instructionSpeaking.displayForwardNumberSpanInstructions()
-        
-        if let appLanguage = UserDefaults.standard.string(forKey: "i18n_language") {
-            print("App language is \(appLanguage)")
-        } else {
-            print("Unable to fetch the app language")
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -173,7 +179,6 @@ extension DSTMainViewController {
 }
 
 // MARK: - CoachMarkController
-
 extension DSTMainViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
@@ -419,12 +424,35 @@ extension DSTMainViewController {
 }
 
 
+/// Display Alert for No Internet Access.
+extension DSTMainViewController {
+    
+    private func presentAlertForInternet(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+            let url = URL(string: UIApplication.openSettingsURLString)!
+            UIApplication.shared.open(url)
+        })
+        alertController.addAction(UIAlertAction(title: "Close", style: .cancel))
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+        }
+    }
+}
+
+
 extension UILabel {
-    public func setCharacterSpacing(by value: Double = 1.15) {
-        if let textString = self.text {
-            let attributedString = NSMutableAttributedString(string: textString)
-            attributedString.addAttribute(NSAttributedString.Key.kern, value: value, range: NSRange(location: 0, length: attributedString.length - 1))
-            attributedText = attributedString
+    public func setCharacterSpacing(by value: Double) {
+        if let text = self.text { // There is still a chance to have "", which is not nil and has a length of 0!!!
+            
+            guard text.count > 0 else {
+                return
+            }
+            
+            let attributedString = NSMutableAttributedString(string: text)
+            attributedString.addAttribute(NSAttributedString.Key.kern, value: value, range: NSRange(location: 0, length: attributedString.length - 1)) // 'NSMutableRLEArray objectAtIndex:effectiveRange:: Out of bounds' may happen here with ""
+            self.attributedText = attributedString
         }
     }
 }

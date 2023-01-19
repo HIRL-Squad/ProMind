@@ -18,7 +18,7 @@
 "7QC-ep-M8C.text" = "Statistics (Temporary - will be hidden during actual  test)";
 
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "8FL-Wv-PXJ"; */
-"8FL-Wv-PXJ.normalTitle" = "Done";
+"8FL-Wv-PXJ.normalTitle" = "完成";
 
 /* Class = "UILabel"; text = "You may start to repeat the digits verbally now"; ObjectID = "8Gj-Hx-tPU"; */
 "8Gj-Hx-tPU.text" = "You may start to repeat the digits verbally now";
@@ -42,7 +42,7 @@
 "DFo-12-1tL.text" = "Statistics \n(Temporary - will be hidden in actual  test)";
 
 /* Class = "UIButton"; normalTitle = "Start"; ObjectID = "FcW-if-u4f"; */
-"FcW-if-u4f.normalTitle" = "Start";
+"FcW-if-u4f.normalTitle" = "开始";
 
 /* Class = "UINavigationItem"; title = "Test Selection"; ObjectID = "FgJ-A2-LvE"; */
 "FgJ-A2-LvE.title" = "Test Selection";
@@ -63,7 +63,7 @@
 "HE4-2l-e1B.text" = "There are a total of three subtests in Digit Span Test.\nWe will go through them one by one.";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "Hw5-IA-G4T"; */
-"Hw5-IA-G4T.normalTitle" = "Reset";
+"Hw5-IA-G4T.normalTitle" = "重置";
 
 /* Class = "UILabel"; text = "Sequencing"; ObjectID = "Jau-Ty-rXo"; */
 "Jau-Ty-rXo.text" = "Sequencing";
@@ -102,22 +102,22 @@
 "UOY-AJ-52t.title" = "Back";
 
 /* Class = "UIButton"; normalTitle = "Begin"; ObjectID = "Vmj-d8-pap"; */
-"Vmj-d8-pap.normalTitle" = "Begin";
+"Vmj-d8-pap.normalTitle" = "开始";
 
 /* Class = "UIButton"; normalTitle = "Reset Answer"; ObjectID = "WKU-Hh-nJ5"; */
-"WKU-Hh-nJ5.normalTitle" = "Reset Answer";
+"WKU-Hh-nJ5.normalTitle" = "重置";
 
 /* Class = "UILabel"; text = "Ethnicity"; ObjectID = "XT4-0i-wnb"; */
 "XT4-0i-wnb.text" = "Ethnicity";
 
 /* Class = "UIButton"; normalTitle = "Begin"; ObjectID = "XXf-Gh-jW7"; */
-"XXf-Gh-jW7.normalTitle" = "Begin";
+"XXf-Gh-jW7.normalTitle" = "开始";
 
 /* Class = "UILabel"; text = " "; ObjectID = "Xyv-2A-y3d"; */
 "Xyv-2A-y3d.text" = " ";
 
 /* Class = "UIButton"; normalTitle = "Done"; ObjectID = "YBx-um-00r"; */
-"YBx-um-00r.normalTitle" = "Done";
+"YBx-um-00r.normalTitle" = "完成";
 
 /* Class = "UILabel"; text = "Remarks"; ObjectID = "YzB-2N-M63"; */
 "YzB-2N-M63.text" = "Remarks";
@@ -171,7 +171,7 @@
 "joj-vK-PSd.text" = "Time Taken: 0 s\nCorrect Trials: 0\nLongest Seq: 0";
 
 /* Class = "UIButton"; normalTitle = "Start"; ObjectID = "jzO-qk-h6w"; */
-"jzO-qk-h6w.normalTitle" = "Start";
+"jzO-qk-h6w.normalTitle" = "开始";
 
 /* Class = "UINavigationItem"; title = "🧠 ProMind"; ObjectID = "kcq-Wn-hbI"; */
 "kcq-Wn-hbI.title" = "🧠 ProMind";
@@ -201,7 +201,7 @@
 "o90-cn-aHz.segmentTitles[3]" = "Twenty-Five: 25";
 
 /* Class = "UIButton"; normalTitle = "Submit Answer"; ObjectID = "ofl-f2-yPT"; */
-"ofl-f2-yPT.normalTitle" = "Submit Answer";
+"ofl-f2-yPT.normalTitle" = "提交";
 
 /* Class = "UILabel"; text = "Results 💯"; ObjectID = "ogJ-VN-o1G"; */
 "ogJ-VN-o1G.text" = "Results 💯";
@@ -222,13 +222,13 @@
 "sRh-mH-Yom.text" = "There are a total of two subtests in Trail Making Test.";
 
 /* Class = "UIButton"; normalTitle = "Begin"; ObjectID = "uMa-kG-OSC"; */
-"uMa-kG-OSC.normalTitle" = "Begin";
+"uMa-kG-OSC.normalTitle" = "开始";
 
 /* Class = "UINavigationItem"; title = "🧠 ProMind"; ObjectID = "uPN-6I-9wj"; */
 "uPN-6I-9wj.title" = "🧠 ProMind";
 
 /* Class = "UIButton"; normalTitle = "Restart"; ObjectID = "ukS-wc-Awc"; */
-"ukS-wc-Awc.normalTitle" = "Restart";
+"ukS-wc-Awc.normalTitle" = "重新观看";
 
 /* Class = "UILabel"; text = " "; ObjectID = "vey-t6-Vvj"; */
 "vey-t6-Vvj.text" = " ";

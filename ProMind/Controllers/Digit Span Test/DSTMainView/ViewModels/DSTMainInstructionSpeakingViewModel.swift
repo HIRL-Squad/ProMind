@@ -31,8 +31,8 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         self.audioPlayer.delegate = self
         
         notificationBroadcast.removeAllObserverFrom(self)
-        notificationBroadcast.addObserver(self, selector: #selector(displayHint), name: "Display Hint \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(displaySuccessfulMessages), name: "Display Successful Messages \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(displayHint), "Display Hint \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(displaySuccessfulMessages), "Display Successful Messages \(viewModel)", object: nil)
     }
     
     deinit {
@@ -45,7 +45,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     /// Update UILabel with instruction text delivered as Notification object.
     internal func speechDidStart() {
         let instructionText = digitSpanTest.forwardNumberSpanInstructions[speechStatus.index]
-        notificationBroadcast.post(name: "Instruction Text \(viewModel)", object: instructionText)
+        notificationBroadcast.post("Instruction Text \(viewModel)", object: instructionText)
     }
     
     /// Increase the instruction index after speech is finished.
@@ -59,10 +59,10 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
             ///  Display Instruction: (Bell Sound) but do not speak it out.
             let instructionText = digitSpanTest.forwardNumberSpanInstructions[speechStatus.index].localized
-            notificationBroadcast.post(name: "Instruction Text \(viewModel)", object: instructionText)
+            notificationBroadcast.post("Instruction Text \(viewModel)", object: instructionText)
             
             /// Play bell sound.
-            notificationBroadcast.post(name: "Play Bell Sound \(viewModel)", object: nil)
+            notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
             
             /// Instruction to be spoken: When you hear the bell, repeat the numbers in the same order.
             speechStatus.index += 1
@@ -83,7 +83,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
-                notificationBroadcast.post(name: "Resume Recognition \(viewModel)", object: nil)
+                notificationBroadcast.post("Resume Recognition \(viewModel)", object: nil)
             }
             
         /// Instruction finished speaking: What would you say?
@@ -92,15 +92,15 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
             let numberOfDigits: Int = 3
             
-            notificationBroadcast.post(name: "Display Gif Image \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Set Digit Rectangle \(viewModel)", object: numberOfDigits)
-            notificationBroadcast.post(name: "Start Recognition Task \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Show Recognizer Buttons \(viewModel)", object: nil)
+            notificationBroadcast.post("Display Gif Image \(viewModel)", object: nil)
+            notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: numberOfDigits)
+            notificationBroadcast.post("Start Recognition Task \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
             
         /// Do NOT increase index as 16 is the last instruction!
         case 16:
-            notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: 3)
-            notificationBroadcast.post(name: "Show Begin Button \(viewModel)", object: nil)
+            notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 3)
+            notificationBroadcast.post("Show Begin Button \(viewModel)", object: nil)
             
         default:
             speechStatus.index += 1
@@ -156,7 +156,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     /// User may fail multiple times here, so we should reset index to 12.
     @objc internal func displayHint() {
         speechStatus.index = 12
-        notificationBroadcast.post(name: "Pause Recognition \(viewModel)", object: nil)
+        notificationBroadcast.post("Pause Recognition \(viewModel)", object: nil)
         for instruction in digitSpanTest.forwardNumberSpanInstructions[12...13] {
             switch instruction {
             case "2 – 9 – 8":
@@ -171,7 +171,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     
     @objc internal func displaySuccessfulMessages() {
         speechStatus.index = 14
-        notificationBroadcast.post(name: "Pause Recognition \(viewModel)", object: nil)
+        notificationBroadcast.post("Pause Recognition \(viewModel)", object: nil)
         for instruction in digitSpanTest.forwardNumberSpanInstructions[14...16] {
             let localizedInstruction = instruction.localized
             speaker.speakInstructions(string: localizedInstruction)

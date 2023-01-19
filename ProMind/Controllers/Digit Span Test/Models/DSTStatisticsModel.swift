@@ -76,7 +76,7 @@ class DSTTestStatistics {
     private let notificationBroadcast = NotificationBroadcast()
     
     init() {
-        notificationBroadcast.addObserver(self, selector: #selector(updateTotalTime(notification:)), name: "Timer Increment \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(updateTotalTime(notification:)), "Timer Increment \(viewModel)", object: nil)
     }
     
     deinit {

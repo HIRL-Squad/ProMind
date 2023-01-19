@@ -89,6 +89,7 @@ struct K {
         static let drawSize: CGFloat = 5.0
         static let drawColor = UIColor.blue
         
+        /*
         static let instructions = [
             [
 //                "0", "1", "2", "3", "4", "5", "6", "7",
@@ -113,6 +114,40 @@ struct K {
                 "Now, try to connect B to 3.", // 6
                 "Good job! Please complete the rest on your own!", // 7
                 "Well done! You may now begin the test or restart the tutorial." // 8
+            ]
+        ]
+         */
+        
+        static let instructions = [
+            [
+//                "0", "1", "2", "3", "4", "5", "6", "7",
+                "Look at the circles below. ", // 0
+                "The circles have numbers in them. ", // 1
+                "Begin at number 1, ", // 2
+                "draw a line in ascending order from 1 to 2, ", // 3
+                "2 to 3, ", // 4
+                "3 to 4, ", // 5
+                "and so on, until you reach the end. ", // 6
+                "Draw the lines as fast as you can. ", // 7
+                "Do not lift the pencil from the iPad. ", // 8
+                "Ready? ", // 9
+                "Begin! ", // 10
+                "Good job! Now let's do the actual test! " // 11
+            ],
+            [
+//                "0", "1", "2", "3", "4", "5", "6", "7",
+                "On this page there are both numbers and letters. ", // 0
+                "Do this in the same way. ", // 1
+                "Begin at number 1, ", // 2
+                "draw a line from 1 to A, ", // 3
+                "A to 2, ", // 4
+                "2 to B, ", // 5
+                "and so on, until you reach the end. ", // 6
+                "Draw the lines as fast as you can. ", // 7
+                "Do not lift the pencil from the iPad. ", // 8
+                "Ready? ", // 9
+                "Begin! ", // 10
+                "Good job! Now let's do the actual test! " // 11
             ]
         ]
         

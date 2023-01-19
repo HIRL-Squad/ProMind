@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set default language to English when app is first launching.
         // LanguageManager.shared.defaultLanguage = .en
         
+        // Start monitoring network connection. 
+        NetworkMonitor.shared.startMonitoring()
+        
         return true
     }
 

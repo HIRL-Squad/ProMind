@@ -30,7 +30,7 @@ class InitialViewController: UIViewController {
                             }
                             
                         } else {
-                            self.handlePermissionFailed(title: "This app must have access to microphone to work.", msg: "Denied")
+                            self.handlePermissionFailedForSpeechRecognition(title: "This app must have access to microphone to work.", msg: "Denied")
                         }
                     }
                     
@@ -38,27 +38,49 @@ class InitialViewController: UIViewController {
                 case .denied:
                     // User said no
                     print("SFSpeechRecognizer :: User denied access to speech recognition!")
-                    self.handlePermissionFailed(title: "This app must have access to speech recognition to work.", msg: "Denied")
+                    self.handlePermissionFailedForSpeechRecognition(title: "This app must have access to speech recognition to work.", msg: "Denied")
                     break
                 case .restricted:
                     // Device is not permitted
                     print("SFSpeechRecognizer :: Speech recognition restricted on this device!")
-                    self.handlePermissionFailed(title: "This app must have access to speech recognition to work.", msg: "Restricted")
+                    self.handlePermissionFailedForSpeechRecognition(title: "This app must have access to speech recognition to work.", msg: "Restricted")
                     break
                 case .notDetermined:
                     // Don't know yet
                     print("SFSpeechRecognizer :: Speech recognition not yet authorised!")
-                    self.handlePermissionFailed(title: "This app must have access to speech recognition to work.", msg: "Not Determined")
+                    self.handlePermissionFailedForSpeechRecognition(title: "This app must have access to speech recognition to work.", msg: "Not Determined")
                     break
                 default:
                     print("SFSpeechRecognizer :: Something went wrong while requesting authorisation for speech recognition!")
-                    self.handlePermissionFailed(title: "This app must have access to speech recognition to work.", msg: "Unknown")
+                    self.handlePermissionFailedForSpeechRecognition(title: "This app must have access to speech recognition to work.", msg: "Unknown")
                 }
+            }
+        }
+        
+        // Check for Internet connection.
+        if NetworkMonitor.shared.isConnected {
+            print("Internet :: Connected!")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
+            }
+            
+        } else {
+            print("Internet :: Not Connected!")
+            presentAlertForInternet(title: "No Internet Connection", msg: "This app needs Internet access to enable speech recognition and submit test results!")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if NetworkMonitor.shared.isConnected {
+            print("Internet :: Connected!")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
             }
         }
     }
     
-    private func handlePermissionFailed(title: String, msg: String) {
+    private func handlePermissionFailedForSpeechRecognition(title: String, msg: String) {
         // Present an alert asking the user to change their settings.
         let ac = UIAlertController(
             title: title,
@@ -73,6 +95,19 @@ class InitialViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.present(ac, animated: true)
+        }
+    }
+    
+    private func presentAlertForInternet(title: String, msg: String) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+            let url = URL(string: UIApplication.openSettingsURLString)!
+            UIApplication.shared.open(url)
+        })
+        alertController.addAction(UIAlertAction(title: "Close", style: .cancel))
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
         }
     }
     

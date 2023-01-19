@@ -38,17 +38,21 @@
 		D90482D2282D1323006F7CA0 /* DSTInstructionSpeakingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90482D1282D1323006F7CA0 /* DSTInstructionSpeakingModel.swift */; };
 		D90482D4282E5538006F7CA0 /* DSTMainInstructionSpeakingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90482D3282E5538006F7CA0 /* DSTMainInstructionSpeakingViewModel.swift */; };
 		D90482D6282E5F07006F7CA0 /* DSTMainSpeechRecognitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90482D5282E5F07006F7CA0 /* DSTMainSpeechRecognitionViewModel.swift */; };
+		D9195E0728E84B63008ECFE5 /* TMTInstructionSpeakingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9195E0628E84B63008ECFE5 /* TMTInstructionSpeakingModel.swift */; };
+		D9195E0A28E963AE008ECFE5 /* TMTGameInstructionSpeakingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9195E0928E963AE008ECFE5 /* TMTGameInstructionSpeakingViewModel.swift */; };
 		D91C507D2812B82B0028D4EC /* DigitSpanTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C507C2812B82B0028D4EC /* DigitSpanTest.swift */; };
 		D91C50802813FD780028D4EC /* TMTInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C507F2813FD780028D4EC /* TMTInstructions.swift */; };
 		D91C5082281680130028D4EC /* DSTErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C5081281680130028D4EC /* DSTErrorHandling.swift */; };
 		D91E8B7527E7B54900089FA4 /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = D91E8B7427E7B54900089FA4 /* LanguageManager-iOS */; };
 		D950EC1D28605DC8001EF5C3 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950EC1C28605DC8001EF5C3 /* AppLanguage.swift */; };
+		D95E2C66295D7F3600C9D766 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95E2C65295D7F3600C9D766 /* NetworkMonitor.swift */; };
 		D96D066327E799FA00F53AEB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D96D066527E799FA00F53AEB /* Localizable.strings */; };
 		D97B09F8285C768700C91D2A /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = D97B09F7285C768700C91D2A /* DeviceKit */; };
 		D99EE860286AF24F0049A4F3 /* DSTStatisticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EE85F286AF24F0049A4F3 /* DSTStatisticsModel.swift */; };
 		D99EE862286B028B0049A4F3 /* DSTTestToolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EE861286B028B0049A4F3 /* DSTTestToolModel.swift */; };
 		D9B3AB282834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3AB272834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift */; };
 		D9D69B812838F55000EBA219 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D69B802838F55000EBA219 /* Notifications.swift */; };
+		D9DEC40B28D71DB600A5BDE5 /* Pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DEC40A28D71DB600A5BDE5 /* Pencil.png */; };
 		D9EE86712825035C00AED1AA /* Bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EE86702825035C00AED1AA /* Bell.mp3 */; };
 		D9F88C7E2862F2B700706D34 /* DSTTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F88C7D2862F2B700706D34 /* DSTTestViewController.swift */; };
 		D9FC799E2865C00A005B8948 /* DSTTestInstructionSpeakingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FC799D2865C00A005B8948 /* DSTTestInstructionSpeakingViewModel.swift */; };
@@ -74,7 +78,7 @@
 
 /* Begin PBXFileReference section */
 		8D5DBA1ED0199BEB55BE2A6B /* Pods-ProMind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProMind.debug.xcconfig"; path = "Target Support Files/Pods-ProMind/Pods-ProMind.debug.xcconfig"; sourceTree = "<group>"; };
-		A403CA5B26F47CDA00AA6F9B /* TMTGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameViewController.swift; sourceTree = "<group>"; };
+		A403CA5B26F47CDA00AA6F9B /* TMTGameViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = TMTGameViewController.swift; sourceTree = "<group>"; };
 		A403CA5D26F64D7300AA6F9B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A4121EE726D8A4BF00F4CFE9 /* ExperimentProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4121EEB26D8F9F400F4CFE9 /* ExperimentProfileMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentProfileMasterViewController.swift; sourceTree = "<group>"; };
@@ -112,10 +116,13 @@
 		D90482D1282D1323006F7CA0 /* DSTInstructionSpeakingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTInstructionSpeakingModel.swift; sourceTree = "<group>"; };
 		D90482D3282E5538006F7CA0 /* DSTMainInstructionSpeakingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTMainInstructionSpeakingViewModel.swift; sourceTree = "<group>"; };
 		D90482D5282E5F07006F7CA0 /* DSTMainSpeechRecognitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTMainSpeechRecognitionViewModel.swift; sourceTree = "<group>"; };
+		D9195E0628E84B63008ECFE5 /* TMTInstructionSpeakingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTInstructionSpeakingModel.swift; sourceTree = "<group>"; };
+		D9195E0928E963AE008ECFE5 /* TMTGameInstructionSpeakingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTGameInstructionSpeakingViewModel.swift; sourceTree = "<group>"; };
 		D91C507C2812B82B0028D4EC /* DigitSpanTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSpanTest.swift; sourceTree = "<group>"; };
 		D91C507F2813FD780028D4EC /* TMTInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTInstructions.swift; sourceTree = "<group>"; };
 		D91C5081281680130028D4EC /* DSTErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTErrorHandling.swift; sourceTree = "<group>"; };
 		D950EC1C28605DC8001EF5C3 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		D95E2C65295D7F3600C9D766 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		D96D065F27E799DD00F53AEB /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D96D066027E799DD00F53AEB /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Main.strings; sourceTree = "<group>"; };
 		D96D066427E799FA00F53AEB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -127,6 +134,7 @@
 		D9CD5E982817269500244BB1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		D9CD5E992817269500244BB1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D9D69B802838F55000EBA219 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		D9DEC40A28D71DB600A5BDE5 /* Pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pencil.png; sourceTree = "<group>"; };
 		D9EE86702825035C00AED1AA /* Bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bell.mp3; sourceTree = "<group>"; };
 		D9F88C7D2862F2B700706D34 /* DSTTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestViewController.swift; sourceTree = "<group>"; };
 		D9FC799D2865C00A005B8948 /* DSTTestInstructionSpeakingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestInstructionSpeakingViewModel.swift; sourceTree = "<group>"; };
@@ -212,6 +220,7 @@
 				A4A3F2E626871BE2004C0F25 /* Controllers */,
 				A4754086266CE36F009E0B4B /* Assets.xcassets */,
 				A470A61126FAEB1800C1DED3 /* avatar_1.gif */,
+				D9DEC40A28D71DB600A5BDE5 /* Pencil.png */,
 				A470A61326FAF09000C1DED3 /* avatar_2.gif */,
 				A475408B266CE36F009E0B4B /* Info.plist */,
 				A475407D266CE36C009E0B4B /* AppDelegate.swift */,
@@ -250,6 +259,7 @@
 				A43E482526BFDFFC0075E6D8 /* DSTGameStatistics.swift */,
 				A437EB2626DCA78E00755A72 /* Experiment.swift */,
 				D9D69B802838F55000EBA219 /* Notifications.swift */,
+				D95E2C65295D7F3600C9D766 /* NetworkMonitor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,9 +289,9 @@
 		A4A3F2E9268720B5004C0F25 /* Trail Making Test */ = {
 			isa = PBXGroup;
 			children = (
-				A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */,
-				A403CA5B26F47CDA00AA6F9B /* TMTGameViewController.swift */,
-				A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */,
+				D9C98EBA28D99CEB00C8119C /* Models */,
+				D9195E0828E96385008ECFE5 /* ViewModels */,
+				D9C98EBB28D99CF900C8119C /* ViewControllers */,
 			);
 			path = "Trail Making Test";
 			sourceTree = "<group>";
@@ -306,6 +316,14 @@
 				D950EC202861C23A001EF5C3 /* ViewController */,
 			);
 			path = DSTMainView;
+			sourceTree = "<group>";
+		};
+		D9195E0828E96385008ECFE5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D9195E0928E963AE008ECFE5 /* TMTGameInstructionSpeakingViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D91C507E2813FD250028D4EC /* GameInstructions */ = {
@@ -359,6 +377,24 @@
 				A4AC2AE126C0E2AB00A04064 /* DSTResultViewController.swift */,
 			);
 			path = DSTResultView;
+			sourceTree = "<group>";
+		};
+		D9C98EBA28D99CEB00C8119C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D9195E0628E84B63008ECFE5 /* TMTInstructionSpeakingModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D9C98EBB28D99CF900C8119C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A4A3F2E726872061004C0F25 /* TMTMainViewController.swift */,
+				A403CA5B26F47CDA00AA6F9B /* TMTGameViewController.swift */,
+				A4A4761D269B437E009C0B35 /* TMTResultViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D9EE866F2825033600AED1AA /* Resources */ = {
@@ -510,6 +546,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9DEC40B28D71DB600A5BDE5 /* Pencil.png in Resources */,
 				D9EE86712825035C00AED1AA /* Bell.mp3 in Resources */,
 				A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */,
 				D96D066327E799FA00F53AEB /* Localizable.strings in Resources */,
@@ -584,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9B3AB282834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift in Sources */,
+				D95E2C66295D7F3600C9D766 /* NetworkMonitor.swift in Sources */,
 				A46CD4D226A2F97000B2487C /* DSTGameViewController.swift in Sources */,
 				D99EE860286AF24F0049A4F3 /* DSTStatisticsModel.swift in Sources */,
 				A4A4761A26998512009C0B35 /* CGFloat.swift in Sources */,
@@ -595,8 +633,10 @@
 				A403CA5C26F47CDA00AA6F9B /* TMTGameViewController.swift in Sources */,
 				D9D69B812838F55000EBA219 /* Notifications.swift in Sources */,
 				A4754082266CE36C009E0B4B /* TestSelectionViewController.swift in Sources */,
+				D9195E0728E84B63008ECFE5 /* TMTInstructionSpeakingModel.swift in Sources */,
 				A4121EE926D8A4BF00F4CFE9 /* ExperimentProfileDetailViewController.swift in Sources */,
 				D90482D6282E5F07006F7CA0 /* DSTMainSpeechRecognitionViewModel.swift in Sources */,
+				D9195E0A28E963AE008ECFE5 /* TMTGameInstructionSpeakingViewModel.swift in Sources */,
 				D91C507D2812B82B0028D4EC /* DigitSpanTest.swift in Sources */,
 				D9FC799E2865C00A005B8948 /* DSTTestInstructionSpeakingViewModel.swift in Sources */,
 				D91C50802813FD780028D4EC /* TMTInstructions.swift in Sources */,
@@ -812,7 +852,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = FSDR8GGC5F;
 				INFOPLIST_FILE = ProMind/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -837,7 +877,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = FSDR8GGC5F;
 				INFOPLIST_FILE = ProMind/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;

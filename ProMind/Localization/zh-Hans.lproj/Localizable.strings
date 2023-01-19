@@ -38,4 +38,76 @@
 "Ready? " = "准备好了吗？";
 "Go! " = "开始！";
 
+// Test Completion
+"Congratulations. You have completed the Digit Span Test. Please refer to your results on the screen." = "恭喜。你已经完成了Digit Span Test。请查看屏幕上的测试结果。";
+
 // MARK: - Trail Making Test
+
+// Only Numbers
+"Look at the circles below. " = "请仔细观察下面的圆圈。";
+"The circles have numbers in them. " = "在圆圈中间有数字。";
+"Begin at number 1, " = "从数字1开始，";
+"draw a line in ascending order from 1 to 2, " = "按照从小到大的升序画一条从1到2的线，";
+"2 to 3, " = "然后是连接2到3，";
+"3 to 4, " = "之后是连接3到4，";
+"and so on, until you reach the end. " = "这样继续下去，直到您到达终点。";
+"Draw the lines as fast as you can. " = "请尽可能快的画线。";
+"Do not lift the pencil from the iPad. " = "注意笔尖不要离开平板电脑的屏幕。";
+"Ready? " = "准备好了吗？";
+"Begin! " = "开始吧！";
+"Good job! Now let's do the actual test! " = "太棒了！现在让我们正式进入测试吧。";
+
+// Numbers and Letters
+"On this page there are both numbers and letters. " = "现在的页面上包含数字以及字母。";
+"Do this in the same way. " = "请用之前同样的方式连接圆圈。";
+"Begin at number 1, " = "从数字1开始，";
+"draw a line from 1 to A, " = "在1和字母A之间画一条线，";
+"A to 2, " = "然后是连接字母A和2，";
+"2 to B, " = "之后是连接2和B，";
+"and so on, until you reach the end. " = "这样继续下去，直到您到达终点。";
+"Draw the lines as fast as you can. " = "请尽可能快的画线。";
+"Do not lift the pencil from the iPad. " = "注意笔尖不要离开平板电脑的屏幕。";
+"Ready? " = "准备好了吗？";
+"Begin! " = "开始吧！";
+"Good job! Now let's do the actual test! " = "太棒了！现在让我们正式进入测试吧。";
+
+// Error Reminder
+"That is not the correct move!" = "连接错误！";
+"You should connect 4 to 5." = "您应该连接4到5。";
+"You should connect 5 to 6." = "您应该连接5到6。";
+"You should connect 6 to 7." = "您应该连接6到7。";
+"You should connect 7 to 8." = "您应该连接7到8。";
+"You should connect 8 to 9." = "您应该连接8到9。";
+"You should connect 9 to 10." = "您应该连接9到10。";
+
+"You should connect B to 3." = "您应该连接B到3。";
+"You should connect 3 to C." = "您应该连接3到C。";
+"You should connect C to 4." = "您应该连接C到4。";
+"You should connect 4 to D." = "您应该连接4到D。";
+"You should connect D to 5." = "您应该连接D到5。";
+"You should connect 5 to E." = "您应该连接5到E。";
+
+"That is not the correct move! You should connect 4 to 5." = "连接错误！您应该连接4到5。";
+"That is not the correct move! You should connect 5 to 6." = "连接错误！您应该连接5到6。";
+"That is not the correct move! You should connect 6 to 7." = "连接错误！您应该连接6到7。";
+"That is not the correct move! You should connect 7 to 8." = "连接错误！您应该连接7到8。";
+"That is not the correct move! You should connect 8 to 9." = "连接错误！您应该连接8到9。";
+"That is not the correct move! You should connect 9 to 10." = "连接错误！您应该连接9到10。";
+
+"That is not the correct move! You should connect B to 3." = "连接错误！您应该连接B到3。";
+"That is not the correct move! You should connect 3 to C." = "连接错误！您应该连接3到C。";
+"That is not the correct move! You should connect C to 4." = "连接错误！您应该连接C到4。";
+"That is not the correct move! You should connect 4 to D." = "连接错误！您应该连接4到D。";
+"That is not the correct move! You should connect D to 5." = "连接错误！您应该连接D到5。";
+"That is not the correct move! You should connect 5 to E." = "连接错误！您应该连接5到E。";
+
+
+// Test Information
+"There are a total of 15 circles." = "一共有15个圆圈。";
+"Please connect them without lifting the stylus as much as possible." = "请在不抬起笔尖的前提下尽快依次连接它们。";
+"You have 180 seconds." = "您一共有180秒钟。";
+
+"There are a total of 15 circles.\nPlease connect them without lifting the stylus as much as possible.\nYou have 180 seconds." = "一共有15个圆圈。\n请在不抬起笔尖的前提下尽快依次连接它们。\n您一共有180秒钟。";
+
+// Test Completion
+"Congratulations. You have completed the Trail Making Test. Please refer to your results on the screen." = "恭喜。你已经完成了Trail Making Test。请查看屏幕上的测试结果。";

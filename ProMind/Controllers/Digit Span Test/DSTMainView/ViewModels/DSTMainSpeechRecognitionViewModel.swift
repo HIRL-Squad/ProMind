@@ -18,6 +18,7 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     
     internal var viewModel: DSTViewModels
     
+    // But app language will change from time to time. Pay attention!
     static let shared = DSTMainSpeechRecognitionViewModel() // Singleton Pattern. Only allow one instance.
     
     private override init() {
@@ -28,11 +29,11 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         self.recognizer.delegate = self
         
         notificationBroadcast.removeAllObserverFrom(self)
-        notificationBroadcast.addObserver(self, selector: #selector(updateSpokenResult(notification:)), name: "Transcribe Finished \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(resetAnswer), name: "Reset Answer Button Pressed \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(submitAnswer), name: "Submit Answer Button Pressed \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(pauseRecognition), name: "Pause Recognition \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(resumeRecognition), name: "Resume Recognition \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(updateSpokenResult(notification:)), "Transcribe Finished \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(resetAnswer), "Reset Answer Button Pressed \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(submitAnswer), "Submit Answer Button Pressed \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(pauseRecognition), "Pause Recognition \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(resumeRecognition), "Resume Recognition \(viewModel)", object: nil)
     }
     
     deinit {
@@ -44,6 +45,12 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         recognizer.reset()
         recognitionTask.spokenResult = ""
         
+    }
+    
+    internal func updateRecognizerLanguage(withCode language: String?) {
+        if let language {
+            recognizer.initializeRecognizer(withLanguageCode: language)
+        }
     }
     
     @objc internal func startRecognitionTask() {
@@ -78,7 +85,7 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         let filteredResult = transcribedReuslt.filter({ !$0.isWhitespace }) // "23 47" -> "2347"
         recognitionTask.spokenResult = filteredResult
         
-        notificationBroadcast.post(name: "Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits))
+        notificationBroadcast.post("Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits))
         print("Spoken result is \(recognitionTask.spokenResult).")
     }
     
@@ -86,19 +93,19 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         recognizer.resetInput()
         recognizer.transcribe()
         recognitionTask.spokenResult = ""
-        notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
+        notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
     }
     
     @objc private func submitAnswer() {
         pauseRecognition()
         if recognitionTask.spokenResult == recognitionTask.expectedResult {
             print("spoken result == expected result")
-            notificationBroadcast.post(name: "Display Successful Messages \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Stop Playing Gif \(viewModel)", object: nil)
+            notificationBroadcast.post("Display Successful Messages \(viewModel)", object: nil)
+            notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
         } else {
             print("spoken result != expected result")
-            notificationBroadcast.post(name: "Display Hint \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Stop Playing Gif \(viewModel)", object: nil)
+            notificationBroadcast.post("Display Hint \(viewModel)", object: nil)
+            notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
         }
     }
     
@@ -107,7 +114,7 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     internal func availabilityDidChange() throws {
         if let recognizer = recognizer.speechRecognizer {
             if !recognizer.isAvailable {
-                notificationBroadcast.post(name: "Display UIAlert \(viewModel)", object: "Speech recognizer is unavailable now!")
+                notificationBroadcast.post("Display UIAlert \(viewModel)", object: "Speech recognizer is unavailable now!")
                 print("Speech recognizer is unavailable now!\n")
                 throw SFSpeechDigitNumberRecognizerError.recognizerIsUnavailable
             }

@@ -8,7 +8,7 @@
 
 // MARK: - Digit Span Test
 
-/// Forward Number Span
+// Forward Number Span
 "This is part of your memory and concentration task. " = "Ini adalah sebahagian dari latihan memori dan konsentrasi anda. ";
 "You will hear some numbers. " = "Anda akan mendengar beberapa numbor. ";
 "Once done, you will hear a bell, like so: " = "Kemudian, anda akan dengar bunyi loceng seperti ini: ";
@@ -40,6 +40,33 @@
 
 // MARK: - Trail Making Test
 
+// Practice Round Part A
+"Look at the circles below. " = "Lihat bulatan di bawah. ";
+"The circles have numbers in them. " = "Ada nombor di dalamnya. ";
+"Begin at number 1, " = "Mula dari nombor 1, ";
+"draw a line in ascending order from 1 to 2, " = "Dalam susunan menaik, lukiskan garisan dari 1 hingga ke 2, ";
+"2 to 3, " = "2 hingga ke 3, ";
+"3 to 4, " = "3 hingga 4, ";
+"and so on, until you reach the end. " = "dan selanjutnya, sehingga anda sampai ke bulatan terakhir. ";
+"Draw the lines as fast as you can. " = "Cuba lukis garisan dengan secepat mungkin. ";
+"Do not lift the pencil from the iPad. " = "Jangan angkat pensil dari iPad. ";
+"Ready? " = "Sedia? ";
+"Begin! " = "Mula! ";
+"Good job! Now let's do the actual test! " = "Baik! ayuh kita lakukan ujiannya! ";
+
+// Practice Round Part B
+"On this page there are both numbers and letters. " = "PLACE HOLDER";
+"Do this in the same way. " = "PLACE HOLDER";
+"Begin at number 1, " = "Mula dari nombor 1, ";
+"draw a line from 1 to A, " = "PLACE HOLDER";
+"A to 2, " = "A hingga ke 2, ";
+"2 to B, " = "3 hingga 4, ";
+"and so on, until you reach the end. " = "dan selanjutnya, sehingga anda sampai ke bulatan terakhir. ";
+"Draw the lines as fast as you can. " = "Cuba lukis garisan dengan secepat mungkin. ";
+"Do not lift the pencil from the iPad. " = "Jangan angkat pensil dari iPad. ";
+"Ready? " = "Sedia? ";
+"Begin! " = "Mula! ";
+"Good job! Now let's do the actual test! " = "Baik! ayuh kita lakukan ujiannya! ";
 
 
 

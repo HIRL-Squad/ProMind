@@ -29,16 +29,22 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         self.recognizer.delegate = self
         
         notificationBroadcast.removeAllObserverFrom(self)
-        notificationBroadcast.addObserver(self, selector: #selector(updateSpokenResult(notification:)), name: "Transcribe Finished \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(resetAnswer), name: "Reset Answer Button Pressed \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(submitAnswer), name: "Submit Answer Button Pressed \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(pauseRecognition), name: "Pause Recognition \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(resumeRecognition), name: "Resume Recognition \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(updateSpokenResult(notification:)), "Transcribe Finished \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(resetAnswer), "Reset Answer Button Pressed \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(submitAnswer), "Submit Answer Button Pressed \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(pauseRecognition), "Pause Recognition \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(resumeRecognition), "Resume Recognition \(viewModel)", object: nil)
     }
     
     deinit {
         notificationBroadcast.removeAllObserverFrom(self)
         print("DSTTestSpeechRecognitionViewModel is deinited!")
+    }
+    
+    internal func updateRecognizerLanguage(withCode language: String?) {
+        if let language {
+            recognizer.initializeRecognizer(withLanguageCode: language)
+        }
     }
     
     internal func resetRecognizer() {
@@ -72,7 +78,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         let filteredResult = transcribedReuslt.filter({ !$0.isWhitespace }) // "23 47" -> "2347"
         recognitionTask.spokenResult = filteredResult
         
-        notificationBroadcast.post(name: "Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits))
+        notificationBroadcast.post("Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits))
         print("Spoken result is \(recognitionTask.spokenResult).")
     }
     
@@ -80,7 +86,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         recognizer.resetInput()
         recognizer.transcribe()
         recognitionTask.spokenResult = ""
-        notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
+        notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
     }
     
     @objc private func submitAnswer() {
@@ -115,8 +121,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                 Task {
                     await testStatistics.saveData(testType: .forwardSpanTest)
                 }
-                notificationBroadcast.post(name: "Resume Speaking \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Stop Playing Gif \(viewModel)", object: nil)
+                notificationBroadcast.post("Resume Speaking \(viewModel)", object: nil)
+                notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
                 
             case 5:
                 roundInfo.maxDigits = roundInfo.temporaryMaxDigits
@@ -127,11 +133,11 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                 Task {
                     await testStatistics.saveData(testType: .forwardSpanTest)
                 }
-                notificationBroadcast.post(name: "Display Backward Number Span Instructions \(viewModel)", object: nil)
+                notificationBroadcast.post("Display Backward Number Span Instructions \(viewModel)", object: nil)
                 
             case 17, 19: // problem here!
                 print("Submit Answer Pressed for success information! \(roundInfo.speechStatusIndex)")
-                notificationBroadcast.post(name: "Display Successful Messages \(viewModel)", object: nil)
+                notificationBroadcast.post("Display Successful Messages \(viewModel)", object: nil)
                 
             case 23...27:
                 roundInfo.maxDigits = roundInfo.temporaryMaxDigits
@@ -142,8 +148,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                 Task {
                     await testStatistics.saveData(testType: .backwardsSpanTest)
                 }
-                notificationBroadcast.post(name: "Resume Speaking \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Stop Playing Gif \(viewModel)", object: nil)
+                notificationBroadcast.post("Resume Speaking \(viewModel)", object: nil)
+                notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
                 
             case 28:
                 roundInfo.maxDigits = roundInfo.temporaryMaxDigits
@@ -154,7 +160,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                 Task {
                     await testStatistics.saveData(testType: .backwardsSpanTest)
                 }
-                notificationBroadcast.post(name: "Show Result Button \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Result Button \(viewModel)", object: nil)
                 
             default:
                 break
@@ -175,8 +181,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     }
                     
                     let numberOfRectangles = getNumberOfRectangles(index: roundInfo.speechStatusIndex)
-                    notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: numberOfRectangles)
-                    notificationBroadcast.post(name: "Display Backward Number Span Instructions \(viewModel)", object: nil)
+                    notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: numberOfRectangles)
+                    notificationBroadcast.post("Display Backward Number Span Instructions \(viewModel)", object: nil)
                     
                 } else {
                     roundInfo.didMakeWrongAnswerInPreviousRound = true
@@ -184,8 +190,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     Task {
                         await testStatistics.saveData(testType: .forwardSpanTest)
                     }
-                    notificationBroadcast.post(name: "Resume Speaking \(viewModel)", object: nil)
-                    notificationBroadcast.post(name: "Stop Playing Gif \(viewModel)", object: nil)
+                    notificationBroadcast.post("Resume Speaking \(viewModel)", object: nil)
+                    notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
                 }
                 
             case 5:
@@ -198,8 +204,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     }
                     
                     let numberOfRectangles = getNumberOfRectangles(index: roundInfo.speechStatusIndex)
-                    notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: numberOfRectangles)
-                    notificationBroadcast.post(name: "Display Backward Number Span Instructions \(viewModel)", object: nil)
+                    notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: numberOfRectangles)
+                    notificationBroadcast.post("Display Backward Number Span Instructions \(viewModel)", object: nil)
                     
                 } else {
                     roundInfo.didMakeWrongAnswerInPreviousRound = true // Remember to set back to false when before backwards span test begins!
@@ -207,12 +213,12 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     Task {
                         await testStatistics.saveData(testType: .forwardSpanTest)
                     }
-                    notificationBroadcast.post(name: "Display Backward Number Span Instructions \(viewModel)", object: nil)
+                    notificationBroadcast.post("Display Backward Number Span Instructions \(viewModel)", object: nil)
                 }
                 
             case 17, 19:
                 print("Submit Answer Pressed for display hint! \(roundInfo.speechStatusIndex)")
-                notificationBroadcast.post(name: "Display Hint \(viewModel)", object: nil)
+                notificationBroadcast.post("Display Hint \(viewModel)", object: nil)
                 
             case 23...27:
                 roundInfo.currentSequence = 0
@@ -223,8 +229,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     }
                     
                     let numberOfRectangles = getNumberOfRectangles(index: roundInfo.speechStatusIndex)
-                    notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: numberOfRectangles)
-                    notificationBroadcast.post(name: "Present Result View \(viewModel)", object: nil)
+                    notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: numberOfRectangles)
+                    notificationBroadcast.post("Present Result View \(viewModel)", object: nil)
                     
                 } else {
                     roundInfo.didMakeWrongAnswerInPreviousRound = true
@@ -232,8 +238,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     Task {
                         await testStatistics.saveData(testType: .backwardsSpanTest)
                     }
-                    notificationBroadcast.post(name: "Resume Speaking \(viewModel)", object: nil)
-                    notificationBroadcast.post(name: "Stop Playing Gif \(viewModel)", object: nil)
+                    notificationBroadcast.post("Resume Speaking \(viewModel)", object: nil)
+                    notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
                 }
                 
             case 28:
@@ -245,8 +251,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     }
                     
                     let numberOfRectangles = getNumberOfRectangles(index: roundInfo.speechStatusIndex)
-                    notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: numberOfRectangles)
-                    notificationBroadcast.post(name: "Show Result Button \(viewModel)", object: nil)
+                    notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: numberOfRectangles)
+                    notificationBroadcast.post("Show Result Button \(viewModel)", object: nil)
                     
                 } else {
                     roundInfo.didMakeWrongAnswerInPreviousRound = true // Remember to set back to false before the view exits!
@@ -254,7 +260,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     Task {
                         await testStatistics.saveData(testType: .backwardsSpanTest)
                     }
-                    notificationBroadcast.post(name: "Show Result Button \(viewModel)", object: nil)
+                    notificationBroadcast.post("Show Result Button \(viewModel)", object: nil)
                 }
                 
             default:

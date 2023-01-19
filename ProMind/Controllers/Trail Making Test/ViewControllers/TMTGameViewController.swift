@@ -70,6 +70,14 @@ class TMTGameViewController: UIViewController {
         statsLabel.attributedText = gameStatistics[numRound].getFormattedGameStats()
     }
     
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
+    
+    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
+        return UIRectEdge.bottom
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Width: \(view.frame.width)")
@@ -78,6 +86,7 @@ class TMTGameViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIGestureRecognizer().allowedTouchTypes = [UITouch.TouchType.pencil.rawValue, UITouch.TouchType.direct.rawValue] as [NSNumber]
         navigationController?.isNavigationBarHidden = false
         // initTest()
     }
@@ -93,7 +102,9 @@ class TMTGameViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear()")
+        
+        setNeedsUpdateOfHomeIndicatorAutoHidden()
+        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
@@ -109,7 +120,12 @@ class TMTGameViewController: UIViewController {
     }
     
     private func getNumCircles() -> Int {
-        return isTutorial ? K.TMT.tutNumCircles : TMTResultViewController.numCircles
+        // return isTutorial ? K.TMT.tutNumCircles : TMTResultViewController.numCircles
+        if isTutorial {
+            return 10
+        } else {
+            return 15
+        }
     }
     
     private func getTotalTime() -> Int {
@@ -121,6 +137,8 @@ class TMTGameViewController: UIViewController {
         
         instructionLabel.isHidden = false
         tutorialView.isHidden = false
+        
+        
         
         currentUIViewForCircles = tutorialView
         tutCircleViews = removeCirclesFromView(circleViews: tutCircleViews)
@@ -167,6 +185,7 @@ class TMTGameViewController: UIViewController {
     }
     
     private func initTest() {
+        UIGestureRecognizer().allowedTouchTypes = [UITouch.TouchType.pencil.rawValue as NSNumber]
         // navigationController?.isNavigationBarHidden = true
         
         instructionLabel.isHidden = true
@@ -182,11 +201,25 @@ class TMTGameViewController: UIViewController {
         testViewHeight = view.bounds.height - 50
         
         testCircleCenterPoints = [
-            CGPoint(x: testViewWidth[10], y: testViewHeight[10]), CGPoint(x: testViewWidth[10], y: testViewHeight[30]), CGPoint(x: testViewWidth[10], y: testViewHeight[50]), CGPoint(x: testViewWidth[10], y: testViewHeight[70]), CGPoint(x: testViewWidth[10], y: testViewHeight[90]),
-            CGPoint(x: testViewWidth[30], y: testViewHeight[10]), CGPoint(x: testViewWidth[30], y: testViewHeight[30]), CGPoint(x: testViewWidth[30], y: testViewHeight[50]), CGPoint(x: testViewWidth[30], y: testViewHeight[70]), CGPoint(x: testViewWidth[30], y: testViewHeight[90]),
-            CGPoint(x: testViewWidth[50], y: testViewHeight[10]), CGPoint(x: testViewWidth[50], y: testViewHeight[30]), CGPoint(x: testViewWidth[50], y: testViewHeight[50]), CGPoint(x: testViewWidth[50], y: testViewHeight[70]), CGPoint(x: testViewWidth[50], y: testViewHeight[90]),
-            CGPoint(x: testViewWidth[70], y: testViewHeight[10]), CGPoint(x: testViewWidth[70], y: testViewHeight[30]), CGPoint(x: testViewWidth[70], y: testViewHeight[50]), CGPoint(x: testViewWidth[70], y: testViewHeight[70]), CGPoint(x: testViewWidth[70], y: testViewHeight[90]),
-            CGPoint(x: testViewWidth[90], y: testViewHeight[10]), CGPoint(x: testViewWidth[90], y: testViewHeight[30]), CGPoint(x: testViewWidth[90], y: testViewHeight[50]), CGPoint(x: testViewWidth[90], y: testViewHeight[70]), CGPoint(x: testViewWidth[90], y: testViewHeight[90]),
+            CGPoint(x: testViewWidth[10], y: testViewHeight[17]),
+            CGPoint(x: testViewWidth[10], y: testViewHeight[50]),
+            CGPoint(x: testViewWidth[10], y: testViewHeight[83]),
+            
+            CGPoint(x: testViewWidth[30], y: testViewHeight[17]),
+            CGPoint(x: testViewWidth[30], y: testViewHeight[50]),
+            CGPoint(x: testViewWidth[30], y: testViewHeight[83]),
+            
+            CGPoint(x: testViewWidth[50], y: testViewHeight[17]),
+            CGPoint(x: testViewWidth[50], y: testViewHeight[50]),
+            CGPoint(x: testViewWidth[50], y: testViewHeight[83]),
+            
+            CGPoint(x: testViewWidth[70], y: testViewHeight[17]),
+            CGPoint(x: testViewWidth[70], y: testViewHeight[50]),
+            CGPoint(x: testViewWidth[70], y: testViewHeight[83]),
+            
+            CGPoint(x: testViewWidth[90], y: testViewHeight[17]),
+            CGPoint(x: testViewWidth[90], y: testViewHeight[50]),
+            CGPoint(x: testViewWidth[90], y: testViewHeight[83]),
         ]
         
         currentLabels = K.TMT.labels[numRound] // Start with Round 0
@@ -273,8 +306,11 @@ class TMTGameViewController: UIViewController {
                 circleView.backgroundColor = .lightGray
             }
             tutorialView.isHidden = true
+            let instruction = ["There are a total of \(getNumCircles()) circles.",
+                               "Please connect them without lifting the stylus as much as possible.",
+                               "You have \(getTotalTime()) seconds."]
             
-            let text = "There are a total of \(getNumCircles()) circles.\nPlease connect them without lifting the stylus as much as possible.\nYou have \(getTotalTime()) seconds."
+            let text = "There are a total of \(getNumCircles()) circles.\nPlease connect them without lifting the stylus as much as possible.\nYou have \(getTotalTime()) seconds.".localized
             setInstructionLabelText(message: text)
             speak(text: text, preUtteranceDelay: 0.5)
             
@@ -283,19 +319,19 @@ class TMTGameViewController: UIViewController {
     }
     
     private func createCircleView(idx: Int, width: CGFloat, height: CGFloat, centerX: CGFloat, centerY: CGFloat) -> UIView {
-        let circleView = UIView(frame: CGRect(x: 0, y: 0, width: width[5], height: width[5])) // Set width = height to create a circular view
+        let circleView = UIView(frame: CGRect(x: 0, y: 0, width: width[8], height: width[8])) // Set width = height to create a circular view
         circleView.center = CGPoint(x: centerX, y: centerY)
         circleView.backgroundColor = .lightGray
-        circleView.layer.cornerRadius = width[2.5] // Same as "circleView.frame.size.width / 2"
+        circleView.layer.cornerRadius = width[4] // Same as "circleView.frame.size.width / 2"
         circleView.layer.borderWidth = width[0.20]
         circleView.layer.borderColor = UIColor.black.cgColor
         circleView.tag = idx
 
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: width[5], height: width[5]))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: width[8], height: width[8]))
         label.text = currentLabels[idx]
         label.textAlignment = .center
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont.boldSystemFont(ofSize: 50)
         label.adjustsFontForContentSizeCategory = true
         
         circleView.addSubview(label)
@@ -330,7 +366,19 @@ class TMTGameViewController: UIViewController {
         testCircleViews = removeCirclesFromView(circleViews: testCircleViews)
         testCircleCenterPoints.shuffle()
         
-        for idx in 0...getNumCircles() - 1 {
+        // Mark the begin point as cyan
+        let beginCircleView = createCircleView(
+            idx: 0,
+            width: testViewWidth,
+            height: testViewHeight,
+            centerX: testCircleCenterPoints[0].x + CGFloat(Int.random(in: -20..<40)),
+            centerY: testCircleCenterPoints[0].y + CGFloat(Int.random(in: -20..<40))
+        )
+        hightlightCircle(view: beginCircleView, color: .cyan, delay: nil)
+        view.addSubview(beginCircleView)
+        testCircleViews.append(beginCircleView)
+        
+        for idx in 1..<getNumCircles() - 1 {
             let testCircleView = createCircleView(
                 idx: idx,
                 width: testViewWidth,
@@ -341,6 +389,18 @@ class TMTGameViewController: UIViewController {
             view.addSubview(testCircleView)
             testCircleViews.append(testCircleView)
         }
+        
+        // Mark the end point as cyan
+        let endCircleView = createCircleView(
+            idx: getNumCircles() - 1,
+            width: testViewWidth,
+            height: testViewHeight,
+            centerX: testCircleCenterPoints[getNumCircles() - 1].x + CGFloat(Int.random(in: -20..<40)),
+            centerY: testCircleCenterPoints[getNumCircles() - 1].y + CGFloat(Int.random(in: -20..<40))
+        )
+        hightlightCircle(view: endCircleView, color: .cyan, delay: nil)
+        view.addSubview(endCircleView)
+        testCircleViews.append(endCircleView)
     }
     
     private func displayLastScreenshot(reset: Bool, displayView: UIView) {
@@ -375,6 +435,10 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
         print("numRound: \(numRound)")
         print("instructionState: \(instructionState)")
         
+        var prefersHomeIndicatorAutoHidden: Bool {
+            return true
+        }
+        
         let instructions = K.TMT.instructions[numRound]
         
         if instructionState == instructions.count || !isTutorial {
@@ -391,40 +455,62 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
         setInstructionLabelText(message: instruction)
 
         switch instructionState {
-        case 0, 1, 7, 8:
+        case 0, 7, 8:
             speak(text: instruction, preUtteranceDelay: 0.5)
-            break
-        case 2:
+            
+        case 1:
             speak(text: instruction, preUtteranceDelay: 1.0)
             flashAllCircles(delay: 1.0)
-            break
-        case 3, 4, 5, 6:
+            
+        /// Begin at number 1
+        case 2:
+            speak(text: instruction, preUtteranceDelay: 1.0)
+            flash(view: tutCircleViews[currentCircleIndex], preBackgroundColour: .cyan, delay: 1.0)
+            
+        /// draw a line in ascending order from 1 to 2
+        case 3:
+            speak(text: instruction, preUtteranceDelay: 1.0)
+            flash(view: tutCircleViews[currentCircleIndex], preBackgroundColour: .cyan, delay: 1.0)
+            flash(view: tutCircleViews[currentCircleIndex + 1], preBackgroundColour: .yellow, delay: 1.0)
+            
+            let animation = DrawingAnimation(duration: 3)
+            drawLines(idx1: currentCircleIndex, idx2: currentCircleIndex + 1, color1: .cyan, color2: .green, drawingAnimation: animation)
+            
+        /// 2 to 3, 3 to 4
+        case 4, 5:
             speak(text: instruction, preUtteranceDelay: 1.0)
             flash(view: tutCircleViews[currentCircleIndex], preBackgroundColour: .yellow, delay: 1.0)
             flash(view: tutCircleViews[currentCircleIndex + 1], preBackgroundColour: .yellow, delay: 1.0)
-            break
+            
+            let animation = DrawingAnimation(duration: 2)
+            drawLines(idx1: currentCircleIndex, idx2: currentCircleIndex + 1, drawingAnimation: animation)
+        
+        /// And so on, until you reach the end
+        case 6:
+            speak(text: instruction, preUtteranceDelay: 1.0)
+            flash(view: tutCircleViews[9], preBackgroundColour: .yellow, delay: 1.0)
+            
         default:
             speak(text: instruction, preUtteranceDelay: 1.0)
-            break
         }
     }
     
     private func speakMistakes() {
         let labels = K.TMT.labels[numRound]
-        let text = "\(K.TMT.mistakeMessages) You should connect \(labels[currentCircleIndex]) to \(labels[currentCircleIndex + 1])."
+        let text = "\(K.TMT.mistakeMessages) You should connect \(labels[currentCircleIndex]) to \(labels[currentCircleIndex + 1]).".localized
         setInstructionLabelText(message: text)
         speak(text: text, preUtteranceDelay: 0)
     }
     
     private func speak(text: String, preUtteranceDelay: TimeInterval) {
-        let utterance = AVSpeechUtterance(string: text)
+        let utterance = AVSpeechUtterance(string: text.localized)
         
         // Change synthesizer voice based on app language setting.
-        let appLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+        let appLanguage = AppLanguage.shared.getCurrentLanguage()
         
         utterance.voice = AVSpeechSynthesisVoice(language: appLanguage)
-        utterance.rate = K.UtteranceRate.instruction
-        utterance.preUtteranceDelay = preUtteranceDelay
+        utterance.rate = 0.4
+        // utterance.preUtteranceDelay = preUtteranceDelay
         synthesizer?.speak(utterance)
     }
     
@@ -433,31 +519,50 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
             print("Finished state \(instructionState)")
             
             switch instructionState {
-            case 2:
+            case 1:
                 stopFlashAllCircles()
-                break
-            case 3, 4, 5:
+                
+            case 2:
+                stopFlash(view: tutCircleViews[currentCircleIndex], postBackgroundColour: .cyan)
+                stopFlash(view: tutCircleViews[currentCircleIndex + 1], postBackgroundColour: .green)
+                
+            case 3:
                 stopFlash(view: tutCircleViews[currentCircleIndex], postBackgroundColour: .green)
                 stopFlash(view: tutCircleViews[currentCircleIndex + 1], postBackgroundColour: .green)
                 
-                drawLines(idx1: currentCircleIndex, idx2: currentCircleIndex + 1)
                 currentCircleIndex += 1
-                break
-            case 6, 7:
+                
+            case 4, 5:
+                stopFlash(view: tutCircleViews[currentCircleIndex], postBackgroundColour: .green)
+                stopFlash(view: tutCircleViews[currentCircleIndex + 1], postBackgroundColour: .green)
+                
+                currentCircleIndex += 1
+                
+            case 6:
+                stopFlash(view: tutCircleViews[9], postBackgroundColour: .lightGray)
+                hightlightCircle(view: tutCircleViews[9], color: .cyan, delay: nil)
+                
+            /*
+            case 7:
+                stopFlash(view: tutCircleViews[currentCircleIndex], postBackgroundColour: .green)
+                stopFlash(view: tutCircleViews[currentCircleIndex + 1], postBackgroundColour: .lightGray)
+             */
+                
+            case 10:
                 stopFlash(view: tutCircleViews[currentCircleIndex], postBackgroundColour: .green)
                 stopFlash(view: tutCircleViews[currentCircleIndex + 1], postBackgroundColour: .lightGray)
                 
-                // Allow users to start drawing from 3 to 4, and subsequent numbers
                 canTouch = true
-                break
-            case 8:
+                
+            case 11:
                 // After user finished connecting all circles
                 actionButtonsStackView.isHidden = false
+                
             default:
                 break
             }
             
-            if instructionState < 6 {
+            if instructionState < 10 {
                 instructionState += 1
                 speakInstructions()
             }
@@ -527,7 +632,7 @@ extension TMTGameViewController {
             firstPoint = currentLocation
         }
         secondPoint = currentLocation
-        addLine(fromPoint: CGPoint(x: (firstPoint?.x)!, y: (firstPoint?.y)!), toPoint: CGPoint(x: (secondPoint?.x)!, y: (secondPoint?.y)!))
+        addLine(fromPoint: CGPoint(x: (firstPoint?.x)!, y: (firstPoint?.y)!), toPoint: CGPoint(x: (secondPoint?.x)!, y: (secondPoint?.y)!), drawingAnimation: nil)
         
         for circle in circleViews {
             if (((circle.center.x - currentLocation.x) * (circle.center.x - currentLocation.x)) + ((circle.center.y - currentLocation.y) * (circle.center.y - currentLocation.y))).squareRoot() <= circleRadius {
@@ -584,6 +689,7 @@ extension TMTGameViewController {
                         speakInstructions()
                         
                         instructionLabel.isHidden = false
+                        
                     } else {
                         stopTimer()
                         
@@ -634,22 +740,31 @@ extension TMTGameViewController {
 }
 
 // MARK: - Line Drawing
-extension TMTGameViewController {
-    // Only used during Tutorial
-    private func drawLines(idx1: Int, idx2: Int) {
+extension TMTGameViewController { // Only used during Tutorial
+    
+    private struct DrawingAnimation {
+        internal let duration: TimeInterval
+        
+        init(duration: TimeInterval) {
+            self.duration = duration
+        }
+    }
+    
+    private func drawLines(idx1: Int, idx2: Int, color1: UIColor = .green, color2: UIColor = .green, drawingAnimation: DrawingAnimation?) {
         displayLastScreenshot(reset: false, displayView: tutorialView)
         
         let locationCircle1 = tutCircleCenterPoints[idx1]
         let locationCircle2 = tutCircleCenterPoints[idx2]
         
-        addLine(fromPoint: locationCircle1, toPoint: locationCircle2)
-        tutCircleViews[idx1].backgroundColor = .green
-        tutCircleViews[idx2].backgroundColor = .green
+        addLine(fromPoint: locationCircle1, toPoint: locationCircle2, drawingAnimation: drawingAnimation)
+        
+        tutCircleViews[idx1].backgroundColor = color1
+        tutCircleViews[idx2].backgroundColor = color2
         
         lastScreenshot = lineImageView.takeScreenshot()
     }
     
-    func addLine(fromPoint start: CGPoint, toPoint end:CGPoint) {
+    private func addLine(fromPoint start: CGPoint, toPoint end: CGPoint, drawingAnimation: DrawingAnimation?) {
         let linePath = UIBezierPath()
         linePath.move(to: start)
         linePath.addLine(to: end)
@@ -661,6 +776,31 @@ extension TMTGameViewController {
         line.strokeColor = K.TMT.drawColor.cgColor
         line.lineWidth = K.TMT.drawSize
         lineImageView.layer.addSublayer(line)
+        
+        if let drawingAnimation {
+            let animation = CABasicAnimation(keyPath: #keyPath(CAShapeLayer.strokeEnd))
+            
+            animation.duration = drawingAnimation.duration
+            animation.fromValue = 0
+            animation.toValue = 1
+            animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            
+            line.strokeEnd = 1.0
+            line.add(animation, forKey: "pencilAnimation")
+        }
+    }
+    
+    private func loadPencilImage() -> UIImageView {
+        let pencilImage = try! UIImage(imageName: "Pencil.png")
+        return UIImageView(image: pencilImage)
+    }
+    
+    private func locatePencilImage(at point: CGPoint) {
+        
+    }
+    
+    private func movePencilImage(from startPoint: CGPoint, to endPoint: CGPoint) {
+        
     }
 }
 
@@ -694,6 +834,16 @@ extension TMTGameViewController {
     private func stopFlashAllCircles() {
         for circleView in tutCircleViews {
             stopFlash(view: circleView, postBackgroundColour: .lightGray)
+        }
+    }
+    
+    private func hightlightCircle(view: UIView, color: UIColor, delay: TimeInterval?) {
+        if let delay {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                view.backgroundColor = color
+            }
+        } else {
+            view.backgroundColor = color
         }
     }
 }

@@ -32,10 +32,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         self.speaker.delegate = self
         
         notificationBroadcast.removeAllObserverFrom(self)
-        notificationBroadcast.addObserver(self, selector: #selector(stopSpeaking), name: "Stop Speaking \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(resumeSpeaking), name: "Resume Speaking \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(displayHint), name: "Display Hint \(viewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(displaySuccessfulMessages), name: "Display Successful Messages \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(stopSpeaking), "Stop Speaking \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(resumeSpeaking), "Resume Speaking \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(displayHint), "Display Hint \(viewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(displaySuccessfulMessages), "Display Successful Messages \(viewModel)", object: nil)
     }
     
     deinit {
@@ -72,9 +72,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         /// case 0 & 1: 4 7 2 -> 3 digits
         case 0:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Set Digit Rectangle \(viewModel)", object: 3)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 3)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 2 {
                 speechStatus.counter_2 += 1
@@ -85,8 +85,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
         case 1:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 2 {
                 speechStatus.counter_2 += 1
@@ -98,10 +98,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         /// case 2 & 3: 6 1 8 9 -> 4 digits
         case 2:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: 3)
-            notificationBroadcast.post(name: "Set Digit Rectangle \(viewModel)", object: 4)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 3)
+            notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 4)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 3 {
                 speechStatus.counter_2 += 1
@@ -112,8 +112,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
         case 3:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 3 {
                 speechStatus.counter_2 += 1
@@ -125,10 +125,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         /// case 4 & 5: 7 5 9 2 6 -> 5 digits
         case 4:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: 4)
-            notificationBroadcast.post(name: "Set Digit Rectangle \(viewModel)", object: 5)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 4)
+            notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 5)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 4 {
                 speechStatus.counter_2 += 1
@@ -139,8 +139,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
         case 5:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 4 {
                 speechStatus.counter_2 += 1
@@ -151,15 +151,18 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
         case 6:
             // remove digit rectangle
-            notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: 5)
+            notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 5)
+            
+            let instructionText = digitSpanTest.backwardsNumberSpanInstructions[speechStatus.index - 6]
+            notificationBroadcast.post("Instruction Text \(viewModel)", object: instructionText)
             break
             
         /// case 23 & 24: 2 1 8 -> 3 digits
         case 23:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Set Digit Rectangle \(viewModel)", object: 3)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 3)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 2 {
                 speechStatus.counter_2 += 1
@@ -170,8 +173,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
         case 24:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 2 {
                 speechStatus.counter_2 += 1
@@ -183,10 +186,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         /// case 25 & 26: 7 4 1 5 -> 4 digits
         case 25:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: 3)
-            notificationBroadcast.post(name: "Set Digit Rectangle \(viewModel)", object: 4)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 3)
+            notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 4)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 3 {
                 speechStatus.counter_2 += 1
@@ -197,8 +200,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
         case 26:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 3 {
                 speechStatus.counter_2 += 1
@@ -210,10 +213,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         /// case 27 & 28: 9 2 5 1 8 -> 5 digits
         case 27:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Remove Digit Rectangle \(viewModel)", object: 4)
-            notificationBroadcast.post(name: "Set Digit Rectangle \(viewModel)", object: 5)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 4)
+            notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 5)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 4 {
                 speechStatus.counter_2 += 1
@@ -224,8 +227,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
         case 28:
             print("speech did start with index = \(speechStatus.index)")
-            notificationBroadcast.post(name: "Reset Digit Label \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
             
             if speechStatus.counter_2 < 4 {
                 speechStatus.counter_2 += 1
@@ -237,7 +240,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         /// For instruction speaking.
         default:
             let instructionText = digitSpanTest.backwardsNumberSpanInstructions[speechStatus.index - 6]
-            notificationBroadcast.post(name: "Instruction Text \(viewModel)", object: instructionText)
+            notificationBroadcast.post("Instruction Text \(viewModel)", object: instructionText)
         }
     }
     
@@ -279,10 +282,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             } else {
                 let answer = getAnswerString(numberOfDigits: 3, testType: .forwardSpanTest)
                 
-                notificationBroadcast.post(name: "Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Play Bell Sound \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Start Recognition Task \(viewModel)", object: answer)
-                notificationBroadcast.post(name: "Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
+                notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -298,10 +301,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             } else {
                 let answer = getAnswerString(numberOfDigits: 4, testType: .forwardSpanTest)
                 
-                notificationBroadcast.post(name: "Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Play Bell Sound \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Start Recognition Task \(viewModel)", object: answer)
-                notificationBroadcast.post(name: "Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
+                notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -317,10 +320,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             } else {
                 let answer = getAnswerString(numberOfDigits: 5, testType: .forwardSpanTest)
                 
-                notificationBroadcast.post(name: "Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Play Bell Sound \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Start Recognition Task \(viewModel)", object: answer)
-                notificationBroadcast.post(name: "Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
+                notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -338,10 +341,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
             ///  Display Instruction: (Bell Sound) but do not speak it out.
             let instructionText = digitSpanTest.backwardsNumberSpanInstructions[speechStatus.index - 6].localized
-            notificationBroadcast.post(name: "Instruction Text \(viewModel)", object: instructionText)
+            notificationBroadcast.post("Instruction Text \(viewModel)", object: instructionText)
                 
             /// Play bell sound.
-            notificationBroadcast.post(name: "Play Bell Sound \(viewModel)", object: nil)
+            notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
                 
             roundInfo.speechStatusIndex = speechStatus.index
             
@@ -367,7 +370,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
-                notificationBroadcast.post(name: "Resume Recognition \(viewModel)", object: nil)
+                notificationBroadcast.post("Resume Recognition \(viewModel)", object: nil)
             }
             
         /// Instruction finished speaking: What would you say?
@@ -377,14 +380,14 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
             let answer = "637"
             
-            notificationBroadcast.post(name: "Display Gif Image \(viewModel)", object: nil)
-            notificationBroadcast.post(name: "Set Digit Rectangle \(viewModel)", object: 3)
-            notificationBroadcast.post(name: "Start Recognition Task \(viewModel)", object: answer)
-            notificationBroadcast.post(name: "Show Recognizer Buttons \(viewModel)", object: nil)
+            notificationBroadcast.post("Display Gif Image \(viewModel)", object: nil)
+            notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 3)
+            notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
+            notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 
         /// Do NOT increase index as 22 is the last instruction!
         case 22:
-            notificationBroadcast.post(name: "Show Begin Button \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Begin Button \(viewModel)", object: nil)
             roundInfo.testType = .backwardsSpanTest
             roundInfo.reset()
             
@@ -395,10 +398,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 let answer = getAnswerString(numberOfDigits: 3, testType: .backwardsSpanTest)
                 print(answer)
                 
-                notificationBroadcast.post(name: "Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Play Bell Sound \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Start Recognition Task \(viewModel)", object: answer)
-                notificationBroadcast.post(name: "Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
+                notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -414,10 +417,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 let answer = getAnswerString(numberOfDigits: 4, testType: .backwardsSpanTest)
                 print(answer)
                 
-                notificationBroadcast.post(name: "Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Play Bell Sound \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Start Recognition Task \(viewModel)", object: answer)
-                notificationBroadcast.post(name: "Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
+                notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -433,10 +436,10 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 let answer = getAnswerString(numberOfDigits: 5, testType: .backwardsSpanTest)
                 print(answer)
                 
-                notificationBroadcast.post(name: "Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Play Bell Sound \(viewModel)", object: nil)
-                notificationBroadcast.post(name: "Start Recognition Task \(viewModel)", object: answer)
-                notificationBroadcast.post(name: "Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
+                notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -489,7 +492,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     
     internal func displayBackwardNumberSpanInstructions() { // start from index = 6
         print("Display backward number span instructions!\n")
-        notificationBroadcast.post(name: "Hide Unrecognized Reminder \(viewModel)", object: nil)
+        notificationBroadcast.post("Hide Unrecognized Reminder \(viewModel)", object: nil)
         speaker.synthesizer.stopSpeaking(at: .immediate)
         
         // MARK: We have to initalize a new speaker instance and assign to variable 'speaker' because synthesizer cannot start again once the utterance queue is cleared.
@@ -536,7 +539,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     
     @objc internal func displayHint() {
         speechStatus.index = 18
-        notificationBroadcast.post(name: "Pause Recognition \(viewModel)", object: nil)
+        notificationBroadcast.post("Pause Recognition \(viewModel)", object: nil)
         for instruction in digitSpanTest.backwardsNumberSpanInstructions[12...13] {
             switch instruction {
             case "6 – 3 – 7":
@@ -551,7 +554,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     
     @objc internal func displaySuccessfulMessages() {
         speechStatus.index = 20
-        notificationBroadcast.post(name: "Pause Recognition \(viewModel)", object: nil)
+        notificationBroadcast.post("Pause Recognition \(viewModel)", object: nil)
         for instruction in digitSpanTest.backwardsNumberSpanInstructions[14...16] {
             let localizedInstruction = instruction.localized
             speaker.speakInstructions(string: localizedInstruction)

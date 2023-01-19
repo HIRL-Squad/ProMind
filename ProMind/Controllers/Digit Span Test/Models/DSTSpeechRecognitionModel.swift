@@ -77,36 +77,40 @@ class SFSpeechDigitNumberRecognizer: NSObject, SFSpeechRecognizerDelegate, SFSpe
     internal var viewModel: DSTViewModels
     
     private let notification = NotificationBroadcast()
+    private let appLanguage = AppLanguage.shared
     
     required init(viewModel: DSTViewModels) {
         self.viewModel = viewModel
         super.init()
-        
-        if let appLanguage = UserDefaults.standard.string(forKey: "i18n_language") {
-            speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: appLanguage))
+        speechRecognizer?.delegate = self
+        initializeRecognizer(withLanguageCode: appLanguage.getCurrentLanguage())
+        notification.addObserver(self, #selector(updateRecognizerLanguage(notification:)), "Update Recognizer Language \(viewModel)", object: nil)
+    }
+    
+    internal func initializeRecognizer(withLanguageCode language: String?) {
+        if let language {
+            speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: language))
         } else {
             speechRecognizer = SFSpeechRecognizer()
             print("Unable to retrieve app language from i18n_language!")
         }
         
-        speechRecognizer?.delegate = self
-        
         Task(priority: .background) {
             do {
                 guard speechRecognizer != nil else {
-                    notification.post(name: "Display UIAlert \(viewModel)", object: "Not supported for device's locale.")
+                    notification.post("Display UIAlert \(viewModel)", object: "Not supported for device's locale.")
                     print("Nil recognizer!\n")
                     throw SFSpeechDigitNumberRecognizerError.nilRecognizer
                 }
                                 
                 guard await SFSpeechRecognizer.hasAuthorizationToRecognize() else {
-                    notification.post(name: "Display UIAlert \(viewModel)", object: "Not authorized to recognize!")
+                    notification.post("Display UIAlert \(viewModel)", object: "Not authorized to recognize!")
                     print("Not authorized to recognize!\n")
                     throw SFSpeechDigitNumberRecognizerError.notAuthorizedToRecognize
                 }
                 
                 guard await AVAudioSession.sharedInstance().hasPermissionToRecord() else {
-                    notification.post(name: "Display UIAlert \(viewModel)", object: "Speech recognizer requires permission to work!")
+                    notification.post("Display UIAlert \(viewModel)", object: "Speech recognizer requires permission to work!")
                     print("Not permitted to record!\n")
                     throw SFSpeechDigitNumberRecognizerError.notPermittedToRecord
                 }
@@ -117,12 +121,20 @@ class SFSpeechDigitNumberRecognizer: NSObject, SFSpeechRecognizerDelegate, SFSpe
         }
     }
     
+    @objc internal func updateRecognizerLanguage(notification: Notification) throws {
+        guard let language = notification.object as? String else {
+            print("Illegal application language received when updating recognizer!")
+            throw SFSpeechDigitNumberRecognizerError.illegalApplicationLanguageReceived
+        }
+        initializeRecognizer(withLanguageCode: language)
+    }
+    
     deinit {
         reset()
     }
     
     internal func transcribe() {
-        DispatchQueue(label: "Speech Recognizer Queue", qos: .background).async { [weak self] in
+        DispatchQueue(label: "Speech Recognizer Queue", qos: .userInteractive).async { [weak self] in
             guard let self = self, let recognizer = self.speechRecognizer, recognizer.isAvailable else {
                 print("Recognizer is unavailable!\n")
                 return
@@ -190,8 +202,8 @@ class SFSpeechDigitNumberRecognizer: NSObject, SFSpeechRecognizerDelegate, SFSpe
         
         if let result = result {
             finalResult = result.bestTranscription.formattedString
-            notification.post(name: "Play Gif Image \(viewModel)", object: nil)
-            notification.post(name: "Transcribe Finished \(viewModel)", object: finalResult)
+            notification.post("Play Gif Image \(viewModel)", object: nil)
+            notification.post("Transcribe Finished \(viewModel)", object: finalResult)
         }
     }
     

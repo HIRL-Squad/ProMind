@@ -27,12 +27,12 @@ class DSTTestViewController: UIViewController {
     @IBOutlet weak var actionStack: UIStackView!
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
-        notificationBroadcast.post(name: "Reset Answer Button Pressed \(testViewModel)", object: nil)
+        notificationBroadcast.post("Reset Answer Button Pressed \(testViewModel)", object: nil)
         hideUnrecognizedReminder()
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        notificationBroadcast.post(name: "Submit Answer Button Pressed \(testViewModel)", object: nil)
+        notificationBroadcast.post("Submit Answer Button Pressed \(testViewModel)", object: nil)
     }
     
     @IBAction func beginButtonPressed(_ sender: UIButton) {
@@ -43,6 +43,7 @@ class DSTTestViewController: UIViewController {
     @ObservedObject var speechRecognition = DSTTestSpeechRecognitionViewModel.shared
     
     private let testViewModel = DSTViewModels.DSTTestViewModel
+    private let appLanguage = AppLanguage.shared
     private let notificationBroadcast = NotificationBroadcast()
     private let timer = RepeatingTimer(tolerance: 0.1, viewModel: .DSTTestViewModel)
     
@@ -74,28 +75,27 @@ class DSTTestViewController: UIViewController {
             await removeAllExistingDigitRectangles(fromTag: 3, toTag: 5)
         }
         
-        notificationBroadcast.removeAllObserverFrom(self)
-        notificationBroadcast.addObserver(self, selector: #selector(updateUILabelText(notification:)), name: "Instruction Text \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(playBellSound), name: "Play Bell Sound \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(displayUIAlert(notification:)), name: "Display UIAlert \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(updateDigitLabel(notification:)), name: "Update Digit Label \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(startRecognitionTask(notification:)), name: "Start Recognition Task \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(resetDigitLabel), name: "Reset Digit Label \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(loadGifImage), name: "Display Gif Image \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(showRecognizerButtons), name: "Show Recognizer Buttons \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(playGifImage), name: "Play Gif Image \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(stopPlayingGif), name: "Stop Playing Gif \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(showBeginButton), name: "Show Begin Button \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(showDigitSpeakingActivityIndicator), name: "Show Digit Speaking Activity Indicator \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(hideDigitSpeakingActivityIndicator), name: "Hide Digit Speaking Activity Indicator \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(displayBackwardNumberSpanInstructions), name: "Display Backward Number Span Instructions \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(presentResultView), name: "Present Result View \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(showResultButton), name: "Show Result Button \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(setDigitRectangle(notification:)), name: "Set Digit Rectangle \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(removeDigitRectangle(notification:)), name: "Remove Digit Rectangle \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(showUnrecognizedReminder), name: "Illegal Spoken Result \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(hideUnrecognizedReminder), name: "Legal Spoken Result \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, selector: #selector(hideUnrecognizedReminder), name: "Hide Unrecognized Reminder \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(updateUILabelText(notification:)), "Instruction Text \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(playBellSound), "Play Bell Sound \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(displayUIAlert(notification:)), "Display UIAlert \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(updateDigitLabel(notification:)), "Update Digit Label \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(startRecognitionTask(notification:)), "Start Recognition Task \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(resetDigitLabel), "Reset Digit Label \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(loadGifImage), "Display Gif Image \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showRecognizerButtons), "Show Recognizer Buttons \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(playGifImage), "Play Gif Image \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(stopPlayingGif), "Stop Playing Gif \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showBeginButton), "Show Begin Button \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showDigitSpeakingActivityIndicator), "Show Digit Speaking Activity Indicator \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideDigitSpeakingActivityIndicator), "Hide Digit Speaking Activity Indicator \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(displayBackwardNumberSpanInstructions), "Display Backward Number Span Instructions \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(presentResultView), "Present Result View \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showResultButton), "Show Result Button \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(setDigitRectangle(notification:)), "Set Digit Rectangle \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(removeDigitRectangle(notification:)), "Remove Digit Rectangle \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Hide Unrecognized Reminder \(testViewModel)", object: nil)
         
         try! loadGifImage()
     }
@@ -115,7 +115,10 @@ class DSTTestViewController: UIViewController {
         
         instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
         instructionSpeaking.resetSpeechStatus()
+        
+        speechRecognition.updateRecognizerLanguage(withCode: appLanguage.getCurrentLanguage())
         speechRecognition.resetRecognizer()
+        
         notificationBroadcast.removeAllObserverFrom(self)
         timer.end()
     }

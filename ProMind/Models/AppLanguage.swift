@@ -14,10 +14,19 @@ class AppLanguage {
     enum SupportList {
         case English
         case Malay
+        case Chinese
     }
     
+    private var currentLanguage: String?
+    
+    private init() {
+        currentLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+    }
+    
+    static let shared = AppLanguage()
+    
     func getCurrentLanguage() -> String? {
-        return UserDefaults.standard.string(forKey: "i18n_language")
+        return currentLanguage
     }
     
     /// Override the global setting for app language.
@@ -25,16 +34,24 @@ class AppLanguage {
     func setLanguage(_ language: SupportList) {
         switch language {
         case .English:
+            currentLanguage = "en"
             UserDefaults.standard.set("en", forKey: "i18n_language")
             print("User selected English as the app language! ")
+            
         case .Malay:
-            UserDefaults.standard.set("ml", forKey: "i18n_language")
+            currentLanguage = "ms"
+            UserDefaults.standard.set("ms", forKey: "i18n_language")
             print("User selected Malay as the app language! ")
+            
+        case .Chinese:
+            currentLanguage = "zh-Hans"
+            UserDefaults.standard.set("zh-Hans", forKey: "i18n_language")
+            print("User selected Chinese as the app language! ")
         }
     }
     
     /// Return to the initial view of main storyboard to re-render all UI.
-    func rerenderUI() {
+    func reRenderUI() {
         LanguageManager.shared.setLanguage(language: .en) { title -> UIViewController in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             return storyboard.instantiateInitialViewController()!
