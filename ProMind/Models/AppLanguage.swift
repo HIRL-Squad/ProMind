@@ -18,6 +18,7 @@ class AppLanguage {
     }
     
     private var currentLanguage: String?
+    private let notification = NotificationBroadcast()
     
     private init() {
         currentLanguage = UserDefaults.standard.string(forKey: "i18n_language")
@@ -36,16 +37,19 @@ class AppLanguage {
         case .English:
             currentLanguage = "en"
             UserDefaults.standard.set("en", forKey: "i18n_language")
+            notification.post("Update System Language", object: "en")
             print("User selected English as the app language! ")
             
         case .Malay:
             currentLanguage = "ms"
             UserDefaults.standard.set("ms", forKey: "i18n_language")
+            notification.post("Update System Language", object: "ms")
             print("User selected Malay as the app language! ")
             
         case .Chinese:
             currentLanguage = "zh-Hans"
             UserDefaults.standard.set("zh-Hans", forKey: "i18n_language")
+            notification.post("Update System Language", object: "zh-Hans")
             print("User selected Chinese as the app language! ")
         }
     }

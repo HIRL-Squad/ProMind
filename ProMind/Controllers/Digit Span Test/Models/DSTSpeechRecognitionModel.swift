@@ -79,12 +79,12 @@ class SFSpeechDigitNumberRecognizer: NSObject, SFSpeechRecognizerDelegate, SFSpe
     private let notification = NotificationBroadcast()
     private let appLanguage = AppLanguage.shared
     
-    required init(viewModel: DSTViewModels) {
+    required init(viewModel: DSTViewModels, language: String?) {
         self.viewModel = viewModel
         super.init()
         speechRecognizer?.delegate = self
         initializeRecognizer(withLanguageCode: appLanguage.getCurrentLanguage())
-        notification.addObserver(self, #selector(updateRecognizerLanguage(notification:)), "Update Recognizer Language \(viewModel)", object: nil)
+        notification.addObserver(self, #selector(updateRecognizerLanguage(notification:)), "Update System Language", object: nil)
     }
     
     internal func initializeRecognizer(withLanguageCode language: String?) {
@@ -127,6 +127,7 @@ class SFSpeechDigitNumberRecognizer: NSObject, SFSpeechRecognizerDelegate, SFSpe
             throw SFSpeechDigitNumberRecognizerError.illegalApplicationLanguageReceived
         }
         initializeRecognizer(withLanguageCode: language)
+        print("Did update recognizer language!")
     }
     
     deinit {

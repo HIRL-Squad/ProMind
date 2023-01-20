@@ -13,7 +13,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     
     @Published var recognitionTask = RecognizationTask(expectedResult: "472")
     
-    private let recognizer = SFSpeechDigitNumberRecognizer(viewModel: .DSTTestViewModel)
+    private let recognizer = SFSpeechDigitNumberRecognizer(viewModel: .DSTTestViewModel, language: AppLanguage.shared.getCurrentLanguage())
     private let notificationBroadcast = NotificationBroadcast()
     private let testStatistics = DSTTestStatistics()
     

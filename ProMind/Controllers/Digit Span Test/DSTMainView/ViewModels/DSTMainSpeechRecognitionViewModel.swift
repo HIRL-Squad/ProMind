@@ -13,7 +13,7 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     
     @Published var recognitionTask = RecognizationTask(expectedResult: "298")
     
-    private let recognizer = SFSpeechDigitNumberRecognizer(viewModel: .DSTMainViewModel)
+    private let recognizer = SFSpeechDigitNumberRecognizer(viewModel: .DSTMainViewModel, language: AppLanguage.shared.getCurrentLanguage())
     private let notificationBroadcast = NotificationBroadcast()
     
     internal var viewModel: DSTViewModels
