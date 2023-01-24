@@ -1103,12 +1103,12 @@ Longest Seq: 0</string>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is part of your memory and concentration task. " textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZg-au-csF" userLabel="Instruction Label">
-                                <rect key="frame" x="170" y="287" width="705.5" height="450"/>
+                                <rect key="frame" x="149.5" y="287" width="747" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="KvN-Og-j2M"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="fwL-Kk-Y5v"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1411,12 +1411,12 @@ We will go through them one by one.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now, let’s move on to the second task. " textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEE-LH-5kc" userLabel="Instruction Label">
-                                <rect key="frame" x="261.5" y="287" width="522.5" height="450"/>
+                                <rect key="frame" x="246.5" y="287" width="553" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="8EI-PM-ddv"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="c0n-kW-lWQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
