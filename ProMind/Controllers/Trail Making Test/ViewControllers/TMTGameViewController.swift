@@ -578,11 +578,11 @@ extension TMTGameViewController {
         super.touchesBegan(touches, with: event)
         if isTutorial {
             if canTouch {
-                updateOnTouchesBegan(touch: touches.first!, displayView: tutorialView, circleViews: tutCircleViews, idx: currentCircleIndex, circleRadius: tutViewWidth[2.5])
+                updateOnTouchesBegan(touch: touches.first!, displayView: tutorialView, circleViews: tutCircleViews, idx: currentCircleIndex, circleRadius: tutViewWidth[4])
             }
         } else {
             if canTouch {
-                updateOnTouchesBegan(touch: touches.first!, displayView: view, circleViews: testCircleViews, idx: currentCircleIndex, circleRadius: testViewWidth[2.5])
+                updateOnTouchesBegan(touch: touches.first!, displayView: view, circleViews: testCircleViews, idx: currentCircleIndex, circleRadius: testViewWidth[4])
             }
         }
     }
@@ -613,13 +613,13 @@ extension TMTGameViewController {
         if isTutorial {
             if canTouch && canDraw {
                 for touch in touches {
-                    updateOnTouchesMoved(touch: touch, displayView: tutorialView, circleViews: tutCircleViews, circleRadius: tutViewWidth[2.5])
+                    updateOnTouchesMoved(touch: touch, displayView: tutorialView, circleViews: tutCircleViews, circleRadius: tutViewWidth[4])
                 }
             }
         } else {
             if canDraw {
                 for touch in touches {
-                    updateOnTouchesMoved(touch: touch, displayView: view, circleViews: testCircleViews, circleRadius: testViewWidth[2.5])
+                    updateOnTouchesMoved(touch: touch, displayView: view, circleViews: testCircleViews, circleRadius: testViewWidth[4])
                 }
             }
         }
