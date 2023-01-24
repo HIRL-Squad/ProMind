@@ -9,6 +9,9 @@ import UIKit
 import Speech
 
 class InitialViewController: UIViewController {
+    
+    private let notification = NotificationBroadcast()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,6 +73,16 @@ class InitialViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if #available(iOS 13.0, *) {
+            notification.addObserver(self, #selector(applicationDidBecomeActive), UIScene.didActivateNotification, object: nil)
+        } else {
+            notification.addObserver(self, #selector(applicationDidBecomeActive), UIApplication.didBecomeActiveNotification, object: nil)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if NetworkMonitor.shared.isConnected {
@@ -78,6 +91,11 @@ class InitialViewController: UIViewController {
                 self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        notification.removeAllObserverFrom(self)
     }
     
     private func handlePermissionFailedForSpeechRecognition(title: String, msg: String) {
@@ -116,6 +134,18 @@ class InitialViewController: UIViewController {
               let leftNavController = splitViewController.viewControllers.first as? UINavigationController,
               let _ = leftNavController.viewControllers.first as? ExperimentProfileMasterViewController else {
             fatalError("InitialScreenViewController: Errors occurred while downcasting to SubjectProfileMasterViewController.")
+        }
+    }
+}
+
+// Functions will be triggered when the application active state changes.
+extension InitialViewController {
+    @objc private func applicationDidBecomeActive() {
+        if NetworkMonitor.shared.isConnected {
+            print("Internet :: Connected!")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
+            }
         }
     }
 }
