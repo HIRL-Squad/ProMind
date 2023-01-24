@@ -182,24 +182,69 @@ class SpokenResultFilter {
         self.viewModel = viewModel
     }
     
+    /// To check if spoken result contains decimal number words (like "one") and convert those words to digit number.
+    /// This process is necessary since the first (few) speaking digit will be recognised as words instead of a digit number.
     internal func getFilteredResult() -> String {
         var filteredResult: String = spokenResult
-        let decimalNumberDictionary: [String: String] = [
-            "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
-            "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"
-        ]
+        let appLanguage = AppLanguage.shared.getCurrentLanguage()
         
-        /// To check if spoken result contains decimal number words (like "one") and convert those words to digit number.
-        /// This process is necessary since the first speaking digit will be recognised as words instead of a digit number.
-        if decimalNumberDictionary.keys.contains(where: spokenResult.lowercased().contains) {
-            for key in decimalNumberDictionary.keys {
-                if spokenResult.lowercased() == key {
-                    if let value = decimalNumberDictionary[key] {
-                        filteredResult = value
-                        break
+        switch appLanguage {
+        case "en":
+            let decimalNumberDictionary: [String: String] = [
+                "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
+                "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"
+            ]
+            
+            if decimalNumberDictionary.keys.contains(where: spokenResult.lowercased().contains) {
+                for key in decimalNumberDictionary.keys {
+                    if spokenResult.lowercased() == key {
+                        if let value = decimalNumberDictionary[key] {
+                            filteredResult = value
+                            break
+                        }
                     }
                 }
             }
+            
+        case "zh-Hans":
+            let decimalNumberDictionary: [String: String] = [
+                "零": "0", "一": "1", "二": "2", "三": "3", "四": "4",
+                "五": "5", "六": "6", "七": "7", "八": "8", "九": "9",
+                "零零": "00", "零一": "01", "零二": "02", "零三": "03", "零四": "04",
+                "零五": "05", "零六": "06", "零七": "07", "零八": "08", "零九": "09",
+                "一零": "10", "一一": "11", "一二": "12", "一三": "13", "一四": "14",
+                "一五": "15", "一六": "16", "一七": "17", "一八": "18", "一九": "19",
+                "二零": "20", "二一": "21", "二二": "22", "二三": "23", "二四": "24",
+                "二五": "25", "二六": "26", "二七": "27", "二八": "28", "二九": "29",
+                "三零": "30", "三一": "31", "三二": "32", "三三": "33", "三四": "34",
+                "三五": "35", "三六": "36", "三七": "37", "三八": "38", "三九": "39",
+                "四零": "40", "四一": "41", "四二": "42", "四三": "43", "四四": "44",
+                "四五": "45", "四六": "46", "四七": "47", "四八": "48", "四九": "49",
+                "五零": "50", "五一": "51", "五二": "52", "五三": "53", "五四": "54",
+                "五五": "55", "五六": "56", "五七": "57", "五八": "58", "五九": "59",
+                "六零": "60", "六一": "61", "六二": "62", "六三": "63", "六四": "64",
+                "六五": "65", "六六": "66", "六七": "67", "六八": "68", "六九": "69",
+                "七零": "70", "七一": "71", "七二": "72", "七三": "73", "七四": "74",
+                "七五": "75", "七六": "76", "七七": "77", "七八": "78", "七九": "79",
+                "八零": "80", "八一": "81", "八二": "82", "八三": "83", "八四": "84",
+                "八五": "85", "八六": "86", "八七": "87", "八八": "88", "八九": "89",
+                "九零": "90", "九一": "91", "九二": "92", "九三": "93", "九四": "94",
+                "九五": "95", "九六": "96", "九七": "97", "九八": "98", "九九": "99"
+            ]
+            
+            if decimalNumberDictionary.keys.contains(where: spokenResult.contains) {
+                for key in decimalNumberDictionary.keys {
+                    if spokenResult.lowercased() == key {
+                        if let value = decimalNumberDictionary[key] {
+                            filteredResult = value
+                            break
+                        }
+                    }
+                }
+            }
+            
+        default:
+            break
         }
         
         if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: filteredResult)) {
