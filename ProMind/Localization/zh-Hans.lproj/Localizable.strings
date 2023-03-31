@@ -111,3 +111,8 @@
 
 // Test Completion
 "Congratulations. You have completed the Trail Making Test. Please refer to your results on the screen." = "恭喜。你已经完成了Trail Making Test。请查看屏幕上的测试结果。";
+
+// Prompt Info
+"ATTENTION" = "注意";
+"Please do NOT lift Apple Pencil from the screen!" = "请不要将 Apple Pencil 离开屏幕！";
+"OK" = "好的";

@@ -68,5 +68,49 @@
 "Begin! " = "Mula! ";
 "Good job! Now let's do the actual test! " = "Baik! ayuh kita lakukan ujiannya! ";
 
+// Error Reminder
+"That is not the correct move!" = "Itu bukan langkah yang betul!";
+"You should connect 4 to 5." = "Anda harus menyambung 4 hingga 5.";
+"You should connect 5 to 6." = "Anda harus menyambung 5 hingga 6.";
+"You should connect 6 to 7." = "Anda harus menyambung 6 hingga 7.";
+"You should connect 7 to 8." = "Anda harus menyambung 7 hingga 8.";
+"You should connect 8 to 9." = "Anda harus menyambung 8 hingga 9.";
+"You should connect 9 to 10." = "Anda harus menyambung 9 hingga 10.";
+
+"You should connect B to 3." = "Anda harus menyambung B hingga 3.";
+"You should connect 3 to C." = "Anda harus menyambung 3 hingga C.";
+"You should connect C to 4." = "Anda harus menyambung C hingga 4.";
+"You should connect 4 to D." = "Anda harus menyambung 4 hingga D.";
+"You should connect D to 5." = "Anda harus menyambung D hingga 5.";
+"You should connect 5 to E." = "Anda harus menyambung 5 hingga E.";
+
+"That is not the correct move! You should connect 4 to 5." = "Itu bukan langkah yang betul! Anda harus menyambung 4 hingga 5.";
+"That is not the correct move! You should connect 5 to 6." = "Itu bukan langkah yang betul! Anda harus menyambung 5 hingga 6.";
+"That is not the correct move! You should connect 6 to 7." = "Itu bukan langkah yang betul! Anda harus menyambung 6 hingga 7.";
+"That is not the correct move! You should connect 7 to 8." = "Itu bukan langkah yang betul! Anda harus menyambung 7 hingga 8.";
+"That is not the correct move! You should connect 8 to 9." = "Itu bukan langkah yang betul! Anda harus menyambung 8 hingga 9.";
+"That is not the correct move! You should connect 9 to 10." = "Itu bukan langkah yang betul! Anda harus menyambung 9 hingga 10.";
+
+"That is not the correct move! You should connect B to 3." = "Itu bukan langkah yang betul! Anda harus menyambung B hingga 3.";
+"That is not the correct move! You should connect 3 to C." = "Itu bukan langkah yang betul! Anda harus menyambung 3 hingga C.";
+"That is not the correct move! You should connect C to 4." = "Itu bukan langkah yang betul! Anda harus menyambung C hingga 4.";
+"That is not the correct move! You should connect 4 to D." = "Itu bukan langkah yang betul! Anda harus menyambung 4 hingga D.";
+"That is not the correct move! You should connect D to 5." = "Itu bukan langkah yang betul! Anda harus menyambung D hingga 5.";
+"That is not the correct move! You should connect 5 to E." = "Itu bukan langkah yang betul! Anda harus menyambung 5 hingga E.";
 
 
+// Test Information
+"There are a total of 15 circles." = "Terdapat 15 bulatan.";
+"Please connect them without lifting the stylus as much as possible." = "Sila sambungkannya tanpa mengangkat stylus sebanyak mungkin.";
+"You have 180 seconds." = "Anda mempunyai 180 saat.";
+
+"There are a total of 15 circles.\nPlease connect them without lifting the stylus as much as possible.\nYou have 180 seconds." = "Terdapat 15 bulatan.\nSila sambungkannya tanpa mengangkat stylus sebanyak mungkin.\nAnda mempunyai 180 saat.";
+
+// Test Completion
+"Congratulations. You have completed the Trail Making Test. Please refer to your results on the screen." = "Tahniah. Anda telah menyelesaikan Ujian Membuat Jejak. Sila rujuk keputusan anda pada skrin.";
+
+
+// Prompt Information
+"ATTENTION" = "PERHATIAN";
+"Please do NOT lift Apple Pencil from the screen!" = "Sila JANGAN angkat Pensil Apple dari skrin!";
+"OK" = "okey";
