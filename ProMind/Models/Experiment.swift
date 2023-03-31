@@ -27,6 +27,7 @@ class Experiment: Codable {
     var educationLevel: String?
     var ethnicity: String?
     var annualIncome: String?
+    var patientId: String?
     
     var remarks: String?
     
@@ -37,6 +38,7 @@ class Experiment: Codable {
         case educationLevel
         case ethnicity
         case annualIncome
+        case patientId
         case remarks
     }
     
@@ -74,6 +76,10 @@ class Experiment: Codable {
             body["subjectAnnualIncome"] = annualIncome
         }
         
+        if let patientId = self.patientId {
+            body["patientId"] = patientId
+        }
+        
         if let remarks = self.remarks {
             body["remarks"] = remarks
         }
@@ -93,6 +99,7 @@ class Experiment: Codable {
         let educationLevelText = "Education Level:\n\(educationLevel ?? "N.A.")"
         let ethnicityText = "Ethnicity:\n\(ethnicity ?? "N.A.")"
         let annualIncomeText = "Annual Income:\n\(annualIncome ?? "N.A.")"
+        let patientIdText = "Patient ID:\n\(patientId ?? "N.A.")"
         let remarksText = "Remarks:\n\(remarks ?? "N.A")"
         
         return "" +
@@ -102,6 +109,7 @@ class Experiment: Codable {
             "\(educationLevelText)\n\n" +
             "\(ethnicityText)\n\n" +
             "\(annualIncomeText)\n\n" +
+            "\(patientIdText)\n\n" +
             "\(remarksText)"
     }
 }
@@ -121,6 +129,8 @@ extension Experiment {
                 return educationLevel as AnyObject // <null> if nil
             case K.ExperimentProfile.ethnicity:
                 return ethnicity as AnyObject // <null> if nil
+            case K.ExperimentProfile.patientId:
+                return patientId as AnyObject // <null> if nil
             case K.ExperimentProfile.annualIncome:
                 return annualIncome as AnyObject // <null> if nil
             default:
@@ -139,6 +149,8 @@ extension Experiment {
                 educationLevel = newValue as? String
             case K.ExperimentProfile.ethnicity:
                 ethnicity = newValue as? String
+            case K.ExperimentProfile.patientId:
+                patientId = newValue as? String
             case K.ExperimentProfile.annualIncome:
                 annualIncome = newValue as? String
             default:

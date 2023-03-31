@@ -72,6 +72,9 @@ class ExperimentProfileMasterViewController: UITableViewController {
     }
     
     
+    @IBOutlet weak var patientIdTextField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -81,6 +84,7 @@ class ExperimentProfileMasterViewController: UITableViewController {
         splitViewController?.presentsWithGesture = false // To prevent users from showing/hiding master view
         
         ageTextField.delegate = self
+        patientIdTextField.delegate = self
         
         // To handle tap events, specifically hide keyboard on tap.
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -189,22 +193,30 @@ extension ExperimentProfileMasterViewController {
 
 extension ExperimentProfileMasterViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        textField.keyboardType = .numberPad
-        return true
+        if textField == ageTextField {
+            textField.keyboardType = .numberPad
+            return true
+        } else {
+            return true
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // if backspace is pressed, return true
-        if string == "" {
+        if textField == ageTextField {
+            // if backspace is pressed, return true
+            if string == "" {
+                return true
+            }
+            
+            // return true if number is provided and if the length of the text is less than three (0 - 999)
+            if let _ = string.rangeOfCharacter(from: .decimalDigits), let text = textField.text {
+                return text.count < 3
+            }
+            return false
+        } else {
             return true
         }
         
-        // return true if number is provided and if the length of the text is less than three (0 - 99)
-        if let _ = string.rangeOfCharacter(from: .decimalDigits), let text = textField.text {
-            return text.count < 2
-        }
-    
-        return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -218,10 +230,17 @@ extension ExperimentProfileMasterViewController: UITextFieldDelegate {
                 Experiment.shared.age = Int(age)
             }
         }
+        
+        if textField == patientIdTextField {
+            if let patientId = textField.text {
+                Experiment.shared.patientId = patientId
+            }
+        }
     }
 
     @objc func handleTap() {
         ageTextField.resignFirstResponder() // Dismiss keyboard
+        patientIdTextField.resignFirstResponder()
     }
 }
 
@@ -281,7 +300,7 @@ extension ExperimentProfileMasterViewController: DetailViewControllerDelegate {
                     }
                     
                     switch identifier {
-                    case K.ExperimentProfile.age, K.ExperimentProfile.gender, K.ExperimentProfile.educationLevel, K.ExperimentProfile.ethnicity, K.ExperimentProfile.annualIncome:
+                    case K.ExperimentProfile.age, K.ExperimentProfile.gender, K.ExperimentProfile.educationLevel, K.ExperimentProfile.ethnicity, K.ExperimentProfile.annualIncome, K.ExperimentProfile.patientId:
                         if Experiment.shared.experimentType == .Test {
                             if value is NSNull {
                                 cell?.backgroundColor = UIColor(named: "Light Red")

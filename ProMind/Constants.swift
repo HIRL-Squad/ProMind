@@ -43,7 +43,7 @@ struct K {
         static let ethnicity = "ethnicity"
         
         static let annualIncome = "annualIncome"
-        
+        static let patientId = "patientId"
         static let remarks = "generalNote"
         
         struct Master {
