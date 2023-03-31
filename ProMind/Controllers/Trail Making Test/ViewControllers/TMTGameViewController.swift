@@ -305,6 +305,7 @@ class TMTGameViewController: UIViewController {
             for circleView in tutCircleViews {
                 circleView.backgroundColor = .lightGray
             }
+            
             tutorialView.isHidden = true
             let instruction = ["There are a total of \(getNumCircles()) circles.",
                                "Please connect them without lifting the stylus as much as possible.",
@@ -567,6 +568,7 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
                 speakInstructions()
             }
         } else {
+            promptDoNotLiftPencilInfo()
             initTest()
         }
     }
@@ -829,6 +831,16 @@ extension TMTGameViewController {
         view.backgroundColor = postBackgroundColour
         view.alpha = 1.0
         view.layer.removeAllAnimations()
+    }
+    
+    private func promptDoNotLiftPencilInfo() {
+        let alertController = UIAlertController(title: "ATTENTION".localized, message: "Please do NOT lift Apple Pencil from the screen!".localized, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "OK".localized, style: .cancel))
+        
+        DispatchQueue.main.async { [unowned self] in // No need unowned keyword here.
+            self.present(alertController, animated: true)
+        }
     }
     
     private func stopFlashAllCircles() {
