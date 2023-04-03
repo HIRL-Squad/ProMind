@@ -7,13 +7,21 @@
 
 import UIKit
 import Speech
+import CoreData
 
 class InitialViewController: UIViewController {
     
     private let notification = NotificationBroadcast()
     
+    public var container: NSPersistentContainer! = NSPersistentContainer(name: "ProMindTestRecord")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Pass a Persistance Container Reference to the Root View Controller.
+        guard container != nil else {
+            fatalError("This view needs a persistent container.")
+        }
         
         // Check Speech Permission
         SFSpeechRecognizer.requestAuthorization { authStatus in

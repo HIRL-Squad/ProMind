@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DSTRecord" representedClassName="DSTRecord" syncable="YES" codeGenerationType="class">
+        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="annualIncome" optional="YES" attributeType="String"/>
+        <attribute name="bstAudioPath" optional="YES" attributeType="URI"/>
+        <attribute name="bstLongestSequence" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bstMaxDigits" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bstNumCorrectTrials" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bstTotalTimeTaken" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="educationLevel" optional="YES" attributeType="String"/>
+        <attribute name="ethnicity" optional="YES" attributeType="String"/>
+        <attribute name="experimentDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="experimentType" optional="YES" attributeType="String"/>
+        <attribute name="fstAudioPath" optional="YES" attributeType="URI"/>
+        <attribute name="fstLongestSequence" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fstMaxDigits" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fstNumCorrectTrials" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fstTotalTimeTaken" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="patientId" optional="YES" attributeType="String"/>
+        <attribute name="remarks" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="TMTRecord" representedClassName="TMTRecord" syncable="YES" codeGenerationType="class">
+        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="annualIncome" optional="YES" attributeType="String"/>
+        <attribute name="educationLevel" optional="YES" attributeType="String"/>
+        <attribute name="ethnicity" optional="YES" attributeType="String"/>
+        <attribute name="experimentDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="experimentType" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="patientId" optional="YES" attributeType="String"/>
+        <attribute name="remarks" optional="YES" attributeType="String"/>
+        <attribute name="tmtImagePathTestA" optional="YES" attributeType="URI"/>
+        <attribute name="tmtImagePathTestB" optional="YES" attributeType="URI"/>
+        <attribute name="tmtNumCirclesLeftTestA" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tmtNumCirclesLeftTestB" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tmtNumErrorsTestA" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tmtNumErrorsTestB" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tmtNumLiftsTestA" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tmtNumLiftsTestB" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tmtNumStartingCircles" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tmtTotalTimeTakenTestA" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tmtTotalTimeTakenTestB" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>
