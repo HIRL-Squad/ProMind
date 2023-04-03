@@ -17,10 +17,10 @@ class DSTRecordCoreDataModel {
         self.container = NSPersistentContainer(name: "ProMindTestRecord")
         container.loadPersistentStores { (NSEntityDescription, NSEntityError) in
             if let NSEntityError {
-                print("Error happened when loading TestRecordCoreData!")
+                print("Error happened when loading DSTRecordCoreData!")
                 print(NSEntityError.localizedDescription)
             } else {
-                print("Successfully loaded TestRecordCoreData!")
+                print("Successfully loaded DSTRecordCoreData!")
             }
         }
     }
@@ -31,7 +31,7 @@ class DSTRecordCoreDataModel {
         do {
             savedEntities = try container.viewContext.fetch(request)
         } catch let error {
-            print("Error happened when fetch test records!")
+            print("Error happened when fetch DST records!")
             print(error.localizedDescription)
         }
     }
@@ -82,7 +82,7 @@ class DSTRecordCoreDataModel {
                 try container.viewContext.save()
                 fetchRecords()
             } catch let error {
-                print("Error happened when saving test records!")
+                print("Error happened when saving DST records!")
                 print(error.localizedDescription)
             }
         }

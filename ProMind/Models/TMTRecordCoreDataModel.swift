@@ -17,10 +17,10 @@ class TMTRecordCoreDataModel {
         self.container = NSPersistentContainer(name: "ProMindTestRecord")
         container.loadPersistentStores { (NSEntityDescription, NSEntityError) in
             if let NSEntityError {
-                print("Error happened when loading TestRecordCoreData!")
+                print("Error happened when loading TMTRecordCoreData!")
                 print(NSEntityError.localizedDescription)
             } else {
-                print("Successfully loaded TestRecordCoreData!")
+                print("Successfully loaded TMTRecordCoreData!")
             }
         }
     }
@@ -31,7 +31,7 @@ class TMTRecordCoreDataModel {
         do {
             savedEntities = try container.viewContext.fetch(request)
         } catch let error {
-            print("Error happened when fetch test records!")
+            print("Error happened when fetch TMT records!")
             print(error.localizedDescription)
         }
     }
@@ -85,7 +85,7 @@ class TMTRecordCoreDataModel {
                 try container.viewContext.save()
                 fetchRecords()
             } catch let error {
-                print("Error happened when saving test records!")
+                print("Error happened when saving TMT records!")
                 print(error.localizedDescription)
             }
         }
