@@ -11,7 +11,7 @@ import CoreData
 
 class DSTRecordCoreDataModel {
     public let container: NSPersistentContainer
-    public var savedEntities: [TestRecord] = []
+    public var savedEntities: [DSTRecord] = []
     
     init() {
         self.container = NSPersistentContainer(name: "ProMindTestRecord")
@@ -26,7 +26,7 @@ class DSTRecordCoreDataModel {
     }
     
     public func fetchRecords() {
-        let request = NSFetchRequest<TestRecord>(entityName: "DSTRecord")
+        let request = NSFetchRequest<DSTRecord>(entityName: "DSTRecord")
         
         do {
             savedEntities = try container.viewContext.fetch(request)
@@ -41,7 +41,7 @@ class DSTRecordCoreDataModel {
                               fstLongestSequence: Int, fstMaxDigits: Int, fstNumCorrectTrials: Int, fstTotalTimeTaken: Int, fstAudioPath: URL,
                               bstLongestSequence: Int, bstMaxDigits: Int, bstNumCorrectTrials: Int, bstTotalTimeTaken: Int, bstAudioPath: URL) {
         
-        let newTestRecord = TestRecord(context: container.viewContext)
+        let newTestRecord = DSTRecord(context: container.viewContext)
         newTestRecord.experimentDate = Int64(experimentDate)
         newTestRecord.experimentType = experimentType
         

@@ -11,7 +11,7 @@ import CoreData
 
 class TMTRecordCoreDataModel {
     public let container: NSPersistentContainer
-    public var savedEntities: [TestRecord] = []
+    public var savedEntities: [TMTRecord] = []
     
     init() {
         self.container = NSPersistentContainer(name: "ProMindTestRecord")
@@ -26,7 +26,7 @@ class TMTRecordCoreDataModel {
     }
     
     public func fetchRecords() {
-        let request = NSFetchRequest<TestRecord>(entityName: "TMTRecord")
+        let request = NSFetchRequest<TMTRecord>(entityName: "TMTRecord")
         
         do {
             savedEntities = try container.viewContext.fetch(request)
@@ -42,7 +42,7 @@ class TMTRecordCoreDataModel {
                               tmtNumCirclesLeftTestA: Int, tmtNumErrorsTestA: Int, tmtNumLiftsTestA: Int, tmtTotalTimeTakenTestA: Int, tmtImagePathTestA: URL,
                               tmtNumCirclesLeftTestB: Int,  tmtNumErrorsTestB: Int,  tmtNumLiftsTestB: Int, tmtTotalTimeTakenTestB: Int, tmtImagePathTestB: URL) {
         
-        let newTestRecord = TestRecord(context: container.viewContext)
+        let newTestRecord = TMTRecord(context: container.viewContext)
         newTestRecord.experimentDate = Int64(experimentDate)
         newTestRecord.experimentType = experimentType
         
