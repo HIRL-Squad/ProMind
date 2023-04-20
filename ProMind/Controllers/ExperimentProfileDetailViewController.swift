@@ -30,6 +30,15 @@ class ExperimentProfileDetailViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     
     private var optionChoiceTableView: UITableView?
+    private var isPresentingTestResultView: Bool = false
+    
+    private let tmtRecordCoreDataModel = TMTRecordCoreDataModel()
+    private let dstRecordCoreDataModel = DSTRecordCoreDataModel()
+    
+    private var testResultScrollView: UIScrollView?
+    
+    private var tmtRecordTableView: UITableView?
+    private var dstRecordTableView: UITableView?
     
     private var views: [UIView] = []
     
@@ -55,6 +64,20 @@ class ExperimentProfileDetailViewController: UIViewController {
         masterViewController?.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tmtRecordCoreDataModel.fetchRecords()
+        dstRecordCoreDataModel.fetchRecords()
+        
+        testResultScrollView = UIScrollView()
+        view.addSubview(testResultScrollView!)
+        setUpTestResultScrollViewConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     @IBAction func startButtonPressed(_ sender: UIButton) {
         delegate?.detailViewController(self, didPressStartButton: sender)
     }
@@ -62,6 +85,12 @@ class ExperimentProfileDetailViewController: UIViewController {
     private func resetContainerView() {
         optionChoiceTableView?.removeFromSuperview()
         optionChoiceTableView = nil
+        
+        tmtRecordTableView?.removeFromSuperview()
+        tmtRecordTableView = nil
+        
+        dstRecordTableView?.removeFromSuperview()
+        dstRecordTableView = nil
         
         for v in views {
             v.removeFromSuperview()
@@ -95,6 +124,35 @@ class ExperimentProfileDetailViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(constraints)
     }
+    
+    private func setUpTestResultScrollViewConstraints() {
+        testResultScrollView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            testResultScrollView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            testResultScrollView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            testResultScrollView!.rightAnchor.constraint(equalTo: view.rightAnchor),
+            testResultScrollView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpTMTRecordTableViewConstraints() {
+        tmtRecordTableView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            tmtRecordTableView!.widthAnchor.constraint(equalTo: testResultScrollView!.widthAnchor),
+            tmtRecordTableView!.heightAnchor.constraint(equalTo: testResultScrollView!.heightAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpDSTRecordTableViewConstraints() {
+        dstRecordTableView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            dstRecordTableView!.widthAnchor.constraint(equalTo: testResultScrollView!.widthAnchor),
+            dstRecordTableView!.heightAnchor.constraint(equalTo: testResultScrollView!.heightAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
 }
 
 // MARK: - MasterViewControllerDelegate Implementations
@@ -108,6 +166,8 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
         
         switch question {
         case K.ExperimentProfile.remarks:
+            isPresentingTestResultView = false
+            
             let label = initUILabel(text: "Occupation/Faculty/Course of Study (Maximum 80 characters)")
             containerView.addSubview(label)
             activateConstraints(view: label, constraints: [
@@ -125,7 +185,35 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             ])
             
             break
+            
+        case K.ExperimentProfile.trialMakingTestResults:
+            isPresentingTestResultView = true
+            print("Configuring TableView for displaying Trial Making Test results...")
+            
+            tmtRecordTableView = UITableView(frame: view.frame, style: .insetGrouped)
+            tmtRecordTableView!.register(UITableViewCell.self, forCellReuseIdentifier: "testResult")
+            tmtRecordTableView!.delegate = self
+            tmtRecordTableView!.dataSource = self
+            
+            testResultScrollView!.addSubview(tmtRecordTableView!)
+            setUpTMTRecordTableViewConstraints()
+            
+            
+        case K.ExperimentProfile.digitSpanTestResults:
+            isPresentingTestResultView = true
+            print("Configuring TableView for displaying Digit Span Test results...")
+            
+            dstRecordTableView = UITableView(frame: view.frame, style: .insetGrouped)
+            dstRecordTableView!.register(UITableViewCell.self, forCellReuseIdentifier: "testResult")
+            dstRecordTableView!.delegate = self
+            dstRecordTableView!.dataSource = self
+            
+            testResultScrollView!.addSubview(dstRecordTableView!)
+            setUpDSTRecordTableViewConstraints()
+            
+            
         default: // Table View
+            isPresentingTestResultView = false
             setupTableView(allowsMultipleSelection: false)
             currentOptions = options
             DispatchQueue.main.async { // Reload data must be done in main thread
@@ -149,49 +237,95 @@ extension ExperimentProfileDetailViewController: UITableViewDataSource, UITableV
         optionChoiceTableView!.dataSource = self
     }
     
+    /// Section 0 - Trail Making Test
+    /// Section 1 - Digit Span Test
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? K.ExperimentProfile.Detail.sectionTitles[currentQuestion ?? ""] : ""
+        if isPresentingTestResultView {
+            switch tableView {
+            case tmtRecordTableView:
+                return "Trail Making Test"
+            case dstRecordTableView:
+                return "Digit Span Test"
+            default:
+                return "Error Happened"
+            }
+        } else {
+            return section == 0 ? K.ExperimentProfile.Detail.sectionTitles[currentQuestion ?? ""] : ""
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentOptions?.count ?? 0
+        if isPresentingTestResultView {
+            switch tableView {
+            case tmtRecordTableView:
+                print("TMT Record: \(tmtRecordCoreDataModel.getNumberOfRecords())")
+                return tmtRecordCoreDataModel.getNumberOfRecords()
+            case dstRecordTableView:
+                print("DST Record: \(dstRecordCoreDataModel.getNumberOfRecords())")
+                return dstRecordCoreDataModel.getNumberOfRecords()
+            default:
+                return 0
+            }
+        } else {
+            return currentOptions?.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // print("SubjectProfileDetailViewController :: cellForRowAt :: indexPath: \(indexPath) | currentQuestion: \(currentQuestion ?? "No Question Provided")")
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: Self.optionChoiceCellIdentifier, for: indexPath)
-        cell.textLabel?.text = currentOptions?[indexPath.row]
-        
-        guard let question = currentQuestion else { fatalError("didSelectRowAt :: Error: No question was selected.") }
-        
-        // To update accessoryView of a tableViewCell for a given tableView
-        if Experiment.shared[question] as? String == currentOptions?[indexPath.row] {
-            cell.accessoryType = .checkmark
-            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        if isPresentingTestResultView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "testResult", for: indexPath)
+            var content = cell.defaultContentConfiguration()
+            
+            switch tableView {
+            case tmtRecordTableView:
+                content.text = tmtRecordCoreDataModel.savedEntities[indexPath.row].patientId
+            case dstRecordTableView:
+                content.text = dstRecordCoreDataModel.savedEntities[indexPath.row].patientId
+            default:
+                content.text = "Error Happened"
+            }
+            
+            cell.contentConfiguration = content
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Self.optionChoiceCellIdentifier, for: indexPath)
+            cell.textLabel?.text = currentOptions?[indexPath.row]
+            
+            guard let question = currentQuestion else { fatalError("didSelectRowAt :: Error: No question was selected.") }
+            
+            // To update accessoryView of a tableViewCell for a given tableView
+            if Experiment.shared[question] as? String == currentOptions?[indexPath.row] {
+                cell.accessoryType = .checkmark
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            }
+            return cell
         }
-        
-        return cell
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // To reset all pre-selected rows (so, there is no need to implement didDeselectOption).
-        for section in 0 ..< tableView.numberOfSections {
-            for row in 0 ..< tableView.numberOfRows(inSection: section) {
-                let cell = tableView.cellForRow(at: IndexPath(row: row, section: section))
-                cell?.accessoryType = .none
+        if isPresentingTestResultView {
+            
+        } else {
+            for section in 0 ..< tableView.numberOfSections {
+                for row in 0 ..< tableView.numberOfRows(inSection: section) {
+                    let cell = tableView.cellForRow(at: IndexPath(row: row, section: section))
+                    cell?.accessoryType = .none
+                }
             }
+            
+            guard let question = currentQuestion, let selectedOption = currentOptions?[indexPath.row] else { fatalError("didSelectRowAt :: Error: No option was selected.") }
+            
+    //        print("ExperimentProfileDetailViewController :: IndexPath: \(indexPath)")
+    //        print("ExperimentProfileDetailViewController :: Question: \(question)")
+    //        print("ExperimentProfileDetailViewController :: Option Selected: \(selectedOption)")
+        
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark // To update accessoryView of the selected tableViewCell.
+            Experiment.shared[question] = selectedOption as AnyObject? // To set the value
+            delegate?.detailViewController(self, selectedQuestion: question, didSelectOption: selectedOption)
         }
-        
-        guard let question = currentQuestion, let selectedOption = currentOptions?[indexPath.row] else { fatalError("didSelectRowAt :: Error: No option was selected.") }
-        
-//        print("ExperimentProfileDetailViewController :: IndexPath: \(indexPath)")
-//        print("ExperimentProfileDetailViewController :: Question: \(question)")
-//        print("ExperimentProfileDetailViewController :: Option Selected: \(selectedOption)")
-    
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark // To update accessoryView of the selected tableViewCell.
-        Experiment.shared[question] = selectedOption as AnyObject? // To set the value
-        delegate?.detailViewController(self, selectedQuestion: question, didSelectOption: selectedOption)
     }
 }
 

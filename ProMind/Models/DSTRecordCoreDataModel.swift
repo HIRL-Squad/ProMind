@@ -14,15 +14,8 @@ class DSTRecordCoreDataModel {
     public var savedEntities: [DSTRecord] = []
     
     init() {
-        self.container = NSPersistentContainer(name: "ProMindTestRecord")
-        container.loadPersistentStores { (NSEntityDescription, NSEntityError) in
-            if let NSEntityError {
-                print("Error happened when loading DSTRecordCoreData!")
-                print(NSEntityError.localizedDescription)
-            } else {
-                print("Successfully loaded DSTRecordCoreData!")
-            }
-        }
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.container = appDelegate.persistentContainer
     }
     
     public func fetchRecords() {
@@ -41,7 +34,8 @@ class DSTRecordCoreDataModel {
                               fstLongestSequence: Int, fstMaxDigits: Int, fstNumCorrectTrials: Int, fstTotalTimeTaken: Int, fstAudioPath: URL,
                               bstLongestSequence: Int, bstMaxDigits: Int, bstNumCorrectTrials: Int, bstTotalTimeTaken: Int, bstAudioPath: URL) {
         
-        let newTestRecord = DSTRecord(context: container.viewContext)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "DSTRecord", in: container.viewContext)!
+        let newTestRecord = DSTRecord(entity: entityDescription, insertInto: container.viewContext)
         newTestRecord.experimentDate = Int64(experimentDate)
         newTestRecord.experimentType = experimentType
         
@@ -65,6 +59,10 @@ class DSTRecordCoreDataModel {
         newTestRecord.bstTotalTimeTaken = Int64(bstTotalTimeTaken)
         newTestRecord.bstAudioPath = bstAudioPath
         
+        container.viewContext.insert(newTestRecord)
+        
+        print(container.viewContext.insertedObjects)
+        
         saveTestRecord()
     }
     
@@ -86,5 +84,10 @@ class DSTRecordCoreDataModel {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    public func getNumberOfRecords() -> Int {
+        fetchRecords()
+        return savedEntities.count
     }
 }

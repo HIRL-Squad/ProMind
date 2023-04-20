@@ -10,19 +10,13 @@ import UIKit
 import CoreData
 
 class TMTRecordCoreDataModel {
-    public let container: NSPersistentContainer
+    private let container: NSPersistentContainer
+    private let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     public var savedEntities: [TMTRecord] = []
     
     init() {
-        self.container = NSPersistentContainer(name: "ProMindTestRecord")
-        container.loadPersistentStores { (NSEntityDescription, NSEntityError) in
-            if let NSEntityError {
-                print("Error happened when loading TMTRecordCoreData!")
-                print(NSEntityError.localizedDescription)
-            } else {
-                print("Successfully loaded TMTRecordCoreData!")
-            }
-        }
+        self.container = appDelegate.persistentContainer
     }
     
     public func fetchRecords() {
@@ -42,7 +36,8 @@ class TMTRecordCoreDataModel {
                               tmtNumCirclesLeftTestA: Int, tmtNumErrorsTestA: Int, tmtNumLiftsTestA: Int, tmtTotalTimeTakenTestA: Int, tmtImagePathTestA: URL,
                               tmtNumCirclesLeftTestB: Int,  tmtNumErrorsTestB: Int,  tmtNumLiftsTestB: Int, tmtTotalTimeTakenTestB: Int, tmtImagePathTestB: URL) {
         
-        let newTestRecord = TMTRecord(context: container.viewContext)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "TMTRecord", in: container.viewContext)!
+        let newTestRecord = TMTRecord(entity: entityDescription, insertInto: container.viewContext)
         newTestRecord.experimentDate = Int64(experimentDate)
         newTestRecord.experimentType = experimentType
         
@@ -68,6 +63,10 @@ class TMTRecordCoreDataModel {
         newTestRecord.tmtTotalTimeTakenTestB = Int32(tmtTotalTimeTakenTestB)
         newTestRecord.tmtImagePathTestB = tmtImagePathTestB
         
+        container.viewContext.insert(newTestRecord)
+        
+        print(container.viewContext.insertedObjects)
+        
         saveTestRecord()
     }
     
@@ -80,14 +79,11 @@ class TMTRecordCoreDataModel {
     }
     
     public func saveTestRecord() {
-        if container.viewContext.hasChanges {
-            do {
-                try container.viewContext.save()
-                fetchRecords()
-            } catch let error {
-                print("Error happened when saving TMT records!")
-                print(error.localizedDescription)
-            }
-        }
+        appDelegate.saveContext()
+    }
+    
+    public func getNumberOfRecords() -> Int {
+        fetchRecords()
+        return savedEntities.count
     }
 }

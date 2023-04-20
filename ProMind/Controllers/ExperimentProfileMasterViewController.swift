@@ -170,8 +170,8 @@ class ExperimentProfileMasterViewController: UITableViewController {
 // MARK: - UITableViewController Implementation
 extension ExperimentProfileMasterViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Edittd (1 : 3 -> 2: 4): Added a new section: Language
-        return Experiment.shared.experimentType == .Trial ? 2 : 5
+        // Edittd (1 : 3 -> 2: 5): Added two new section: Language, Patient ID and View Result
+        return Experiment.shared.experimentType == .Trial ? 2 : 7
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

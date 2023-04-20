@@ -46,6 +46,9 @@ struct K {
         static let patientId = "patientId"
         static let remarks = "generalNote"
         
+        static let trialMakingTestResults = "trialMakingTestResults"
+        static let digitSpanTestResults = "digitSpanTestResults"
+        
         struct Master {
             static let questions = [
                 K.ExperimentProfile.experimentType: [ExperimentType.Trial.rawValue, ExperimentType.Test.rawValue],
