@@ -17,6 +17,8 @@ class DSTResultViewController: UIViewController {
     private var synthesizer: AVSpeechSynthesizer?
     var gameResultStatistics: [DSTGameStatistics]?
     
+    private let dstRecordCoreDataModel = DSTRecordCoreDataModel.shared
+    
     private let testStatistics = DSTTestStatistics()
     
     override func viewDidLoad() {
@@ -116,7 +118,39 @@ class DSTResultViewController: UIViewController {
         body["totalTimeTaken"] = [forwardSpanTestData["totalTime"], backwardsSpanTestData["totalTime"], nil]
         
         print("body: \(body)")
+        
+        // Save data locally.
+        let experimentDate: Int = body["experimentDate"] as? Int ?? 0
+        let experimentType: String = body["experimentType"] as? String ?? "No Data"
+        let age: Int = body["subjectAge"] as? Int ?? -1
+        let gender: String = body["subjectGender"] as? String ?? "No Data"
+        let annualIncome: String = body["subjectAnnualIncome"] as? String ?? "No Data"
+        let educationLevel: String = body["subjectEducationLevel"] as? String ?? "No Data"
+        let ethnicity: String = body["subjectEthnicity"] as? String ?? "No Data"
+        let patientId: String = body["patientId"] as? String ?? "No Data"
+        let remarks: String = body["remarks"] as? String ?? "No Data"
+        
+        let fstLongestSequence: Int = forwardSpanTestData["longestSequence"] as? Int ?? -1
+        let fstMaxDigits: Int = forwardSpanTestData["maxDigits"] as? Int ?? -1
+        let fstNumCorrectTrials: Int = forwardSpanTestData["numCorrectTrials"] as? Int ?? -1
+        let fstTotalTimeTaken: Int = forwardSpanTestData["totalTime"] as? Int ?? -1
+        let fstAudioPath: URL = getDocumentsDirectory()
+        
+        let bstLongestSequence: Int = backwardsSpanTestData["longestSequence"] as? Int ?? -1
+        let bstMaxDigits: Int = backwardsSpanTestData["maxDigits"] as? Int ?? -1
+        let bstNumCorrectTrials: Int = backwardsSpanTestData["numCorrectTrials"] as? Int ?? -1
+        let bstTotalTimeTaken: Int = backwardsSpanTestData["totalTime"] as? Int ?? -1
+        let bstAudioPath: URL = getDocumentsDirectory()
+        
+        dstRecordCoreDataModel.addTestRecord(experimentDate: experimentDate, experimentType: experimentType, age: age, gender: gender, annualIncome: annualIncome, educationLevel: educationLevel, ethnicity: ethnicity, patientId: patientId, remarks: remarks, fstLongestSequence: fstLongestSequence, fstMaxDigits: fstMaxDigits, fstNumCorrectTrials: fstNumCorrectTrials, fstTotalTimeTaken: fstTotalTimeTaken, fstAudioPath: fstAudioPath, bstLongestSequence: bstLongestSequence, bstMaxDigits: bstMaxDigits, bstNumCorrectTrials: bstNumCorrectTrials, bstTotalTimeTaken: bstTotalTimeTaken, bstAudioPath: bstAudioPath)
+        
         return try? JSONSerialization.data(withJSONObject: body, options: [])
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     override func viewWillAppear(_ animated: Bool) {

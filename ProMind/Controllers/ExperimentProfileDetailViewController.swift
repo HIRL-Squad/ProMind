@@ -71,10 +71,6 @@ class ExperimentProfileDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         tmtRecordCoreDataModel.fetchRecords()
         dstRecordCoreDataModel.fetchRecords()
-        
-        testResultScrollView = UIScrollView()
-        view.addSubview(testResultScrollView!)
-        setUpTestResultScrollViewConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,6 +90,9 @@ class ExperimentProfileDetailViewController: UIViewController {
         
         dstRecordTableView?.removeFromSuperview()
         dstRecordTableView = nil
+        
+        testResultScrollView?.removeFromSuperview()
+        testResultScrollView = nil
         
         for v in views {
             v.removeFromSuperview()
@@ -193,6 +192,10 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             isPresentingTestResultView = true
             print("Configuring TableView for displaying Trial Making Test results...")
             
+            testResultScrollView = UIScrollView()
+            view.addSubview(testResultScrollView!)
+            setUpTestResultScrollViewConstraints()
+            
             tmtRecordTableView = UITableView(frame: view.frame, style: .insetGrouped)
             tmtRecordTableView!.register(UITableViewCell.self, forCellReuseIdentifier: "testResult")
             tmtRecordTableView!.delegate = self
@@ -205,6 +208,10 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
         case K.ExperimentProfile.digitSpanTestResults:
             isPresentingTestResultView = true
             print("Configuring TableView for displaying Digit Span Test results...")
+            
+            testResultScrollView = UIScrollView()
+            view.addSubview(testResultScrollView!)
+            setUpTestResultScrollViewConstraints()
             
             dstRecordTableView = UITableView(frame: view.frame, style: .insetGrouped)
             dstRecordTableView!.register(UITableViewCell.self, forCellReuseIdentifier: "testResult")

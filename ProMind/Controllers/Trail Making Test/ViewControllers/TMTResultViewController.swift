@@ -19,6 +19,8 @@ class TMTResultViewController: UIViewController {
     private var synthesizer: AVSpeechSynthesizer?
     var gameResultStatistics: [TMTGameStatistics]?
     
+    let tmtRecordCoreDataModel = TMTRecordCoreDataModel.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,7 +89,9 @@ class TMTResultViewController: UIViewController {
             return nil
         }
         
+        // ExperimentBody() already has the patient information.
         var body: [String: Any] = Experiment.shared.getExperimentBody()
+        
         body["numStartingCircles"] = 15
         body["totalTimeTaken"] = [resultStats[0].totalTimeTaken, resultStats[1].totalTimeTaken]
         body["numCirclesLeft"] = [resultStats[0].numCirclesLeft, resultStats[1].numCirclesLeft]
@@ -96,7 +100,44 @@ class TMTResultViewController: UIViewController {
         
         print("body: \(body)")
         
+        saveTestRecordLocally(body)
+        
         return try? JSONSerialization.data(withJSONObject: body, options: [])
+    }
+    
+    private func saveTestRecordLocally(_ body: [String: Any]) {
+        let experimentDate: Int = body["experimentDate"] as? Int ?? 0
+        let experimentType: String = body["experimentType"] as? String ?? "No Data"
+        let age: Int = body["subjectAge"] as? Int ?? -1
+        let gender: String = body["subjectGender"] as? String ?? "No Data"
+        let annualIncome: String = body["subjectAnnualIncome"] as? String ?? "No Data"
+        let educationLevel: String = body["subjectEducationLevel"] as? String ?? "No Data"
+        let ethnicity: String = body["subjectEthnicity"] as? String ?? "No Data"
+        let patientId: String = body["patientId"] as? String ?? "No Data"
+        let remarks: String = body["remarks"] as? String ?? "No Data"
+        let tmtNumStartingCircles: Int = 15
+        
+        if let resultStats = gameResultStatistics {
+            let tmtNumCirclesLeftTestA: Int = resultStats[0].numCirclesLeft
+            let tmtNumErrorsTestA: Int = resultStats[0].numErrors
+            let tmtNumLiftsTestA: Int = resultStats[0].numLifts
+            let tmtTotalTimeTakenTestA: Int = resultStats[0].totalTimeTaken
+            let tmtImagePathTestA: URL = getDocumentsDirectory()
+            
+            let tmtNumCirclesLeftTestB: Int = resultStats[1].numCirclesLeft
+            let tmtNumErrorsTestB: Int = resultStats[1].numErrors
+            let tmtNumLiftsTestB: Int = resultStats[1].numLifts
+            let tmtTotalTimeTakenTestB: Int = resultStats[1].totalTimeTaken
+            let tmtImagePathTestB: URL = getDocumentsDirectory()
+            
+            tmtRecordCoreDataModel.addTestRecord(experimentDate: experimentDate, experimentType: experimentType, age: age, gender: gender, annualIncome: annualIncome, educationLevel: educationLevel, ethnicity: ethnicity, patientId: patientId, remarks: remarks, tmtNumStartingCircles: tmtNumStartingCircles, tmtNumCirclesLeftTestA: tmtNumCirclesLeftTestA, tmtNumErrorsTestA: tmtNumErrorsTestA, tmtNumLiftsTestA: tmtNumLiftsTestA, tmtTotalTimeTakenTestA: tmtTotalTimeTakenTestA, tmtImagePathTestA: tmtImagePathTestA, tmtNumCirclesLeftTestB: tmtNumCirclesLeftTestB, tmtNumErrorsTestB: tmtNumErrorsTestB, tmtNumLiftsTestB: tmtNumLiftsTestB, tmtTotalTimeTakenTestB: tmtTotalTimeTakenTestB, tmtImagePathTestB: tmtImagePathTestB)
+        }
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     override func viewWillAppear(_ animated: Bool) {
