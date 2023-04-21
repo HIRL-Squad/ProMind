@@ -10,11 +10,13 @@ import UIKit
 import CoreData
 
 class DSTRecordCoreDataModel {
-    public let container: NSPersistentContainer
+    private let container: NSPersistentContainer
+    private let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    public static let shared = DSTRecordCoreDataModel()
     public var savedEntities: [DSTRecord] = []
     
-    init() {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    private init() {
         self.container = appDelegate.persistentContainer
     }
     

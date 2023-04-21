@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum ProMindTestType: String {
+    case trialMakingTest
+    case digitSpanTest
+}
+
 class Utils {
     static func postRequest(url: URL?, httpBody: Data?) {
         guard let jsonBody = httpBody else {

@@ -13,9 +13,10 @@ class TMTRecordCoreDataModel {
     private let container: NSPersistentContainer
     private let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    public static let shared = TMTRecordCoreDataModel()
     public var savedEntities: [TMTRecord] = []
     
-    init() {
+    private init() {
         self.container = appDelegate.persistentContainer
     }
     

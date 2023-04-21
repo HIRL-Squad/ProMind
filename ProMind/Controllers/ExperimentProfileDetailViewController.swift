@@ -32,13 +32,16 @@ class ExperimentProfileDetailViewController: UIViewController {
     private var optionChoiceTableView: UITableView?
     private var isPresentingTestResultView: Bool = false
     
-    private let tmtRecordCoreDataModel = TMTRecordCoreDataModel()
-    private let dstRecordCoreDataModel = DSTRecordCoreDataModel()
+    private let tmtRecordCoreDataModel = TMTRecordCoreDataModel.shared
+    private let dstRecordCoreDataModel = DSTRecordCoreDataModel.shared
     
     private var testResultScrollView: UIScrollView?
     
     private var tmtRecordTableView: UITableView?
     private var dstRecordTableView: UITableView?
+    
+    private var tmtRecordIndexPath: IndexPath?
+    private var dstRecordIndexPath: IndexPath?
     
     private var views: [UIView] = []
     
@@ -307,7 +310,17 @@ extension ExperimentProfileDetailViewController: UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // To reset all pre-selected rows (so, there is no need to implement didDeselectOption).
         if isPresentingTestResultView {
-            
+            switch tableView {
+            case tmtRecordTableView:
+                tmtRecordIndexPath = indexPath
+                performSegue(withIdentifier: "presentTMTTestRecord", sender: self)
+            case dstRecordTableView:
+                dstRecordIndexPath = indexPath
+                performSegue(withIdentifier: "presentDSTTestRecord", sender: self)
+            default:
+                break
+                
+            }
         } else {
             for section in 0 ..< tableView.numberOfSections {
                 for row in 0 ..< tableView.numberOfRows(inSection: section) {
@@ -360,6 +373,21 @@ extension ExperimentProfileDetailViewController: UITextFieldDelegate {
             if type(of: v) == UITextFieldWithPadding.self {
                 v.resignFirstResponder()
             }
+        }
+    }
+}
+
+extension ExperimentProfileDetailViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "presentTMTTestRecord":
+            let controller = segue.destination as! TMTTestResultTableViewController
+            controller.indexPath = tmtRecordIndexPath!
+        case "presentDSTTestRecord":
+            let controller = segue.destination as! DSTTestResultTableViewController
+            controller.indexPath = dstRecordIndexPath!
+        default:
+            break
         }
     }
 }
