@@ -48,6 +48,7 @@
 		D94F807929F1739200D652E4 /* TestResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807829F1739200D652E4 /* TestResultViewController.swift */; };
 		D94F807B29F1819C00D652E4 /* TMTTestResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */; };
 		D94F807D29F181B500D652E4 /* DSTTestResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807C29F181B500D652E4 /* DSTTestResultTableViewController.swift */; };
+		D94F808029F2CB3A00D652E4 /* TestRecordModificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807F29F2CB3A00D652E4 /* TestRecordModificationViewController.swift */; };
 		D950EC1D28605DC8001EF5C3 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950EC1C28605DC8001EF5C3 /* AppLanguage.swift */; };
 		D95E2C66295D7F3600C9D766 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95E2C65295D7F3600C9D766 /* NetworkMonitor.swift */; };
 		D96D066327E799FA00F53AEB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D96D066527E799FA00F53AEB /* Localizable.strings */; };
@@ -132,6 +133,7 @@
 		D94F807829F1739200D652E4 /* TestResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultViewController.swift; sourceTree = "<group>"; };
 		D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTestResultTableViewController.swift; sourceTree = "<group>"; };
 		D94F807C29F181B500D652E4 /* DSTTestResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestResultTableViewController.swift; sourceTree = "<group>"; };
+		D94F807F29F2CB3A00D652E4 /* TestRecordModificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRecordModificationViewController.swift; sourceTree = "<group>"; };
 		D950EC1C28605DC8001EF5C3 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
 		D95E2C65295D7F3600C9D766 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		D96D065F27E799DD00F53AEB /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -298,9 +300,7 @@
 				A4121EEB26D8F9F400F4CFE9 /* ExperimentProfileMasterViewController.swift */,
 				A4121EE726D8A4BF00F4CFE9 /* ExperimentProfileDetailViewController.swift */,
 				A4754081266CE36C009E0B4B /* TestSelectionViewController.swift */,
-				D94F807829F1739200D652E4 /* TestResultViewController.swift */,
-				D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */,
-				D94F807C29F181B500D652E4 /* DSTTestResultTableViewController.swift */,
+				D94F807E29F2CA8E00D652E4 /* Test Results */,
 				A4A3F2E9268720B5004C0F25 /* Trail Making Test */,
 				A4A3F2EA268726D4004C0F25 /* Digit Span Test */,
 			);
@@ -354,6 +354,17 @@
 				D91C507F2813FD780028D4EC /* TMTInstructions.swift */,
 			);
 			path = GameInstructions;
+			sourceTree = "<group>";
+		};
+		D94F807E29F2CA8E00D652E4 /* Test Results */ = {
+			isa = PBXGroup;
+			children = (
+				D94F807829F1739200D652E4 /* TestResultViewController.swift */,
+				D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */,
+				D94F807C29F181B500D652E4 /* DSTTestResultTableViewController.swift */,
+				D94F807F29F2CB3A00D652E4 /* TestRecordModificationViewController.swift */,
+			);
+			path = "Test Results";
 			sourceTree = "<group>";
 		};
 		D950EC1E2861C20B001EF5C3 /* Models */ = {
@@ -674,6 +685,7 @@
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
 				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
 				A403CA5E26F64D7400AA6F9B /* UIView.swift in Sources */,
+				D94F808029F2CB3A00D652E4 /* TestRecordModificationViewController.swift in Sources */,
 				D913F0C929DAD23200DCDC73 /* ProMindTestRecord.xcdatamodeld in Sources */,
 				A470A61626FB2DFE00C1DED3 /* UITextFieldWithPadding.swift in Sources */,
 				A4A4761E269B437E009C0B35 /* TMTResultViewController.swift in Sources */,
