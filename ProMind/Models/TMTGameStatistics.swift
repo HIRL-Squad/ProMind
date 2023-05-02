@@ -12,6 +12,7 @@ struct TMTGameStatistics {
     var numErrors: Int = 0
     var numLifts: Int = 0
     var totalTimeTaken: Int = 0
+    var screenshotPath: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     func getFormattedGameStats() -> NSMutableAttributedString {
         let statsText = NSMutableAttributedString.init()

@@ -56,6 +56,7 @@
 		D97517E129DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97517E029DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift */; };
 		D97517E329E450A500AFE1F5 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97517E229E450A500AFE1F5 /* CoreDataTests.swift */; };
 		D97B09F8285C768700C91D2A /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = D97B09F7285C768700C91D2A /* DeviceKit */; };
+		D986F92129FFEE67006EE319 /* LocalFileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F92029FFEE67006EE319 /* LocalFileIO.swift */; };
 		D99EE860286AF24F0049A4F3 /* DSTStatisticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EE85F286AF24F0049A4F3 /* DSTStatisticsModel.swift */; };
 		D99EE862286B028B0049A4F3 /* DSTTestToolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EE861286B028B0049A4F3 /* DSTTestToolModel.swift */; };
 		D9B3AB282834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3AB272834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift */; };
@@ -143,6 +144,7 @@
 		D97517DE29DAE13400AFE1F5 /* DSTRecordCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTRecordCoreDataModel.swift; sourceTree = "<group>"; };
 		D97517E029DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTRecordCoreDataModel.swift; sourceTree = "<group>"; };
 		D97517E229E450A500AFE1F5 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		D986F92029FFEE67006EE319 /* LocalFileIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileIO.swift; sourceTree = "<group>"; };
 		D99EE85F286AF24F0049A4F3 /* DSTStatisticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTStatisticsModel.swift; sourceTree = "<group>"; };
 		D99EE861286B028B0049A4F3 /* DSTTestToolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestToolModel.swift; sourceTree = "<group>"; };
 		D9B3AB272834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTSpeechRecognitionModel.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				D913F0C729DAD23200DCDC73 /* ProMindTestRecord.xcdatamodeld */,
 				D97517E029DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift */,
 				D97517DE29DAE13400AFE1F5 /* DSTRecordCoreDataModel.swift */,
+				D986F92029FFEE67006EE319 /* LocalFileIO.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */,
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
 				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
+				D986F92129FFEE67006EE319 /* LocalFileIO.swift in Sources */,
 				A403CA5E26F64D7400AA6F9B /* UIView.swift in Sources */,
 				D94F808029F2CB3A00D652E4 /* TestRecordModificationViewController.swift in Sources */,
 				D913F0C929DAD23200DCDC73 /* ProMindTestRecord.xcdatamodeld in Sources */,

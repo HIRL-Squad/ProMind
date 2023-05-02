@@ -280,6 +280,28 @@ class TMTGameViewController: UIViewController {
             // Start Tutorial for TMT-B
             numRound = 1
             currentLabels = K.TMT.labels[numRound]
+            
+            // Save screenshot to local document directionary with patient id as the identifier.
+            if let patientId = Experiment.shared.patientId {
+                let imageName = patientId + " " + Experiment.shared.getDateString()
+                let screenshot = lineImageView.takeScreenshot()
+                let localFileIO = LocalFileIO()
+                
+                do {
+                    try localFileIO.saveImageToDocument(image: screenshot, withName: imageName)
+                } catch LocalFileIOError.unableToRemoveExistingItem {
+                    print("Failed to remove the existing file at document path. Use the old file here.")
+                    gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary().appendingPathComponent(imageName, conformingTo: .jpeg)
+                    return
+                } catch let error {
+                    print("Error happened when saving the screenshot of test result! Only save the document path instead.")
+                    print(error.localizedDescription)
+                    gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary()
+                    return
+                }
+                gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary().appendingPathComponent(imageName, conformingTo: .jpeg)
+            }
+            
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.initTutorial(state: 0)

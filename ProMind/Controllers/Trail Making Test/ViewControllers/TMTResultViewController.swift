@@ -122,13 +122,13 @@ class TMTResultViewController: UIViewController {
             let tmtNumErrorsTestA: Int = resultStats[0].numErrors
             let tmtNumLiftsTestA: Int = resultStats[0].numLifts
             let tmtTotalTimeTakenTestA: Int = resultStats[0].totalTimeTaken
-            let tmtImagePathTestA: URL = getDocumentsDirectory()
+            let tmtImagePathTestA: URL = resultStats[0].screenshotPath
             
             let tmtNumCirclesLeftTestB: Int = resultStats[1].numCirclesLeft
             let tmtNumErrorsTestB: Int = resultStats[1].numErrors
             let tmtNumLiftsTestB: Int = resultStats[1].numLifts
             let tmtTotalTimeTakenTestB: Int = resultStats[1].totalTimeTaken
-            let tmtImagePathTestB: URL = getDocumentsDirectory()
+            let tmtImagePathTestB: URL = resultStats[1].screenshotPath
             
             tmtRecordCoreDataModel.addTestRecord(experimentDate: experimentDate, experimentType: experimentType, age: age, gender: gender, annualIncome: annualIncome, educationLevel: educationLevel, ethnicity: ethnicity, patientId: patientId, remarks: remarks, tmtNumStartingCircles: tmtNumStartingCircles, tmtNumCirclesLeftTestA: tmtNumCirclesLeftTestA, tmtNumErrorsTestA: tmtNumErrorsTestA, tmtNumLiftsTestA: tmtNumLiftsTestA, tmtTotalTimeTakenTestA: tmtTotalTimeTakenTestA, tmtImagePathTestA: tmtImagePathTestA, tmtNumCirclesLeftTestB: tmtNumCirclesLeftTestB, tmtNumErrorsTestB: tmtNumErrorsTestB, tmtNumLiftsTestB: tmtNumLiftsTestB, tmtTotalTimeTakenTestB: tmtTotalTimeTakenTestB, tmtImagePathTestB: tmtImagePathTestB)
         }

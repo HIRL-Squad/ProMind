@@ -87,6 +87,15 @@ class Experiment: Codable {
         return body
     }
     
+    public func getDateString() -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        return dateFormatter.string(from: date)
+        
+    }
+    
     func toString() -> String {
         let experimentTypeText = "Experiment Type:\n\(experimentType?.rawValue ?? "N.A.")"
         
