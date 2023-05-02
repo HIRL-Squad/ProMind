@@ -120,7 +120,7 @@ class DSTResultViewController: UIViewController {
         print("body: \(body)")
         
         // Save data locally.
-        let experimentDate: Int = body["experimentDate"] as? Int ?? 0
+        let experimentDate: Int64 = body["experimentDate"] as? Int64 ?? 0
         let experimentType: String = body["experimentType"] as? String ?? "No Data"
         let age: Int = body["subjectAge"] as? Int ?? -1
         let gender: String = body["subjectGender"] as? String ?? "No Data"

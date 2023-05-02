@@ -31,7 +31,7 @@ class TMTRecordCoreDataModel {
         }
     }
     
-    public func addTestRecord(experimentDate: Int, experimentType: String,
+    public func addTestRecord(experimentDate: Int64, experimentType: String,
                               age: Int, gender: String, annualIncome: String, educationLevel: String, ethnicity: String, patientId: String, remarks: String,
                               tmtNumStartingCircles: Int,
                               tmtNumCirclesLeftTestA: Int, tmtNumErrorsTestA: Int, tmtNumLiftsTestA: Int, tmtTotalTimeTakenTestA: Int, tmtImagePathTestA: URL,

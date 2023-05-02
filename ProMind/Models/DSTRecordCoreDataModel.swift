@@ -31,7 +31,7 @@ class DSTRecordCoreDataModel {
         }
     }
     
-    public func addTestRecord(experimentDate: Int, experimentType: String,
+    public func addTestRecord(experimentDate: Int64, experimentType: String,
                               age: Int, gender: String, annualIncome: String, educationLevel: String, ethnicity: String, patientId: String, remarks: String,
                               fstLongestSequence: Int, fstMaxDigits: Int, fstNumCorrectTrials: Int, fstTotalTimeTaken: Int, fstAudioPath: URL,
                               bstLongestSequence: Int, bstMaxDigits: Int, bstNumCorrectTrials: Int, bstTotalTimeTaken: Int, bstAudioPath: URL) {

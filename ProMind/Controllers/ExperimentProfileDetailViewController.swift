@@ -292,13 +292,15 @@ extension ExperimentProfileDetailViewController: UITableViewDataSource, UITableV
                 let date = Date(timeIntervalSince1970: TimeInterval(tmtRecordCoreDataModel.savedEntities[indexPath.row].experimentDate))
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-                content.text = tmtRecordCoreDataModel.savedEntities[indexPath.row].patientId! + " " + dateFormatter.string(from: date)
+                content.text = dateFormatter.string(from: date)
+                content.secondaryText = "Patient ID: " + tmtRecordCoreDataModel.savedEntities[indexPath.row].patientId!
                 
             case dstRecordTableView:
                 let date = Date(timeIntervalSince1970: TimeInterval(dstRecordCoreDataModel.savedEntities[indexPath.row].experimentDate))
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-                content.text = dstRecordCoreDataModel.savedEntities[indexPath.row].patientId! + " " + dateFormatter.string(from: date)
+                content.text = dateFormatter.string(from: date)
+                content.secondaryText = "Patient ID: " + dstRecordCoreDataModel.savedEntities[indexPath.row].patientId!
                 
             default:
                 content.text = "Error Happened"
