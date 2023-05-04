@@ -54,7 +54,12 @@ class TMTTestResultTableViewController: UITableViewController {
     private func updateTableViewUI() {
         if let testRecord {
             configureNormalCellUI(for: patientIdCell, with: testRecord.patientId)
-            configureNormalCellUI(for: experimentDateCell, with: String(testRecord.experimentDate))
+            
+            let date = Date(timeIntervalSince1970: TimeInterval(testRecord.experimentDate))
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+            
+            configureNormalCellUI(for: experimentDateCell, with: dateFormatter.string(from: date))
             configureNormalCellUI(for: experimentTypeCell, with: testRecord.experimentType)
             
             configureNormalCellUI(for: ageCell, with: String(testRecord.age))
