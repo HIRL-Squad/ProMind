@@ -60,6 +60,8 @@
 		D986F9232A00CEEE006EE319 /* TMTScreenshotViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F9222A00CEEE006EE319 /* TMTScreenshotViewViewController.swift */; };
 		D986F9252A00CF65006EE319 /* TMTTestResultTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F9242A00CF65006EE319 /* TMTTestResultTableViewCells.swift */; };
 		D986F9272A00D085006EE319 /* DSTTestResultTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F9262A00D085006EE319 /* DSTTestResultTableViewCells.swift */; };
+		D986F92F2A04A31E006EE319 /* TMTTestResultNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F92E2A04A31E006EE319 /* TMTTestResultNavigationController.swift */; };
+		D986F9332A04A37C006EE319 /* DSTTestResultNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F9322A04A37C006EE319 /* DSTTestResultNavigationController.swift */; };
 		D99EE860286AF24F0049A4F3 /* DSTStatisticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EE85F286AF24F0049A4F3 /* DSTStatisticsModel.swift */; };
 		D99EE862286B028B0049A4F3 /* DSTTestToolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EE861286B028B0049A4F3 /* DSTTestToolModel.swift */; };
 		D9B3AB282834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3AB272834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift */; };
@@ -151,6 +153,8 @@
 		D986F9222A00CEEE006EE319 /* TMTScreenshotViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTScreenshotViewViewController.swift; sourceTree = "<group>"; };
 		D986F9242A00CF65006EE319 /* TMTTestResultTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTestResultTableViewCells.swift; sourceTree = "<group>"; };
 		D986F9262A00D085006EE319 /* DSTTestResultTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestResultTableViewCells.swift; sourceTree = "<group>"; };
+		D986F92E2A04A31E006EE319 /* TMTTestResultNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTestResultNavigationController.swift; sourceTree = "<group>"; };
+		D986F9322A04A37C006EE319 /* DSTTestResultNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestResultNavigationController.swift; sourceTree = "<group>"; };
 		D99EE85F286AF24F0049A4F3 /* DSTStatisticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTStatisticsModel.swift; sourceTree = "<group>"; };
 		D99EE861286B028B0049A4F3 /* DSTTestToolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestToolModel.swift; sourceTree = "<group>"; };
 		D9B3AB272834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTSpeechRecognitionModel.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 				D986F9242A00CF65006EE319 /* TMTTestResultTableViewCells.swift */,
 				D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */,
 				D986F9222A00CEEE006EE319 /* TMTScreenshotViewViewController.swift */,
+				D986F92E2A04A31E006EE319 /* TMTTestResultNavigationController.swift */,
 			);
 			path = "Trial Making Test";
 			sourceTree = "<group>";
@@ -435,6 +440,7 @@
 			children = (
 				D986F9262A00D085006EE319 /* DSTTestResultTableViewCells.swift */,
 				D94F807C29F181B500D652E4 /* DSTTestResultTableViewController.swift */,
+				D986F9322A04A37C006EE319 /* DSTTestResultNavigationController.swift */,
 			);
 			path = "Digit Span Test";
 			sourceTree = "<group>";
@@ -688,6 +694,7 @@
 				D90482D4282E5538006F7CA0 /* DSTMainInstructionSpeakingViewModel.swift in Sources */,
 				A43E482626BFDFFC0075E6D8 /* DSTGameStatistics.swift in Sources */,
 				A4AC2AE226C0E2AB00A04064 /* DSTResultViewController.swift in Sources */,
+				D986F92F2A04A31E006EE319 /* TMTTestResultNavigationController.swift in Sources */,
 				D91C5082281680130028D4EC /* DSTErrorHandling.swift in Sources */,
 				D99EE862286B028B0049A4F3 /* DSTTestToolModel.swift in Sources */,
 				D94F807B29F1819C00D652E4 /* TMTTestResultTableViewController.swift in Sources */,
@@ -713,6 +720,7 @@
 				A4E0D41C26D7DD26006D6399 /* InitialViewController.swift in Sources */,
 				D90482D2282D1323006F7CA0 /* DSTInstructionSpeakingModel.swift in Sources */,
 				A475407E266CE36C009E0B4B /* AppDelegate.swift in Sources */,
+				D986F9332A04A37C006EE319 /* DSTTestResultNavigationController.swift in Sources */,
 				A4754080266CE36C009E0B4B /* SceneDelegate.swift in Sources */,
 				A4A3F2E826872061004C0F25 /* TMTMainViewController.swift in Sources */,
 				D986F92129FFEE67006EE319 /* LocalFileIO.swift in Sources */,

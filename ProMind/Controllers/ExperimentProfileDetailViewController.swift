@@ -398,11 +398,13 @@ extension ExperimentProfileDetailViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "presentTMTTestRecord":
-            let controller = segue.destination as! TMTTestResultTableViewController
-            controller.indexPath = tmtRecordIndexPath!
+            let navigationController = segue.destination as! UINavigationController
+            let tableViewController = navigationController.topViewController as! TMTTestResultTableViewController
+            tableViewController.indexPath = tmtRecordIndexPath!
         case "presentDSTTestRecord":
-            let controller = segue.destination as! DSTTestResultTableViewController
-            controller.indexPath = dstRecordIndexPath!
+            let navigationController = segue.destination as! UINavigationController
+            let tableViewController = navigationController.topViewController as! DSTTestResultTableViewController
+            tableViewController.indexPath = dstRecordIndexPath!
         default:
             break
         }
