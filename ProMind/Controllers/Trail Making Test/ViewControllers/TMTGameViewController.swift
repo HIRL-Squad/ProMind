@@ -257,6 +257,9 @@ class TMTGameViewController: UIViewController {
             if timeLeft > 0 {
                 timeLeft -= 1
             } else {
+                // If we didn't take a screenshot here, then we should take it when test ends.
+                takeScreenshot()
+                
                 gameStatistics[numRound].totalTimeTaken = getTotalTime() + 1
 
                 stopTimer()
@@ -274,41 +277,61 @@ class TMTGameViewController: UIViewController {
         }
     }
     
+    private func takeFullScreenshot() -> UIImage? {
+        var screenshotImage :UIImage?
+        
+        let keyWindow = UIApplication
+            .shared
+            .connectedScenes
+            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+            .last { $0.isKeyWindow }
+        
+        let layer = keyWindow!.layer
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
+        guard let context = UIGraphicsGetCurrentContext() else {return nil}
+        layer.render(in:context)
+        screenshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenshotImage
+    }
+    
+    private func takeScreenshot() {
+        // Save screenshot to local document directionary with patient id as the identifier.
+        if let patientId = Experiment.shared.patientId {
+            let imageName = patientId + " " + Experiment.shared.getDateString()
+            let localFileIO = LocalFileIO()
+            let screenshot = view.takeScreenshot()
+            
+            do {
+                try localFileIO.saveImageToDocument(image: screenshot, withName: imageName)
+            } catch LocalFileIOError.unableToRemoveExistingItem {
+                print("Failed to remove the existing file at document path. Use the old file here.")
+                gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary().appendingPathComponent(imageName, conformingTo: .jpeg)
+                return
+            } catch let error {
+                print("Error happened when saving the screenshot of test result! Only save the document path instead.")
+                print(error.localizedDescription)
+                gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary()
+                return
+            }
+            gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary().appendingPathComponent(imageName, conformingTo: .jpeg)
+        }
+    }
+    
     private func endSubTest() {
         if numRound == 0 {
             // Enter TMT-B
             // Start Tutorial for TMT-B
             numRound = 1
             currentLabels = K.TMT.labels[numRound]
-            
-            // Save screenshot to local document directionary with patient id as the identifier.
-            if let patientId = Experiment.shared.patientId {
-                let imageName = patientId + " " + Experiment.shared.getDateString()
-                let screenshot = lineImageView.takeScreenshot()
-                let localFileIO = LocalFileIO()
-                
-                do {
-                    try localFileIO.saveImageToDocument(image: screenshot, withName: imageName)
-                } catch LocalFileIOError.unableToRemoveExistingItem {
-                    print("Failed to remove the existing file at document path. Use the old file here.")
-                    gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary().appendingPathComponent(imageName, conformingTo: .jpeg)
-                    return
-                } catch let error {
-                    print("Error happened when saving the screenshot of test result! Only save the document path instead.")
-                    print(error.localizedDescription)
-                    gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary()
-                    return
-                }
-                gameStatistics[numRound].screenshotPath = localFileIO.getDocumentDirectionary().appendingPathComponent(imageName, conformingTo: .jpeg)
-            }
-            
-
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.initTutorial(state: 0)
             }
         } else {
             // End Game
             // Present scores
+            
             self.performSegue(withIdentifier: K.TMT.goToTMTResultSegue, sender: self)
         }
     }
@@ -715,6 +738,8 @@ extension TMTGameViewController {
                         instructionLabel.isHidden = false
                         
                     } else {
+                        // We should take screenshot before endSubTest!
+                        takeScreenshot()
                         stopTimer()
                         
                         gameStatistics[numRound].totalTimeTaken = K.TMT.numCirclesTimeMapping[TMTResultViewController.numCircles]! - timeLeft

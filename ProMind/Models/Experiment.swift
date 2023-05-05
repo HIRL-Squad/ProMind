@@ -91,7 +91,7 @@ class Experiment: Codable {
         let date = Date()
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter.dateFormat = "dd-MM-yyyy HH-mm"
         return dateFormatter.string(from: date)
         
     }
