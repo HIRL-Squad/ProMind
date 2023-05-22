@@ -12,6 +12,9 @@ class TMTTestResultTableViewController: UITableViewController {
     
     private let tmtRecordCoreDataModel = TMTRecordCoreDataModel.shared
     private var testRecord: TMTRecord? = nil
+    private var currentCell: TMTTestResultTableViewCells = .unselected
+    
+    @IBOutlet var tmtResultTableView: UITableView!
     
     @IBOutlet weak var patientIdCell: UITableViewCell!
     @IBOutlet weak var experimentDateCell: UITableViewCell!
@@ -98,5 +101,43 @@ class TMTTestResultTableViewController: UITableViewController {
         contentConfiguration.text = "Click to view"
         contentConfiguration.secondaryText = "View"
         cell.contentConfiguration = contentConfiguration
+    }
+}
+
+// Segue to test result modification scenes.
+extension TMTTestResultTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch tableView.cellForRow(at: indexPath) {
+        case testAScreenshotCell:
+            currentCell = .testAScreenshotCell
+            performSegue(withIdentifier: "presentTMTScreenshot", sender: self)
+            
+        case testBScreenshotCell:
+            currentCell = .testBScreenshotCell
+            performSegue(withIdentifier: "presentTMTScreenshot", sender: self)
+            
+        default:
+            currentCell = .unselected
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "presentTMTScreenshot":
+            let destinationController = segue.destination as! TMTScreenshotViewViewController
+            destinationController.indexPath = indexPath
+            
+            switch currentCell {
+            case .testAScreenshotCell:
+                destinationController.masterCell = .testAScreenshotCell
+            case .testBScreenshotCell:
+                destinationController.masterCell = .testBScreenshotCell
+            default:
+                break
+            }
+        default:
+            print("Unidentified segue found for TMT test result table view!")
+            break
+        }
     }
 }

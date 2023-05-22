@@ -13,6 +13,8 @@ class DSTTestResultTableViewController: UITableViewController {
     private let dstRecordCoreDataModel = DSTRecordCoreDataModel.shared
     private var testRecord: DSTRecord? = nil
     
+    @IBOutlet var dstResultTableView: UITableView!
+    
     @IBOutlet weak var patientIdCell: UITableViewCell!
     @IBOutlet weak var experimentDateCell: UITableViewCell!
     @IBOutlet weak var experimentTypeCell: UITableViewCell!

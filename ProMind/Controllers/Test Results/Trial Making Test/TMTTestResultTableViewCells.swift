@@ -32,4 +32,6 @@ enum TMTTestResultTableViewCells: String {
     case testBNumberOfErrorsCell
     case testBNumberOfLiftsCell
     case testBScreenshotCell
+    
+    case unselected
 }

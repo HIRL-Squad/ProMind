@@ -372,8 +372,8 @@
 		D94F807E29F2CA8E00D652E4 /* Test Results */ = {
 			isa = PBXGroup;
 			children = (
-				D986F9292A00D343006EE319 /* Digit Span Test */,
 				D986F9282A00D333006EE319 /* Trial Making Test */,
+				D986F9292A00D343006EE319 /* Digit Span Test */,
 				D94F807829F1739200D652E4 /* TestResultViewController.swift */,
 				D94F807F29F2CB3A00D652E4 /* TestRecordModificationViewController.swift */,
 			);

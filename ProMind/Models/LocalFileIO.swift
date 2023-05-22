@@ -59,5 +59,26 @@ class LocalFileIO {
             throw LocalFileIOError.unableToWriteToDocumentDirectionary
         }
     }
+    
+    public func fileExists(at url: URL) -> Bool {
+        if #available(iOS 16.0, *) {
+            return FileManager.default.fileExists(atPath: url.path())
+        } else {
+            return FileManager.default.fileExists(atPath: url.path)
+        }
+    }
+    
+    public func loadImageFromURL(_ url: URL) -> UIImage? {
+        guard fileExists(at: url) else {
+            print("Image file does not exist at url: \(url)")
+            return nil
+        }
+        
+        if #available(iOS 16.0, *) {
+            return UIImage(contentsOfFile: url.path())
+        } else {
+            return UIImage(contentsOfFile: url.path)
+        }
+    }
 }
 

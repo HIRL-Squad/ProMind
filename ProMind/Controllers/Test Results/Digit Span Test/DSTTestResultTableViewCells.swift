@@ -30,4 +30,6 @@ enum DSTTestResultTableViewCells: String {
     case bstMaximumCorrectDigitsCell
     case bstTotalTimeTakenCell
     case bstAudioRecordingCell
+    
+    case unselected
 }
