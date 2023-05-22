@@ -1340,12 +1340,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are a total of two subtests in Trail Making Test." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRh-mH-Yom" userLabel="Instruction Label">
-                                <rect key="frame" x="-24" y="282" width="752" height="75"/>
+                                <rect key="frame" x="19" y="261.5" width="666.5" height="95.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="9m8-iY-bbs"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="850" id="ymY-tR-BxI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1843,12 +1843,12 @@ Longest Seq: 0</string>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is part of your memory and concentration task. " textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZg-au-csF" userLabel="Instruction Label">
-                                <rect key="frame" x="-21.5" y="267" width="747" height="450"/>
+                                <rect key="frame" x="-23" y="267" width="750" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="KvN-Og-j2M"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="fwL-Kk-Y5v"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2151,12 +2151,12 @@ We will go through them one by one.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now, let’s move on to the second task. " textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEE-LH-5kc" userLabel="Instruction Label">
-                                <rect key="frame" x="75.5" y="267" width="553" height="450"/>
+                                <rect key="frame" x="28.5" y="267" width="647.5" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="8EI-PM-ddv"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="c0n-kW-lWQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
