@@ -16,6 +16,10 @@ class TMTGameViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var tutorialView: UIView!
     @IBOutlet weak var actionButtonsStackView: UIStackView!
+    @IBOutlet weak var testInformationLabel: UILabel!
+    
+    private var speechIndex: Int = 0
+    private var isSpeakingTestInfo: Bool = false
     
     // Speech Synthesis
     private var synthesizer: AVSpeechSynthesizer?
@@ -88,6 +92,11 @@ class TMTGameViewController: UIViewController {
         super.viewWillAppear(animated)
         UIGestureRecognizer().allowedTouchTypes = [UITouch.TouchType.pencil.rawValue, UITouch.TouchType.direct.rawValue] as [NSNumber]
         navigationController?.isNavigationBarHidden = false
+        
+        testInformationLabel.isHidden = true
+        instructionLabel.isHidden = false
+        speechIndex = 0
+        isSpeakingTestInfo = false
         // initTest()
     }
     
@@ -357,10 +366,15 @@ class TMTGameViewController: UIViewController {
                                "You have \(getTotalTime()) seconds."]
             
             let text = "There are a total of \(getNumCircles()) circles.\nPlease connect them without lifting the stylus as much as possible.\nYou have \(getTotalTime()) seconds.".localized
-            setInstructionLabelText(message: text)
-            speak(text: text, preUtteranceDelay: 0.5)
+            // setInstructionLabelText(message: text)
+            // speak(text: text, preUtteranceDelay: 0.5)
             
             // Init Test is performed in didFinish(:) after speech is done.
+            
+            isSpeakingTestInfo = true
+            testInformationLabel.isHidden = false
+            instructionLabel.isHidden = true
+            speakTestInformation()
         }
     }
     
@@ -477,6 +491,12 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
         synthesizer?.delegate = self
     }
     
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        if isSpeakingTestInfo {
+            updateTestInformationLabel(with: TMTInstructions().testInformation[speechIndex].localized)
+        }
+    }
+    
     private func speakInstructions() {
         print("numRound: \(numRound)")
         print("instructionState: \(instructionState)")
@@ -538,6 +558,22 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
             
         default:
             speak(text: instruction, preUtteranceDelay: 1.0)
+        }
+    }
+    
+    private func updateTestInformationLabel(with text: String) {
+        testInformationLabel.text = text
+    }
+    
+    private func speakTestInformation() {
+        let instructions: [String] = TMTInstructions().testInformation
+        for instruction in instructions {
+            let utterance = AVSpeechUtterance(string: instruction.localized)
+            let appLanguage = AppLanguage.shared.getCurrentLanguage()
+            
+            utterance.voice = AVSpeechSynthesisVoice(language: appLanguage)
+            utterance.rate = 0.4
+            synthesizer?.speak(utterance)
         }
     }
     
@@ -613,8 +649,15 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
                 speakInstructions()
             }
         } else {
-            promptDoNotLiftPencilInfo()
-            initTest()
+            if speechIndex >= 3 {
+                testInformationLabel.isHidden = true
+                promptDoNotLiftPencilInfo()
+                initTest()
+                isSpeakingTestInfo = false
+                speechIndex = 0
+            } else {
+                speechIndex += 1
+            }
         }
     }
 }
