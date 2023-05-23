@@ -96,6 +96,7 @@ class DSTTestViewController: UIViewController {
         notificationBroadcast.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Hide Unrecognized Reminder \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(testViewModel)", object: nil)
         
         try! loadGifImage()
     }
@@ -213,6 +214,13 @@ extension DSTTestViewController {
     
     @objc private func playGifImage() {
         avatarImageView.startAnimatingGif()
+    }
+    
+    @objc private func displaySpeakingSlowlyAlert() {
+        let message = "Please speak as slow as only one digit per second!\n\nClick Reset Answer button again, and wait for AT LEAST one second if the voice cannot be recognized!"
+        let alertController = UIAlertController(title: "Reminder", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
     }
     
     @objc private func showRecognizerButtons() {

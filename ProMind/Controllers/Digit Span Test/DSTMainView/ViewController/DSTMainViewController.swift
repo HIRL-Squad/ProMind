@@ -87,6 +87,7 @@ class DSTMainViewController: UIViewController {
         notification.addObserver(self, #selector(removeDigitRectangle(notification:)), "Remove Digit Rectangle \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(mainViewModel)", object: nil)
         
         NetworkMonitor.shared.stopMonitoring()
         NetworkMonitor.shared.startMonitoring()
@@ -316,6 +317,13 @@ extension DSTMainViewController {
     
     @objc private func resetDigitLabel() {
         spokenDigitsLabel.text?.removeAll()
+    }
+    
+    @objc private func displaySpeakingSlowlyAlert() {
+        let message = "Please speak as slow as only one digit per second!\n\nClick Reset Answer button again, and wait for AT LEAST one second if the voice cannot be recognized!"
+        let alertController = UIAlertController(title: "Reminder", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
     }
     
     @objc private func startRecognitionTask() {

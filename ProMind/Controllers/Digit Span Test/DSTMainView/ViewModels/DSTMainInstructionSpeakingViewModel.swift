@@ -94,7 +94,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
             notificationBroadcast.post("Display Gif Image \(viewModel)", object: nil)
             notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: numberOfDigits)
-            notificationBroadcast.post("Start Recognition Task \(viewModel)", object: nil)
+            notificationBroadcast.post("Display Speaking Slowly Alert \(viewModel)", object: nil)
             notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
             
         /// Do NOT increase index as 16 is the last instruction!
