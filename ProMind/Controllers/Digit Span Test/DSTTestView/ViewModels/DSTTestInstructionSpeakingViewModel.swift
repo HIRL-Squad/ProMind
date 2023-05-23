@@ -353,24 +353,23 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
                 
         /// For digit speaking like "1 - 8 - 7", there are two pauses between digits, and we should not go the the next index.
-        case 12, 14, 16:
+        case 12, 16:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
             } else {
+                notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
             }
-            
-        case 19:
+        
+        case 14:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
             } else {
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
-                
-                notificationBroadcast.post("Resume Recognition \(viewModel)", object: nil)
             }
             
         /// Instruction finished speaking: What would you say?
@@ -385,6 +384,17 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             notificationBroadcast.post("Display Speaking Slowly Alert \(viewModel)", object: nil)
             notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
             notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+            
+        case 19:
+            if speechStatus.counter_1 < 2 {
+                speechStatus.counter_1 += 1
+            } else {
+                roundInfo.speechStatusIndex = speechStatus.index
+                speechStatus.counter_1 = 0
+                speechStatus.index += 1
+                
+                notificationBroadcast.post("Resume Recognition \(viewModel)", object: nil)
+            }
                 
         /// Do NOT increase index as 22 is the last instruction!
         case 22:

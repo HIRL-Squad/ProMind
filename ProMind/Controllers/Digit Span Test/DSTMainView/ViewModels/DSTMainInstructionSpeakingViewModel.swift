@@ -68,7 +68,18 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             speechStatus.index += 1
             
         /// For digit speaking like "1 - 8 - 7", there are two pauses between digits, and we should not go the the next index.
-        case 6, 8, 10:
+        // 6 & 10 have the bell sound.
+        case 6, 10:
+            if speechStatus.counter_1 < 2 {
+                speechStatus.counter_1 += 1
+            } else {
+                notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                speechStatus.counter_1 = 0
+                speechStatus.index += 1
+            }
+        
+        // case 8 doesn't have the bell sound
+        case 8:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
             } else {
