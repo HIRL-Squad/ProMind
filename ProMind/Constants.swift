@@ -49,6 +49,9 @@ struct K {
         static let trialMakingTestResults = "trialMakingTestResults"
         static let digitSpanTestResults = "digitSpanTestResults"
         
+        static let synthesizerNotSpeaking = "synthesizerNotSpeaking"
+        static let voiceNotRecognized = "voiceNotRecognized"
+        
         struct Master {
             static let questions = [
                 K.ExperimentProfile.experimentType: [ExperimentType.Trial.rawValue, ExperimentType.Test.rawValue],

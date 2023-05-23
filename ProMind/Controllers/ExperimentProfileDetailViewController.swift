@@ -36,12 +36,17 @@ class ExperimentProfileDetailViewController: UIViewController {
     private let dstRecordCoreDataModel = DSTRecordCoreDataModel.shared
     
     private var testResultScrollView: UIScrollView?
+    private var synthesizerNotSpeakingScrollView: UIScrollView?
+    private var voiceNotRecognizedScrollView: UIScrollView?
     
     private var tmtRecordTableView: UITableView?
     private var dstRecordTableView: UITableView?
     
     private var tmtRecordIndexPath: IndexPath?
     private var dstRecordIndexPath: IndexPath?
+    
+    private var synthesizerNotSpeakingLableView: UILabel?
+    private var voiceNotRecognizedLableView: UILabel?
     
     private var views: [UIView] = []
     
@@ -93,6 +98,18 @@ class ExperimentProfileDetailViewController: UIViewController {
         
         testResultScrollView?.removeFromSuperview()
         testResultScrollView = nil
+        
+        synthesizerNotSpeakingScrollView?.removeFromSuperview()
+        synthesizerNotSpeakingScrollView = nil
+        
+        voiceNotRecognizedScrollView?.removeFromSuperview()
+        voiceNotRecognizedScrollView = nil
+        
+        synthesizerNotSpeakingLableView?.removeFromSuperview()
+        synthesizerNotSpeakingLableView = nil
+        
+        voiceNotRecognizedLableView?.removeFromSuperview()
+        voiceNotRecognizedLableView = nil
         
         for v in views {
             v.removeFromSuperview()
@@ -154,6 +171,55 @@ class ExperimentProfileDetailViewController: UIViewController {
             dstRecordTableView!.heightAnchor.constraint(equalTo: testResultScrollView!.heightAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpSynthesizerNotSpeakingScrollViewConstraints() {
+        synthesizerNotSpeakingScrollView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            synthesizerNotSpeakingScrollView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            synthesizerNotSpeakingScrollView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            synthesizerNotSpeakingScrollView!.rightAnchor.constraint(equalTo: view.rightAnchor),
+            synthesizerNotSpeakingScrollView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpVoiceNotRecognizedScrollViewConstraints() {
+        voiceNotRecognizedScrollView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            voiceNotRecognizedScrollView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            voiceNotRecognizedScrollView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            voiceNotRecognizedScrollView!.rightAnchor.constraint(equalTo: view.rightAnchor),
+            voiceNotRecognizedScrollView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpSynthesizerNotSpeakingLableViewConstraints() {
+        synthesizerNotSpeakingLableView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            synthesizerNotSpeakingLableView!.leadingAnchor.constraint(equalTo: synthesizerNotSpeakingScrollView!.leadingAnchor, constant: 16),
+            synthesizerNotSpeakingLableView!.trailingAnchor.constraint(equalTo: synthesizerNotSpeakingScrollView!.trailingAnchor, constant: -16),
+            synthesizerNotSpeakingLableView!.topAnchor.constraint(equalTo: synthesizerNotSpeakingScrollView!.topAnchor, constant: 84),
+            synthesizerNotSpeakingLableView!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpVoiceNotRecognizedLabelViewConstraints() {
+        voiceNotRecognizedLableView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            voiceNotRecognizedLableView!.leadingAnchor.constraint(equalTo: voiceNotRecognizedScrollView!.leadingAnchor, constant: 16),
+            voiceNotRecognizedLableView!.trailingAnchor.constraint(equalTo: voiceNotRecognizedScrollView!.trailingAnchor, constant: -16),
+            voiceNotRecognizedLableView!.topAnchor.constraint(equalTo: voiceNotRecognizedScrollView!.topAnchor, constant: 84),
+            voiceNotRecognizedLableView!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func getTroubleShootingLabelFrame() -> CGRect {
+        let size = CGSize(width: view.frame.width - 32, height: view.frame.height)
+        return CGRect(origin: CGPoint(x: 16, y: 0), size: size)
     }
 }
 
@@ -221,8 +287,45 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             testResultScrollView!.addSubview(dstRecordTableView!)
             setUpDSTRecordTableViewConstraints()
             
+        case K.ExperimentProfile.synthesizerNotSpeaking:
+            isPresentingTestResultView = false
+            print("Displaying synthesizer not speaking troubleshooting instructions. ")
+            
+            synthesizerNotSpeakingScrollView = UIScrollView()
+            view.addSubview(synthesizerNotSpeakingScrollView!)
+            setUpSynthesizerNotSpeakingScrollViewConstraints()
+            
+            synthesizerNotSpeakingLableView = UILabel(frame: getTroubleShootingLabelFrame())
+            let instructions = ProMindIssueTroubleshooter(issue: .synthesizerNotSpeaking, fontSize: 18).getInstructions()
+            synthesizerNotSpeakingLableView!.attributedText = instructions
+            synthesizerNotSpeakingLableView!.numberOfLines = 0
+            synthesizerNotSpeakingLableView!.sizeToFit()
+            
+            synthesizerNotSpeakingScrollView!.addSubview(synthesizerNotSpeakingLableView!)
+            setUpSynthesizerNotSpeakingLableViewConstraints()
+            
+            
+        case K.ExperimentProfile.voiceNotRecognized:
+            isPresentingTestResultView = false
+            
+            print("Displaying voice not recognized troubleshooting instructions. ")
+            
+            voiceNotRecognizedScrollView = UIScrollView()
+            view.addSubview(voiceNotRecognizedScrollView!)
+            setUpVoiceNotRecognizedScrollViewConstraints()
+            
+            voiceNotRecognizedLableView = UILabel(frame: getTroubleShootingLabelFrame())
+            let instructions = ProMindIssueTroubleshooter(issue: .voiceNotRecognized, fontSize: 18).getInstructions()
+            voiceNotRecognizedLableView!.attributedText = instructions
+            voiceNotRecognizedLableView!.numberOfLines = 0
+            voiceNotRecognizedLableView!.sizeToFit()
+            
+            voiceNotRecognizedScrollView!.addSubview(voiceNotRecognizedLableView!)
+            setUpVoiceNotRecognizedLabelViewConstraints()
+            
             
         default: // Table View
+            print("Question: \(question)")
             isPresentingTestResultView = false
             setupTableView(allowsMultipleSelection: false)
             currentOptions = options
@@ -330,13 +433,12 @@ extension ExperimentProfileDetailViewController: UITableViewDataSource, UITableV
             switch tableView {
             case tmtRecordTableView:
                 tmtRecordIndexPath = indexPath
-                performSegue(withIdentifier: "presentTMTTestRecord", sender: self)
+                performSegue(withIdentifier: ProMindSegues.presentTMTTestRecord.rawValue, sender: self)
             case dstRecordTableView:
                 dstRecordIndexPath = indexPath
-                performSegue(withIdentifier: "presentDSTTestRecord", sender: self)
+                performSegue(withIdentifier: ProMindSegues.presentDSTTestRecord.rawValue, sender: self)
             default:
                 break
-                
             }
         } else {
             for section in 0 ..< tableView.numberOfSections {
@@ -397,14 +499,18 @@ extension ExperimentProfileDetailViewController: UITextFieldDelegate {
 extension ExperimentProfileDetailViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "presentTMTTestRecord":
+        case ProMindSegues.presentTMTTestRecord.rawValue:
             let navigationController = segue.destination as! UINavigationController
             let tableViewController = navigationController.topViewController as! TMTTestResultTableViewController
             tableViewController.indexPath = tmtRecordIndexPath!
-        case "presentDSTTestRecord":
+        case ProMindSegues.presentDSTTestRecord.rawValue:
             let navigationController = segue.destination as! UINavigationController
             let tableViewController = navigationController.topViewController as! DSTTestResultTableViewController
             tableViewController.indexPath = dstRecordIndexPath!
+        case ProMindSegues.presentVoiceNotRecognizedTroubleshootingPage.rawValue:
+            break
+        case ProMindSegues.presentSynthesizerNotSpeakingTroubleshootingPage.rawValue:
+            break
         default:
             break
         }

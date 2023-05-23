@@ -171,7 +171,7 @@ class ExperimentProfileMasterViewController: UITableViewController {
 extension ExperimentProfileMasterViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // Edittd (1 : 3 -> 2: 5): Added two new section: Language, Patient ID and View Result
-        return Experiment.shared.experimentType == .Trial ? 2 : 7
+        return Experiment.shared.experimentType == .Trial ? 2 : 8
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

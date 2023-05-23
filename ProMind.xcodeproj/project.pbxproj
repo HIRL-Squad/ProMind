@@ -56,6 +56,8 @@
 		D97517E129DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97517E029DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift */; };
 		D97517E329E450A500AFE1F5 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97517E229E450A500AFE1F5 /* CoreDataTests.swift */; };
 		D97B09F8285C768700C91D2A /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = D97B09F7285C768700C91D2A /* DeviceKit */; };
+		D97CB5912A1B75C800366D3B /* ProMindSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97CB5902A1B75C800366D3B /* ProMindSegues.swift */; };
+		D97CB5932A1C659B00366D3B /* TroubleshootIssues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97CB5922A1C659B00366D3B /* TroubleshootIssues.swift */; };
 		D986F92129FFEE67006EE319 /* LocalFileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F92029FFEE67006EE319 /* LocalFileIO.swift */; };
 		D986F9232A00CEEE006EE319 /* TMTScreenshotViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F9222A00CEEE006EE319 /* TMTScreenshotViewViewController.swift */; };
 		D986F9252A00CF65006EE319 /* TMTTestResultTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986F9242A00CF65006EE319 /* TMTTestResultTableViewCells.swift */; };
@@ -149,6 +151,8 @@
 		D97517DE29DAE13400AFE1F5 /* DSTRecordCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTRecordCoreDataModel.swift; sourceTree = "<group>"; };
 		D97517E029DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTRecordCoreDataModel.swift; sourceTree = "<group>"; };
 		D97517E229E450A500AFE1F5 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		D97CB5902A1B75C800366D3B /* ProMindSegues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMindSegues.swift; sourceTree = "<group>"; };
+		D97CB5922A1C659B00366D3B /* TroubleshootIssues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TroubleshootIssues.swift; sourceTree = "<group>"; };
 		D986F92029FFEE67006EE319 /* LocalFileIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileIO.swift; sourceTree = "<group>"; };
 		D986F9222A00CEEE006EE319 /* TMTScreenshotViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTScreenshotViewViewController.swift; sourceTree = "<group>"; };
 		D986F9242A00CF65006EE319 /* TMTTestResultTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTestResultTableViewCells.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				D97517E029DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift */,
 				D97517DE29DAE13400AFE1F5 /* DSTRecordCoreDataModel.swift */,
 				D986F92029FFEE67006EE319 /* LocalFileIO.swift */,
+				D97CB5902A1B75C800366D3B /* ProMindSegues.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 			children = (
 				D91C507C2812B82B0028D4EC /* DigitSpanTest.swift */,
 				D91C507F2813FD780028D4EC /* TMTInstructions.swift */,
+				D97CB5922A1C659B00366D3B /* TroubleshootIssues.swift */,
 			);
 			path = GameInstructions;
 			sourceTree = "<group>";
@@ -696,8 +702,10 @@
 				A4AC2AE226C0E2AB00A04064 /* DSTResultViewController.swift in Sources */,
 				D986F92F2A04A31E006EE319 /* TMTTestResultNavigationController.swift in Sources */,
 				D91C5082281680130028D4EC /* DSTErrorHandling.swift in Sources */,
+				D97CB5912A1B75C800366D3B /* ProMindSegues.swift in Sources */,
 				D99EE862286B028B0049A4F3 /* DSTTestToolModel.swift in Sources */,
 				D94F807B29F1819C00D652E4 /* TMTTestResultTableViewController.swift in Sources */,
+				D97CB5932A1C659B00366D3B /* TroubleshootIssues.swift in Sources */,
 				A403CA5C26F47CDA00AA6F9B /* TMTGameViewController.swift in Sources */,
 				D9D69B812838F55000EBA219 /* Notifications.swift in Sources */,
 				A4754082266CE36C009E0B4B /* TestSelectionViewController.swift in Sources */,
