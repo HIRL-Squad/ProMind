@@ -41,6 +41,17 @@
 // Test Completion
 "Congratulations. You have completed the Digit Span Test. Please refer to your results on the screen." = "恭喜。你已经完成了Digit Span Test。请查看屏幕上的测试结果。";
 
+// Voice Recognition Reminder
+"Reminder" = "提示";
+"Please speak as slow as only one digit per second!\n\nClick Reset Answer button again, and wait for AT LEAST one second if the voice cannot be recognized!\n\nIn addition, please try to speak at least three digits before clicking Reset Answer button!" = "请按照一秒钟一位数字的速度进行语音识别！\n\n当语音无法识别时，请点击左下方的重置答案按钮，并且等待至少一秒钟后再次尝试。\n\n此外，请在点击左下方重置答案按钮前至少尝试说完三位数字！";
+
+// Error Occurs
+"An error occured" = "发生了一个错误";
+
+// Internet Access
+"Open Settings" = "打开设置";
+"Close" = "关闭";
+
 // MARK: - Trail Making Test
 
 // Only Numbers

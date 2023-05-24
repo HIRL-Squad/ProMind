@@ -287,8 +287,8 @@ class DSTGameViewController: UIViewController {
     
     private func handleError(withMessage message: String) {
         // Present an alert.
-        let ac = UIAlertController(title: "An error occured", message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        let ac = UIAlertController(title: "An error occured".localized, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK".localized, style: .default))
         present(ac, animated: true)
     }
 }

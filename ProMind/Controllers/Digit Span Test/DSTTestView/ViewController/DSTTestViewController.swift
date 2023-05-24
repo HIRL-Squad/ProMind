@@ -217,10 +217,12 @@ extension DSTTestViewController {
     }
     
     @objc private func displaySpeakingSlowlyAlert() {
-        let message = "Please speak as slow as only one digit per second!\n\nClick Reset Answer button again, and wait for AT LEAST one second if the voice cannot be recognized!"
-        let alertController = UIAlertController(title: "Reminder", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alertController, animated: true)
+        DispatchQueue.main.async {
+            let message = "Please speak as slow as only one digit per second!\n\nClick Reset Answer button again, and wait for AT LEAST one second if the voice cannot be recognized!\n\nIn addition, please try to speak at least three digits before clicking Reset Answer button!".localized
+            let alertController = UIAlertController(title: "Reminder".localized, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK".localized, style: .default))
+            self.present(alertController, animated: true)
+        }
     }
     
     @objc private func showRecognizerButtons() {

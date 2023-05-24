@@ -41,6 +41,17 @@
 // Test Completion
 "Congratulations. You have completed the Digit Span Test. Please refer to your results on the screen." = "Tahniah. Anda telah menyelesaikan Ujian Span Digit. Sila rujuk keputusan anda pada skrin.";
 
+// Voice Recognition Reminder
+"Reminder" = "Peringatan";
+"Please speak as slow as only one digit per second!\n\nClick Reset Answer button again, and wait for AT LEAST one second if the voice cannot be recognized!\n\nIn addition, please try to speak at least three digits before clicking Reset Answer button!" = "Sila bercakap perlahan seperti hanya satu digit sesaat!\n\nKlik butang Tetapkan Semula Jawapan sekali lagi, dan tunggu SEKURANG-KURANGNYA satu saat jika suara tidak dapat dikenali!\n\nSelain itu, sila cuba bercakap sekurang-kurangnya tiga digit sebelum mengklik Tetapkan semula butang Jawapan!";
+
+// Error Occurs
+"An error occured" = "Ralat berlaku";
+
+// Internet Access
+"Open Settings" = "Buka Tetapan";
+"Close" = "Tutup";
+
 // MARK: - Trail Making Test
 
 // Practice Round Part A

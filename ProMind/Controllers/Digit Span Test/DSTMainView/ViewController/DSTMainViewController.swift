@@ -287,9 +287,11 @@ extension DSTMainViewController {
     
     @objc private func displayUIAlert(notification: Notification) {
         let message = notification.object as? String
-        let alertController = UIAlertController(title: "An error occured", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alertController, animated: true)
+        DispatchQueue.main.async {
+            let alertViewController = UIAlertController(title: "An error occured".localized, message: message, preferredStyle: .alert)
+            alertViewController.addAction(UIAlertAction(title: "OK".localized, style: .default))
+            self.present(alertViewController, animated: true)
+        }
     }
     
     @objc private func updateDigitLabel(notification: Notification) throws {
@@ -320,10 +322,12 @@ extension DSTMainViewController {
     }
     
     @objc private func displaySpeakingSlowlyAlert() {
-        let message = "Please speak as slow as only one digit per second!\n\nClick Reset Answer button again, and wait for AT LEAST one second if the voice cannot be recognized!"
-        let alertController = UIAlertController(title: "Reminder", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alertController, animated: true)
+        DispatchQueue.main.async {
+            let message = "Please speak as slow as only one digit per second!\n\nClick Reset Answer button again, and wait for AT LEAST one second if the voice cannot be recognized!\n\nIn addition, please try to speak at least three digits before clicking Reset Answer button!".localized
+            let alertController = UIAlertController(title: "Reminder".localized, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK".localized, style: .default))
+            self.present(alertController, animated: true)
+        }
     }
     
     @objc private func startRecognitionTask() {
@@ -437,11 +441,11 @@ extension DSTMainViewController {
     
     private func presentAlertForInternet(title: String, msg: String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+        alertController.addAction(UIAlertAction(title: "Open Settings".localized, style: .default) { _ in
             let url = URL(string: UIApplication.openSettingsURLString)!
             UIApplication.shared.open(url)
         })
-        alertController.addAction(UIAlertAction(title: "Close", style: .cancel))
+        alertController.addAction(UIAlertAction(title: "Close".localized, style: .cancel))
         
         DispatchQueue.main.async {
             self.present(alertController, animated: true)

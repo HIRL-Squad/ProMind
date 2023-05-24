@@ -119,11 +119,11 @@ class InitialViewController: UIViewController {
     
     private func presentAlertForInternet(title: String, msg: String) {
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+        alertController.addAction(UIAlertAction(title: "Open Settings".localized, style: .default) { _ in
             let url = URL(string: UIApplication.openSettingsURLString)!
             UIApplication.shared.open(url)
         })
-        alertController.addAction(UIAlertAction(title: "Close", style: .cancel))
+        alertController.addAction(UIAlertAction(title: "Close".localized, style: .cancel))
         
         DispatchQueue.main.async {
             self.present(alertController, animated: true)
