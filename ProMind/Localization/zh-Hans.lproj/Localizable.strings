@@ -52,6 +52,10 @@
 "Open Settings" = "打开设置";
 "Close" = "关闭";
 
+// Coachmark Controller
+"For resetting your recorded numbers" = "用来重置您的语音识别结果";
+"For submitting your recorded numbers" = "用来确认您的语音识别结果";
+
 // MARK: - Trail Making Test
 
 // Only Numbers

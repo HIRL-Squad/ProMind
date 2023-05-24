@@ -52,6 +52,10 @@
 "Open Settings" = "Buka Tetapan";
 "Close" = "Tutup";
 
+// Coachmark Controller
+"For resetting your recorded numbers" = "Untuk menetapkan semula nombor yang direkodkan";
+"For submitting your recorded numbers" = "Untuk menghantar nombor yang direkodkan";
+
 // MARK: - Trail Making Test
 
 // Practice Round Part A

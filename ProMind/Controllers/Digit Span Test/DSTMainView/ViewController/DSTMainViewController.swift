@@ -212,11 +212,11 @@ extension DSTMainViewController: CoachMarksControllerDataSource, CoachMarksContr
         
         switch index {
         case 0:
-            coachViews.bodyView.hintLabel.text = "For resetting your recorded numbers"
-            coachViews.bodyView.nextLabel.text = "OK"
+            coachViews.bodyView.hintLabel.text = "For resetting your recorded numbers".localized
+            coachViews.bodyView.nextLabel.text = "OK".localized
         case 1:
-            coachViews.bodyView.hintLabel.text = "For submitting your recorded numbers"
-            coachViews.bodyView.nextLabel.text = "OK"
+            coachViews.bodyView.hintLabel.text = "For submitting your recorded numbers".localized
+            coachViews.bodyView.nextLabel.text = "OK".localized
         default:
             break
         }
@@ -280,7 +280,7 @@ extension DSTMainViewController {
         
         /// Show coach marks together with buttons.
         coachMarksController.start(in: .window(over: self))
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             self.coachMarksController.stop(immediately: true)
         }
     }
