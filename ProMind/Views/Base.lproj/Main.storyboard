@@ -1940,8 +1940,8 @@ Longest Seq: 0</string>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is part of your memory and concentration task. " textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZg-au-csF" userLabel="Instruction Label">
-                                <rect key="frame" x="-23" y="267" width="750" height="450"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is part of your memory and concentration task. " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZg-au-csF" userLabel="Instruction Label">
+                                <rect key="frame" x="80" y="267" width="544" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="KvN-Og-j2M"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="fwL-Kk-Y5v"/>
@@ -2248,7 +2248,7 @@ We will go through them one by one.</string>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now, let’s move on to the second task. " textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEE-LH-5kc" userLabel="Instruction Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now, let’s move on to the second task. " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEE-LH-5kc" userLabel="Instruction Label">
                                 <rect key="frame" x="28.5" y="267" width="647.5" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="8EI-PM-ddv"/>
