@@ -651,7 +651,7 @@ extension TMTGameViewController: AVSpeechSynthesizerDelegate {
         } else {
             if speechIndex >= 3 {
                 testInformationLabel.isHidden = true
-                promptDoNotLiftPencilInfo()
+                // promptDoNotLiftPencilInfo()
                 initTest()
                 isSpeakingTestInfo = false
                 speechIndex = 0
@@ -809,6 +809,9 @@ extension TMTGameViewController {
             // Only increase the numLifts if the circle was not connected correctly
             if canDraw {
                 gameStatistics[numRound].numLifts += 1
+                if gameStatistics[numRound].numLifts >= 3 {
+                    showTooManyLiftUpAlert()
+                }
                 updateStatsLabel()
             }
             
@@ -827,6 +830,14 @@ extension TMTGameViewController {
             if (circle.backgroundColor == .red) {
                 circle.backgroundColor = .lightGray
             }
+        }
+    }
+    
+    private func showTooManyLiftUpAlert() {
+        DispatchQueue.main.async {
+            let alertViewController = UIAlertController(title: "Too Many Lifts".localized, message: "Please do not lift up pencil too many times during the test!".localized, preferredStyle: .alert)
+            alertViewController.addAction(UIAlertAction(title: "OK".localized, style: .default))
+            self.present(alertViewController, animated: true)
         }
     }
 }

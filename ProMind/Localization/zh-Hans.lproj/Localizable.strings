@@ -116,3 +116,7 @@
 "ATTENTION" = "注意";
 "Please do NOT lift Apple Pencil from the screen!" = "请不要将 Apple Pencil 离开屏幕！";
 "OK" = "好的";
+
+// Too Many Lifts
+"Please do not lift up pencil too many times during the test!" = "测试过程中请不要太多次抬起笔！";
+"Too Many Lifts" = "抬起笔次数过多";

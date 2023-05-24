@@ -116,4 +116,8 @@
 // Prompt Information
 "ATTENTION" = "PERHATIAN";
 "Please do NOT lift Apple Pencil from the screen!" = "Sila JANGAN angkat Pensil Apple dari skrin!";
-"OK" = "okey";
+"OK" = "Okey";
+
+// Too Many Lifts
+"Please do not lift up pencil too many times during the test!" = "Tolong jangan angkat pensel terlalu banyak kali semasa ujian!";
+"Too Many Lifts" = "Terlalu Banyak Lif";
