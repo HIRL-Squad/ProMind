@@ -3,7 +3,7 @@
     <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -111,7 +111,7 @@
             <objects>
                 <viewController id="cXD-Qj-kxR" customClass="ExperimentProfileDetailViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="naT-wl-7hM">
-                        <rect key="frame" x="0.0" y="0.0" width="1045.5" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1045" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-eM-ybQ" userLabel="Main Container View">
@@ -480,10 +480,10 @@
                             <tableViewSection headerTitle="Troubleshoot Issues" id="Jrc-pN-q1V">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="synthesizerNotSpeaking" textLabel="rNP-ML-z4O" detailTextLabel="TL7-by-htV" style="IBUITableViewCellStyleValue1" id="q1T-qO-muC" userLabel="remarks">
-                                        <rect key="frame" x="116" y="1006" width="288" height="51.5"/>
+                                        <rect key="frame" x="116" y="1006" width="288" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q1T-qO-muC" id="goz-sS-vgk">
-                                            <rect key="frame" x="0.0" y="0.0" width="261.5" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="261.5" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Synthesizer not speaking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rNP-ML-z4O">
@@ -504,10 +504,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="voiceNotRecognized" textLabel="jXJ-5U-cND" detailTextLabel="i5F-jg-7Er" style="IBUITableViewCellStyleValue1" id="bib-cT-oDd" userLabel="remarks">
-                                        <rect key="frame" x="116" y="1057.5" width="288" height="51.5"/>
+                                        <rect key="frame" x="116" y="1058" width="288" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bib-cT-oDd" id="AoJ-YI-Y3H">
-                                            <rect key="frame" x="0.0" y="0.0" width="261.5" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="261.5" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Voice not recognized" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXJ-5U-cND">
@@ -3081,7 +3081,9 @@ We will go through them one by one.</string>
         </scene>
     </scenes>
     <designables>
-        <designable name="LKg-o5-zlG"/>
+        <designable name="LKg-o5-zlG">
+            <size key="intrinsicContentSize" width="199" height="71"/>
+        </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="c00-em-7hI"/>

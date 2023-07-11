@@ -45,6 +45,7 @@
 		D91C50802813FD780028D4EC /* TMTInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C507F2813FD780028D4EC /* TMTInstructions.swift */; };
 		D91C5082281680130028D4EC /* DSTErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C5081281680130028D4EC /* DSTErrorHandling.swift */; };
 		D91E8B7527E7B54900089FA4 /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = D91E8B7427E7B54900089FA4 /* LanguageManager-iOS */; };
+		D930D2292A5DB0E4006F2B2C /* No sound.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D930D2282A5DB0E4006F2B2C /* No sound.jpg */; };
 		D94F807929F1739200D652E4 /* TestResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807829F1739200D652E4 /* TestResultViewController.swift */; };
 		D94F807B29F1819C00D652E4 /* TMTTestResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */; };
 		D94F807D29F181B500D652E4 /* DSTTestResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807C29F181B500D652E4 /* DSTTestResultTableViewController.swift */; };
@@ -138,6 +139,7 @@
 		D91C507C2812B82B0028D4EC /* DigitSpanTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSpanTest.swift; sourceTree = "<group>"; };
 		D91C507F2813FD780028D4EC /* TMTInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTInstructions.swift; sourceTree = "<group>"; };
 		D91C5081281680130028D4EC /* DSTErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTErrorHandling.swift; sourceTree = "<group>"; };
+		D930D2282A5DB0E4006F2B2C /* No sound.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "No sound.jpg"; sourceTree = "<group>"; };
 		D94F807829F1739200D652E4 /* TestResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultViewController.swift; sourceTree = "<group>"; };
 		D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTestResultTableViewController.swift; sourceTree = "<group>"; };
 		D94F807C29F181B500D652E4 /* DSTTestResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestResultTableViewController.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 		D9EE866F2825033600AED1AA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D930D2282A5DB0E4006F2B2C /* No sound.jpg */,
 				D9EE86702825035C00AED1AA /* Bell.mp3 */,
 			);
 			path = Resources;
@@ -621,6 +624,7 @@
 				D9DEC40B28D71DB600A5BDE5 /* Pencil.png in Resources */,
 				D9EE86712825035C00AED1AA /* Bell.mp3 in Resources */,
 				A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */,
+				D930D2292A5DB0E4006F2B2C /* No sound.jpg in Resources */,
 				D96D066327E799FA00F53AEB /* Localizable.strings in Resources */,
 				A470A61226FAEB1800C1DED3 /* avatar_1.gif in Resources */,
 				A475408A266CE36F009E0B4B /* LaunchScreen.storyboard in Resources */,
@@ -940,7 +944,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = FSDR8GGC5F;
 				INFOPLIST_FILE = ProMind/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -965,7 +969,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = FSDR8GGC5F;
 				INFOPLIST_FILE = ProMind/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;

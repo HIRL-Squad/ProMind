@@ -42,7 +42,15 @@ class ProMindIssueTroubleshooter {
     public func getInstructions () -> NSAttributedString {
         switch issue {
         case .synthesizerNotSpeaking:
-            let instruction = getNormalMutableAttributedString(for: "1. Open ")
+            let instruction = getNormalMutableAttributedString(for: "Most of the time why this happenes is because the iPad is on ")
+            instruction.append(getBoldedAttributedString(for: "Slient Mode"))
+            instruction.append(getNormalAttributedString(for: ". You may just open "))
+            instruction.append(getBoldedAttributedString(for: "Control Center"))
+            instruction.append(getNormalAttributedString(for: " (swipe from the upper right corner to the bottom left), then find the "))
+            instruction.append(getBoldedAttributedString(for: "Bell Icon"))
+            instruction.append(getNormalAttributedString(for: ", make sure it is not selected.\n\n"))
+            
+            instruction.append(getNormalAttributedString(for: "If the above step could not fix the issue, you may try those steps: \n\n1. Open "))
             instruction.append(getBoldedAttributedString(for: "Settings"))
             instruction.append(getNormalAttributedString(for: " .\n\n"))
             

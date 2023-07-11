@@ -36,8 +36,8 @@ class ExperimentProfileDetailViewController: UIViewController {
     private let dstRecordCoreDataModel = DSTRecordCoreDataModel.shared
     
     private var testResultScrollView: UIScrollView?
-    private var synthesizerNotSpeakingScrollView: UIScrollView?
-    private var voiceNotRecognizedScrollView: UIScrollView?
+    private var synthesizerNotSpeakingStackView: UIStackView?
+    private var voiceNotRecognizedStackView: UIStackView?
     
     private var tmtRecordTableView: UITableView?
     private var dstRecordTableView: UITableView?
@@ -47,6 +47,7 @@ class ExperimentProfileDetailViewController: UIViewController {
     
     private var synthesizerNotSpeakingLableView: UILabel?
     private var voiceNotRecognizedLableView: UILabel?
+    private var silentModeImageView: UIImageView?
     
     private var views: [UIView] = []
     
@@ -99,17 +100,20 @@ class ExperimentProfileDetailViewController: UIViewController {
         testResultScrollView?.removeFromSuperview()
         testResultScrollView = nil
         
-        synthesizerNotSpeakingScrollView?.removeFromSuperview()
-        synthesizerNotSpeakingScrollView = nil
+        synthesizerNotSpeakingStackView?.removeFromSuperview()
+        synthesizerNotSpeakingStackView = nil
         
-        voiceNotRecognizedScrollView?.removeFromSuperview()
-        voiceNotRecognizedScrollView = nil
+        voiceNotRecognizedStackView?.removeFromSuperview()
+        voiceNotRecognizedStackView = nil
         
         synthesizerNotSpeakingLableView?.removeFromSuperview()
         synthesizerNotSpeakingLableView = nil
         
         voiceNotRecognizedLableView?.removeFromSuperview()
         voiceNotRecognizedLableView = nil
+        
+        silentModeImageView?.removeFromSuperview()
+        silentModeImageView = nil
         
         for v in views {
             v.removeFromSuperview()
@@ -173,24 +177,24 @@ class ExperimentProfileDetailViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func setUpSynthesizerNotSpeakingScrollViewConstraints() {
-        synthesizerNotSpeakingScrollView!.translatesAutoresizingMaskIntoConstraints = false
+    private func setUpSynthesizerNotSpeakingStackViewConstraints() {
+        synthesizerNotSpeakingStackView!.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
-            synthesizerNotSpeakingScrollView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
-            synthesizerNotSpeakingScrollView!.leftAnchor.constraint(equalTo: view.leftAnchor),
-            synthesizerNotSpeakingScrollView!.rightAnchor.constraint(equalTo: view.rightAnchor),
-            synthesizerNotSpeakingScrollView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            synthesizerNotSpeakingStackView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            synthesizerNotSpeakingStackView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            synthesizerNotSpeakingStackView!.rightAnchor.constraint(equalTo: view.rightAnchor),
+            synthesizerNotSpeakingStackView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func setUpVoiceNotRecognizedScrollViewConstraints() {
-        voiceNotRecognizedScrollView!.translatesAutoresizingMaskIntoConstraints = false
+    private func setUpVoiceNotRecognizedStackViewConstraints() {
+        voiceNotRecognizedStackView!.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
-            voiceNotRecognizedScrollView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
-            voiceNotRecognizedScrollView!.leftAnchor.constraint(equalTo: view.leftAnchor),
-            voiceNotRecognizedScrollView!.rightAnchor.constraint(equalTo: view.rightAnchor),
-            voiceNotRecognizedScrollView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            voiceNotRecognizedStackView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            voiceNotRecognizedStackView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            voiceNotRecognizedStackView!.rightAnchor.constraint(equalTo: view.rightAnchor),
+            voiceNotRecognizedStackView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -198,9 +202,9 @@ class ExperimentProfileDetailViewController: UIViewController {
     private func setUpSynthesizerNotSpeakingLableViewConstraints() {
         synthesizerNotSpeakingLableView!.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
-            synthesizerNotSpeakingLableView!.leadingAnchor.constraint(equalTo: synthesizerNotSpeakingScrollView!.leadingAnchor, constant: 16),
-            synthesizerNotSpeakingLableView!.trailingAnchor.constraint(equalTo: synthesizerNotSpeakingScrollView!.trailingAnchor, constant: -16),
-            synthesizerNotSpeakingLableView!.topAnchor.constraint(equalTo: synthesizerNotSpeakingScrollView!.topAnchor, constant: 84),
+            synthesizerNotSpeakingLableView!.leadingAnchor.constraint(equalTo: synthesizerNotSpeakingStackView!.leadingAnchor, constant: 16),
+            synthesizerNotSpeakingLableView!.trailingAnchor.constraint(equalTo: synthesizerNotSpeakingStackView!.trailingAnchor, constant: -16),
+            synthesizerNotSpeakingLableView!.topAnchor.constraint(equalTo: synthesizerNotSpeakingStackView!.topAnchor, constant: 84),
             synthesizerNotSpeakingLableView!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
@@ -209,10 +213,19 @@ class ExperimentProfileDetailViewController: UIViewController {
     private func setUpVoiceNotRecognizedLabelViewConstraints() {
         voiceNotRecognizedLableView!.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
-            voiceNotRecognizedLableView!.leadingAnchor.constraint(equalTo: voiceNotRecognizedScrollView!.leadingAnchor, constant: 16),
-            voiceNotRecognizedLableView!.trailingAnchor.constraint(equalTo: voiceNotRecognizedScrollView!.trailingAnchor, constant: -16),
-            voiceNotRecognizedLableView!.topAnchor.constraint(equalTo: voiceNotRecognizedScrollView!.topAnchor, constant: 84),
+            voiceNotRecognizedLableView!.leadingAnchor.constraint(equalTo: voiceNotRecognizedStackView!.leadingAnchor, constant: 16),
+            voiceNotRecognizedLableView!.trailingAnchor.constraint(equalTo: voiceNotRecognizedStackView!.trailingAnchor, constant: -16),
+            voiceNotRecognizedLableView!.topAnchor.constraint(equalTo: voiceNotRecognizedStackView!.topAnchor, constant: 84),
             voiceNotRecognizedLableView!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpSilentModeImageViewConstraints() {
+        silentModeImageView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            synthesizerNotSpeakingLableView!.topAnchor.constraint(equalTo: synthesizerNotSpeakingLableView!.bottomAnchor, constant: 16),
+            synthesizerNotSpeakingLableView!.centerXAnchor.constraint(equalTo: synthesizerNotSpeakingStackView!.centerXAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -291,9 +304,9 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             isPresentingTestResultView = false
             print("Displaying synthesizer not speaking troubleshooting instructions. ")
             
-            synthesizerNotSpeakingScrollView = UIScrollView()
-            view.addSubview(synthesizerNotSpeakingScrollView!)
-            setUpSynthesizerNotSpeakingScrollViewConstraints()
+            synthesizerNotSpeakingStackView = UIStackView(frame: view.frame)
+            view.addSubview(synthesizerNotSpeakingStackView!)
+            setUpSynthesizerNotSpeakingStackViewConstraints()
             
             synthesizerNotSpeakingLableView = UILabel(frame: getTroubleShootingLabelFrame())
             let instructions = ProMindIssueTroubleshooter(issue: .synthesizerNotSpeaking, fontSize: 18).getInstructions()
@@ -301,18 +314,22 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             synthesizerNotSpeakingLableView!.numberOfLines = 0
             synthesizerNotSpeakingLableView!.sizeToFit()
             
-            synthesizerNotSpeakingScrollView!.addSubview(synthesizerNotSpeakingLableView!)
+            synthesizerNotSpeakingStackView!.addSubview(synthesizerNotSpeakingLableView!)
             setUpSynthesizerNotSpeakingLableViewConstraints()
             
+            // silentModeImageView = UIImageView(image: UIImage(named: "No sound.jpg"))
+            
+            // synthesizerNotSpeakingStackView!.addSubview(silentModeImageView!)
+            // setUpSilentModeImageViewConstraints()
             
         case K.ExperimentProfile.voiceNotRecognized:
             isPresentingTestResultView = false
             
             print("Displaying voice not recognized troubleshooting instructions. ")
             
-            voiceNotRecognizedScrollView = UIScrollView()
-            view.addSubview(voiceNotRecognizedScrollView!)
-            setUpVoiceNotRecognizedScrollViewConstraints()
+            voiceNotRecognizedStackView = UIStackView()
+            view.addSubview(voiceNotRecognizedStackView!)
+            setUpVoiceNotRecognizedStackViewConstraints()
             
             voiceNotRecognizedLableView = UILabel(frame: getTroubleShootingLabelFrame())
             let instructions = ProMindIssueTroubleshooter(issue: .voiceNotRecognized, fontSize: 18).getInstructions()
@@ -320,7 +337,7 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             voiceNotRecognizedLableView!.numberOfLines = 0
             voiceNotRecognizedLableView!.sizeToFit()
             
-            voiceNotRecognizedScrollView!.addSubview(voiceNotRecognizedLableView!)
+            voiceNotRecognizedStackView!.addSubview(voiceNotRecognizedLableView!)
             setUpVoiceNotRecognizedLabelViewConstraints()
             
             
