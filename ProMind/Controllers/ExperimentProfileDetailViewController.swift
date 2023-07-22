@@ -88,6 +88,10 @@ class ExperimentProfileDetailViewController: UIViewController {
     }
     
     private func resetContainerView() {
+        navigationItem.title = nil
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.rightBarButtonItem = nil
+        
         optionChoiceTableView?.removeFromSuperview()
         optionChoiceTableView = nil
         
@@ -283,6 +287,8 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             testResultScrollView!.addSubview(tmtRecordTableView!)
             setUpTMTRecordTableViewConstraints()
             
+            navigationItem.title = "Trail Making Test Results"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Export", style: .plain, target: self, action: #selector(exportTrailMakingTestResults(sender:)))
             
         case K.ExperimentProfile.digitSpanTestResults:
             isPresentingTestResultView = true
@@ -300,6 +306,10 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             testResultScrollView!.addSubview(dstRecordTableView!)
             setUpDSTRecordTableViewConstraints()
             
+            navigationItem.title = "Digit Span Test Results"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Export", style: .plain, target: self, action: #selector(exportDigitSpanTestResults(sender:)))
+            
+            
         case K.ExperimentProfile.synthesizerNotSpeaking:
             isPresentingTestResultView = false
             print("Displaying synthesizer not speaking troubleshooting instructions. ")
@@ -316,6 +326,8 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             
             synthesizerNotSpeakingStackView!.addSubview(synthesizerNotSpeakingLableView!)
             setUpSynthesizerNotSpeakingLableViewConstraints()
+            
+            navigationItem.title = "Troubleshoot - Synthesizer not speaking"
             
             // silentModeImageView = UIImageView(image: UIImage(named: "No sound.jpg"))
             
@@ -339,6 +351,8 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             
             voiceNotRecognizedStackView!.addSubview(voiceNotRecognizedLableView!)
             setUpVoiceNotRecognizedLabelViewConstraints()
+            
+            navigationItem.title = "Troubleshoot - Voice not recognized"
             
             
         default: // Table View
@@ -530,6 +544,72 @@ extension ExperimentProfileDetailViewController {
             break
         default:
             break
+        }
+    }
+}
+
+// MARK: - Test results export related implementations.
+extension ExperimentProfileDetailViewController {
+    @objc private func exportTrailMakingTestResults(sender: UIBarButtonItem) {
+        var csvString: String = ""
+        let csvFileName = "Trail_Making_Test_Exported_Test_Results.csv"
+        let localFileIO = LocalFileIO()
+        
+        let saveCSVTask = Task(priority: .userInitiated) {
+            csvString = await tmtRecordCoreDataModel.exportToCSV()
+            try localFileIO.saveCSVToDocument(csv: csvString, nameWithExtension: csvFileName)
+            
+            guard localFileIO.fileExistsAtDocument(nameWithExtension: csvFileName) else {
+                print("Fail to export TMT test results!")
+                presentAlertForFailToExportTestResult()
+                return
+            }
+            
+            // Implement share action for CSV file.
+            let csvURL = localFileIO.getFileURLAtDocument(nameWithExtension: csvFileName)
+            let activityViewController = UIActivityViewController(activityItems: [csvURL], applicationActivities: nil)
+            
+            // For iPad, present the UIActivityViewController as a popover.
+            if let popoverController = activityViewController.popoverPresentationController {
+                popoverController.barButtonItem = sender
+            }
+            present(activityViewController, animated: true)
+        }
+    }
+    
+    @objc  private func exportDigitSpanTestResults(sender: UIBarButtonItem) {
+        var csvString: String = ""
+        let csvFileName = "Digit_Span_Test_Exported_Test_Results.csv"
+        let localFileIO = LocalFileIO()
+        
+        let saveCSVTask = Task(priority: .userInitiated) {
+            csvString = await dstRecordCoreDataModel.exportToCSV()
+            try localFileIO.saveCSVToDocument(csv: csvString, nameWithExtension: csvFileName)
+            
+            guard localFileIO.fileExistsAtDocument(nameWithExtension: csvFileName) else {
+                print("Fail to export TMT test results!")
+                presentAlertForFailToExportTestResult()
+                return
+            }
+            
+            // Implement share action for CSV file.
+            let csvURL = localFileIO.getFileURLAtDocument(nameWithExtension: csvFileName)
+            let activityViewController = UIActivityViewController(activityItems: [csvURL], applicationActivities: nil)
+            
+            // For iPad, present the UIActivityViewController as a popover.
+            if let popoverController = activityViewController.popoverPresentationController {
+                popoverController.barButtonItem = sender
+            }
+            present(activityViewController, animated: true)
+        }
+    }
+    
+    private func presentAlertForFailToExportTestResult() {
+        let alertController = UIAlertController(title: "Fail to Export Test Results", message: "Please contact us for help. Don't worry, your data won't be lost!", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: true)
         }
     }
 }

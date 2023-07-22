@@ -92,4 +92,38 @@ class DSTRecordCoreDataModel {
         fetchRecords()
         return savedEntities.count
     }
+    
+    public func exportToCSV() async -> String {
+        fetchRecords()
+        var csvContent: String = "Patient ID,Age,Annual Income,Education Level,Ethnicity,Experiment Date,Experiment Type,Gender,Remarks,Forward Span Test Longest Consecutive Correctness,Backwards Span Test Longest Consecutive Correctness,Forward Span Test Maximum Digits,Backwards Span Test Maximum Digits,Forward Span Test Number of Correct Trails,Backwards Span Test Number of Correct Trails,Forward Span Test Total Time Taken,Backwards Span Test Total Time Taken\n"
+        
+        for dstRecord in savedEntities {
+            let patientId: String = dstRecord.patientId ?? "No Data"
+            let age: String = String(dstRecord.age)
+            let annualIncome: String = dstRecord.annualIncome ?? "No Data"
+            let educationLevel: String = dstRecord.educationLevel ?? "No Data"
+            let ethnicity: String = dstRecord.ethnicity ?? "No Data"
+            
+            let date = Date(timeIntervalSince1970: TimeInterval(dstRecord.experimentDate))
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+            let experimentDate: String = dateFormatter.string(from: date)
+            
+            let experimentType: String = dstRecord.experimentType ?? "No Data"
+            let gender: String = dstRecord.gender ?? "No Data"
+            let remarks: String = dstRecord.remarks ?? "No Data"
+            
+            let fstLongestSequence: String = String(dstRecord.fstLongestSequence)
+            let bstLongestSequence: String = String(dstRecord.bstLongestSequence)
+            let fstMaxDigits: String = String(dstRecord.fstMaxDigits)
+            let bstMaxDigits: String = String(dstRecord.bstMaxDigits)
+            let fstNumCorrectTrials: String = String(dstRecord.fstNumCorrectTrials)
+            let bstNumCorrectTrials: String = String(dstRecord.bstNumCorrectTrials)
+            let fstTotalTimeTaken: String = String(dstRecord.fstTotalTimeTaken)
+            let bstTotalTimeTaken: String = String(dstRecord.bstTotalTimeTaken)
+            
+            csvContent.append(patientId + "," + age + "," + annualIncome + "," + educationLevel + "," + ethnicity + "," + experimentDate + "," + experimentType + "," + gender + "," + remarks + "," + fstLongestSequence + "," + bstLongestSequence + "," + fstMaxDigits + "," + bstMaxDigits + "," + fstNumCorrectTrials + "," + bstNumCorrectTrials + "," + fstTotalTimeTaken + "," + bstTotalTimeTaken + "\n")
+        }
+        return csvContent
+    }
 }

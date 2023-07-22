@@ -87,4 +87,39 @@ class TMTRecordCoreDataModel {
         fetchRecords()
         return savedEntities.count
     }
+    
+    public func exportToCSV() async -> String {
+        fetchRecords()
+        var csvContent: String = "Patient ID,Age,Annual Income,Education Level,Ethnicity,Experiment Date,Experiment Type,Gender,Remarks,Number of Starting Circles,Number of Circles Left Test A,Number of Circles Left Test B,Number of Errors Test A,Number of Errors Test B,Number of Lifts Test A,Number of Lifts Test B,Total Time Taken Test A,Total Time Taken Test B\n"
+        
+        for tmtRecord in savedEntities {
+            let patientId: String = tmtRecord.patientId ?? "No Data"
+            let age: String = String(tmtRecord.age)
+            let annualIncome: String = tmtRecord.annualIncome ?? "No Data"
+            let educationLevel: String = tmtRecord.educationLevel ?? "No Data"
+            let ethnicity: String = tmtRecord.ethnicity ?? "No Data"
+            
+            let date = Date(timeIntervalSince1970: TimeInterval(tmtRecord.experimentDate))
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+            let experimentDate: String = dateFormatter.string(from: date)
+            
+            let experimentType: String = tmtRecord.experimentType ?? "No Data"
+            let gender: String = tmtRecord.gender ?? "No Data"
+            let remarks: String = tmtRecord.remarks ?? "No Data"
+            
+            let tmtNumStartingCircles: String = String(tmtRecord.tmtNumStartingCircles)
+            let tmtNumCirclesLeftTestA: String = String(tmtRecord.tmtNumCirclesLeftTestA)
+            let tmtNumCirclesLeftTestB: String = String(tmtRecord.tmtNumCirclesLeftTestB)
+            let tmtNumErrorsTestA: String = String(tmtRecord.tmtNumErrorsTestA)
+            let tmtNumErrorsTestB: String = String(tmtRecord.tmtNumErrorsTestB)
+            let tmtNumLiftsTestA: String = String(tmtRecord.tmtNumLiftsTestA)
+            let tmtNumLiftsTestB: String = String(tmtRecord.tmtNumLiftsTestB)
+            let tmtTotalTimeTakenTestA: String = String(tmtRecord.tmtTotalTimeTakenTestA)
+            let tmtTotalTimeTakenTestB: String = String(tmtRecord.tmtTotalTimeTakenTestB)
+            
+            csvContent.append(patientId + "," + age + "," + annualIncome + "," + educationLevel + "," + ethnicity + "," + experimentDate + "," + experimentType + "," + gender + "," + remarks + "," + tmtNumStartingCircles + "," + tmtNumCirclesLeftTestA + "," + tmtNumCirclesLeftTestB + "," + tmtNumErrorsTestA + "," + tmtNumErrorsTestB + "," + tmtNumLiftsTestA + "," + tmtNumLiftsTestB + "," + tmtTotalTimeTakenTestA + "," + tmtTotalTimeTakenTestB + "\n")
+        }
+        return csvContent
+    }
 }

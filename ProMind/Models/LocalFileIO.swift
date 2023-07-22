@@ -58,6 +58,38 @@ class LocalFileIO {
             print(error.localizedDescription)
             throw LocalFileIOError.unableToWriteToDocumentDirectionary
         }
+        print("Successfully write image file to document directionary!")
+    }
+    
+    public func saveCSVToDocument(csv: String, nameWithExtension: String) throws {
+        let csvURL = getDocumentDirectionary().appendingPathComponent(nameWithExtension)
+        var csvPath: String
+        if #available(iOS 16.0, *) {
+            csvPath = csvURL.path()
+        } else {
+            csvPath = csvURL.path
+        }
+        
+        // Check if there exists files with the same name and remove it once existed.
+        if FileManager.default.fileExists(atPath: csvPath) {
+            do {
+                try FileManager.default.removeItem(at: csvURL)
+            } catch let error {
+                print("Unable to remove existing csv file!")
+                print(error.localizedDescription)
+                throw LocalFileIOError.unableToRemoveExistingItem
+            }
+            print("Successfully remove duplicated file!")
+        }
+        
+        do {
+            try csv.write(to: csvURL, atomically: true, encoding: .utf8)
+        } catch let error {
+            print("Unable to write CSV file to document directionary!")
+            print(error.localizedDescription)
+            throw LocalFileIOError.unableToWriteToDocumentDirectionary
+        }
+        print("Successfully write CSV file to document directionary at path!")
     }
     
     public func fileExists(at url: URL) -> Bool {
@@ -66,6 +98,15 @@ class LocalFileIO {
         } else {
             return FileManager.default.fileExists(atPath: url.path)
         }
+    }
+    
+    public func fileExistsAtDocument(nameWithExtension: String) -> Bool {
+        let url = getFileURLAtDocument(nameWithExtension: nameWithExtension)
+        return fileExists(at: url)
+    }
+    
+    public func getFileURLAtDocument(nameWithExtension: String) -> URL {
+        return getDocumentDirectionary().appendingPathComponent(nameWithExtension)
     }
     
     public func loadImageFromURL(_ url: URL) -> UIImage? {
