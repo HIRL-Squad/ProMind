@@ -29,7 +29,7 @@
 "You will hear some numbers. " = "您会听到一些数字。";
 "Once done, you will hear a bell, like so: " = "数字播报完成后，您会听到一声铃声，像这样：";
 "(Bell Sound)" = "（铃声）";
-"This time, you will have to repeat the numbers backwards. " = "这一次，您将倒着重复这个数字。";
+"This time, you will have to repeat the numbers backwards.\n\nPlease speak slowly. Do not rush or repeat answers." = "这一次，您将倒着重复这个数字。\n\n请慢一些说。不要抢答或者重复答案。";
 "For example, if you hear: " = "比如，当您听到：";
 "you would say: " = "您应该说：";
 "If you hear: " = "如果您听到：";
