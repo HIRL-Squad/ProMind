@@ -111,7 +111,7 @@
             <objects>
                 <viewController id="cXD-Qj-kxR" customClass="ExperimentProfileDetailViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="naT-wl-7hM">
-                        <rect key="frame" x="0.0" y="0.0" width="1045" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1045.5" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-eM-ybQ" userLabel="Main Container View">
@@ -1940,7 +1940,7 @@ Longest Seq: 0</string>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is part of your memory and concentration task. " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZg-au-csF" userLabel="Instruction Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is part of your memory and concentration task. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZg-au-csF" userLabel="Instruction Label">
                                 <rect key="frame" x="80" y="267" width="544" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="KvN-Og-j2M"/>
@@ -2248,7 +2248,7 @@ We will go through them one by one.</string>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now, let’s move on to the second task. " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEE-LH-5kc" userLabel="Instruction Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now, let’s move on to the second task. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEE-LH-5kc" userLabel="Instruction Label">
                                 <rect key="frame" x="28.5" y="267" width="647.5" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="750" id="8EI-PM-ddv"/>
@@ -3081,9 +3081,7 @@ We will go through them one by one.</string>
         </scene>
     </scenes>
     <designables>
-        <designable name="LKg-o5-zlG">
-            <size key="intrinsicContentSize" width="199" height="71"/>
-        </designable>
+        <designable name="LKg-o5-zlG"/>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="c00-em-7hI"/>

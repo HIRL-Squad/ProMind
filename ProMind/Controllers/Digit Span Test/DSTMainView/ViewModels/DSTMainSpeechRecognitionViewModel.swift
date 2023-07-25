@@ -82,10 +82,11 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         }
         
         let numberOfDigits: Int = 3
+        let expectedResult: String = recognitionTask.expectedResult
         let filteredResult = transcribedReuslt.filter({ !$0.isWhitespace }) // "23 47" -> "2347"
         recognitionTask.spokenResult = filteredResult
         
-        notificationBroadcast.post("Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits))
+        notificationBroadcast.post("Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits, expectedResult))
         print("Spoken result is \(recognitionTask.spokenResult).")
     }
     
@@ -98,8 +99,10 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     
     @objc private func submitAnswer() {
         pauseRecognition()
-        if recognitionTask.spokenResult == recognitionTask.expectedResult {
-            print("spoken result == expected result")
+        let spokenResultFilter = SpokenResultFilter(spokenResult: recognitionTask.spokenResult, expectedResult: recognitionTask.expectedResult, viewModel: .DSTMainViewModel)
+        
+        if recognitionTask.expectedResult == spokenResultFilter.getOptimizedResult() {
+            print("spoken result == expected result - main view model")
             notificationBroadcast.post("Display Successful Messages \(viewModel)", object: nil)
             notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
         } else {

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class RepeatingTimer {
-    
     internal var tolerance: Double
     
     private var counter: UInt = 0
@@ -71,7 +70,6 @@ class RepeatingTimer {
 }
 
 struct TestDigitsGenerator {
-    
     internal func generateNoneRepeatingRandomNumbers(numberOfDigits: Int) -> String {
         let shuffledArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].shuffled()
         let arraySlice = shuffledArray[..<numberOfDigits]
@@ -97,7 +95,6 @@ struct TestDigitsGenerator {
 }
 
 class Rectangle {
-    
     internal var x, y: CGFloat
     internal var width, height: CGFloat
     
@@ -120,7 +117,6 @@ class Rectangle {
 }
 
 class SpokenDigitRectangle: Rectangle {
-    
     internal var fillColor: CGColor?
     internal var strokeColor: CGColor?
     internal var lineWidth: CGFloat?
@@ -172,13 +168,14 @@ class SpokenDigitRectangle: Rectangle {
 }
 
 class SpokenResultFilter {
-    
-    internal let spokenResult: String
-    internal let viewModel: DSTViewModels
+    private let spokenResult: String
+    private let expectedResult: String
+    private let viewModel: DSTViewModels
     private let notificationBroadcast = NotificationBroadcast()
     
-    init(spokenResult: String, viewModel: DSTViewModels) {
+    init(spokenResult: String, expectedResult: String, viewModel: DSTViewModels) {
         self.spokenResult = spokenResult
+        self.expectedResult = expectedResult
         self.viewModel = viewModel
     }
     
@@ -247,13 +244,28 @@ class SpokenResultFilter {
             break
         }
         
-        if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: filteredResult)) {
-            notificationBroadcast.post("Legal Spoken Result \(viewModel)", object: nil)
-        } else {
-            filteredResult = "   " // Empty string will result in "Out of bounds" for extension UILabel func setCharacterSpacing().
-            notificationBroadcast.post("Illegal Spoken Result \(viewModel)", object: nil)
-        }
+        // Checking whether filteredResult only has decimal digits used to be here.
         
         return filteredResult
+    }
+    
+    internal func getOptimizedResult() -> String {
+        var filteredResult: String = getFilteredResult()
+        if filteredResult.contains(expectedResult) {
+            notificationBroadcast.post("Legal Spoken Result \(viewModel)", object: nil)
+            
+            print("Optimized for expectedResult: \(filteredResult)")
+            return expectedResult
+        } else {
+            if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: filteredResult)) {
+                notificationBroadcast.post("Legal Spoken Result \(viewModel)", object: nil)
+            } else {
+                filteredResult = "   " // Empty string will result in "Out of bounds" for extension UILabel func setCharacterSpacing().
+                notificationBroadcast.post("Illegal Spoken Result \(viewModel)", object: nil)
+            }
+            
+            print("Unable to optimize result: \(filteredResult)")
+            return filteredResult
+        }
     }
 }

@@ -75,10 +75,11 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         }
         
         let numberOfDigits: Int = recognitionTask.expectedResult.count
+        let expectedResult: String = recognitionTask.expectedResult
         let filteredResult = transcribedReuslt.filter({ !$0.isWhitespace }) // "23 47" -> "2347"
         recognitionTask.spokenResult = filteredResult
         
-        notificationBroadcast.post("Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits))
+        notificationBroadcast.post("Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits, expectedResult))
         print("Spoken result is \(recognitionTask.spokenResult).")
     }
     
@@ -106,8 +107,10 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
             }
         }
         
-        if recognitionTask.spokenResult == recognitionTask.expectedResult {
-            print("spoken result == expected result test view model")
+        let spokenResultFilter = SpokenResultFilter(spokenResult: recognitionTask.spokenResult, expectedResult: recognitionTask.expectedResult, viewModel: .DSTTestViewModel)
+        
+        if recognitionTask.expectedResult == spokenResultFilter.getOptimizedResult() {
+            print("spoken result == expected result - test view model")
             let roundInfo = RoundInfo.shared
             print("Speech Status Index: \(roundInfo.speechStatusIndex)")
             

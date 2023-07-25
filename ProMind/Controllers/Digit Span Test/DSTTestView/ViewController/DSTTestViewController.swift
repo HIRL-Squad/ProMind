@@ -234,13 +234,13 @@ extension DSTTestViewController {
     }
     
     @objc private func updateDigitLabel(notification: Notification) throws {
-        guard let (spokenResult, numberOfDigits) = notification.object as? (String, Int) else {
+        guard let (spokenResult, numberOfDigits, expectedResult) = notification.object as? (String, Int, String) else {
             print("Digit Label is nil!")
             throw SFSpeechDigitNumberRecognizerError.nilDigitLabel
         }
         
-        let spokenResultFilter = SpokenResultFilter(spokenResult: spokenResult, viewModel: testViewModel)
-        let filteredResult = spokenResultFilter.getFilteredResult()
+        let spokenResultFilter = SpokenResultFilter(spokenResult: spokenResult, expectedResult: expectedResult, viewModel: testViewModel)
+        let filteredResult = spokenResultFilter.getOptimizedResult()
         
         let widthConstaint_3_digits = [spokenDigitsLabel.widthAnchor.constraint(equalToConstant: 235)]
         let widthConstaint_4_digits = [spokenDigitsLabel.widthAnchor.constraint(equalToConstant: 335)]

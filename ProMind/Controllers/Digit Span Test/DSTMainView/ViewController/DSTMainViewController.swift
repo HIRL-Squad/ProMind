@@ -295,13 +295,13 @@ extension DSTMainViewController {
     }
     
     @objc private func updateDigitLabel(notification: Notification) throws {
-        guard let (spokenResult, numberOfDigits) = notification.object as? (String, Int) else {
+        guard let (spokenResult, numberOfDigits, expectedResult) = notification.object as? (String, Int, String) else {
             print("Digit Label is nil!")
             throw SFSpeechDigitNumberRecognizerError.nilDigitLabel
         }
         
-        let spokenResultFilter = SpokenResultFilter(spokenResult: spokenResult, viewModel: mainViewModel)
-        let filteredResult = spokenResultFilter.getFilteredResult()
+        let spokenResultFilter = SpokenResultFilter(spokenResult: spokenResult, expectedResult: expectedResult, viewModel: mainViewModel)
+        let filteredResult = spokenResultFilter.getOptimizedResult()
         
         let constraint = [spokenDigitsLabel.widthAnchor.constraint(equalToConstant: 236)]
         NSLayoutConstraint.activate(constraint)
