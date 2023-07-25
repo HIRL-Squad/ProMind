@@ -13,9 +13,10 @@
 "You will hear some numbers. " = "Anda akan mendengar beberapa numbor. ";
 "Once done, you will hear a bell, like so: " = "Kemudian, anda akan dengar bunyi loceng seperti ini: ";
 "(Bell Sound)" = "(Bunyi Loceng)";
-"When you hear the bell, repeat the numbers in the same order. " = "Apabila anda dengar bunyi loceng, ulang nombor-nomborya dalam urutan yang sama. ";
+"After you hear the bell, repeat the numbers in the same order.\n\nPlease speak slowly. Do not rush or repeat answers." = "Selepas anda mendengar loceng, ulang nombor dalam susunan yang sama.\n\nSila bercakap perlahan-lahan. Jangan tergesa-gesa atau mengulangi jawapan.";
 "For example, if you hear: " = "Contohnya, sekiranya anda dengar: ";
 "You would say: " = "Anda perlu ulang: ";
+"Remember to speak as slowly as one second per digit, like how the example did.\n\nNever rush or repeat answers." = "Ingat untuk bercakap perlahan seperti satu saat setiap digit, seperti contoh yang berlaku.\n\nJangan tergesa-gesa atau mengulangi jawapan.";
 "If you hear: " = "Kalau anda dengar: ";
 "What would you say? " = "cuba ulang nombor-nombornya? ";
 "That is incorrect, you would say: " = "Salah, anda harus ulang: ";

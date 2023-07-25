@@ -64,12 +64,12 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             /// Play bell sound.
             notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
             
-            /// Instruction to be spoken: When you hear the bell, repeat the numbers in the same order.
+            /// Instruction to be spoken: After you hear the bell, repeat the numbers in the same order...
             speechStatus.index += 1
             
         /// For digit speaking like "1 - 8 - 7", there are two pauses between digits, and we should not go the the next index.
-        // 6 & 10 have the bell sound.
-        case 6, 10:
+        // 6 & 11 have the bell sound.
+        case 6, 11:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
             } else {
@@ -87,7 +87,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.index += 1
             }
             
-        case 13:
+        case 14:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
             } else {
@@ -98,7 +98,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             }
             
         /// Instruction finished speaking: What would you say?
-        case 11:
+        case 12:
             speechStatus.index += 1
             
             let numberOfDigits: Int = 3
@@ -110,7 +110,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
             
         /// Do NOT increase index as 16 is the last instruction!
-        case 16:
+        case 17:
             notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 3)
             notificationBroadcast.post("Show Begin Button \(viewModel)", object: nil)
             
@@ -122,7 +122,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     internal func audioFinishedPlaying() {
         switch speechStatus.index {
         case 4:
-            displayForwardNumberSpanInstructions_4To11()
+            displayForwardNumberSpanInstructions_4To12()
         default:
             break
         }
@@ -151,9 +151,9 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         }
     }
     
-    internal func displayForwardNumberSpanInstructions_4To11() {
+    internal func displayForwardNumberSpanInstructions_4To12() {
         speechStatus.index = 4
-        for instruction in digitSpanTest.forwardNumberSpanInstructions[4...11] {
+        for instruction in digitSpanTest.forwardNumberSpanInstructions[4...12] {
             switch instruction {
             case "1 - 8 - 7", "2 – 9 – 8":
                 let localizedInstruction = instruction.localized
