@@ -29,8 +29,8 @@ class InitialViewController: UIViewController {
                             print("AVAudioSession :: Granted!")
                             
                             // TODO: Update time to 3 seconds
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                                self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
+                                self?.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
                             }
                             
                         } else {
@@ -64,8 +64,8 @@ class InitialViewController: UIViewController {
         // Check for Internet connection.
         if NetworkMonitor.shared.isConnected {
             print("Internet :: Connected!")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
+                self?.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
             }
             
         } else {
@@ -82,14 +82,16 @@ class InitialViewController: UIViewController {
         } else {
             notification.addObserver(self, #selector(applicationDidBecomeActive), UIApplication.didBecomeActiveNotification, object: nil)
         }
+        
+        runTestFlightUpdateReminder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if NetworkMonitor.shared.isConnected {
             print("Internet :: Connected!")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
+                self?.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
             }
         }
     }
@@ -106,14 +108,14 @@ class InitialViewController: UIViewController {
             message: "Code: \(msg)\n\nPlease consider updating your speech recognition and microphone settings.",
             preferredStyle: .alert
         )
-        ac.addAction(UIAlertAction(title: "Open settings", style: .default) { _ in
+        ac.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
             let url = URL(string: UIApplication.openSettingsURLString)!
             UIApplication.shared.open(url)
         })
         ac.addAction(UIAlertAction(title: "Close", style: .cancel))
         
-        DispatchQueue.main.async {
-            self.present(ac, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(ac, animated: true)
         }
     }
     
@@ -125,8 +127,51 @@ class InitialViewController: UIViewController {
         })
         alertController.addAction(UIAlertAction(title: "Close".localized, style: .cancel))
         
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alertController, animated: true)
+        }
+    }
+    
+    private func runTestFlightUpdateReminder() {
+        print("Running TestFlight Update Reminder...")
+        let testFlightUpdateReminder = TestFlightUpdateReminder(appleId: "1576213954")
+        
+        Task(priority: .high) {
+            let preReleaseVersions = await testFlightUpdateReminder.fetchAllPreReleaseVersion()
+            if let preReleaseVersions {
+                if !testFlightUpdateReminder.localAppIsLatest(preReleaseVersions: preReleaseVersions) {
+                    let localAppVersion = testFlightUpdateReminder.getLatestLocalAppVersion() ?? "No Data"
+                    let testFlightAppVersion = testFlightUpdateReminder.getLatestTestFlightAppVersion(preReleaseVersions: preReleaseVersions) ?? "No Data"
+                    let localBuildNumber = testFlightUpdateReminder.getLatestLocalBuildNumber() ?? "No Data"
+                    let testFlightBuildNumber = testFlightUpdateReminder.getLatestTestFlightBuildNumber(preReleaseVersions: preReleaseVersions) ?? "No Data"
+                    showTestFlightUpdateAlert(currentVersion: localAppVersion, currentBuild: localBuildNumber, latestVersion: testFlightAppVersion, latestBuild: testFlightBuildNumber)
+                }
+                testFlightUpdateReminder.printAllInformation(preReleaseVersions: preReleaseVersions)
+            }
+        }
+    }
+    
+    private func showTestFlightUpdateAlert(currentVersion: String, currentBuild: String, latestVersion: String, latestBuild: String) {
+        let alert = UIAlertController(
+            title: "Update Available",
+            message: "A new version of the app is available on TestFlight. Please update to the latest version!\n\nCurrent Version: \(currentVersion)\nCurrent Build: \(currentBuild)\nLatest Version: \(latestVersion)\nLatest Build: \(latestBuild)",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Update", style: .default) { _ in
+            if let url = URL(string: "itms-beta://itunes.apple.com/app/id1576213954?mt=8") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        })
+        alert.addAction(UIAlertAction(title: "Later", style: .cancel) {_ in
+            print("Cancel")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
+                print("Async after")
+                self?.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
+            }
+        })
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -142,10 +187,11 @@ class InitialViewController: UIViewController {
 // Functions will be triggered when the application active state changes.
 extension InitialViewController {
     @objc private func applicationDidBecomeActive() {
+        runTestFlightUpdateReminder()
         if NetworkMonitor.shared.isConnected {
             print("Internet :: Connected!")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
+                self?.performSegue(withIdentifier: K.goToExperimentProfileSegue, sender: self)
             }
         }
     }

@@ -121,5 +121,20 @@ class LocalFileIO {
             return UIImage(contentsOfFile: url.path)
         }
     }
+    
+    public func readPrivateKeyContentFromFile(filename: String) -> String? {
+        guard let filePath = Bundle.main.path(forResource: filename, ofType: "p8") else {
+            print("Private key file not found")
+            return nil
+        }
+
+        do {
+            let privateKeyContent = try String(contentsOfFile: filePath, encoding: .utf8)
+            return privateKeyContent
+        } catch {
+            print("Error reading private key content: \(error)")
+            return nil
+        }
+    }
 }
 

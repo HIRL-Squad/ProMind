@@ -45,6 +45,10 @@
 		D91C50802813FD780028D4EC /* TMTInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C507F2813FD780028D4EC /* TMTInstructions.swift */; };
 		D91C5082281680130028D4EC /* DSTErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91C5081281680130028D4EC /* DSTErrorHandling.swift */; };
 		D91E8B7527E7B54900089FA4 /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = D91E8B7427E7B54900089FA4 /* LanguageManager-iOS */; };
+		D921690D2A7E5D1F00313E6A /* TestFlightUpdateReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D921690C2A7E5D1F00313E6A /* TestFlightUpdateReminder.swift */; };
+		D92169102A7F8E2F00313E6A /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = D921690F2A7F8E2F00313E6A /* SwiftJWT */; };
+		D92169122A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 in Resources */ = {isa = PBXBuildFile; fileRef = D92169112A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 */; };
+		D92169152A80DCFC00313E6A /* AppStoreConnect-Swift-SDK in Frameworks */ = {isa = PBXBuildFile; productRef = D92169142A80DCFC00313E6A /* AppStoreConnect-Swift-SDK */; };
 		D930D2292A5DB0E4006F2B2C /* No sound.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D930D2282A5DB0E4006F2B2C /* No sound.jpg */; };
 		D94F807929F1739200D652E4 /* TestResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807829F1739200D652E4 /* TestResultViewController.swift */; };
 		D94F807B29F1819C00D652E4 /* TMTTestResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */; };
@@ -139,6 +143,8 @@
 		D91C507C2812B82B0028D4EC /* DigitSpanTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSpanTest.swift; sourceTree = "<group>"; };
 		D91C507F2813FD780028D4EC /* TMTInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTInstructions.swift; sourceTree = "<group>"; };
 		D91C5081281680130028D4EC /* DSTErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTErrorHandling.swift; sourceTree = "<group>"; };
+		D921690C2A7E5D1F00313E6A /* TestFlightUpdateReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlightUpdateReminder.swift; sourceTree = "<group>"; };
+		D92169112A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AuthKey_JRUF79U89B.p8; sourceTree = "<group>"; };
 		D930D2282A5DB0E4006F2B2C /* No sound.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "No sound.jpg"; sourceTree = "<group>"; };
 		D94F807829F1739200D652E4 /* TestResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultViewController.swift; sourceTree = "<group>"; };
 		D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTestResultTableViewController.swift; sourceTree = "<group>"; };
@@ -181,7 +187,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D91E8B7527E7B54900089FA4 /* LanguageManager-iOS in Frameworks */,
+				D92169152A80DCFC00313E6A /* AppStoreConnect-Swift-SDK in Frameworks */,
 				A1472194EA3CD9BF63592183 /* Pods_ProMind.framework in Frameworks */,
+				D92169102A7F8E2F00313E6A /* SwiftJWT in Frameworks */,
 				D97B09F8285C768700C91D2A /* DeviceKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +308,7 @@
 				D97517DE29DAE13400AFE1F5 /* DSTRecordCoreDataModel.swift */,
 				D986F92029FFEE67006EE319 /* LocalFileIO.swift */,
 				D97CB5902A1B75C800366D3B /* ProMindSegues.swift */,
+				D921690C2A7E5D1F00313E6A /* TestFlightUpdateReminder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -474,6 +483,7 @@
 		D9EE866F2825033600AED1AA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D92169112A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 */,
 				D930D2282A5DB0E4006F2B2C /* No sound.jpg */,
 				D9EE86702825035C00AED1AA /* Bell.mp3 */,
 			);
@@ -527,6 +537,8 @@
 			packageProductDependencies = (
 				D91E8B7427E7B54900089FA4 /* LanguageManager-iOS */,
 				D97B09F7285C768700C91D2A /* DeviceKit */,
+				D921690F2A7F8E2F00313E6A /* SwiftJWT */,
+				D92169142A80DCFC00313E6A /* AppStoreConnect-Swift-SDK */,
 			);
 			productName = ProMind;
 			productReference = A475407A266CE36C009E0B4B /* ProMind.app */;
@@ -604,6 +616,8 @@
 			packageReferences = (
 				D91E8B7327E7B54900089FA4 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */,
 				D97B09F6285C768700C91D2A /* XCRemoteSwiftPackageReference "DeviceKit" */,
+				D921690E2A7F8E2F00313E6A /* XCRemoteSwiftPackageReference "Swift-JWT" */,
+				D92169132A80DCFC00313E6A /* XCRemoteSwiftPackageReference "appstoreconnect-swift-sdk" */,
 			);
 			productRefGroup = A475407B266CE36C009E0B4B /* Products */;
 			projectDirPath = "";
@@ -621,6 +635,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D92169122A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 in Resources */,
 				D9DEC40B28D71DB600A5BDE5 /* Pencil.png in Resources */,
 				D9EE86712825035C00AED1AA /* Bell.mp3 in Resources */,
 				A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */,
@@ -706,6 +721,7 @@
 				A4AC2AE226C0E2AB00A04064 /* DSTResultViewController.swift in Sources */,
 				D986F92F2A04A31E006EE319 /* TMTTestResultNavigationController.swift in Sources */,
 				D91C5082281680130028D4EC /* DSTErrorHandling.swift in Sources */,
+				D921690D2A7E5D1F00313E6A /* TestFlightUpdateReminder.swift in Sources */,
 				D97CB5912A1B75C800366D3B /* ProMindSegues.swift in Sources */,
 				D99EE862286B028B0049A4F3 /* DSTTestToolModel.swift in Sources */,
 				D94F807B29F1819C00D652E4 /* TMTTestResultTableViewController.swift in Sources */,
@@ -1120,6 +1136,22 @@
 				version = 1.2.6;
 			};
 		};
+		D921690E2A7F8E2F00313E6A /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IBM-Swift/Swift-JWT.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		D92169132A80DCFC00313E6A /* XCRemoteSwiftPackageReference "appstoreconnect-swift-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AvdLee/appstoreconnect-swift-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D97B09F6285C768700C91D2A /* XCRemoteSwiftPackageReference "DeviceKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devicekit/DeviceKit";
@@ -1135,6 +1167,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D91E8B7327E7B54900089FA4 /* XCRemoteSwiftPackageReference "LanguageManager-iOS" */;
 			productName = "LanguageManager-iOS";
+		};
+		D921690F2A7F8E2F00313E6A /* SwiftJWT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D921690E2A7F8E2F00313E6A /* XCRemoteSwiftPackageReference "Swift-JWT" */;
+			productName = SwiftJWT;
+		};
+		D92169142A80DCFC00313E6A /* AppStoreConnect-Swift-SDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D92169132A80DCFC00313E6A /* XCRemoteSwiftPackageReference "appstoreconnect-swift-sdk" */;
+			productName = "AppStoreConnect-Swift-SDK";
 		};
 		D97B09F7285C768700C91D2A /* DeviceKit */ = {
 			isa = XCSwiftPackageProductDependency;

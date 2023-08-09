@@ -1,28 +1,36 @@
 PODS:
   - CLTypingLabel (0.4.0)
+  - DeviceKit (4.9.0)
   - Instructions (2.1.0)
   - IQKeyboardManagerSwift (6.5.6)
+  - LanguageManager-iOS (1.2.5)
   - SwiftyGif (5.4.0)
 
 DEPENDENCIES:
   - CLTypingLabel
+  - DeviceKit (~> 4.0)
   - Instructions (~> 2.1.0)
   - IQKeyboardManagerSwift
+  - LanguageManager-iOS
   - SwiftyGif
 
 SPEC REPOS:
   trunk:
     - CLTypingLabel
+    - DeviceKit
     - Instructions
     - IQKeyboardManagerSwift
+    - LanguageManager-iOS
     - SwiftyGif
 
 SPEC CHECKSUMS:
   CLTypingLabel: 95a7d1faf7e3d1d952cd11cb0491d17d80c50934
+  DeviceKit: 847709bf70b78fd9ab765bd571fb9f5f815c3fc1
   Instructions: 2465e321dde23f7c8fc26fe8efddf605df80dfba
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  LanguageManager-iOS: 049345fe4d1c5fbe22af93d438540917f4936359
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
 
-PODFILE CHECKSUM: 2eed6f2946c10ae930a121cb855ae6a51dd8f1c9
+PODFILE CHECKSUM: fa2319bde7655e337eb97a1bbba25edc682033c6
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1

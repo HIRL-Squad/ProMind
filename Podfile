@@ -13,6 +13,9 @@ target 'ProMind' do
   pod 'Instructions', '~> 2.1.0'
   pod 'LanguageManager-iOS'
   pod 'DeviceKit', '~> 4.0'
+  # pod 'Alamofire'
+  # pod 'SwiftyJSON', '~> 4.0'
+  # pod 'SwiftJWT'
   
   # target 'ProMindTests' do
   #   inherit! :search_paths
