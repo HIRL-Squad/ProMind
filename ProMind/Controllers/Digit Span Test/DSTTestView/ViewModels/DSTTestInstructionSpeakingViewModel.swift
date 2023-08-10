@@ -72,6 +72,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         /// case 0 & 1: 4 7 2 -> 3 digits
         case 0:
             print("speech did start with index = \(speechStatus.index)")
+            notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
             notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
             notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 3)
             notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
@@ -160,6 +161,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         /// case 23 & 24: 2 1 8 -> 3 digits
         case 23:
             print("speech did start with index = \(speechStatus.index)")
+            notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
             notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
             notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 3)
             notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
@@ -286,6 +288,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -305,6 +308,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -324,6 +328,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -379,7 +384,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
             let answer = "637"
             
-            notificationBroadcast.post("Display Gif Image \(viewModel)", object: nil)
+            notificationBroadcast.post("Display and Play Gif Image \(viewModel)", object: nil)
             notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 3)
             notificationBroadcast.post("Display Speaking Slowly Alert \(viewModel)", object: nil)
             notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
@@ -413,6 +418,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -432,6 +438,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
@@ -451,6 +458,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0

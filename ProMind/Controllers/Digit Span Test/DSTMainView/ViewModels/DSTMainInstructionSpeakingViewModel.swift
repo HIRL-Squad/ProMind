@@ -103,7 +103,7 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
             let numberOfDigits: Int = 3
             
-            notificationBroadcast.post("Display Gif Image \(viewModel)", object: nil)
+            notificationBroadcast.post("Display and Play Gif Image \(viewModel)", object: nil)
             notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: numberOfDigits)
             notificationBroadcast.post("Display Speaking Slowly Alert \(viewModel)", object: nil)
             notificationBroadcast.post("Start Recognition Task \(viewModel)", object: nil)

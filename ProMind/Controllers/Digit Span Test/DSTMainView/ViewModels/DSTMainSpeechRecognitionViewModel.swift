@@ -84,7 +84,7 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         let numberOfDigits: Int = 3
         let expectedResult: String = recognitionTask.expectedResult
         let filteredResult = transcribedReuslt.filter({ !$0.isWhitespace }) // "23 47" -> "2347"
-        recognitionTask.spokenResult = filteredResult
+        recognitionTask.spokenResult = filteredResult // later
         
         notificationBroadcast.post("Update Digit Label \(viewModel)", object: (filteredResult, numberOfDigits, expectedResult))
         print("Spoken result is \(recognitionTask.spokenResult).")

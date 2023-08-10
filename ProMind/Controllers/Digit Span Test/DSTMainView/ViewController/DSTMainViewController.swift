@@ -74,7 +74,7 @@ class DSTMainViewController: UIViewController {
         /// Set up Notification Observer.
         notification.addObserver(self, #selector(updateUILabelText(notification:)), "Instruction Text \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(playBellSound), "Play Bell Sound \(mainViewModel)", object: nil)
-        notification.addObserver(self, #selector(loadGifImage), "Display Gif Image \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(loadGifImage), "Display and Play Gif Image \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(displayUIAlert(notification:)), "Display UIAlert \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(updateDigitLabel(notification:)), "Update Digit Label \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(startRecognitionTask), "Start Recognition Task \(mainViewModel)", object: nil)
@@ -254,7 +254,7 @@ extension DSTMainViewController {
                 throw GifAnimationError.gifNotFound
             }
             avatarImageView.setGifImage(gifImage, loopCount: -1) /// stop at smiling face
-            avatarImageView.stopAnimatingGif()
+            avatarImageView.startAnimatingGif()
             avatarImageView.isHidden = false
             
         } catch {

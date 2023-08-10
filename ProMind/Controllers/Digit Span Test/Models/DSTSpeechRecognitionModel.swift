@@ -203,7 +203,6 @@ class SFSpeechDigitNumberRecognizer: NSObject, SFSpeechRecognizerDelegate, SFSpe
         
         if let result = result {
             finalResult = result.bestTranscription.formattedString
-            notification.post("Play Gif Image \(viewModel)", object: nil)
             notification.post("Transcribe Finished \(viewModel)", object: finalResult)
         }
     }

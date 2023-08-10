@@ -81,7 +81,7 @@ class DSTTestViewController: UIViewController {
         notificationBroadcast.addObserver(self, #selector(updateDigitLabel(notification:)), "Update Digit Label \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(startRecognitionTask(notification:)), "Start Recognition Task \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(resetDigitLabel), "Reset Digit Label \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, #selector(loadGifImage), "Display Gif Image \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(loadGifImage), "Display and Play Gif Image \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(showRecognizerButtons), "Show Recognizer Buttons \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(playGifImage), "Play Gif Image \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(stopPlayingGif), "Stop Playing Gif \(testViewModel)", object: nil)
@@ -204,7 +204,7 @@ extension DSTTestViewController {
                 throw GifAnimationError.gifNotFound
             }
             avatarImageView.setGifImage(gifImage, loopCount: -1) /// stop at smiling face
-            avatarImageView.stopAnimatingGif()
+            avatarImageView.startAnimatingGif()
             avatarImageView.isHidden = false
         } catch {
             print("Error happens when loading the gif image!\n")
