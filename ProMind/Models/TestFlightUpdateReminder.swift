@@ -18,7 +18,7 @@ class TestFlightUpdateReminder {
     
     private func getConfigurationForProMind() -> APIConfiguration? {
         do {
-            return try APIConfiguration(issuerID: "563ee51a-b3fc-483d-b980-09a1eadd3d84", privateKeyID: "JRUF79U89B", privateKey: "MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/PEH3cSabsvYR+idv+YvVLKUW/CtWl1VpFizIi5dqhmgCgYIKoZIzj0DAQehRANCAATRrDWVFQsIcAiXTyuftubQ5XVrVNb2yQaABqGqObXDmiCO2zH8ZH2s5Y2+M2F+/ZFPIAaXuGsnicKOmsdE2hDq")
+            return try APIConfiguration(issuerID: "563ee51a-b3fc-483d-b980-09a1eadd3d84", privateKeyID: "737ZL8KK3W", privateKey: "MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgIlz7Dk+3Wwz7hQuQubsub0f3kTdP9m3Z3KyxfQJbfvygCgYIKoZIzj0DAQehRANCAAQhWQSNM50pF5WzE/EQyOqRWmvfh7MYZQLlWhgBf/uoP5SwBZXXbi6E9iJ52ogMS0pmU4DaAcHHtnIv0EsbPCOf")
         } catch let error {
             print("Error happended when generating APIConfiguration!")
             print(error.localizedDescription)

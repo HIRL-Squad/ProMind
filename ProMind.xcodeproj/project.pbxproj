@@ -47,7 +47,6 @@
 		D91E8B7527E7B54900089FA4 /* LanguageManager-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = D91E8B7427E7B54900089FA4 /* LanguageManager-iOS */; };
 		D921690D2A7E5D1F00313E6A /* TestFlightUpdateReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D921690C2A7E5D1F00313E6A /* TestFlightUpdateReminder.swift */; };
 		D92169102A7F8E2F00313E6A /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = D921690F2A7F8E2F00313E6A /* SwiftJWT */; };
-		D92169122A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 in Resources */ = {isa = PBXBuildFile; fileRef = D92169112A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 */; };
 		D92169152A80DCFC00313E6A /* AppStoreConnect-Swift-SDK in Frameworks */ = {isa = PBXBuildFile; productRef = D92169142A80DCFC00313E6A /* AppStoreConnect-Swift-SDK */; };
 		D930D2292A5DB0E4006F2B2C /* No sound.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D930D2282A5DB0E4006F2B2C /* No sound.jpg */; };
 		D94F807929F1739200D652E4 /* TestResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94F807829F1739200D652E4 /* TestResultViewController.swift */; };
@@ -144,7 +143,6 @@
 		D91C507F2813FD780028D4EC /* TMTInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTInstructions.swift; sourceTree = "<group>"; };
 		D91C5081281680130028D4EC /* DSTErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTErrorHandling.swift; sourceTree = "<group>"; };
 		D921690C2A7E5D1F00313E6A /* TestFlightUpdateReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlightUpdateReminder.swift; sourceTree = "<group>"; };
-		D92169112A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AuthKey_JRUF79U89B.p8; sourceTree = "<group>"; };
 		D930D2282A5DB0E4006F2B2C /* No sound.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "No sound.jpg"; sourceTree = "<group>"; };
 		D94F807829F1739200D652E4 /* TestResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultViewController.swift; sourceTree = "<group>"; };
 		D94F807A29F1819C00D652E4 /* TMTTestResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMTTestResultTableViewController.swift; sourceTree = "<group>"; };
@@ -483,7 +481,6 @@
 		D9EE866F2825033600AED1AA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D92169112A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 */,
 				D930D2282A5DB0E4006F2B2C /* No sound.jpg */,
 				D9EE86702825035C00AED1AA /* Bell.mp3 */,
 			);
@@ -635,7 +632,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D92169122A7FA64900313E6A /* AuthKey_JRUF79U89B.p8 in Resources */,
 				D9DEC40B28D71DB600A5BDE5 /* Pencil.png in Resources */,
 				D9EE86712825035C00AED1AA /* Bell.mp3 in Resources */,
 				A4DC17A92674C1A8004DA5C8 /* Main.storyboard in Resources */,
