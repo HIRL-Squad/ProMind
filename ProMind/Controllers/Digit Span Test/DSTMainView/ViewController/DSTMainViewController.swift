@@ -22,7 +22,8 @@ class DSTMainViewController: UIViewController {
     @IBOutlet weak var spokenDigitsLabel: UILabel!
     @IBOutlet weak var digitSpanTestLabel: UILabel!
     @IBOutlet weak var unrecognizedReminderLabel: UILabel!
-    
+    @IBOutlet weak var recordingIconImageView: UIImageView!
+    @IBOutlet weak var recordingLabel: UILabel!
     
     @IBAction func resetAnswerButtonPressed(_ sender: UIButton) {
         notification.post("Reset Answer Button Pressed \(mainViewModel)", object: nil)
@@ -62,6 +63,8 @@ class DSTMainViewController: UIViewController {
         submitAnswerButton.isHidden = true
         instructionLabel.isHidden = false
         unrecognizedReminderLabel.isHidden = true
+        recordingLabel.isHidden = true
+        recordingIconImageView.isHidden = true
         
         instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
         instructionSpeaking.resetSpeechStatus()
@@ -88,6 +91,8 @@ class DSTMainViewController: UIViewController {
         notification.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(showRecordingIndicator), "Show Recording Indicator \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(hideRecordingIndicator), "Hide Recording Indicator \(mainViewModel)", object: nil)
         
         NetworkMonitor.shared.stopMonitoring()
         NetworkMonitor.shared.startMonitoring()
@@ -432,6 +437,29 @@ extension DSTMainViewController {
     @objc private func hideUnrecognizedReminder() {
         unrecognizedReminderLabel.isHidden = true
         coachMarksController.stop(immediately: true)
+    }
+    
+    @objc private func showRecordingIndicator() {
+        print("Show Recording Indicator - TestViewController")
+        recordingLabel.isHidden = false
+        recordingIconImageView.isHidden = false
+        print("recordingIcon: \(String(describing: recordingIconImageView.image))")
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.autoreverse, .repeat], animations: { [weak self] in
+            self?.recordingLabel.alpha = 0.0
+            self?.recordingIconImageView.alpha = 0.0
+        })
+    }
+    
+    @objc private func hideRecordingIndicator() {
+        recordingLabel.isHidden = true
+        recordingIconImageView.isHidden = true
+        
+        recordingLabel.layer.removeAllAnimations()
+        recordingLabel.alpha = 1.0
+        
+        recordingIconImageView.layer.removeAllAnimations()
+        recordingIconImageView.alpha = 1.0
     }
 }
 

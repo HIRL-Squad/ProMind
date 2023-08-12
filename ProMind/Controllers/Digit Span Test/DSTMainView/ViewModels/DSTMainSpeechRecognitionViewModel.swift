@@ -105,10 +105,12 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
             print("spoken result == expected result - main view model")
             notificationBroadcast.post("Display Successful Messages \(viewModel)", object: nil)
             notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
+            notificationBroadcast.post("Hide Recording Indicator \(viewModel)", object: nil)
         } else {
             print("spoken result != expected result")
             notificationBroadcast.post("Display Hint \(viewModel)", object: nil)
             notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
+            notificationBroadcast.post("Hide Recording Indicator \(viewModel)", object: nil)
         }
     }
     

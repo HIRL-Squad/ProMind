@@ -1957,22 +1957,35 @@ Longest Seq: 0</string>
                                     <constraint firstAttribute="width" secondItem="Bpb-MP-mxg" secondAttribute="height" multiplier="1:1" id="vru-Y7-YB6"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording, please speak." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJZ-qA-tRy">
+                                <rect key="frame" x="522" y="388.5" width="256" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_recording-icon" translatesAutoresizingMaskIntoConstraints="NO" id="u7F-9m-yii">
+                                <rect key="frame" x="502" y="397" width="12" height="12"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yxa-KD-DfS"/>
                         <color key="backgroundColor" name="Light Grey"/>
                         <constraints>
                             <constraint firstItem="Bpb-MP-mxg" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="0bk-4F-uXq"/>
                             <constraint firstItem="iGh-u0-tot" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="0eE-h9-DN6"/>
+                            <constraint firstItem="u7F-9m-yii" firstAttribute="centerY" secondItem="vJZ-qA-tRy" secondAttribute="centerY" id="3GV-rS-IVx"/>
                             <constraint firstItem="d0X-n6-aWp" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="4h2-Jd-7f1"/>
                             <constraint firstItem="P8a-k5-eIw" firstAttribute="leading" secondItem="Yxa-KD-DfS" secondAttribute="leading" constant="96" id="7Pu-SP-Fx7"/>
                             <constraint firstItem="Yxa-KD-DfS" firstAttribute="trailing" secondItem="P8a-k5-eIw" secondAttribute="trailing" constant="96" id="9Om-Nt-Vmy"/>
                             <constraint firstItem="WKi-QS-K3Q" firstAttribute="top" secondItem="Aba-gK-Lgs" secondAttribute="bottom" priority="750" constant="20" id="Jyc-r2-9e9"/>
+                            <constraint firstItem="vJZ-qA-tRy" firstAttribute="bottom" secondItem="Bpb-MP-mxg" secondAttribute="bottom" id="MaL-Yt-jOB"/>
                             <constraint firstItem="P8a-k5-eIw" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="Nu0-XA-kDU"/>
                             <constraint firstItem="Vmj-d8-pap" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Aba-gK-Lgs" secondAttribute="bottom" priority="750" constant="50" id="PbO-ho-1CL"/>
                             <constraint firstItem="P8a-k5-eIw" firstAttribute="top" secondItem="Yxa-KD-DfS" secondAttribute="top" constant="30" id="Svn-jW-ixX"/>
+                            <constraint firstItem="vJZ-qA-tRy" firstAttribute="leading" secondItem="Bpb-MP-mxg" secondAttribute="trailing" constant="20" id="T5Z-Rx-g7d"/>
                             <constraint firstItem="jZg-au-csF" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="TdM-Rw-9ep"/>
                             <constraint firstItem="Vmj-d8-pap" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="UTF-jQ-SA8"/>
                             <constraint firstItem="d0X-n6-aWp" firstAttribute="top" secondItem="Yxa-KD-DfS" secondAttribute="top" constant="40" id="ZN6-eO-4dd"/>
+                            <constraint firstItem="vJZ-qA-tRy" firstAttribute="leading" secondItem="u7F-9m-yii" secondAttribute="trailing" constant="8" id="aJi-NO-nsR"/>
                             <constraint firstItem="Yxa-KD-DfS" firstAttribute="bottom" secondItem="Vmj-d8-pap" secondAttribute="bottom" constant="40" id="b6L-A6-vgy"/>
                             <constraint firstItem="Aba-gK-Lgs" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="bpW-81-gYG"/>
                             <constraint firstItem="Bpb-MP-mxg" firstAttribute="top" secondItem="d0X-n6-aWp" secondAttribute="bottom" priority="750" constant="20" id="ctw-Fl-AdQ"/>
@@ -1988,6 +2001,8 @@ Longest Seq: 0</string>
                         <outlet property="beginButton" destination="Vmj-d8-pap" id="RzV-Gp-FFD"/>
                         <outlet property="digitSpanTestLabel" destination="d0X-n6-aWp" id="9Pl-P2-OIV"/>
                         <outlet property="instructionLabel" destination="jZg-au-csF" id="rR7-E0-h72"/>
+                        <outlet property="recordingIconImageView" destination="u7F-9m-yii" id="SEg-Mb-WIU"/>
+                        <outlet property="recordingLabel" destination="vJZ-qA-tRy" id="z2w-JU-vPM"/>
                         <outlet property="resetAnswerButton" destination="8FJ-0p-Ggm" id="j6j-a0-Cai"/>
                         <outlet property="spokenDigitsLabel" destination="Aba-gK-Lgs" id="S2G-hT-MXy"/>
                         <outlet property="submitAnswerButton" destination="HS2-sD-t79" id="mmW-tS-VL9"/>
@@ -2399,6 +2414,15 @@ We will go through them one by one.</string>
                                     <segue destination="AgT-D4-hRO" kind="showDetail" id="qGg-a8-87I"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_recording-icon" translatesAutoresizingMaskIntoConstraints="NO" id="aej-M9-g2B">
+                                <rect key="frame" x="502" y="397" width="12" height="12"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording, please speak." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wST-PS-pQY">
+                                <rect key="frame" x="522" y="388.5" width="256" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tEy-j1-Iqs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2406,7 +2430,9 @@ We will go through them one by one.</string>
                             <constraint firstItem="GpD-eN-xlm" firstAttribute="centerY" secondItem="HlO-2I-nkp" secondAttribute="centerY" id="0eC-dJ-zGS"/>
                             <constraint firstItem="eyq-UB-nIP" firstAttribute="centerX" secondItem="tEy-j1-Iqs" secondAttribute="centerX" id="1Wr-75-1cd"/>
                             <constraint firstItem="eyq-UB-nIP" firstAttribute="top" secondItem="tEy-j1-Iqs" secondAttribute="top" constant="40" id="38Z-Lv-U6p"/>
+                            <constraint firstItem="wST-PS-pQY" firstAttribute="bottom" secondItem="TnF-QY-if1" secondAttribute="bottom" id="4gY-rr-584"/>
                             <constraint firstItem="TnF-QY-if1" firstAttribute="top" secondItem="eyq-UB-nIP" secondAttribute="bottom" priority="750" constant="20" id="6ab-qz-E2d"/>
+                            <constraint firstItem="aej-M9-g2B" firstAttribute="centerY" secondItem="wST-PS-pQY" secondAttribute="centerY" id="7xI-Ug-CIJ"/>
                             <constraint firstItem="GpD-eN-xlm" firstAttribute="centerX" secondItem="HlO-2I-nkp" secondAttribute="centerX" id="9iI-EF-575"/>
                             <constraint firstItem="bRT-2c-FHc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HlO-2I-nkp" secondAttribute="bottom" priority="750" constant="50" id="9sO-lE-Umh"/>
                             <constraint firstItem="tEy-j1-Iqs" firstAttribute="bottom" secondItem="Lov-Ti-8KZ" secondAttribute="bottom" constant="40" id="ITI-tK-ghV"/>
@@ -2421,10 +2447,12 @@ We will go through them one by one.</string>
                             <constraint firstItem="TnF-QY-if1" firstAttribute="centerX" secondItem="tEy-j1-Iqs" secondAttribute="centerX" id="dgw-7A-Hcs"/>
                             <constraint firstItem="bRT-2c-FHc" firstAttribute="centerX" secondItem="tEy-j1-Iqs" secondAttribute="centerX" id="ebb-lt-jCj"/>
                             <constraint firstItem="TnF-QY-if1" firstAttribute="width" secondItem="TnF-QY-if1" secondAttribute="height" multiplier="1:1" id="iLo-24-mvX"/>
+                            <constraint firstItem="wST-PS-pQY" firstAttribute="leading" secondItem="TnF-QY-if1" secondAttribute="trailing" constant="20" id="l10-jR-DOs"/>
                             <constraint firstItem="Lov-Ti-8KZ" firstAttribute="centerX" secondItem="bRT-2c-FHc" secondAttribute="centerX" id="lmL-5A-O7K"/>
                             <constraint firstItem="tEy-j1-Iqs" firstAttribute="bottom" secondItem="bRT-2c-FHc" secondAttribute="bottom" constant="50" id="npA-QO-OYs"/>
                             <constraint firstItem="tEy-j1-Iqs" firstAttribute="bottom" secondItem="lZK-B4-qEa" secondAttribute="bottom" constant="40" id="qjn-iF-593"/>
                             <constraint firstItem="IXo-33-eIt" firstAttribute="centerX" secondItem="HlO-2I-nkp" secondAttribute="centerX" id="uVL-gc-jX5"/>
+                            <constraint firstItem="wST-PS-pQY" firstAttribute="leading" secondItem="aej-M9-g2B" secondAttribute="trailing" constant="8" id="wtF-n3-ohX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="🧠 Digit Span Test" id="U9u-uA-tyD"/>
@@ -2435,6 +2463,8 @@ We will go through them one by one.</string>
                         <outlet property="digitSpeakingActivityIndicator" destination="GpD-eN-xlm" id="SVk-q4-I6T"/>
                         <outlet property="instructionLabel" destination="iEE-LH-5kc" id="jb2-aa-JWS"/>
                         <outlet property="previousSpokenLabel" destination="0Ar-eW-h1O" id="J0r-86-24p"/>
+                        <outlet property="recordingIconImageView" destination="aej-M9-g2B" id="PB8-7a-6yD"/>
+                        <outlet property="recordingLabel" destination="wST-PS-pQY" id="YYa-qd-amR"/>
                         <outlet property="resetButton" destination="INe-wg-itb" id="Qtc-4l-vRr"/>
                         <outlet property="resultButton" destination="Lov-Ti-8KZ" id="lFZ-Do-SRi"/>
                         <outlet property="roundTrialLabel" destination="3AT-ln-khE" id="sES-GA-Iu0"/>
@@ -3081,13 +3111,16 @@ We will go through them one by one.</string>
         </scene>
     </scenes>
     <designables>
-        <designable name="LKg-o5-zlG"/>
+        <designable name="LKg-o5-zlG">
+            <size key="intrinsicContentSize" width="199" height="71"/>
+        </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="c00-em-7hI"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>
+        <image name="ProMind_recording-icon" width="12" height="12"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="gobackward" catalog="system" width="119" height="128"/>

@@ -25,6 +25,8 @@ class DSTTestViewController: UIViewController {
     @IBOutlet weak var resultButton: UIButton!
     @IBOutlet weak var unrecognizedReminderLabel: UILabel!
     @IBOutlet weak var actionStack: UIStackView!
+    @IBOutlet weak var recordingIconImageView: UIImageView!
+    @IBOutlet weak var recordingLabel: UILabel!
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         notificationBroadcast.post("Reset Answer Button Pressed \(testViewModel)", object: nil)
@@ -63,6 +65,8 @@ class DSTTestViewController: UIViewController {
         digitSpeakingActivityIndicator.isHidden = true
         resultButton.isHidden = true
         unrecognizedReminderLabel.isHidden = true
+        recordingLabel.isHidden = true
+        recordingIconImageView.isHidden = true
         UIOptimization()
         
         instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
@@ -71,7 +75,7 @@ class DSTTestViewController: UIViewController {
         let roundInfo = RoundInfo.shared
         roundInfo.reset()
         
-        Task {
+        Task(priority: .high) {
             await removeAllExistingDigitRectangles(fromTag: 3, toTag: 5)
         }
         
@@ -97,6 +101,8 @@ class DSTTestViewController: UIViewController {
         notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Hide Unrecognized Reminder \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showRecordingIndicator), "Show Recording Indicator \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideRecordingIndicator), "Hide Recording Indicator \(testViewModel)", object: nil)
         
         try! loadGifImage()
     }
@@ -520,5 +526,28 @@ extension DSTTestViewController {
     
     @objc private func hideUnrecognizedReminder() {
         unrecognizedReminderLabel.isHidden = true
+    }
+    
+    @objc private func showRecordingIndicator() {
+        print("Show Recording Indicator - TestViewController")
+        recordingLabel.isHidden = false
+        recordingIconImageView.isHidden = false
+        print("recordingIcon: \(String(describing: recordingIconImageView.image))")
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.autoreverse, .repeat], animations: { [weak self] in
+            self?.recordingLabel.alpha = 0.0
+            self?.recordingIconImageView.alpha = 0.0
+        })
+    }
+    
+    @objc private func hideRecordingIndicator() {
+        recordingLabel.isHidden = true
+        recordingIconImageView.isHidden = true
+        
+        recordingLabel.layer.removeAllAnimations()
+        recordingLabel.alpha = 1.0
+        
+        recordingIconImageView.layer.removeAllAnimations()
+        recordingIconImageView.alpha = 1.0
     }
 }

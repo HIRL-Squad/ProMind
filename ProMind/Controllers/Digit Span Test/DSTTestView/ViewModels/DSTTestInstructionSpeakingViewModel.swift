@@ -286,6 +286,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 
                 notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
@@ -306,6 +307,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 
                 notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
@@ -326,6 +328,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 
                 notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
@@ -387,6 +390,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             notificationBroadcast.post("Display and Play Gif Image \(viewModel)", object: nil)
             notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 3)
             notificationBroadcast.post("Display Speaking Slowly Alert \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
             notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
             notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
             
@@ -398,6 +402,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
+                notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Resume Recognition \(viewModel)", object: nil)
             }
                 
@@ -416,6 +421,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 
                 notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
@@ -436,6 +442,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 
                 notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
@@ -456,6 +463,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 
                 notificationBroadcast.post("Hide Digit Speaking Activity Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Bell Sound \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
