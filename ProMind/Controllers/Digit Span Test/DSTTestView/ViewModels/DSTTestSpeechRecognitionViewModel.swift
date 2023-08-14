@@ -110,7 +110,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         
         let spokenResultFilter = SpokenResultFilter(spokenResult: recognitionTask.spokenResult, expectedResult: recognitionTask.expectedResult, viewModel: .DSTTestViewModel)
         
-        if recognitionTask.expectedResult == spokenResultFilter.getOptimizedResult() {
+        if recognitionTask.expectedResult == spokenResultFilter.getTailResult() {
             print("spoken result == expected result - test view model")
             let roundInfo = RoundInfo.shared
             print("Speech Status Index: \(roundInfo.speechStatusIndex)")

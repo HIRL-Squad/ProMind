@@ -190,7 +190,7 @@ class SpokenResultFilter {
             let decimalNumberDictionary: [String: String] = [
                 "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
                 "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9",
-                "tree": "3"
+                "tree": "3", "for": "4"
             ]
             
             if decimalNumberDictionary.keys.contains(where: spokenResult.lowercased().contains) {
@@ -250,6 +250,20 @@ class SpokenResultFilter {
         return filteredResult
     }
     
+    internal func getTailResult() -> String {
+        let filteredResult: String = getFilteredResult()
+        let numberOfDigits = expectedResult.count
+        
+        if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: filteredResult)) {
+            notificationBroadcast.post("Legal Spoken Result \(viewModel)", object: nil)
+            print("Tail Result: \(String(filteredResult.suffix(numberOfDigits))) - Original Result: \(filteredResult)")
+            return String(filteredResult.suffix(numberOfDigits))
+        } else {
+            notificationBroadcast.post("Illegal Spoken Result \(viewModel)", object: nil)
+            return "   "
+        }
+    }
+    
     internal func getOptimizedResult() -> String {
         var filteredResult: String = getFilteredResult()
         if filteredResult.contains(expectedResult) {
@@ -261,7 +275,8 @@ class SpokenResultFilter {
             if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: filteredResult)) {
                 notificationBroadcast.post("Legal Spoken Result \(viewModel)", object: nil)
             } else {
-                filteredResult = "   " // Empty string will result in "Out of bounds" for extension UILabel func setCharacterSpacing().
+                // Empty string will result in "Out of bounds" for extension UILabel func setCharacterSpacing().
+                filteredResult = "   "
                 notificationBroadcast.post("Illegal Spoken Result \(viewModel)", object: nil)
             }
             

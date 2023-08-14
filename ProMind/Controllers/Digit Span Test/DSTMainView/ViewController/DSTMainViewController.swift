@@ -306,7 +306,7 @@ extension DSTMainViewController {
         }
         
         let spokenResultFilter = SpokenResultFilter(spokenResult: spokenResult, expectedResult: expectedResult, viewModel: mainViewModel)
-        let filteredResult = spokenResultFilter.getOptimizedResult()
+        let filteredResult = spokenResultFilter.getTailResult()
         
         let constraint = [spokenDigitsLabel.widthAnchor.constraint(equalToConstant: 236)]
         NSLayoutConstraint.activate(constraint)

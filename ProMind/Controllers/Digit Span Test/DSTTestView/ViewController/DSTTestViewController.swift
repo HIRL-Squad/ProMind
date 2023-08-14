@@ -246,7 +246,7 @@ extension DSTTestViewController {
         }
         
         let spokenResultFilter = SpokenResultFilter(spokenResult: spokenResult, expectedResult: expectedResult, viewModel: testViewModel)
-        let filteredResult = spokenResultFilter.getOptimizedResult()
+        let filteredResult = spokenResultFilter.getTailResult()
         
         let widthConstaint_3_digits = [spokenDigitsLabel.widthAnchor.constraint(equalToConstant: 235)]
         let widthConstaint_4_digits = [spokenDigitsLabel.widthAnchor.constraint(equalToConstant: 335)]

@@ -101,7 +101,7 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         pauseRecognition()
         let spokenResultFilter = SpokenResultFilter(spokenResult: recognitionTask.spokenResult, expectedResult: recognitionTask.expectedResult, viewModel: .DSTMainViewModel)
         
-        if recognitionTask.expectedResult == spokenResultFilter.getOptimizedResult() {
+        if recognitionTask.expectedResult == spokenResultFilter.getTailResult() {
             print("spoken result == expected result - main view model")
             notificationBroadcast.post("Display Successful Messages \(viewModel)", object: nil)
             notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
