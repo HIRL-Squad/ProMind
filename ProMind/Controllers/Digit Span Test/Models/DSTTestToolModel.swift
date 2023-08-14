@@ -190,7 +190,7 @@ class SpokenResultFilter {
             let decimalNumberDictionary: [String: String] = [
                 "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
                 "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9",
-                "tree": "3", "for": "4"
+                "tree": "3", "for": "4", "to": "2", "too": "2"
             ]
             
             if decimalNumberDictionary.keys.contains(where: spokenResult.lowercased().contains) {
@@ -246,8 +246,14 @@ class SpokenResultFilter {
         }
         
         // Checking whether filteredResult only has decimal digits used to be here.
-        
-        return filteredResult
+        if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: filteredResult)) {
+            notificationBroadcast.post("Legal Spoken Result \(viewModel)", object: nil)
+            print("Legal spoken result!\n")
+        } else {
+            notificationBroadcast.post("Illegal Spoken Result \(viewModel)", object: nil)
+            print("Ilegal spoken result!\n")
+        }
+        return filteredResult.filter("0123456789".contains)
     }
     
     internal func getTailResult() -> String {
@@ -255,11 +261,9 @@ class SpokenResultFilter {
         let numberOfDigits = expectedResult.count
         
         if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: filteredResult)) {
-            notificationBroadcast.post("Legal Spoken Result \(viewModel)", object: nil)
             print("Tail Result: \(String(filteredResult.suffix(numberOfDigits))) - Original Result: \(filteredResult)")
             return String(filteredResult.suffix(numberOfDigits))
         } else {
-            notificationBroadcast.post("Illegal Spoken Result \(viewModel)", object: nil)
             return "   "
         }
     }

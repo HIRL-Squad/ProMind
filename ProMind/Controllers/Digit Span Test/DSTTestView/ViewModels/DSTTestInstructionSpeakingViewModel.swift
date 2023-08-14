@@ -391,6 +391,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             notificationBroadcast.post("Set Digit Rectangle \(viewModel)", object: 3)
             notificationBroadcast.post("Display Speaking Slowly Alert \(viewModel)", object: nil)
             notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Play Tutorial Again Indicator \(viewModel)", object: nil)
             notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
             notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
             

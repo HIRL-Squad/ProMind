@@ -27,6 +27,8 @@ class DSTTestViewController: UIViewController {
     @IBOutlet weak var actionStack: UIStackView!
     @IBOutlet weak var recordingIconImageView: UIImageView!
     @IBOutlet weak var recordingLabel: UILabel!
+    @IBOutlet weak var playTutorialAgainIconImageView: UIImageView!
+    @IBOutlet weak var playTutorialAgainLabel: UILabel!
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         notificationBroadcast.post("Reset Answer Button Pressed \(testViewModel)", object: nil)
@@ -58,7 +60,7 @@ class DSTTestViewController: UIViewController {
         
         beginButton.isHidden = true
         avatarImageView.isHidden = false
-        resetButton.isHidden = false
+        // resetButton.isHidden = false
         submitButton.isHidden = false
         instructionLabel.isHidden = true
         spokenDigitsLabel.isHidden = false
@@ -67,6 +69,8 @@ class DSTTestViewController: UIViewController {
         unrecognizedReminderLabel.isHidden = true
         recordingLabel.isHidden = true
         recordingIconImageView.isHidden = true
+        playTutorialAgainLabel.isHidden = true
+        playTutorialAgainIconImageView.isHidden = true
         UIOptimization()
         
         instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
@@ -103,6 +107,11 @@ class DSTTestViewController: UIViewController {
         notificationBroadcast.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(showRecordingIndicator), "Show Recording Indicator \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideRecordingIndicator), "Hide Recording Indicator \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showPlayTutorialAgainIndicator), "Show Play Tutorial Again Indicator \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hidePlayTutorialAgainIndicator), "Hide Play Tutorial Again Indicator \(testViewModel)", object: nil)
+        
+        addTapGesture(for: playTutorialAgainLabel, with: #selector(playTutorialAgainLabelTapped))
+        addTapGesture(for: playTutorialAgainIconImageView, with: #selector(playTutorialAgainIconImageViewTapped))
         
         try! loadGifImage()
     }
@@ -132,6 +141,50 @@ class DSTTestViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+    }
+    
+    private func restartTutorial() {
+        beginButton.isHidden = true
+        avatarImageView.isHidden = true
+        resetButton.isHidden = true
+        submitButton.isHidden = true
+        instructionLabel.isHidden = false
+        unrecognizedReminderLabel.isHidden = true
+        recordingLabel.isHidden = true
+        recordingIconImageView.isHidden = true
+        
+        instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
+        instructionSpeaking.resetSpeechStatus()
+        instructionLabel.text = "This is part of your memory and concentration task. ".localized
+        
+        speechRecognition.updateRecognizerLanguage(withCode: appLanguage.getCurrentLanguage())
+        speechRecognition.resetRecognizer()
+        
+        UIOptimization()
+        displayBackwardNumberSpanInstructions()
+    }
+    
+    private func cleanUp() {
+        notificationBroadcast.post("Remove Digit Rectangle \(testViewModel)", object: 3)
+        beginButton.isHidden = true
+        avatarImageView.isHidden = true
+        resetButton.isHidden = true
+        submitButton.isHidden = true
+        instructionLabel.isHidden = false
+        unrecognizedReminderLabel.isHidden = true
+        playTutorialAgainLabel.isHidden = true
+        playTutorialAgainIconImageView.isHidden = true
+        
+        /// Stop speaking, reset index to 0, and remove all notification observer.
+        instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
+        instructionSpeaking.resetSpeechStatus()
+        speechRecognition.resetRecognizer()
+    }
+    
+    private func addTapGesture(for view: UIView, with selector: Selector) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: selector)
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tapGestureRecognizer)
     }
 }
 
@@ -232,7 +285,7 @@ extension DSTTestViewController {
     }
     
     @objc private func showRecognizerButtons() {
-        resetButton.isHidden = false
+        // resetButton.isHidden = false
         submitButton.isHidden = false
         
         resetDigitLabel()
@@ -247,6 +300,7 @@ extension DSTTestViewController {
         
         let spokenResultFilter = SpokenResultFilter(spokenResult: spokenResult, expectedResult: expectedResult, viewModel: testViewModel)
         let filteredResult = spokenResultFilter.getTailResult()
+        print("Update digit label: \(filteredResult)")
         
         let widthConstaint_3_digits = [spokenDigitsLabel.widthAnchor.constraint(equalToConstant: 235)]
         let widthConstaint_4_digits = [spokenDigitsLabel.widthAnchor.constraint(equalToConstant: 335)]
@@ -380,7 +434,7 @@ extension DSTTestViewController {
     }
     
     @objc private func startBackwardsSpanTest() {
-        resetButton.isHidden = false
+        // resetButton.isHidden = false
         submitButton.isHidden = false
         avatarImageView.isHidden = false
         try! loadGifImage()
@@ -549,5 +603,26 @@ extension DSTTestViewController {
         
         recordingIconImageView.layer.removeAllAnimations()
         recordingIconImageView.alpha = 1.0
+    }
+    
+    @objc private func showPlayTutorialAgainIndicator() {
+        playTutorialAgainLabel.isHidden = false
+        playTutorialAgainIconImageView.isHidden = false
+    }
+    
+    @objc private func hidePlayTutorialAgainIndicator() {
+        playTutorialAgainLabel.isHidden = true
+        playTutorialAgainIconImageView.isHidden = true
+    }
+    
+    // Add gesture recognizer for tutorial replay button.
+    @objc private func playTutorialAgainIconImageViewTapped(_ sender: UIGestureRecognizer? = nil) {
+        cleanUp()
+        restartTutorial()
+    }
+    
+    @objc private func playTutorialAgainLabelTapped(_ sender: UIGestureRecognizer? = nil) {
+        cleanUp()
+        restartTutorial()
     }
 }

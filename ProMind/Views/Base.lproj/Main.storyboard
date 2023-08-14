@@ -111,7 +111,7 @@
             <objects>
                 <viewController id="cXD-Qj-kxR" customClass="ExperimentProfileDetailViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="naT-wl-7hM">
-                        <rect key="frame" x="0.0" y="0.0" width="1045.5" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1045" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-eM-ybQ" userLabel="Main Container View">
@@ -1841,10 +1841,10 @@ Longest Seq: 0</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="iGh-u0-tot" userLabel="Action Stack View">
-                                <rect key="frame" x="94" y="854" width="516" height="80"/>
+                                <rect key="frame" x="142" y="844" width="420" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FJ-0p-Ggm" userLabel="Reset Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="80"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FJ-0p-Ggm" userLabel="Reset Button">
+                                        <rect key="frame" x="0.0" y="10" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="eHr-A2-UkS"/>
@@ -1865,14 +1865,14 @@ Longest Seq: 0</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HS2-sD-t79">
-                                        <rect key="frame" x="276" y="0.0" width="240" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="420" height="100"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="8Mk-2j-J6Q"/>
-                                            <constraint firstAttribute="height" constant="80" id="Iv5-Ft-5ea"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="420" id="8Mk-2j-J6Q"/>
+                                            <constraint firstAttribute="height" constant="100" id="Iv5-Ft-5ea"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
-                                        <state key="normal" title="Submit Answer">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
+                                        <state key="normal" title="Next">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -1966,16 +1966,27 @@ Longest Seq: 0</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_recording-icon" translatesAutoresizingMaskIntoConstraints="NO" id="u7F-9m-yii">
                                 <rect key="frame" x="502" y="397" width="12" height="12"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play tutorial again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxB-jj-rOC">
+                                <rect key="frame" x="22" y="388.5" width="182" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_replay-tutorial-icon" translatesAutoresizingMaskIntoConstraints="NO" id="KSK-3y-yVk">
+                                <rect key="frame" x="-3" y="394.5" width="17" height="17"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yxa-KD-DfS"/>
                         <color key="backgroundColor" name="Light Grey"/>
                         <constraints>
                             <constraint firstItem="Bpb-MP-mxg" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="0bk-4F-uXq"/>
                             <constraint firstItem="iGh-u0-tot" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="0eE-h9-DN6"/>
+                            <constraint firstItem="wxB-jj-rOC" firstAttribute="firstBaseline" secondItem="vJZ-qA-tRy" secondAttribute="firstBaseline" id="1LX-6G-mrS"/>
                             <constraint firstItem="u7F-9m-yii" firstAttribute="centerY" secondItem="vJZ-qA-tRy" secondAttribute="centerY" id="3GV-rS-IVx"/>
                             <constraint firstItem="d0X-n6-aWp" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="4h2-Jd-7f1"/>
                             <constraint firstItem="P8a-k5-eIw" firstAttribute="leading" secondItem="Yxa-KD-DfS" secondAttribute="leading" constant="96" id="7Pu-SP-Fx7"/>
                             <constraint firstItem="Yxa-KD-DfS" firstAttribute="trailing" secondItem="P8a-k5-eIw" secondAttribute="trailing" constant="96" id="9Om-Nt-Vmy"/>
+                            <constraint firstItem="Bpb-MP-mxg" firstAttribute="leading" secondItem="wxB-jj-rOC" secondAttribute="trailing" constant="-2" id="HiD-B8-hzE"/>
                             <constraint firstItem="WKi-QS-K3Q" firstAttribute="top" secondItem="Aba-gK-Lgs" secondAttribute="bottom" priority="750" constant="20" id="Jyc-r2-9e9"/>
                             <constraint firstItem="vJZ-qA-tRy" firstAttribute="bottom" secondItem="Bpb-MP-mxg" secondAttribute="bottom" id="MaL-Yt-jOB"/>
                             <constraint firstItem="P8a-k5-eIw" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="Nu0-XA-kDU"/>
@@ -1991,7 +2002,9 @@ Longest Seq: 0</string>
                             <constraint firstItem="Bpb-MP-mxg" firstAttribute="top" secondItem="d0X-n6-aWp" secondAttribute="bottom" priority="750" constant="20" id="ctw-Fl-AdQ"/>
                             <constraint firstItem="jZg-au-csF" firstAttribute="centerY" secondItem="QlN-JF-ySd" secondAttribute="centerY" id="jhi-3K-7dn"/>
                             <constraint firstItem="iGh-u0-tot" firstAttribute="centerY" secondItem="Vmj-d8-pap" secondAttribute="centerY" id="kew-gK-6ys"/>
+                            <constraint firstItem="wxB-jj-rOC" firstAttribute="leading" secondItem="KSK-3y-yVk" secondAttribute="trailing" constant="8" id="opp-IC-Esa"/>
                             <constraint firstItem="WKi-QS-K3Q" firstAttribute="centerX" secondItem="Aba-gK-Lgs" secondAttribute="centerX" id="skc-0U-cBK"/>
+                            <constraint firstItem="KSK-3y-yVk" firstAttribute="centerY" secondItem="wxB-jj-rOC" secondAttribute="centerY" id="ua5-4u-E2S"/>
                             <constraint firstItem="Aba-gK-Lgs" firstAttribute="top" secondItem="Bpb-MP-mxg" secondAttribute="bottom" priority="750" constant="20" id="ztI-aa-AGP"/>
                         </constraints>
                     </view>
@@ -2001,6 +2014,8 @@ Longest Seq: 0</string>
                         <outlet property="beginButton" destination="Vmj-d8-pap" id="RzV-Gp-FFD"/>
                         <outlet property="digitSpanTestLabel" destination="d0X-n6-aWp" id="9Pl-P2-OIV"/>
                         <outlet property="instructionLabel" destination="jZg-au-csF" id="rR7-E0-h72"/>
+                        <outlet property="playTutorialAgainIconImageView" destination="KSK-3y-yVk" id="G0X-dC-Cgu"/>
+                        <outlet property="playTutorialAgainLabel" destination="wxB-jj-rOC" id="IYj-mN-ZJo"/>
                         <outlet property="recordingIconImageView" destination="u7F-9m-yii" id="SEg-Mb-WIU"/>
                         <outlet property="recordingLabel" destination="vJZ-qA-tRy" id="z2w-JU-vPM"/>
                         <outlet property="resetAnswerButton" destination="8FJ-0p-Ggm" id="j6j-a0-Cai"/>
@@ -2274,10 +2289,10 @@ We will go through them one by one.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="bRT-2c-FHc" userLabel="Action Stack View">
-                                <rect key="frame" x="94" y="854" width="516" height="80"/>
+                                <rect key="frame" x="142" y="834" width="420" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INe-wg-itb" userLabel="Reset Button">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="80"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INe-wg-itb" userLabel="Reset Button">
+                                        <rect key="frame" x="0.0" y="10" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="RIM-2D-gX9"/>
@@ -2299,14 +2314,14 @@ We will go through them one by one.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA3-7q-T0i">
-                                        <rect key="frame" x="276" y="0.0" width="240" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="420" height="100"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="2of-OO-nIC"/>
-                                            <constraint firstAttribute="height" constant="80" id="iOi-6g-gOQ"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="420" id="2of-OO-nIC"/>
+                                            <constraint firstAttribute="height" constant="100" id="iOi-6g-gOQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
-                                        <state key="normal" title="Submit Answer">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
+                                        <state key="normal" title="Next">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -2423,6 +2438,15 @@ We will go through them one by one.</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_replay-tutorial-icon" translatesAutoresizingMaskIntoConstraints="NO" id="lDl-50-1BZ">
+                                <rect key="frame" x="-3" y="394.5" width="17" height="17"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play tutorial again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X11-za-hF7">
+                                <rect key="frame" x="22" y="388.5" width="182" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tEy-j1-Iqs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2431,6 +2455,7 @@ We will go through them one by one.</string>
                             <constraint firstItem="eyq-UB-nIP" firstAttribute="centerX" secondItem="tEy-j1-Iqs" secondAttribute="centerX" id="1Wr-75-1cd"/>
                             <constraint firstItem="eyq-UB-nIP" firstAttribute="top" secondItem="tEy-j1-Iqs" secondAttribute="top" constant="40" id="38Z-Lv-U6p"/>
                             <constraint firstItem="wST-PS-pQY" firstAttribute="bottom" secondItem="TnF-QY-if1" secondAttribute="bottom" id="4gY-rr-584"/>
+                            <constraint firstItem="X11-za-hF7" firstAttribute="firstBaseline" secondItem="wST-PS-pQY" secondAttribute="firstBaseline" id="68P-ah-aX7"/>
                             <constraint firstItem="TnF-QY-if1" firstAttribute="top" secondItem="eyq-UB-nIP" secondAttribute="bottom" priority="750" constant="20" id="6ab-qz-E2d"/>
                             <constraint firstItem="aej-M9-g2B" firstAttribute="centerY" secondItem="wST-PS-pQY" secondAttribute="centerY" id="7xI-Ug-CIJ"/>
                             <constraint firstItem="GpD-eN-xlm" firstAttribute="centerX" secondItem="HlO-2I-nkp" secondAttribute="centerX" id="9iI-EF-575"/>
@@ -2442,6 +2467,7 @@ We will go through them one by one.</string>
                             <constraint firstItem="iEE-LH-5kc" firstAttribute="centerX" secondItem="tEy-j1-Iqs" secondAttribute="centerX" id="QYD-e1-iMN"/>
                             <constraint firstItem="HlO-2I-nkp" firstAttribute="centerX" secondItem="tEy-j1-Iqs" secondAttribute="centerX" id="QdE-UM-WpW"/>
                             <constraint firstItem="HlO-2I-nkp" firstAttribute="top" secondItem="TnF-QY-if1" secondAttribute="bottom" priority="750" constant="20" id="SzR-Pi-dBf"/>
+                            <constraint firstItem="X11-za-hF7" firstAttribute="leading" secondItem="lDl-50-1BZ" secondAttribute="trailing" constant="8" id="VOn-RK-d2B"/>
                             <constraint firstItem="tEy-j1-Iqs" firstAttribute="trailing" secondItem="YUZ-86-Yv7" secondAttribute="trailing" constant="20" id="VP1-5S-JI5"/>
                             <constraint firstItem="lZK-B4-qEa" firstAttribute="centerX" secondItem="bRT-2c-FHc" secondAttribute="centerX" id="XZq-WO-CLe"/>
                             <constraint firstItem="TnF-QY-if1" firstAttribute="centerX" secondItem="tEy-j1-Iqs" secondAttribute="centerX" id="dgw-7A-Hcs"/>
@@ -2450,9 +2476,11 @@ We will go through them one by one.</string>
                             <constraint firstItem="wST-PS-pQY" firstAttribute="leading" secondItem="TnF-QY-if1" secondAttribute="trailing" constant="20" id="l10-jR-DOs"/>
                             <constraint firstItem="Lov-Ti-8KZ" firstAttribute="centerX" secondItem="bRT-2c-FHc" secondAttribute="centerX" id="lmL-5A-O7K"/>
                             <constraint firstItem="tEy-j1-Iqs" firstAttribute="bottom" secondItem="bRT-2c-FHc" secondAttribute="bottom" constant="50" id="npA-QO-OYs"/>
+                            <constraint firstItem="X11-za-hF7" firstAttribute="centerY" secondItem="lDl-50-1BZ" secondAttribute="centerY" id="oGJ-Zn-mQu"/>
                             <constraint firstItem="tEy-j1-Iqs" firstAttribute="bottom" secondItem="lZK-B4-qEa" secondAttribute="bottom" constant="40" id="qjn-iF-593"/>
                             <constraint firstItem="IXo-33-eIt" firstAttribute="centerX" secondItem="HlO-2I-nkp" secondAttribute="centerX" id="uVL-gc-jX5"/>
                             <constraint firstItem="wST-PS-pQY" firstAttribute="leading" secondItem="aej-M9-g2B" secondAttribute="trailing" constant="8" id="wtF-n3-ohX"/>
+                            <constraint firstItem="TnF-QY-if1" firstAttribute="leading" secondItem="X11-za-hF7" secondAttribute="trailing" constant="-2" id="xyX-gM-Tft"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="🧠 Digit Span Test" id="U9u-uA-tyD"/>
@@ -2462,6 +2490,8 @@ We will go through them one by one.</string>
                         <outlet property="beginButton" destination="lZK-B4-qEa" id="7wd-2K-qAm"/>
                         <outlet property="digitSpeakingActivityIndicator" destination="GpD-eN-xlm" id="SVk-q4-I6T"/>
                         <outlet property="instructionLabel" destination="iEE-LH-5kc" id="jb2-aa-JWS"/>
+                        <outlet property="playTutorialAgainIconImageView" destination="lDl-50-1BZ" id="kpr-R2-r6l"/>
+                        <outlet property="playTutorialAgainLabel" destination="X11-za-hF7" id="pFY-8r-oF4"/>
                         <outlet property="previousSpokenLabel" destination="0Ar-eW-h1O" id="J0r-86-24p"/>
                         <outlet property="recordingIconImageView" destination="aej-M9-g2B" id="PB8-7a-6yD"/>
                         <outlet property="recordingLabel" destination="wST-PS-pQY" id="YYa-qd-amR"/>
@@ -3111,9 +3141,7 @@ We will go through them one by one.</string>
         </scene>
     </scenes>
     <designables>
-        <designable name="LKg-o5-zlG">
-            <size key="intrinsicContentSize" width="199" height="71"/>
-        </designable>
+        <designable name="LKg-o5-zlG"/>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="c00-em-7hI"/>
@@ -3121,6 +3149,7 @@ We will go through them one by one.</string>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>
         <image name="ProMind_recording-icon" width="12" height="12"/>
+        <image name="ProMind_replay-tutorial-icon" width="17" height="17"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="gobackward" catalog="system" width="119" height="128"/>

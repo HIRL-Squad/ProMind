@@ -141,6 +141,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                 
             case 17, 19: // problem here!
                 print("Submit Answer Pressed for success information! \(roundInfo.speechStatusIndex)")
+                notificationBroadcast.post("Hide Play Tutorial Again Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Display Successful Messages \(viewModel)", object: nil)
                 
             case 23...27:
@@ -222,6 +223,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                 
             case 17, 19:
                 print("Submit Answer Pressed for display hint! \(roundInfo.speechStatusIndex)")
+                notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
                 notificationBroadcast.post("Display Hint \(viewModel)", object: nil)
                 
             case 23...27:
