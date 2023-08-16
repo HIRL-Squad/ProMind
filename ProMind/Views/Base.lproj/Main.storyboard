@@ -111,7 +111,7 @@
             <objects>
                 <viewController id="cXD-Qj-kxR" customClass="ExperimentProfileDetailViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="naT-wl-7hM">
-                        <rect key="frame" x="0.0" y="0.0" width="1045.5" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1045" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-eM-ybQ" userLabel="Main Container View">
@@ -1835,10 +1835,10 @@ Longest Seq: 0</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="iGh-u0-tot" userLabel="Action Stack View">
-                                <rect key="frame" x="142" y="844" width="420" height="100"/>
+                                <rect key="frame" x="94" y="854" width="516" height="80"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FJ-0p-Ggm" userLabel="Reset Button">
-                                        <rect key="frame" x="0.0" y="10" width="240" height="80"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FJ-0p-Ggm" userLabel="Reset Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="eHr-A2-UkS"/>
@@ -1859,11 +1859,11 @@ Longest Seq: 0</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HS2-sD-t79">
-                                        <rect key="frame" x="0.0" y="0.0" width="420" height="100"/>
+                                        <rect key="frame" x="276" y="0.0" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="420" id="8Mk-2j-J6Q"/>
-                                            <constraint firstAttribute="height" constant="100" id="Iv5-Ft-5ea"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="8Mk-2j-J6Q"/>
+                                            <constraint firstAttribute="height" constant="80" id="Iv5-Ft-5ea"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
                                         <state key="normal" title="Next">
@@ -2274,10 +2274,10 @@ We will go through them one by one.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="bRT-2c-FHc" userLabel="Action Stack View">
-                                <rect key="frame" x="142" y="834" width="420" height="100"/>
+                                <rect key="frame" x="94" y="854" width="516" height="80"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INe-wg-itb" userLabel="Reset Button">
-                                        <rect key="frame" x="0.0" y="10" width="240" height="80"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INe-wg-itb" userLabel="Reset Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="RIM-2D-gX9"/>
@@ -2299,11 +2299,11 @@ We will go through them one by one.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA3-7q-T0i">
-                                        <rect key="frame" x="0.0" y="0.0" width="420" height="100"/>
+                                        <rect key="frame" x="276" y="0.0" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="420" id="2of-OO-nIC"/>
-                                            <constraint firstAttribute="height" constant="100" id="iOi-6g-gOQ"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="2of-OO-nIC"/>
+                                            <constraint firstAttribute="height" constant="80" id="iOi-6g-gOQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
                                         <state key="normal" title="Next">

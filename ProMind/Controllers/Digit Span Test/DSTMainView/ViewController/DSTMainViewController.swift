@@ -333,7 +333,7 @@ extension DSTMainViewController {
     }
     
     @objc private func showRecognizerButtons() {
-        // resetAnswerButton.isHidden = false
+        resetAnswerButton.isHidden = false
         submitAnswerButton.isHidden = false
         
         resetDigitLabel()

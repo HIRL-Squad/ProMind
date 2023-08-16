@@ -60,7 +60,7 @@ class DSTTestViewController: UIViewController {
         
         beginButton.isHidden = true
         avatarImageView.isHidden = false
-        // resetButton.isHidden = false
+        resetButton.isHidden = false
         submitButton.isHidden = false
         instructionLabel.isHidden = true
         spokenDigitsLabel.isHidden = false
@@ -285,7 +285,7 @@ extension DSTTestViewController {
     }
     
     @objc private func showRecognizerButtons() {
-        // resetButton.isHidden = false
+        resetButton.isHidden = false
         submitButton.isHidden = false
         
         resetDigitLabel()
@@ -434,7 +434,7 @@ extension DSTTestViewController {
     }
     
     @objc private func startBackwardsSpanTest() {
-        // resetButton.isHidden = false
+        resetButton.isHidden = false
         submitButton.isHidden = false
         avatarImageView.isHidden = false
         try! loadGifImage()
