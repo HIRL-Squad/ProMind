@@ -111,7 +111,7 @@
             <objects>
                 <viewController id="cXD-Qj-kxR" customClass="ExperimentProfileDetailViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="naT-wl-7hM">
-                        <rect key="frame" x="0.0" y="0.0" width="1045" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1045.5" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-eM-ybQ" userLabel="Main Container View">
@@ -1952,22 +1952,22 @@ Longest Seq: 0</string>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording, please speak." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJZ-qA-tRy">
-                                <rect key="frame" x="522" y="311" width="256" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <rect key="frame" x="522" y="304" width="319" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_recording-icon" translatesAutoresizingMaskIntoConstraints="NO" id="u7F-9m-yii">
-                                <rect key="frame" x="502" y="319.5" width="12" height="12"/>
+                                <rect key="frame" x="498" y="314" width="16" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play tutorial again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxB-jj-rOC">
-                                <rect key="frame" x="22" y="311" width="182" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <rect key="frame" x="-23.5" y="304" width="227.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_replay-tutorial-icon" translatesAutoresizingMaskIntoConstraints="NO" id="KSK-3y-yVk">
-                                <rect key="frame" x="-3" y="317" width="17" height="17"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_play-tutorial-again-icon" translatesAutoresizingMaskIntoConstraints="NO" id="KSK-3y-yVk">
+                                <rect key="frame" x="-53.5" y="311" width="22" height="22"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yxa-KD-DfS"/>
@@ -2415,20 +2415,20 @@ We will go through them one by one.</string>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_recording-icon" translatesAutoresizingMaskIntoConstraints="NO" id="aej-M9-g2B">
-                                <rect key="frame" x="502" y="319.5" width="12" height="12"/>
+                                <rect key="frame" x="498" y="314" width="16" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording, please speak." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wST-PS-pQY">
-                                <rect key="frame" x="522" y="311" width="256" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <rect key="frame" x="522" y="304" width="319" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_replay-tutorial-icon" translatesAutoresizingMaskIntoConstraints="NO" id="lDl-50-1BZ">
-                                <rect key="frame" x="-3" y="317" width="17" height="17"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProMind_play-tutorial-again-icon" translatesAutoresizingMaskIntoConstraints="NO" id="lDl-50-1BZ">
+                                <rect key="frame" x="-53.5" y="311" width="22" height="22"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play tutorial again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X11-za-hF7">
-                                <rect key="frame" x="22" y="311" width="182" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <rect key="frame" x="-23.5" y="304" width="227.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -3132,8 +3132,8 @@ We will go through them one by one.</string>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>
-        <image name="ProMind_recording-icon" width="12" height="12"/>
-        <image name="ProMind_replay-tutorial-icon" width="17" height="17"/>
+        <image name="ProMind_play-tutorial-again-icon" width="22" height="22"/>
+        <image name="ProMind_recording-icon" width="16" height="16"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="gobackward" catalog="system" width="119" height="128"/>
