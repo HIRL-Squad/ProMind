@@ -11,7 +11,6 @@ import DeviceKit
 
 class DSTTestViewController: UIViewController {
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var spokenDigitsLabel: UILabel!
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton!
@@ -202,18 +201,19 @@ extension DSTTestViewController {
                 
             /// For all iPad mini models.
             case _ where deviceNameLowercased.contains("mini") && deviceNameLowercased.contains("ipad"):
-                titleLabel.font = UIFont(name: K.fontTypeMedium, size: 40)
-                titleLabel.sizeToFit()
-                
-                let constraints = [
-                    titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-                ]
-                NSLayoutConstraint.activate(constraints)
+//                titleLabel.font = UIFont(name: K.fontTypeMedium, size: 40)
+//                titleLabel.sizeToFit()
+//
+//                let constraints = [
+//                    titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+//                ]
+//                NSLayoutConstraint.activate(constraints)
+                break
                 
             /// For all iPad Pro 12.9 inch models.
             case _ where deviceNameLowercased.contains("12") && deviceNameLowercased.contains("ipad"):
                 let contraints = [
-                    avatarImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
+                    // avatarImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
                     spokenDigitsLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 60)
                 ]
                 
@@ -419,7 +419,7 @@ extension DSTTestViewController {
     }
     
     @objc private func displayBackwardNumberSpanInstructions() {
-        titleLabel.text = "Backwards Number Span"
+        // titleLabel.text = "Backwards Number Span"
         resetButton.isHidden = true
         submitButton.isHidden = true
         avatarImageView.isHidden = true

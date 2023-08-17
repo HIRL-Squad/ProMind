@@ -20,7 +20,6 @@ class DSTMainViewController: UIViewController {
     @IBOutlet weak var resetAnswerButton: UIButton!
     @IBOutlet weak var submitAnswerButton: UIButton!
     @IBOutlet weak var spokenDigitsLabel: UILabel!
-    @IBOutlet weak var digitSpanTestLabel: UILabel!
     @IBOutlet weak var unrecognizedReminderLabel: UILabel!
     @IBOutlet weak var recordingIconImageView: UIImageView!
     @IBOutlet weak var recordingLabel: UILabel!
@@ -127,7 +126,7 @@ class DSTMainViewController: UIViewController {
         resetAnswerButton.isHidden = true
         submitAnswerButton.isHidden = true
         instructionLabel.isHidden = false
-        digitSpanTestLabel.isHidden = false
+        // digitSpanTestLabel.isHidden = false
         unrecognizedReminderLabel.isHidden = true
         
         /// Stop speaking, reset index to 0, and remove all notification observer.
@@ -172,7 +171,7 @@ class DSTMainViewController: UIViewController {
         resetAnswerButton.isHidden = true
         submitAnswerButton.isHidden = true
         instructionLabel.isHidden = false
-        digitSpanTestLabel.isHidden = false
+        // digitSpanTestLabel.isHidden = false
         unrecognizedReminderLabel.isHidden = true
         playTutorialAgainLabel.isHidden = true
         playTutorialAgainIconImageView.isHidden = true
@@ -217,17 +216,18 @@ extension DSTMainViewController {
             
             switch deviceNameLowercased {
             case _ where deviceNameLowercased.contains("mini") && deviceNameLowercased.contains("ipad"):
-                digitSpanTestLabel.font = UIFont(name: K.fontTypeMedium, size: 40)
-                digitSpanTestLabel.sizeToFit()
+//                digitSpanTestLabel.font = UIFont(name: K.fontTypeMedium, size: 40)
+//                digitSpanTestLabel.sizeToFit()
                 
-                let constraints = [
-                    digitSpanTestLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-                ]
-                NSLayoutConstraint.activate(constraints)
+//                let constraints = [
+//                    digitSpanTestLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+//                ]
+//                NSLayoutConstraint.activate(constraints)
+                break
                 
             case _ where deviceNameLowercased.contains("12") && deviceNameLowercased.contains("ipad"):
                 let contraints = [
-                    avatarImageView.topAnchor.constraint(equalTo: digitSpanTestLabel.bottomAnchor, constant: 40),
+                    // avatarImageView.topAnchor.constraint(equalTo: digitSpanTestLabel.bottomAnchor, constant: 40),
                     spokenDigitsLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 60)
                 ]
                 
