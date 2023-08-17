@@ -1837,17 +1837,16 @@ Longest Seq: 0</string>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="iGh-u0-tot" userLabel="Action Stack View">
                                 <rect key="frame" x="94" y="854" width="516" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FJ-0p-Ggm" userLabel="Reset Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8FJ-0p-Ggm" userLabel="Reset Button">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="eHr-A2-UkS"/>
                                             <constraint firstAttribute="height" constant="80" id="fY6-Ym-TSh"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
-                                        <state key="normal" title="Reset Answer">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
+                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                        <inset key="imageEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Undo" image="ProMind_undo-button-icon"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="15"/>
@@ -1858,15 +1857,16 @@ Longest Seq: 0</string>
                                             <action selector="resetInputButtonPressed:" destination="do9-eP-ePs" eventType="touchUpInside" id="pcg-FR-cWH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HS2-sD-t79">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HS2-sD-t79">
                                         <rect key="frame" x="276" y="0.0" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="8Mk-2j-J6Q"/>
                                             <constraint firstAttribute="height" constant="80" id="Iv5-Ft-5ea"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
-                                        <state key="normal" title="Next">
+                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                        <inset key="imageEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Next" image="ProMind_next-button-icon">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -2276,17 +2276,16 @@ We will go through them one by one.</string>
                             <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="bRT-2c-FHc" userLabel="Action Stack View">
                                 <rect key="frame" x="94" y="854" width="516" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INe-wg-itb" userLabel="Reset Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INe-wg-itb" userLabel="Reset Button">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="RIM-2D-gX9"/>
                                             <constraint firstAttribute="height" constant="80" id="o4e-Ef-TVJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
-                                        <state key="normal" title="Reset Answer">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
+                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                        <inset key="imageEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Undo" image="ProMind_undo-button-icon"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="15"/>
@@ -2298,15 +2297,16 @@ We will go through them one by one.</string>
                                             <action selector="resetInputButtonPressed:" destination="do9-eP-ePs" eventType="touchUpInside" id="6Ob-fO-zrC"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA3-7q-T0i">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bA3-7q-T0i">
                                         <rect key="frame" x="276" y="0.0" width="240" height="80"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="2of-OO-nIC"/>
                                             <constraint firstAttribute="height" constant="80" id="iOi-6g-gOQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
-                                        <state key="normal" title="Next">
+                                        <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                        <inset key="imageEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Next" image="ProMind_next-button-icon">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -3132,8 +3132,10 @@ We will go through them one by one.</string>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>
+        <image name="ProMind_next-button-icon" width="42" height="42"/>
         <image name="ProMind_play-tutorial-again-icon" width="22" height="22"/>
         <image name="ProMind_recording-icon" width="16" height="16"/>
+        <image name="ProMind_undo-button-icon" width="42" height="42"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="gobackward" catalog="system" width="119" height="128"/>
