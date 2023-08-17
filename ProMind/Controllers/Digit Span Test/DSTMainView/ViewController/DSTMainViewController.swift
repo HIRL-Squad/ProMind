@@ -43,7 +43,7 @@ class DSTMainViewController: UIViewController {
     private let appLanguage = AppLanguage.shared
     private let notification = NotificationBroadcast()
     private let mainViewModel = DSTViewModels.DSTMainViewModel
-    private let coachMarksController = CoachMarksController()
+//    private let coachMarksController = CoachMarksController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +52,11 @@ class DSTMainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        coachMarksController.dataSource = self
-        coachMarksController.delegate = self
-        coachMarksController.overlay.areTouchEventsForwarded = true
-        coachMarksController.overlay.isUserInteractionEnabled = true
-        coachMarksController.overlay.backgroundColor = .clear
+//        coachMarksController.dataSource = self
+//        coachMarksController.delegate = self
+//        coachMarksController.overlay.areTouchEventsForwarded = true
+//        coachMarksController.overlay.isUserInteractionEnabled = true
+//        coachMarksController.overlay.backgroundColor = .clear
         
         beginButton.isHidden = true
         avatarImageView.isHidden = true
@@ -134,7 +134,7 @@ class DSTMainViewController: UIViewController {
         instructionSpeaking.resetSpeechStatus()
         speechRecognition.resetRecognizer()
         
-        coachMarksController.stop(immediately: true)
+//        coachMarksController.stop(immediately: true)
         
         notification.removeAllObserverFrom(self)
     }
@@ -181,7 +181,7 @@ class DSTMainViewController: UIViewController {
         instructionSpeaking.resetSpeechStatus()
         speechRecognition.resetRecognizer()
         
-        coachMarksController.stop(immediately: true)
+//        coachMarksController.stop(immediately: true)
     }
     
     private func addTapGesture(for view: UIView, with selector: Selector) {
@@ -267,16 +267,21 @@ extension DSTMainViewController: CoachMarksControllerDataSource, CoachMarksContr
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
         let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
         
-        coachViews.bodyView.hintLabel.font = UIFont(name: K.fontTypeNormal, size: 16)
-        coachViews.bodyView.nextLabel.font = UIFont(name: K.fontTypeMedium, size: 16)
+        coachViews.bodyView.hintLabel.font = UIFont(name: K.fontTypeNormal, size: 24)
+        coachViews.bodyView.hintLabel.sizeThatFits(CGSize(width: 240, height: 50))
+        
+        coachViews.bodyView.nextLabel.font = UIFont(name: K.fontTypeMedium, size: 24)
+        coachViews.bodyView.nextLabel.sizeThatFits(CGSize(width: 240, height: 50))
         coachViews.bodyView.nextLabel.textColor = .red
+        
+        //coachViews.bodyView.isUserInteractionEnabled = false
         
         switch index {
         case 0:
-            coachViews.bodyView.hintLabel.text = "For resetting your recorded numbers".localized
+            coachViews.bodyView.hintLabel.text = "Try one more time!".localized
             coachViews.bodyView.nextLabel.text = "OK".localized
         case 1:
-            coachViews.bodyView.hintLabel.text = "For submitting your recorded numbers".localized
+            coachViews.bodyView.hintLabel.text = "Finish or don't know answer!".localized
             coachViews.bodyView.nextLabel.text = "OK".localized
         default:
             break
@@ -340,10 +345,10 @@ extension DSTMainViewController {
         spokenDigitsLabel.isHidden = false
         
         /// Show coach marks together with buttons.
-        coachMarksController.start(in: .window(over: self))
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            self.coachMarksController.stop(immediately: true)
-        }
+//        coachMarksController.start(in: .window(over: self))
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//            self.coachMarksController.stop(immediately: true)
+//        }
     }
     
     @objc private func displayUIAlert(notification: Notification) {
@@ -493,7 +498,7 @@ extension DSTMainViewController {
     
     @objc private func hideUnrecognizedReminder() {
         unrecognizedReminderLabel.isHidden = true
-        coachMarksController.stop(immediately: true)
+//        coachMarksController.stop(immediately: true)
     }
     
     @objc private func showRecordingIndicator() {

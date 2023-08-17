@@ -56,6 +56,8 @@
 // Coachmark Controller
 "For resetting your recorded numbers" = "用来重置您的语音识别结果";
 "For submitting your recorded numbers" = "用来确认您的语音识别结果";
+"Try one more time!" = "再试一次！";
+"Finish or don't know the answer!" = "已完成或跳过该题目！";
 
 // MARK: - Trail Making Test
 

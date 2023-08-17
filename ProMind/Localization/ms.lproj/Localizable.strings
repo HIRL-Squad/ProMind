@@ -56,6 +56,8 @@
 // Coachmark Controller
 "For resetting your recorded numbers" = "Untuk menetapkan semula nombor yang direkodkan";
 "For submitting your recorded numbers" = "Untuk menghantar nombor yang direkodkan";
+"Try one more time!" = "Cuba sekali lagi!";
+"Finish or don't know answer!" = "Selesai atau tidak tahu jawapan!";
 
 // MARK: - Trail Making Test
 
