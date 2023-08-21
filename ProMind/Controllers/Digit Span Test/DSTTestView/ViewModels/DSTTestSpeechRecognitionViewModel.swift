@@ -93,6 +93,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     @objc private func submitAnswer() {
         pauseRecognition()
         notificationBroadcast.post("Hide Recording Indicator \(viewModel)", object: nil)
+        notificationBroadcast.post("Hide Reset Button Label And Icon \(viewModel)", object: nil)
+        notificationBroadcast.post("Hide Submit Button Label And Icon \(viewModel)", object: nil)
         
         func getNumberOfRectangles(index: Int) -> Int {
             switch index {

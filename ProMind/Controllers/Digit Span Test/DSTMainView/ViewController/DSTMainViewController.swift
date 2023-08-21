@@ -25,6 +25,10 @@ class DSTMainViewController: UIViewController {
     @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var playTutorialAgainIconImageView: UIImageView!
     @IBOutlet weak var playTutorialAgainLabel: UILabel!
+    @IBOutlet weak var resetButtonLabelIconImageView: UIImageView!
+    @IBOutlet weak var resetButtonLabel: UILabel!
+    @IBOutlet weak var submitButtonLabelIconImageView: UIImageView!
+    @IBOutlet weak var submitButtonLabel: UILabel!
     
     @IBAction func resetAnswerButtonPressed(_ sender: UIButton) {
         notification.post("Reset Answer Button Pressed \(mainViewModel)", object: nil)
@@ -68,6 +72,10 @@ class DSTMainViewController: UIViewController {
         recordingIconImageView.isHidden = true
         playTutorialAgainLabel.isHidden = true
         playTutorialAgainIconImageView.isHidden = true
+        resetButtonLabel.isHidden = true
+        resetButtonLabelIconImageView.isHidden = true
+        submitButtonLabel.isHidden = true
+        submitButtonLabelIconImageView.isHidden = true
         
         instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
         instructionSpeaking.resetSpeechStatus()
@@ -98,6 +106,10 @@ class DSTMainViewController: UIViewController {
         notification.addObserver(self, #selector(hideRecordingIndicator), "Hide Recording Indicator \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(showPlayTutorialAgainIndicator), "Show Play Tutorial Again Indicator \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(hidePlayTutorialAgainIndicator), "Hide Play Tutorial Again Indicator \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(showResetButtonLabelAndIcon), "Show Reset Button Label And Icon \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(hideResetButtonLabelAndIcon), "Hide Reset Button Label And Icon \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(showSubmitButtonLabelAndIcon), "Show Submit Button Label And Icon \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(hideSubmitButtonLabelAndIcon), "Hide Submit Button Label And Icon \(mainViewModel)", object: nil)
         
         addTapGesture(for: playTutorialAgainLabel, with: #selector(playTutorialAgainLabelTapped))
         addTapGesture(for: playTutorialAgainIconImageView, with: #selector(playTutorialAgainIconImageViewTapped))
@@ -228,7 +240,7 @@ extension DSTMainViewController {
             case _ where deviceNameLowercased.contains("12") && deviceNameLowercased.contains("ipad"):
                 let contraints = [
                     // avatarImageView.topAnchor.constraint(equalTo: digitSpanTestLabel.bottomAnchor, constant: 40),
-                    spokenDigitsLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 60)
+                    spokenDigitsLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 80)
                 ]
                 
                 NSLayoutConstraint.activate(contraints)
@@ -541,6 +553,26 @@ extension DSTMainViewController {
     @objc private func playTutorialAgainLabelTapped(_ sender: UIGestureRecognizer? = nil) {
         cleanUp()
         restartTutorial()
+    }
+    
+    @objc private func showResetButtonLabelAndIcon() {
+        resetButtonLabel.isHidden = false
+        resetButtonLabelIconImageView.isHidden = false
+    }
+    
+    @objc private func hideResetButtonLabelAndIcon() {
+        resetButtonLabel.isHidden = true
+        resetButtonLabelIconImageView.isHidden = true
+    }
+    
+    @objc private func showSubmitButtonLabelAndIcon() {
+        submitButtonLabel.isHidden = false
+        submitButtonLabelIconImageView.isHidden = false
+    }
+    
+    @objc private func hideSubmitButtonLabelAndIcon() {
+        submitButtonLabel.isHidden = true
+        submitButtonLabelIconImageView.isHidden = true
     }
 }
 

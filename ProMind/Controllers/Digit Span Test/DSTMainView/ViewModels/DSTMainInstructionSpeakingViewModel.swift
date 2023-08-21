@@ -96,6 +96,8 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 
                 notificationBroadcast.post("Resume Recognition \(viewModel)", object: nil)
                 notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
             }
             
         /// Instruction finished speaking: What would you say?
@@ -109,6 +111,8 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             notificationBroadcast.post("Display Speaking Slowly Alert \(viewModel)", object: nil)
             notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
             notificationBroadcast.post("Show Play Tutorial Again Indicator \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
             notificationBroadcast.post("Start Recognition Task \(viewModel)", object: nil)
             notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
             

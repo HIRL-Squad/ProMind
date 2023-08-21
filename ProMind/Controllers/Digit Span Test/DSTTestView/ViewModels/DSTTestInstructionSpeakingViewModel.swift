@@ -289,6 +289,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
@@ -310,6 +312,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
@@ -331,6 +335,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
@@ -394,6 +400,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             notificationBroadcast.post("Show Play Tutorial Again Indicator \(viewModel)", object: nil)
             notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
             notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
             
         case 19:
             if speechStatus.counter_1 < 2 {
@@ -404,6 +412,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.index += 1
                 
                 notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
                 notificationBroadcast.post("Resume Recognition \(viewModel)", object: nil)
             }
                 
@@ -425,6 +435,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
@@ -446,6 +458,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
@@ -467,6 +481,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Show Recording Indicator \(viewModel)", object: nil)
                 notificationBroadcast.post("Start Recognition Task \(viewModel)", object: answer)
                 notificationBroadcast.post("Show Recognizer Buttons \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
                 notificationBroadcast.post("Play Gif Image \(viewModel)", object: nil)
                 
                 roundInfo.speechStatusIndex = speechStatus.index
