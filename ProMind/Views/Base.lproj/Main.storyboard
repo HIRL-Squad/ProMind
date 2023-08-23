@@ -111,7 +111,7 @@
             <objects>
                 <viewController id="cXD-Qj-kxR" customClass="ExperimentProfileDetailViewController" customModule="ProMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="naT-wl-7hM">
-                        <rect key="frame" x="0.0" y="0.0" width="1045" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1045.5" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-eM-ybQ" userLabel="Main Container View">
@@ -3197,7 +3197,7 @@ We will go through them one by one.</string>
         <designable name="LKg-o5-zlG"/>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="c00-em-7hI"/>
+        <segue reference="A15-0l-DtF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AppLogo" width="170.5" height="170.5"/>

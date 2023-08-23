@@ -112,7 +112,7 @@ class DSTTestViewController: UIViewController {
         notificationBroadcast.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Hide Unrecognized Reminder \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(testViewModel)", object: nil)
+        // notificationBroadcast.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(showRecordingIndicator), "Show Recording Indicator \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideRecordingIndicator), "Hide Recording Indicator \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(showPlayTutorialAgainIndicator), "Show Play Tutorial Again Indicator \(testViewModel)", object: nil)

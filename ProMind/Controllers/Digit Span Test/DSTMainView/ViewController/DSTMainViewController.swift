@@ -101,7 +101,7 @@ class DSTMainViewController: UIViewController {
         notification.addObserver(self, #selector(removeDigitRectangle(notification:)), "Remove Digit Rectangle \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(mainViewModel)", object: nil)
-        notification.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(mainViewModel)", object: nil)
+        // notification.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(showRecordingIndicator), "Show Recording Indicator \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(hideRecordingIndicator), "Hide Recording Indicator \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(showPlayTutorialAgainIndicator), "Show Play Tutorial Again Indicator \(mainViewModel)", object: nil)
