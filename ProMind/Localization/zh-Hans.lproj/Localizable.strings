@@ -13,16 +13,18 @@
 "You will hear some numbers. " = "您会听到一些数字。";
 "Once done, you will hear a bell, like so: " = "数字播报完成后，您会听到一声铃声，像这样：";
 "(Bell Sound)" = "（铃声）";
-"After you hear the bell, repeat the numbers in the same order.\n\nPlease speak slowly. Do not rush or repeat answers." = "当您听到铃声后，请以相同的数字顺序重复数字。\n\n请慢一些说。不要抢答或者重复答案。";
+"After you hear the bell, repeat the numbers in the same order. " = "当您听到铃声后，请以相同的数字顺序重复数字。";
 "For example, if you hear: " = "比如，当您听到：";
 "You would say: " = "您应该说：";
-"Remember to speak as slowly as one second per digit, like how the example did.\n\nNever rush or repeat answers." = "记得说话的速度要慢，每个数字一秒钟，就像刚刚示例里的一样。\n\n请勿抢答或者重复答案。";
+"Remember: " = "记住：";
+"Speak slowly. " = "慢一点说。";
+"Do not rush when speaking. " = "说的时候请不要抢答。";
+"Do not repeat your answers. " = "请不要重复答案。";
 "If you hear: " = "如果您听到：";
 "What would you say? " = "请问您应该怎么说呢？";
 "That is incorrect, you would say: " = "您说错了，您应该说：";
-"Good job, now let’s do the actual test. " = "太棒了，现在让我们正式进入测试吧。";
-"Ready? " = "准备好了吗？";
-"Go! " = "开始！";
+"Great! We are going to the actual test! " = "太棒了！我们来正式进入测试吧！";
+"Click \"Start\" to begin the test. " = "点击\"开始\"按钮来开始测试。";
 
 // Backwards Number Span
 "Now, let’s move on to the second task. " = "现在，我们来继续第二个任务。";

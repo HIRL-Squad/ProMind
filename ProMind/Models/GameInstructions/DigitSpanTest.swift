@@ -19,24 +19,26 @@ struct DigitSpanTest: Identifiable {
         "You will hear some numbers. ",
         "Once done, you will hear a bell, like so: ",
         "(Bell Sound)",
-        "After you hear the bell, repeat the numbers in the same order.\n\nPlease speak slowly. Do not rush or repeat answers.",
+        "After you hear the bell, repeat the numbers in the same order. ", /// 4
         "For example, if you hear: ",
         "1 - 8 - 7",
         "You would say: ",
         "1 - 8 - 7",
-        "Remember to speak as slowly as one second per digit, like how the example did.\n\nNever rush or repeat answers.",
-        "If you hear: ",
+        "Remember: ", /// 9
+        "Speak slowly. ",
+        "Do not rush when speaking. ",
+        "Do not repeat your answers. ",
+        "If you hear: ", /// 13
         "2 – 9 – 8",
         "What would you say? ",
         
         // If the user gives the wrong answer. Skip if correct answer is given.
-        "That is incorrect, you would say: ", /// 12
+        "That is incorrect, you would say: ", /// 16
         "2 – 9 – 8",
         
         // If the user gives the correct answer.
-        "Good job, now let’s do the actual test. ", /// 14
-        "Ready? ",
-        "Go! "
+        "Great! We are going to the actual test! ", /// 18
+        "Click \"Start\" to begin the test. "
     ]
     
     /// Forward Number Span Test Digits.

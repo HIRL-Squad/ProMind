@@ -109,6 +109,11 @@ class DSTMainSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
             notificationBroadcast.post("Hide Play Tutorial Again Indicator \(viewModel)", object: nil)
             notificationBroadcast.post("Hide Reset Button Label And Icon \(viewModel)", object: nil)
             notificationBroadcast.post("Hide Submit Button Label And Icon \(viewModel)", object: nil)
+            notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 3)
+            notificationBroadcast.post("Hide GIF Image \(viewModel)", object: nil)
+            notificationBroadcast.post("Hide Spoken Digits Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Hide Reset And Submit Button \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Instruction Label \(viewModel)", object: nil)
         } else {
             print("spoken result != expected result")
             notificationBroadcast.post("Display Hint \(viewModel)", object: nil)

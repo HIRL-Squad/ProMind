@@ -13,16 +13,18 @@
 "You will hear some numbers. " = "Anda akan mendengar beberapa numbor. ";
 "Once done, you will hear a bell, like so: " = "Kemudian, anda akan dengar bunyi loceng seperti ini: ";
 "(Bell Sound)" = "(Bunyi Loceng)";
-"After you hear the bell, repeat the numbers in the same order.\n\nPlease speak slowly. Do not rush or repeat answers." = "Selepas anda mendengar loceng, ulang nombor dalam susunan yang sama.\n\nSila bercakap perlahan-lahan. Jangan tergesa-gesa atau mengulangi jawapan.";
+"After you hear the bell, repeat the numbers in the same order. " = "Selepas anda mendengar loceng, ulang nombor dalam susunan yang sama. ";
 "For example, if you hear: " = "Contohnya, sekiranya anda dengar: ";
 "You would say: " = "Anda perlu ulang: ";
-"Remember to speak as slowly as one second per digit, like how the example did.\n\nNever rush or repeat answers." = "Ingat untuk bercakap perlahan seperti satu saat setiap digit, seperti contoh yang berlaku.\n\nJangan tergesa-gesa atau mengulangi jawapan.";
+"Remember: " = "Ingat: ";
+"Speak slowly. " = "Cakap perlahan-lahan. ";
+"Do not rush when speaking. " = "Jangan tergesa-gesa ketika bercakap. ";
+"Do not repeat your answers. " = "Jangan ulangi jawapan anda. ";
 "If you hear: " = "Kalau anda dengar: ";
 "What would you say? " = "cuba ulang nombor-nombornya? ";
 "That is incorrect, you would say: " = "Salah, anda harus ulang: ";
-"Good job, now let’s do the actual test. " = "Baik, sekarang, ayuh kita lakukan ujian pertama. ";
-"Ready? " = "Sedia? ";
-"Go! " = "Mula! ";
+"Great! We are going to the actual test! " = "Hebat! Kami akan pergi ke ujian sebenar! ";
+"Click \"Start\" to begin the test. " = "Klik \"Mula\" untuk memulakan ujian. ";
 
 // Backwards Number Span
 "Now, let’s move on to the second task. " = "Sekarang, ayuh kita buat latihan kedua. ";
