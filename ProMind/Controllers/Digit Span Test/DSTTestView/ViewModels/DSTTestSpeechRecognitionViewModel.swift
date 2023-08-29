@@ -54,6 +54,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     
     @objc internal func startRecognitionTask(answer: String) {
         recognitionTask.expectedResult = answer
+        print("Successfully assigned recognition task with expected result: \(answer)")
         recognitionTask.isRecording = true
         recognizer.transcribe()
     }
@@ -114,6 +115,9 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
         
         if recognitionTask.expectedResult == spokenResultFilter.getTailResult() {
             print("spoken result == expected result - test view model")
+            print("spoken result: \(spokenResultFilter.getTailResult())")
+            print("expected result: \(recognitionTask.expectedResult)")
+            
             let roundInfo = RoundInfo.shared
             print("Speech Status Index: \(roundInfo.speechStatusIndex)")
             
@@ -141,12 +145,18 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                 }
                 notificationBroadcast.post("Display Backward Number Span Instructions \(viewModel)", object: nil)
                 
-            case 17, 19: // problem here!
+            case 21, 23: // problem here!
                 print("Submit Answer Pressed for success information! \(roundInfo.speechStatusIndex)")
                 notificationBroadcast.post("Hide Play Tutorial Again Indicator \(viewModel)", object: nil)
+                notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
                 notificationBroadcast.post("Display Successful Messages \(viewModel)", object: nil)
+                notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 3)
+                notificationBroadcast.post("Hide GIF Image \(viewModel)", object: nil)
+                notificationBroadcast.post("Hide Spoken Digits Label \(viewModel)", object: nil)
+                notificationBroadcast.post("Hide Reset And Submit Button \(viewModel)", object: nil)
+                notificationBroadcast.post("Show Instruction Label \(viewModel)", object: nil)
                 
-            case 23...27:
+            case 26...30:
                 roundInfo.maxDigits = roundInfo.temporaryMaxDigits
                 roundInfo.currentSequence += 1
                 roundInfo.didMakeWrongAnswerInPreviousRound = false
@@ -158,7 +168,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                 notificationBroadcast.post("Resume Speaking \(viewModel)", object: nil)
                 notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
                 
-            case 28:
+            case 31:
                 roundInfo.maxDigits = roundInfo.temporaryMaxDigits
                 roundInfo.currentSequence += 1
                 roundInfo.didMakeWrongAnswerInPreviousRound = false
@@ -175,6 +185,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
             
         } else {
             print("spoken result != expected result test view model")
+            print("spoken result: \(spokenResultFilter.getTailResult())")
+            print("expected result: \(recognitionTask.expectedResult)")
             let roundInfo = RoundInfo.shared
             
             switch roundInfo.speechStatusIndex {
@@ -223,12 +235,13 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     notificationBroadcast.post("Display Backward Number Span Instructions \(viewModel)", object: nil)
                 }
                 
-            case 17, 19:
+            case 21, 23:
                 print("Submit Answer Pressed for display hint! \(roundInfo.speechStatusIndex)")
                 notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
+                notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
                 notificationBroadcast.post("Display Hint \(viewModel)", object: nil)
                 
-            case 23...27:
+            case 26...30:
                 roundInfo.currentSequence = 0
                 
                 if roundInfo.didMakeWrongAnswerInPreviousRound { // Go to Result View.
@@ -250,7 +263,7 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
                     notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
                 }
                 
-            case 28:
+            case 31:
                 roundInfo.currentSequence = 0
                 
                 if roundInfo.didMakeWrongAnswerInPreviousRound { // Go to Result View.

@@ -32,6 +32,11 @@ class DSTTestViewController: UIViewController {
     @IBOutlet weak var resetButtonLabel: UILabel!
     @IBOutlet weak var submitButtonLabelIconImageView: UIImageView!
     @IBOutlet weak var submitButtonLabel: UILabel!
+    @IBOutlet weak var samePageInstructionLabel1: UILabel!
+    @IBOutlet weak var samePageInstructionLabel2: UILabel!
+    @IBOutlet weak var samePageInstructionLabel3: UILabel!
+    @IBOutlet weak var samePageInstructionLabel4: UILabel!
+    @IBOutlet weak var samePageInstructionLabel5: UILabel!
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         notificationBroadcast.post("Reset Answer Button Pressed \(testViewModel)", object: nil)
@@ -78,6 +83,11 @@ class DSTTestViewController: UIViewController {
         resetButtonLabelIconImageView.isHidden = true
         submitButtonLabel.isHidden = true
         submitButtonLabelIconImageView.isHidden = true
+        samePageInstructionLabel1.isHidden = true
+        samePageInstructionLabel2.isHidden = true
+        samePageInstructionLabel3.isHidden = true
+        samePageInstructionLabel4.isHidden = true
+        samePageInstructionLabel5.isHidden = true
         
         UIOptimization()
         
@@ -109,7 +119,7 @@ class DSTTestViewController: UIViewController {
         notificationBroadcast.addObserver(self, #selector(showResultButton), "Show Result Button \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(setDigitRectangle(notification:)), "Set Digit Rectangle \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(removeDigitRectangle(notification:)), "Remove Digit Rectangle \(testViewModel)", object: nil)
-        notificationBroadcast.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(testViewModel)", object: nil)
+        // notificationBroadcast.addObserver(self, #selector(showUnrecognizedReminder), "Illegal Spoken Result \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Legal Spoken Result \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideUnrecognizedReminder), "Hide Unrecognized Reminder \(testViewModel)", object: nil)
         // notificationBroadcast.addObserver(self, #selector(displaySpeakingSlowlyAlert), "Display Speaking Slowly Alert \(testViewModel)", object: nil)
@@ -121,6 +131,17 @@ class DSTTestViewController: UIViewController {
         notificationBroadcast.addObserver(self, #selector(hideResetButtonLabelAndIcon), "Hide Reset Button Label And Icon \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(showSubmitButtonLabelAndIcon), "Show Submit Button Label And Icon \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideSubmitButtonLabelAndIcon), "Hide Submit Button Label And Icon \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showSamePageInstructionLabel1), "Show Same Page Instruction Label 1 \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showSamePageInstructionLabel2), "Show Same Page Instruction Label 2 \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showSamePageInstructionLabel3), "Show Same Page Instruction Label 3 \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showSamePageInstructionLabel4), "Show Same Page Instruction Label 4 \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showSamePageInstructionLabel5), "Show Same Page Instruction Label 5 \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideAllSamePageInstructionLabels), "Hide All Same Page Instruction Labels \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(resetInstructionLabel), "Reset Instruction Label \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideGifImage), "Hide GIF Image \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideSpokenDigitsLabel), "Hide Spoken Digits Label \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideResetAndSubmitButton), "Hide Reset And Submit Button \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(showInstructionLabel), "Show Instruction Label \(testViewModel)", object: nil)
         
         addTapGesture(for: playTutorialAgainLabel, with: #selector(playTutorialAgainLabelTapped))
         addTapGesture(for: playTutorialAgainIconImageView, with: #selector(playTutorialAgainIconImageViewTapped))
@@ -140,6 +161,11 @@ class DSTTestViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         unrecognizedReminderLabel.isHidden = true
+        samePageInstructionLabel1.isHidden = true
+        samePageInstructionLabel2.isHidden = true
+        samePageInstructionLabel3.isHidden = true
+        samePageInstructionLabel4.isHidden = true
+        samePageInstructionLabel5.isHidden = true
         
         instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
         instructionSpeaking.resetSpeechStatus()
@@ -186,6 +212,10 @@ class DSTTestViewController: UIViewController {
         unrecognizedReminderLabel.isHidden = true
         playTutorialAgainLabel.isHidden = true
         playTutorialAgainIconImageView.isHidden = true
+        spokenDigitsLabel.isHidden = true
+        
+        hideResetButtonLabelAndIcon()
+        hideSubmitButtonLabelAndIcon()
         
         /// Stop speaking, reset index to 0, and remove all notification observer.
         instructionSpeaking.speaker.synthesizer.stopSpeaking(at: .immediate)
@@ -405,6 +435,12 @@ extension DSTTestViewController {
         submitButton.isHidden = true
         spokenDigitsLabel.isHidden = true
         beginButton.isHidden = false
+        
+        UIView.animate(withDuration: 2.0, delay: 0.0, options: [.autoreverse, .repeat, .allowUserInteraction], animations: { [weak self] in
+            // If smaller than this value then user interaction is not working.
+            self?.beginButton.alpha = 0.0100000003
+        })
+        beginButton.isEnabled = true
     }
     
     @objc private func disableResetAndSubmitButton() {
@@ -454,6 +490,7 @@ extension DSTTestViewController {
         resetButton.isHidden = false
         submitButton.isHidden = false
         avatarImageView.isHidden = false
+        samePageInstructionLabel5.isHidden = true
         try! loadGifImage()
         
         resetDigitLabel()
@@ -661,5 +698,83 @@ extension DSTTestViewController {
     @objc private func hideSubmitButtonLabelAndIcon() {
         submitButtonLabel.isHidden = true
         submitButtonLabelIconImageView.isHidden = true
+    }
+    
+    @objc private func showSamePageInstructionLabel1() {
+        samePageInstructionLabel1.isHidden = false
+    }
+    
+    @objc private func hideSamePageInstructionLabel1() {
+        samePageInstructionLabel1.isHidden = true
+    }
+    
+    @objc private func showSamePageInstructionLabel2() {
+        samePageInstructionLabel2.isHidden = false
+    }
+    
+    @objc private func hideSamePageInstructionLabel2() {
+        samePageInstructionLabel2.isHidden = true
+    }
+    
+    @objc private func showSamePageInstructionLabel3() {
+        samePageInstructionLabel3.isHidden = false
+    }
+    
+    @objc private func hideSamePageInstructionLabel3() {
+        samePageInstructionLabel3.isHidden = true
+    }
+    
+    @objc private func showSamePageInstructionLabel4() {
+        samePageInstructionLabel4.isHidden = false
+    }
+    
+    @objc private func hideSamePageInstructionLabel4() {
+        samePageInstructionLabel4.isHidden = true
+    }
+    
+    @objc private func showSamePageInstructionLabel5() {
+        samePageInstructionLabel5.isHidden = false
+    }
+    
+    @objc private func hideSamePageInstructionLabel5() {
+        samePageInstructionLabel5.isHidden = true
+    }
+    
+    @objc private func showAllSamePageInstructionLabels() {
+        samePageInstructionLabel1.isHidden = false
+        samePageInstructionLabel2.isHidden = false
+        samePageInstructionLabel3.isHidden = false
+        samePageInstructionLabel4.isHidden = false
+        samePageInstructionLabel5.isHidden = false
+    }
+    
+    @objc private func hideAllSamePageInstructionLabels() {
+        samePageInstructionLabel1.isHidden = true
+        samePageInstructionLabel2.isHidden = true
+        samePageInstructionLabel3.isHidden = true
+        samePageInstructionLabel4.isHidden = true
+        samePageInstructionLabel5.isHidden = true
+    }
+    
+    @objc private func resetInstructionLabel() {
+        instructionLabel.text?.removeAll()
+    }
+    
+    @objc private func hideGifImage() {
+        avatarImageView.stopAnimatingGif()
+        avatarImageView.isHidden = true
+    }
+    
+    @objc private func hideSpokenDigitsLabel() {
+        spokenDigitsLabel.isHidden = true
+    }
+    
+    @objc private func hideResetAndSubmitButton() {
+        resetButton.isHidden = true
+        submitButton.isHidden = true
+    }
+    
+    @objc private func showInstructionLabel() {
+        instructionLabel.isHidden = false
     }
 }

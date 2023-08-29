@@ -158,8 +158,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             notificationBroadcast.post("Instruction Text \(viewModel)", object: instructionText)
             break
             
-        /// case 23 & 24: 2 1 8 -> 3 digits
-        case 23:
+        /// case 26 & 27: 2 1 8 -> 3 digits
+        case 26:
             print("speech did start with index = \(speechStatus.index)")
             notificationBroadcast.post("Stop Playing Gif \(viewModel)", object: nil)
             notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
@@ -173,7 +173,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_2 = 0
             }
             
-        case 24:
+        case 27:
             print("speech did start with index = \(speechStatus.index)")
             notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
             notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
@@ -185,8 +185,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_2 = 0
             }
             
-        /// case 25 & 26: 7 4 1 5 -> 4 digits
-        case 25:
+        /// case 28 & 29: 7 4 1 5 -> 4 digits
+        case 28:
             print("speech did start with index = \(speechStatus.index)")
             notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
             notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 3)
@@ -200,7 +200,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_2 = 0
             }
             
-        case 26:
+        case 29:
             print("speech did start with index = \(speechStatus.index)")
             notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
             notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
@@ -212,8 +212,8 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_2 = 0
             }
             
-        /// case 27 & 28: 9 2 5 1 8 -> 5 digits
-        case 27:
+        /// case 30 & 31: 9 2 5 1 8 -> 5 digits
+        case 30:
             print("speech did start with index = \(speechStatus.index)")
             notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
             notificationBroadcast.post("Remove Digit Rectangle \(viewModel)", object: 4)
@@ -227,7 +227,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_2 = 0
             }
             
-        case 28:
+        case 31:
             print("speech did start with index = \(speechStatus.index)")
             notificationBroadcast.post("Reset Digit Label \(viewModel)", object: nil)
             notificationBroadcast.post("Show Digit Speaking Activity Indicator \(viewModel)", object: nil)
@@ -239,7 +239,27 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_2 = 0
             }
             
-        /// For instruction speaking.
+        case 15:
+            notificationBroadcast.post("Reset Instruction Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Same Page Instruction Label 1 \(viewModel)", object: nil)
+            
+        case 16:
+            notificationBroadcast.post("Show Same Page Instruction Label 2 \(viewModel)", object: nil)
+            
+        case 17:
+            notificationBroadcast.post("Show Same Page Instruction Label 3 \(viewModel)", object: nil)
+            
+        case 18:
+            notificationBroadcast.post("Show Same Page Instruction Label 4 \(viewModel)", object: nil)
+            
+        case 19:
+            notificationBroadcast.post("Hide All Same Page Instruction Labels \(viewModel)", object: nil)
+            let instructionText = digitSpanTest.backwardsNumberSpanInstructions[speechStatus.index - 6]
+            notificationBroadcast.post("Instruction Text \(viewModel)", object: instructionText)
+            
+        case 25:
+            notificationBroadcast.post("Show Same Page Instruction Label 5 \(viewModel)", object: nil)
+            
         default:
             let instructionText = digitSpanTest.backwardsNumberSpanInstructions[speechStatus.index - 6]
             notificationBroadcast.post("Instruction Text \(viewModel)", object: instructionText)
@@ -258,7 +278,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             }
             
         case .backwardsSpanTest:
-            let instructionText = digitSpanTest.backwardsNumberSpanTest[speechStatus.index - 23]
+            let instructionText = digitSpanTest.backwardsNumberSpanTest[speechStatus.index - 26]
             for index in stride(from: numberOfDigits * 4 - 4, through: 0, by: -4) {
                 print("Stride Through Index: \(index), digit: \(instructionText[instructionText.indexAt(index)])")
                 answer.append(instructionText[instructionText.indexAt(index)])
@@ -367,7 +387,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             
                 
         /// For digit speaking like "1 - 8 - 7", there are two pauses between digits, and we should not go the the next index.
-        case 12, 16:
+        case 12, 20:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
             } else {
@@ -377,6 +397,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.index += 1
             }
         
+        /// Case 14 doesn't have the bell sound.
         case 14:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
@@ -384,10 +405,16 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 roundInfo.speechStatusIndex = speechStatus.index
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
+                displayBackwardNumberSpanInstructions_9To12()
             }
             
+        case 18:
+            roundInfo.speechStatusIndex = speechStatus.index
+            speechStatus.index += 1
+            displayBackwardNumberSpanInstructions_13To15()
+            
         /// Instruction finished speaking: What would you say?
-        case 17:
+        case 21:
             roundInfo.speechStatusIndex = speechStatus.index
             speechStatus.index += 1
             
@@ -403,7 +430,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             notificationBroadcast.post("Show Reset Button Label And Icon \(viewModel)", object: nil)
             notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
             
-        case 19:
+        case 23:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
             } else {
@@ -416,14 +443,20 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 notificationBroadcast.post("Show Submit Button Label And Icon \(viewModel)", object: nil)
                 notificationBroadcast.post("Resume Recognition \(viewModel)", object: nil)
             }
+            
+        case 24:
+            roundInfo.speechStatusIndex = speechStatus.index
+            speechStatus.index += 1
+            notificationBroadcast.post("Reset Instruction Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Show Begin Button \(viewModel)", object: nil)
                 
-        /// Do NOT increase index as 22 is the last instruction!
-        case 22:
+        /// Do NOT increase index as 25 is the last instruction!
+        case 25:
             notificationBroadcast.post("Show Begin Button \(viewModel)", object: nil)
             roundInfo.testType = .backwardsSpanTest
             roundInfo.reset()
             
-        case 23, 24:
+        case 26, 27:
             if speechStatus.counter_1 < 2 {
                 speechStatus.counter_1 += 1
             } else {
@@ -446,7 +479,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speaker.pause()
             }
             
-        case 25, 26:
+        case 28, 29:
             if speechStatus.counter_1 < 3 {
                 speechStatus.counter_1 += 1
             } else {
@@ -469,7 +502,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speaker.pause()
             }
             
-        case 27, 28:
+        case 30, 31:
             if speechStatus.counter_1 < 4 {
                 speechStatus.counter_1 += 1
             } else {
@@ -501,7 +534,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     internal func audioFinishedPlaying() {
         switch speechStatus.index {
         case 10:
-            displayBackwardNumberSpanInstructions_4To11()
+            displayBackwardNumberSpanInstructions_4To8()
         default:
             break
         }
@@ -553,12 +586,12 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         }
     }
     
-    internal func displayBackwardNumberSpanInstructions_4To11() { // start from index = 10
-        print("Display backward number span instructions 4 to 11!")
+    internal func displayBackwardNumberSpanInstructions_4To8() { // start from index = 10
+        print("Display backward number span instructions 4 to 8!")
         speechStatus.index = 10
-        for instruction in digitSpanTest.backwardsNumberSpanInstructions[4...11] {
+        for instruction in digitSpanTest.backwardsNumberSpanInstructions[4...8] {
             switch instruction {
-            case "3 - 7 - 4", "4 - 7 - 3", "7 – 3 – 6":
+            case "3 - 7 - 4", "4 - 7 - 3":
                 let localizedInstruction = instruction.localized
                 speaker.speakDigits(digits: localizedInstruction)
             default:
@@ -568,9 +601,33 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         }
     }
     
+    @objc internal func displayBackwardNumberSpanInstructions_9To12() {
+        speechStatus.index = 15
+        for instruction in digitSpanTest.forwardNumberSpanInstructions[9...12] {
+            let localizedInstruction = instruction.localized
+            speaker.speakInstructions(string: localizedInstruction)
+        }
+    }
+    
+    @objc internal func displayBackwardNumberSpanInstructions_13To15() {
+        speechStatus.index = 19
+        for instruction in digitSpanTest.backwardsNumberSpanInstructions[13...15] {
+            switch instruction {
+            case "7 – 3 – 6":
+                let localizedInstruction = instruction.localized
+                speaker.speakDigits(digits: localizedInstruction)
+            default:
+                let localizedInstruction = instruction.localized
+                speaker.speakInstructions(string: localizedInstruction)
+                print("Speaking instruction: \(instruction)")
+                print("Speech index = \(speechStatus.index)")
+            }
+        }
+    }
+    
     internal func startBackwardSpanTest() {
         print("Start backward span test!")
-        speechStatus.index = 23
+        speechStatus.index = 26
         
         let roundInfo = RoundInfo.shared
         roundInfo.didMakeWrongAnswerInPreviousRound = false
@@ -582,9 +639,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     }
     
     @objc internal func displayHint() {
-        speechStatus.index = 18
+        speechStatus.index = 22
         notificationBroadcast.post("Pause Recognition \(viewModel)", object: nil)
-        for instruction in digitSpanTest.backwardsNumberSpanInstructions[12...13] {
+        for instruction in digitSpanTest.backwardsNumberSpanInstructions[16...17] {
             switch instruction {
             case "6 – 3 – 7":
                 let localizedInstruction = instruction.localized
@@ -597,9 +654,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
     }
     
     @objc internal func displaySuccessfulMessages() {
-        speechStatus.index = 20
+        speechStatus.index = 24
         notificationBroadcast.post("Pause Recognition \(viewModel)", object: nil)
-        for instruction in digitSpanTest.backwardsNumberSpanInstructions[14...16] {
+        for instruction in digitSpanTest.backwardsNumberSpanInstructions[18...19] {
             let localizedInstruction = instruction.localized
             speaker.speakInstructions(string: localizedInstruction)
         }

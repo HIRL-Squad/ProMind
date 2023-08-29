@@ -53,27 +53,30 @@ struct DigitSpanTest: Identifiable {
     
     /// The Backward task requires the individual to repeat numbers in the reverse order of that presented.
     let backwardsNumberSpanInstructions = [
-        "Now, let’s move on to the second task. ", /// 6
+        "Now, let’s move on to the second task. ", /// 6 - 0
         "You will hear some numbers. ",
         "Once done, you will hear a bell, like so: ",
         "(Bell Sound)", 
-        "This time, you will have to repeat the numbers backwards.\n\nPlease speak slowly. Do not rush or repeat answers.",
+        "This time, you will have to repeat the numbers backwards. ", /// 10 - 4
         "For example, if you hear: ",
         "3 - 7 - 4",
         "you would say: ",
         "4 - 7 - 3",
-        "If you hear: ",
+        "Remember: ", /// 15 - 9
+        "Speak slowly. ",
+        "Do not rush when speaking. ",
+        "Do not repeat your answers. ",
+        "If you hear: ", /// 19 - 13
         "7 – 3 – 6",
         "What would you say? ",
         
         // If the user gives the wrong answer. Skip if correct answer is given.
-        "That is incorrect, you would say: ", /// 18
+        "That is incorrect, you would say: ", /// 22 - 16
         "6 – 3 – 7",
         
         // If the user gives the correct answer. 
-        "Good job, now let's do the actual test. ", /// 20
-        "Ready? ",
-        "Go! "
+        "Great! We are going to the actual test! ", /// 24 - 18
+        "Click \"Start\" to begin the test. "
     ]
     
     /// Backward Number Span Test Digits. 
