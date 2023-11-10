@@ -60,7 +60,7 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             case .backwardsSpanTest:
                 roundInfo.testType = testType
                 roundInfo.totalTrials += 1
-                roundInfo.temporaryMaxDigits = 3 + (speechStatus.index - 23) / 2
+                roundInfo.temporaryMaxDigits = 3 + (speechStatus.index - 26) / 2
                 
             default:
                 print("Unexpected found unSet for DSTTestType!\n")

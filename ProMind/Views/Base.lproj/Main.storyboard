@@ -3290,7 +3290,9 @@ We will go through them one by one.</string>
         </scene>
     </scenes>
     <designables>
-        <designable name="LKg-o5-zlG"/>
+        <designable name="LKg-o5-zlG">
+            <size key="intrinsicContentSize" width="199" height="71"/>
+        </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="c00-em-7hI"/>
