@@ -191,7 +191,7 @@ class SpokenResultFilter {
                 "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
                 "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9",
                 "tree": "3", "for": "4", "to": "2", "too": "2", "twonight": "29",
-                "Twonighthey": "298", "Siri": "3", "Hi": "5"
+                "Twonighthey": "298", "Siri": "3", "Hi": "5", "phone": "4"
             ]
             
             if decimalNumberDictionary.keys.contains(where: spokenResult.lowercased().contains) {
