@@ -6,7 +6,6 @@ ${BUILT_PRODUCTS_DIR}/BlueRSA/CryptorRSA.framework
 ${BUILT_PRODUCTS_DIR}/CLTypingLabel/CLTypingLabel.framework
 ${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
-${BUILT_PRODUCTS_DIR}/Instructions/Instructions.framework
 ${BUILT_PRODUCTS_DIR}/KituraContracts/KituraContracts.framework
 ${BUILT_PRODUCTS_DIR}/LanguageManager-iOS/LanguageManager_iOS.framework
 ${BUILT_PRODUCTS_DIR}/LoggerAPI/LoggerAPI.framework

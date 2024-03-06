@@ -8,7 +8,6 @@
 import UIKit
 import Speech
 import SwiftyGif
-import Instructions
 
 class DSTGameViewController: UIViewController {
     @IBOutlet weak var statsStackView: UIStackView!
@@ -30,7 +29,6 @@ class DSTGameViewController: UIViewController {
     
     // Instructions
     private var isInstructionMode = true
-    private let coachMarksController = CoachMarksController()
     
     // Determine if it's test mode
     private var isTestMode = false
@@ -100,13 +98,6 @@ class DSTGameViewController: UIViewController {
         // updatePreviousTrialLabel()
         // updateStatsLabel()
         
-        self.coachMarksController.dataSource = self
-        self.coachMarksController.delegate = self
-        
-        self.coachMarksController.overlay.areTouchEventsForwarded = true
-        self.coachMarksController.overlay.isUserInteractionEnabled = true
-        self.coachMarksController.overlay.backgroundColor = .clear
-        
         initSynthesizer()
         speakInstructions()
         
@@ -175,8 +166,6 @@ class DSTGameViewController: UIViewController {
         avatarImageView.layer.borderWidth = K.borderWidth
         avatarImageView.layer.borderColor = UIColor.black.cgColor
         avatarImageView.stopAnimatingGif()
-        
-        self.coachMarksController.flow.showNext() // Show next instruction immediately when "Start" is pressed.
         
         resetInputAndDoneButtons(enabled: false)
     }
@@ -383,7 +372,6 @@ extension DSTGameViewController : AVSpeechSynthesizerDelegate {
         } else {
             if !isTestMode { // After instructions are delivered, but before starting the test.
                 startButton.isHidden = false
-                self.coachMarksController.start(in: .currentWindow(of: self))
             }
         }
         
@@ -599,78 +587,6 @@ extension DSTGameViewController {
             }
         }
     }
-}
-
-extension DSTGameViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
-    // The number of coach marks to display
-    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return 3
-    }
-    
-    func coachMarksController(_ coachMarksController: CoachMarksController, willHide coachMark: CoachMark, at index: Int) {
-        switch index {
-        case 0:
-            startButtonPressed(startButton)
-        case 2:
-            // Trial only starts when user finishes navigating the instructions
-            coachMarksController.stop(immediately: true)
-            startTrial()
-        default:
-            break
-        }
-    }
-    
-    // To customize how a coach mark will position and appear
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        print("Index: \(index)")
-        
-        switch index {
-        case 0:
-            return coachMarksController.helper.makeCoachMark(for: startButton)
-        case 1:
-            return coachMarksController.helper.makeCoachMark(for: resetInputButton)
-        case 2:
-            return coachMarksController.helper.makeCoachMark(for: doneButton)
-        default:
-            return coachMarksController.helper.makeCoachMark()
-        }
-    }
-    
-    // The third one supplies two views (much like cellForRowAtIndexPath) in the form a Tuple. The body view is mandatory, as it's the core of the coach mark. The arrow view is optional.
-    func coachMarksController(
-        _ coachMarksController: CoachMarksController,
-        coachMarkViewsAt index: Int,
-        madeFrom coachMark: CoachMark
-    ) -> (bodyView: UIView & CoachMarkBodyView, arrowView: (UIView & CoachMarkArrowView)?) {
-        
-        let coachViews = coachMarksController.helper.makeDefaultCoachViews(
-            withArrow: true,
-            arrowOrientation: coachMark.arrowOrientation
-        )
-        
-        coachViews.bodyView.hintLabel.font = UIFont(name: K.fontTypeNormal, size: 16)
-        
-        coachViews.bodyView.nextLabel.textColor = .red
-        coachViews.bodyView.nextLabel.font = UIFont(name: K.fontTypeMedium, size: 16)
-        
-        switch index {
-        case 0:
-            coachViews.bodyView.hintLabel.text = "To start the test"
-            coachViews.bodyView.nextLabel.text = "Begin"
-        case 1:
-            coachViews.bodyView.hintLabel.text = "For resetting your recorded numbers"
-            coachViews.bodyView.nextLabel.text = "OK"
-        case 2:
-            coachViews.bodyView.hintLabel.text = "For submitting your recorded numbers"
-            coachViews.bodyView.nextLabel.text = "OK"
-        default:
-            break
-        }
-        
-        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
-    }
-    
-    
 }
 
 // MARK: - Label-related Functions

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '14.3'
 
 target 'ProMind' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -10,7 +10,7 @@ target 'ProMind' do
   pod 'CLTypingLabel'
   pod 'SwiftyGif'
   pod 'IQKeyboardManagerSwift'
-  pod 'Instructions', '~> 2.1.0'
+  # pod 'Instructions', '~> 2.1.0'
   pod 'LanguageManager-iOS'
   pod 'DeviceKit', '~> 4.0'
   pod 'Alamofire'

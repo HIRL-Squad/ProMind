@@ -1,12 +1,11 @@
 PODS:
-  - Alamofire (5.7.1)
+  - Alamofire (5.8.1)
   - BlueCryptor (1.0.32)
   - BlueECC (1.2.5)
   - BlueRSA (1.0.200)
   - CLTypingLabel (0.4.0)
   - DeviceKit (4.9.0)
-  - Instructions (2.1.0)
-  - IQKeyboardManagerSwift (6.5.6)
+  - IQKeyboardManagerSwift (6.5.16)
   - KituraContracts (1.2.1):
     - LoggerAPI (~> 1.7)
   - LanguageManager-iOS (1.2.5)
@@ -19,14 +18,13 @@ PODS:
     - BlueRSA (~> 1.0)
     - KituraContracts (~> 1.2)
     - LoggerAPI (~> 1.7)
-  - SwiftyGif (5.4.0)
+  - SwiftyGif (5.4.4)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire
   - CLTypingLabel
   - DeviceKit (~> 4.0)
-  - Instructions (~> 2.1.0)
   - IQKeyboardManagerSwift
   - LanguageManager-iOS
   - SwiftJWT
@@ -41,7 +39,6 @@ SPEC REPOS:
     - BlueRSA
     - CLTypingLabel
     - DeviceKit
-    - Instructions
     - IQKeyboardManagerSwift
     - KituraContracts
     - LanguageManager-iOS
@@ -52,22 +49,21 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   BlueCryptor: b0aee3d9b8f367b49b30de11cda90e1735571c24
   BlueECC: 0d18e93347d3ec6d41416de21c1ffa4d4cd3c2cc
   BlueRSA: dfeef51db96bcc4edec654956c1581adbda4e6a3
   CLTypingLabel: 95a7d1faf7e3d1d952cd11cb0491d17d80c50934
   DeviceKit: 847709bf70b78fd9ab765bd571fb9f5f815c3fc1
-  Instructions: 2465e321dde23f7c8fc26fe8efddf605df80dfba
-  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  IQKeyboardManagerSwift: 12d89768845bb77b55cc092ecc2b1f9370f06b76
   KituraContracts: e845e60dc8627ad0a76fa55ef20a45451d8f830b
   LanguageManager-iOS: 049345fe4d1c5fbe22af93d438540917f4936359
   LoggerAPI: ad9c4a6f1e32f518fdb43a1347ac14d765ab5e3d
   Logging: beeb016c9c80cf77042d62e83495816847ef108b
   SwiftJWT: 88c412708f58c169d431d344c87bc79a87c830ae
-  SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
+  SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: f675776bd649f453cb1c6d22dd4ea9427d98f21a
+PODFILE CHECKSUM: 2732ba0bf1c7b3b1b703e553e9589c79fbe21b5c
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0

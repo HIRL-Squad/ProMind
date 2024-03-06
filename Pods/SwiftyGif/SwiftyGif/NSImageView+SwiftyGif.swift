@@ -120,10 +120,10 @@ public extension NSImageView {
         
         let loader: NSView? = showLoader ? createLoader(from: customLoader) : nil
         
-        let task = session.dataTask(with: url) { data, _, error in
+        let task = session.dataTask(with: url) { [weak self] data, _, error in
             DispatchQueue.main.async {
                 loader?.removeFromSuperview()
-                self.parseDownloadedGif(url: url,
+                self?.parseDownloadedGif(url: url,
                                         data: data,
                                         error: error,
                                         manager: manager,
@@ -326,15 +326,22 @@ public extension NSImageView {
     ///
     /// - Returns : A boolean for weather the imageView is displayed
     func isDisplayedInScreen(_ imageView: NSView?) -> Bool {
-        guard !isHidden, let imageView = imageView else  {
+        guard !isHidden, window != nil, let imageView = imageView else  {
             return false
         }
-        
-        let screenRect = NSScreen.main?.visibleFrame ?? .zero
-        let viewRect = imageView.convert(bounds, to:nil)
-        let intersectionRect = viewRect.intersection(screenRect)
-        
-        return window != nil && !intersectionRect.isEmpty && !intersectionRect.isNull
+
+        for screen in NSScreen.screens {
+          let screenRect = screen.visibleFrame
+          let viewRect = imageView.convert(bounds, to: nil)
+          let intersectionRect = viewRect.intersection(screenRect)
+
+          if !intersectionRect.isEmpty && !intersectionRect.isNull {
+            // The image view is visible on a screen
+            return true
+          }
+        }
+
+        return false
     }
     
     func clear() {
@@ -441,8 +448,8 @@ public extension NSImageView {
     }
     
     var delegate: SwiftyGifDelegate? {
-        get { return (objc_getAssociatedObject(self, _delegateKey!) as? SwiftyGifDelegate) }
-        set { objc_setAssociatedObject(self, _delegateKey!, newValue, .OBJC_ASSOCIATION_ASSIGN) }
+        get { return (objc_getAssociatedWeakObject(self, _delegateKey!) as? SwiftyGifDelegate) }
+        set { objc_setAssociatedWeakObject(self, _delegateKey!, newValue) }
     }
     
     private var haveCache: Bool {

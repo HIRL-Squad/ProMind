@@ -9,7 +9,6 @@ import SwiftUI
 import UIKit
 import Foundation
 import DeviceKit
-import Instructions
 import AVFAudio
 
 class DSTMainViewController: UIViewController {
@@ -280,57 +279,6 @@ extension DSTMainViewController {
         }
     }
 }
-
-// MARK: - CoachMarkController
-extension DSTMainViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
-    
-    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return 2
-    }
-    
-    /// Defines coach mark position, much like IndexPath.
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        switch index {
-        case 0:
-            print("CoachMarksController returns 0!")
-            return coachMarksController.helper.makeCoachMark(for: resetAnswerButton)
-        case 1:
-            print("CoachMarksController returns 1!")
-            return coachMarksController.helper.makeCoachMark(for: submitAnswerButton)
-        default:
-            print("CoachMarksController returns default!")
-            return coachMarksController.helper.makeCoachMark()
-        }
-    }
-    
-    /// Supplies two views in the form of a Tuple, much like cellForRowAtIndexPath.
-    /// The body view is mandatory, as it's the core of the coach mark. The arrow view is optional.
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: (UIView & CoachMarkBodyView), arrowView: (UIView & CoachMarkArrowView)?) {
-        let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
-        
-        coachViews.bodyView.hintLabel.font = UIFont(name: K.fontTypeNormal, size: 24)
-        coachViews.bodyView.hintLabel.sizeThatFits(CGSize(width: 240, height: 50))
-        
-        coachViews.bodyView.nextLabel.font = UIFont(name: K.fontTypeMedium, size: 24)
-        coachViews.bodyView.nextLabel.sizeThatFits(CGSize(width: 240, height: 50))
-        coachViews.bodyView.nextLabel.textColor = .red
-        
-        //coachViews.bodyView.isUserInteractionEnabled = false
-        
-        switch index {
-        case 0:
-            coachViews.bodyView.hintLabel.text = "Try one more time!".localized
-            coachViews.bodyView.nextLabel.text = "OK".localized
-        case 1:
-            coachViews.bodyView.hintLabel.text = "Finish or don't know answer!".localized
-            coachViews.bodyView.nextLabel.text = "OK".localized
-        default:
-            break
-        }
-        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
-    }
-}
-
 
 // MARK: - NotificationCenter Selector Functions
 
