@@ -448,11 +448,13 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
             roundInfo.speechStatusIndex = speechStatus.index
             speechStatus.index += 1
             notificationBroadcast.post("Reset Instruction Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Disable Begin Button \(viewModel)", object: nil)
             notificationBroadcast.post("Show Begin Button \(viewModel)", object: nil)
                 
         /// Do NOT increase index as 25 is the last instruction!
         case 25:
-            notificationBroadcast.post("Show Begin Button \(viewModel)", object: nil)
+            notificationBroadcast.post("Hide Same Page Instruction Label 5 \(viewModel)", object: nil)
+            notificationBroadcast.post("Enable Begin Button \(viewModel)", object: nil)
             roundInfo.testType = .backwardsSpanTest
             roundInfo.reset()
             

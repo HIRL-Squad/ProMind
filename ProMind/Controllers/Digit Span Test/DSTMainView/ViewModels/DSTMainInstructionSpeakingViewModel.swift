@@ -148,11 +148,13 @@ class DSTMainInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
         case 18:
             speechStatus.index += 1
             notificationBroadcast.post("Reset Instruction Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Disable Begin Button \(viewModel)", object: nil)
             notificationBroadcast.post("Show Begin Button \(viewModel)", object: nil)
             
         /// Do NOT increase index for the last instruction!
         case 19:
-            notificationBroadcast.post("Hide Same Page Instruction Label \(viewModel)", object: nil)
+            notificationBroadcast.post("Hide Same Page Instruction Label 5 \(viewModel)", object: nil)
+            notificationBroadcast.post("Enable Begin Button \(viewModel)", object: nil)
             
         default:
             speechStatus.index += 1

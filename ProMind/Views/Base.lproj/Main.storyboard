@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zLr-yt-x0z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zLr-yt-x0z">
     <device id="ipad11_0rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -592,7 +592,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAf-0z-gvo" userLabel="Disclaimer Label">
-                                <rect key="frame" x="96" y="309.5" width="1002" height="215"/>
+                                <rect key="frame" x="96" y="331" width="1002" height="172"/>
                                 <string key="text">ProMind is provided by THE PROVIDER 'as is' and 'with all faults.' ProMind is not intended for clinical diagnosis. Should you wish for a clinical diagnosis, please consult a specialist or a psychologist for a neuropsychological assessment.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="36"/>
                                 <nil key="textColor"/>
@@ -2027,6 +2027,16 @@ Longest Seq: 0</string>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xp-fe-MyQ">
+                                <rect key="frame" x="691" y="224" width="142.5" height="34.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Correct Answer"/>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeO-cP-dwj">
+                                <rect key="frame" x="694.5" y="268.5" width="135.5" height="34.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Wrong Answer"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yxa-KD-DfS"/>
                         <color key="backgroundColor" name="Light Grey"/>
@@ -2042,10 +2052,12 @@ Longest Seq: 0</string>
                             <constraint firstItem="P8a-k5-eIw" firstAttribute="leading" secondItem="Yxa-KD-DfS" secondAttribute="leading" constant="96" id="7Pu-SP-Fx7"/>
                             <constraint firstItem="Yxa-KD-DfS" firstAttribute="trailing" secondItem="P8a-k5-eIw" secondAttribute="trailing" constant="96" id="9Om-Nt-Vmy"/>
                             <constraint firstItem="HS2-sD-t79" firstAttribute="top" secondItem="xB6-1p-OW1" secondAttribute="bottom" constant="36" id="9gd-DJ-mzH"/>
+                            <constraint firstItem="Yxa-KD-DfS" firstAttribute="trailing" secondItem="0xp-fe-MyQ" secondAttribute="trailing" constant="40" id="Aq5-nJ-puZ"/>
                             <constraint firstItem="xB6-1p-OW1" firstAttribute="centerX" secondItem="HS2-sD-t79" secondAttribute="centerX" id="FDx-CJ-Nxe"/>
                             <constraint firstItem="nb6-32-cV7" firstAttribute="top" secondItem="Yph-cJ-kdK" secondAttribute="bottom" constant="80" id="Fts-9G-VaZ"/>
                             <constraint firstItem="Bpb-MP-mxg" firstAttribute="leading" secondItem="wxB-jj-rOC" secondAttribute="trailing" constant="-2" id="HiD-B8-hzE"/>
                             <constraint firstItem="tA4-dK-qYa" firstAttribute="centerX" secondItem="8FJ-0p-Ggm" secondAttribute="centerX" id="IRC-it-wmT"/>
+                            <constraint firstItem="0xp-fe-MyQ" firstAttribute="top" secondItem="Yxa-KD-DfS" secondAttribute="top" constant="150" id="JiF-fM-4W2"/>
                             <constraint firstItem="WKi-QS-K3Q" firstAttribute="top" secondItem="Aba-gK-Lgs" secondAttribute="bottom" priority="750" constant="20" id="Jyc-r2-9e9"/>
                             <constraint firstItem="8FJ-0p-Ggm" firstAttribute="top" secondItem="tA4-dK-qYa" secondAttribute="bottom" constant="36" id="Kj1-kI-h3z"/>
                             <constraint firstItem="vJZ-qA-tRy" firstAttribute="bottom" secondItem="Bpb-MP-mxg" secondAttribute="bottom" id="MaL-Yt-jOB"/>
@@ -2062,9 +2074,11 @@ Longest Seq: 0</string>
                             <constraint firstItem="x6P-WF-TgR" firstAttribute="top" secondItem="Vmj-d8-pap" secondAttribute="bottom" constant="100" id="g3z-v3-nTk"/>
                             <constraint firstItem="jZg-au-csF" firstAttribute="centerY" secondItem="QlN-JF-ySd" secondAttribute="centerY" id="jhi-3K-7dn"/>
                             <constraint firstItem="nb6-32-cV7" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="kRz-x3-pat"/>
+                            <constraint firstItem="WeO-cP-dwj" firstAttribute="top" secondItem="0xp-fe-MyQ" secondAttribute="bottom" constant="10" id="klJ-av-5Xm"/>
                             <constraint firstItem="Vmj-d8-pap" firstAttribute="centerY" secondItem="Yxa-KD-DfS" secondAttribute="centerY" id="kpO-du-Y7W"/>
                             <constraint firstItem="HS2-sD-t79" firstAttribute="top" secondItem="q7j-BY-2iH" secondAttribute="bottom" constant="10" id="oRM-d8-4ZI"/>
                             <constraint firstItem="wxB-jj-rOC" firstAttribute="leading" secondItem="KSK-3y-yVk" secondAttribute="trailing" constant="8" id="opp-IC-Esa"/>
+                            <constraint firstItem="WeO-cP-dwj" firstAttribute="centerX" secondItem="0xp-fe-MyQ" secondAttribute="centerX" id="sG4-2r-WmF"/>
                             <constraint firstItem="WKi-QS-K3Q" firstAttribute="centerX" secondItem="Aba-gK-Lgs" secondAttribute="centerX" id="skc-0U-cBK"/>
                             <constraint firstItem="u7V-zK-BPD" firstAttribute="centerX" secondItem="Yxa-KD-DfS" secondAttribute="centerX" id="uHh-Ar-zu6"/>
                             <constraint firstItem="KSK-3y-yVk" firstAttribute="centerY" secondItem="wxB-jj-rOC" secondAttribute="centerY" id="ua5-4u-E2S"/>
@@ -2411,6 +2425,7 @@ We will go through them one by one.</string>
                                 <rect key="frame" x="287" y="114" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="LCf-eg-dcU"/>
+                                    <constraint firstAttribute="width" secondItem="TnF-QY-if1" secondAttribute="height" multiplier="1:1" id="iLo-24-mvX"/>
                                 </constraints>
                             </imageView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YUZ-86-Yv7" userLabel="Statistics Stack View">
@@ -2606,7 +2621,6 @@ We will go through them one by one.</string>
                             <constraint firstItem="lZK-B4-qEa" firstAttribute="centerY" secondItem="tEy-j1-Iqs" secondAttribute="centerY" id="ent-8M-hn4"/>
                             <constraint firstItem="QW9-s4-YS5" firstAttribute="centerX" secondItem="bA3-7q-T0i" secondAttribute="centerX" id="gBe-mg-eDQ"/>
                             <constraint firstItem="2jA-Nm-dcj" firstAttribute="centerX" secondItem="tEy-j1-Iqs" secondAttribute="centerX" id="iKf-JI-xf6"/>
-                            <constraint firstItem="TnF-QY-if1" firstAttribute="width" secondItem="TnF-QY-if1" secondAttribute="height" multiplier="1:1" id="iLo-24-mvX"/>
                             <constraint firstItem="w4c-Vb-9kA" firstAttribute="top" secondItem="lZK-B4-qEa" secondAttribute="bottom" constant="100" id="jsg-W4-uGR"/>
                             <constraint firstItem="wST-PS-pQY" firstAttribute="leading" secondItem="TnF-QY-if1" secondAttribute="trailing" constant="20" id="l10-jR-DOs"/>
                             <constraint firstItem="Lov-Ti-8KZ" firstAttribute="centerX" secondItem="bRT-2c-FHc" secondAttribute="centerX" id="lmL-5A-O7K"/>
@@ -3290,9 +3304,7 @@ We will go through them one by one.</string>
         </scene>
     </scenes>
     <designables>
-        <designable name="LKg-o5-zlG">
-            <size key="intrinsicContentSize" width="199" height="71"/>
-        </designable>
+        <designable name="LKg-o5-zlG"/>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="c00-em-7hI"/>

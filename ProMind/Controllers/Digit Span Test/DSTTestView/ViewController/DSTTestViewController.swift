@@ -136,12 +136,15 @@ class DSTTestViewController: UIViewController {
         notificationBroadcast.addObserver(self, #selector(showSamePageInstructionLabel3), "Show Same Page Instruction Label 3 \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(showSamePageInstructionLabel4), "Show Same Page Instruction Label 4 \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(showSamePageInstructionLabel5), "Show Same Page Instruction Label 5 \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(hideSamePageInstructionLabel5), "Hide Same Page Instruction Label 5 \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideAllSamePageInstructionLabels), "Hide All Same Page Instruction Labels \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(resetInstructionLabel), "Reset Instruction Label \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideGifImage), "Hide GIF Image \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideSpokenDigitsLabel), "Hide Spoken Digits Label \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(hideResetAndSubmitButton), "Hide Reset And Submit Button \(testViewModel)", object: nil)
         notificationBroadcast.addObserver(self, #selector(showInstructionLabel), "Show Instruction Label \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(enableBeginButton), "Enable Begin Button \(testViewModel)", object: nil)
+        notificationBroadcast.addObserver(self, #selector(disableBeginButton), "Disable Begin Button \(testViewModel)", object: nil)
         
         addTapGesture(for: playTutorialAgainLabel, with: #selector(playTutorialAgainLabelTapped))
         addTapGesture(for: playTutorialAgainIconImageView, with: #selector(playTutorialAgainIconImageViewTapped))
@@ -440,7 +443,7 @@ extension DSTTestViewController {
             // If smaller than this value then user interaction is not working.
             self?.beginButton.alpha = 0.0100000003
         })
-        beginButton.isEnabled = true
+        // beginButton.isEnabled = true
     }
     
     @objc private func disableResetAndSubmitButton() {
@@ -776,5 +779,15 @@ extension DSTTestViewController {
     
     @objc private func showInstructionLabel() {
         instructionLabel.isHidden = false
+    }
+    
+    @objc private func enableBeginButton() {
+        print("Enabled begin button!")
+        beginButton.isEnabled = true
+    }
+    
+    @objc private func disableBeginButton() {
+        print("Disabled begin button!")
+        beginButton.isEnabled = false
     }
 }

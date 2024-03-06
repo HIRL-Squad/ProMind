@@ -130,6 +130,8 @@ class DSTMainViewController: UIViewController {
         notification.addObserver(self, #selector(hideSpokenDigitsLabel), "Hide Spoken Digits Label \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(hideResetAndSubmitButton), "Hide Reset And Submit Button \(mainViewModel)", object: nil)
         notification.addObserver(self, #selector(showInstructionLabel), "Show Instruction Label \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(enableBeginButton), "Enable Begin Button \(mainViewModel)", object: nil)
+        notification.addObserver(self, #selector(disableBeginButton), "Disable Begin Button \(mainViewModel)", object: nil)
         
         addTapGesture(for: playTutorialAgainLabel, with: #selector(playTutorialAgainLabelTapped))
         addTapGesture(for: playTutorialAgainIconImageView, with: #selector(playTutorialAgainIconImageViewTapped))
@@ -400,7 +402,7 @@ extension DSTMainViewController {
             // If smaller than this value then user interaction is not working.
             self?.beginButton.alpha = 0.0100000003
         })
-        beginButton.isEnabled = true
+        // beginButton.isEnabled = true
     }
     
     @objc private func setDigitRectangle(notification: Notification) throws {
@@ -632,6 +634,16 @@ extension DSTMainViewController {
     
     @objc private func showInstructionLabel() {
         instructionLabel.isHidden = false
+    }
+    
+    @objc private func enableBeginButton() {
+        print("Enabled begin button!")
+        beginButton.isEnabled = true
+    }
+    
+    @objc private func disableBeginButton() {
+        print("Disabled begin button!")
+        beginButton.isEnabled = false
     }
 }
 
