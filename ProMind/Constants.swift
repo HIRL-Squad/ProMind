@@ -51,6 +51,7 @@ struct K {
         
         static let synthesizerNotSpeaking = "synthesizerNotSpeaking"
         static let voiceNotRecognized = "voiceNotRecognized"
+        static let doNotUpdateToIpadOS17_4 = "doNotUpdateToIpadOS17_4"
         
         struct Master {
             static let questions = [

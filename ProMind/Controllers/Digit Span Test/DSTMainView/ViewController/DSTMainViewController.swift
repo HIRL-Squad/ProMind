@@ -390,7 +390,7 @@ extension DSTMainViewController {
     
     @objc private func startRecognitionTask() {
         speechRecognition.startRecognitionTask()
-        print("Start recognition task")
+        print("Start recognition task - DSTMainViewController")
     }
     
     @objc private func showBeginButton() {

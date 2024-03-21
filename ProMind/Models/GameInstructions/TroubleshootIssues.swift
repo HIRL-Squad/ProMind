@@ -11,6 +11,7 @@ import UIKit
 enum ProMindIssues: String {
     case synthesizerNotSpeaking
     case voiceNotRecognized
+    case doNotUpdateToIpadOS17_4
 }
 
 class ProMindIssueTroubleshooter {
@@ -85,6 +86,26 @@ class ProMindIssueTroubleshooter {
             instruction.append(getBoldedAttributedString(for: "Safari"))
             instruction.append(getNormalAttributedString(for: " to check the Internet connection.\n\n"))
             instruction.append(getNormalAttributedString(for: "2. If the issue still persists, reboot the iPad and try again. Please contact us if rebooting could not solve this issue. "))
+            return instruction
+            
+        case .doNotUpdateToIpadOS17_4:
+            let instruction = getNormalMutableAttributedString(for: "Please note that Digit Span Test does ")
+            instruction.append(getBoldedAttributedString(for: "NOT"))
+            instruction.append(getNormalAttributedString(for: " working well under the latest iPadOS: "))
+            instruction.append(getBoldedAttributedString(for: "iPadOS 17.4"))
+            instruction.append(getNormalAttributedString(for: "!\n\n"))
+            
+            instruction.append(getNormalAttributedString(for: "This is because ProMind uses a lot of low-level functions (voice speaking, speech recognition, etc.), and those functions may "))
+            instruction.append(getBoldedAttributedString(for: "NOT"))
+            instruction.append(getNormalAttributedString(for: " always work well under the latest iPadOS, as system update could break those functions.\n\n"))
+            
+            instruction.append(getNormalAttributedString(for: "It had happened twice when newer iPadOS was released, e.g., when iPadOS 16.0 and iPadOS 17.0 were released in October 2022 and September 2023. Apple may not fully test those functions when they release the system update, and it would "))
+            instruction.append(getBoldedAttributedString(for: "take quite a while"))
+            instruction.append(getNormalAttributedString(for: " before Apple fixes the bug.\n\n"))
+            
+            instruction.append(getNormalAttributedString(for: "Therefore, please do "))
+            instruction.append(getBoldedAttributedString(for: "NOT"))
+            instruction.append(getNormalAttributedString(for: " update your iPadOS version unless you are told to do so (especially upgrade to next major version when new iPadOS is just released)!"))
             return instruction
         }
     }

@@ -71,6 +71,7 @@
 		D99EE860286AF24F0049A4F3 /* DSTStatisticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EE85F286AF24F0049A4F3 /* DSTStatisticsModel.swift */; };
 		D99EE862286B028B0049A4F3 /* DSTTestToolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EE861286B028B0049A4F3 /* DSTTestToolModel.swift */; };
 		D9B3AB282834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3AB272834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift */; };
+		D9BECDCF2BAC9D1600F1006E /* TroubleshootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BECDCE2BAC9D1600F1006E /* TroubleshootView.swift */; };
 		D9D69B812838F55000EBA219 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D69B802838F55000EBA219 /* Notifications.swift */; };
 		D9DEC40B28D71DB600A5BDE5 /* Pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = D9DEC40A28D71DB600A5BDE5 /* Pencil.png */; };
 		D9EE86712825035C00AED1AA /* Bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EE86702825035C00AED1AA /* Bell.mp3 */; };
@@ -168,6 +169,7 @@
 		D99EE85F286AF24F0049A4F3 /* DSTStatisticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTStatisticsModel.swift; sourceTree = "<group>"; };
 		D99EE861286B028B0049A4F3 /* DSTTestToolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTTestToolModel.swift; sourceTree = "<group>"; };
 		D9B3AB272834D8C800D0B8D6 /* DSTSpeechRecognitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSTSpeechRecognitionModel.swift; sourceTree = "<group>"; };
+		D9BECDCE2BAC9D1600F1006E /* TroubleshootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TroubleshootView.swift; sourceTree = "<group>"; };
 		D9CD5E972817269500244BB1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		D9CD5E982817269500244BB1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		D9CD5E992817269500244BB1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		A4A3F2E626871BE2004C0F25 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D9BECDCD2BAC9CC100F1006E /* Troubleshoot */,
 				A4E0D41B26D7DD26006D6399 /* InitialViewController.swift */,
 				A4121EEB26D8F9F400F4CFE9 /* ExperimentProfileMasterViewController.swift */,
 				A4121EE726D8A4BF00F4CFE9 /* ExperimentProfileDetailViewController.swift */,
@@ -458,6 +461,14 @@
 				D986F9322A04A37C006EE319 /* DSTTestResultNavigationController.swift */,
 			);
 			path = "Digit Span Test";
+			sourceTree = "<group>";
+		};
+		D9BECDCD2BAC9CC100F1006E /* Troubleshoot */ = {
+			isa = PBXGroup;
+			children = (
+				D9BECDCE2BAC9D1600F1006E /* TroubleshootView.swift */,
+			);
+			path = Troubleshoot;
 			sourceTree = "<group>";
 		};
 		D9C98EBA28D99CEB00C8119C /* Models */ = {
@@ -739,6 +750,7 @@
 				D986F9232A00CEEE006EE319 /* TMTScreenshotViewViewController.swift in Sources */,
 				A4A3F2EC268726F7004C0F25 /* DSTMainViewController.swift in Sources */,
 				D97517E129DAEA8200AFE1F5 /* TMTRecordCoreDataModel.swift in Sources */,
+				D9BECDCF2BAC9D1600F1006E /* TroubleshootView.swift in Sources */,
 				A4121EEC26D8F9F400F4CFE9 /* ExperimentProfileMasterViewController.swift in Sources */,
 				D9FC79A02865C030005B8948 /* DSTTestSpeechRecognitionViewModel.swift in Sources */,
 				A4E0D41C26D7DD26006D6399 /* InitialViewController.swift in Sources */,
@@ -957,7 +969,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F24S5RZ4SU;
 				INFOPLIST_FILE = ProMind/Info.plist;
@@ -988,7 +1000,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F24S5RZ4SU;
 				INFOPLIST_FILE = ProMind/Info.plist;

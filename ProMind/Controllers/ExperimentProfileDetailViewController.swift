@@ -38,6 +38,7 @@ class ExperimentProfileDetailViewController: UIViewController {
     private var testResultScrollView: UIScrollView?
     private var synthesizerNotSpeakingStackView: UIStackView?
     private var voiceNotRecognizedStackView: UIStackView?
+    private var doNotUpdateToIpadOS17_4StackView: UIStackView?
     
     private var tmtRecordTableView: UITableView?
     private var dstRecordTableView: UITableView?
@@ -48,6 +49,7 @@ class ExperimentProfileDetailViewController: UIViewController {
     private var synthesizerNotSpeakingLableView: UILabel?
     private var voiceNotRecognizedLableView: UILabel?
     private var silentModeImageView: UIImageView?
+    private var doNotUpdateToIpadOS17_4LabelView: UILabel?
     
     private var views: [UIView] = []
     
@@ -106,15 +108,18 @@ class ExperimentProfileDetailViewController: UIViewController {
         
         synthesizerNotSpeakingStackView?.removeFromSuperview()
         synthesizerNotSpeakingStackView = nil
-        
-        voiceNotRecognizedStackView?.removeFromSuperview()
-        voiceNotRecognizedStackView = nil
-        
         synthesizerNotSpeakingLableView?.removeFromSuperview()
         synthesizerNotSpeakingLableView = nil
         
+        voiceNotRecognizedStackView?.removeFromSuperview()
+        voiceNotRecognizedStackView = nil
         voiceNotRecognizedLableView?.removeFromSuperview()
         voiceNotRecognizedLableView = nil
+        
+        doNotUpdateToIpadOS17_4StackView?.removeFromSuperview()
+        doNotUpdateToIpadOS17_4StackView = nil
+        doNotUpdateToIpadOS17_4LabelView?.removeFromSuperview()
+        doNotUpdateToIpadOS17_4LabelView = nil
         
         silentModeImageView?.removeFromSuperview()
         silentModeImageView = nil
@@ -192,17 +197,6 @@ class ExperimentProfileDetailViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func setUpVoiceNotRecognizedStackViewConstraints() {
-        voiceNotRecognizedStackView!.translatesAutoresizingMaskIntoConstraints = false
-        let constraints = [
-            voiceNotRecognizedStackView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
-            voiceNotRecognizedStackView!.leftAnchor.constraint(equalTo: view.leftAnchor),
-            voiceNotRecognizedStackView!.rightAnchor.constraint(equalTo: view.rightAnchor),
-            voiceNotRecognizedStackView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
-    }
-    
     private func setUpSynthesizerNotSpeakingLableViewConstraints() {
         synthesizerNotSpeakingLableView!.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
@@ -214,6 +208,17 @@ class ExperimentProfileDetailViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
+    private func setUpVoiceNotRecognizedStackViewConstraints() {
+        voiceNotRecognizedStackView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            voiceNotRecognizedStackView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            voiceNotRecognizedStackView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            voiceNotRecognizedStackView!.rightAnchor.constraint(equalTo: view.rightAnchor),
+            voiceNotRecognizedStackView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
     private func setUpVoiceNotRecognizedLabelViewConstraints() {
         voiceNotRecognizedLableView!.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
@@ -221,6 +226,28 @@ class ExperimentProfileDetailViewController: UIViewController {
             voiceNotRecognizedLableView!.trailingAnchor.constraint(equalTo: voiceNotRecognizedStackView!.trailingAnchor, constant: -16),
             voiceNotRecognizedLableView!.topAnchor.constraint(equalTo: voiceNotRecognizedStackView!.topAnchor, constant: 84),
             voiceNotRecognizedLableView!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpDoNotUpdateToIpadOS17_4StackViewConstraints() {
+        doNotUpdateToIpadOS17_4StackView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            doNotUpdateToIpadOS17_4StackView!.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            doNotUpdateToIpadOS17_4StackView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            doNotUpdateToIpadOS17_4StackView!.rightAnchor.constraint(equalTo: view.rightAnchor),
+            doNotUpdateToIpadOS17_4StackView!.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setUpDoNotUpdateToIpadOS17_4LabelViewConstraints() {
+        doNotUpdateToIpadOS17_4LabelView!.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            doNotUpdateToIpadOS17_4LabelView!.leadingAnchor.constraint(equalTo: doNotUpdateToIpadOS17_4StackView!.leadingAnchor, constant: 16),
+            doNotUpdateToIpadOS17_4LabelView!.trailingAnchor.constraint(equalTo: doNotUpdateToIpadOS17_4StackView!.trailingAnchor, constant: -16),
+            doNotUpdateToIpadOS17_4LabelView!.topAnchor.constraint(equalTo: doNotUpdateToIpadOS17_4StackView!.topAnchor, constant: 84),
+            doNotUpdateToIpadOS17_4LabelView!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -336,7 +363,6 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             
         case K.ExperimentProfile.voiceNotRecognized:
             isPresentingTestResultView = false
-            
             print("Displaying voice not recognized troubleshooting instructions. ")
             
             voiceNotRecognizedStackView = UIStackView()
@@ -354,6 +380,24 @@ extension ExperimentProfileDetailViewController: MasterViewControllerDelegate {
             
             navigationItem.title = "Troubleshoot - Voice not recognized"
             
+        case K.ExperimentProfile.doNotUpdateToIpadOS17_4:
+            isPresentingTestResultView = false
+            print("Displaying voice not recognized troubleshooting instructions. ")
+            
+            doNotUpdateToIpadOS17_4StackView = UIStackView()
+            view.addSubview(doNotUpdateToIpadOS17_4StackView!)
+            setUpDoNotUpdateToIpadOS17_4StackViewConstraints()
+            
+            doNotUpdateToIpadOS17_4LabelView = UILabel(frame: getTroubleShootingLabelFrame())
+            let instructions = ProMindIssueTroubleshooter(issue: .doNotUpdateToIpadOS17_4, fontSize: 18).getInstructions()
+            doNotUpdateToIpadOS17_4LabelView!.attributedText = instructions
+            doNotUpdateToIpadOS17_4LabelView!.numberOfLines = 0
+            doNotUpdateToIpadOS17_4LabelView!.sizeToFit()
+            
+            doNotUpdateToIpadOS17_4StackView!.addSubview(doNotUpdateToIpadOS17_4LabelView!)
+            setUpDoNotUpdateToIpadOS17_4LabelViewConstraints()
+            
+            navigationItem.title = "⚠️ DO NOT UPDATE TO iPadOS 17.4 ⚠️"
             
         default: // Table View
             print("Question: \(question)")

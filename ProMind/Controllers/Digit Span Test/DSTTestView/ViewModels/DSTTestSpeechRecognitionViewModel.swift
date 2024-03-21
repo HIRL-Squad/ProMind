@@ -54,7 +54,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     
     @objc internal func startRecognitionTask(answer: String) {
         recognitionTask.expectedResult = answer
-        print("Successfully assigned recognition task with expected result: \(answer)")
+        print("------------------")
+        print("Successfully assigned recognition task with expected result: \(answer)\n")
         recognitionTask.isRecording = true
         recognizer.transcribe()
     }
@@ -92,6 +93,8 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     }
     
     @objc private func submitAnswer() {
+        print("-----------IMPORTANT FOR iOS 17.4-----------")
+        print("Submit answer button pressed - DSTTestSpeechRecognitionViewModel")
         pauseRecognition()
         notificationBroadcast.post("Hide Recording Indicator \(viewModel)", object: nil)
         notificationBroadcast.post("Hide Reset Button Label And Icon \(viewModel)", object: nil)

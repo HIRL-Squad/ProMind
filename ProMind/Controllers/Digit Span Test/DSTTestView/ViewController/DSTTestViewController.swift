@@ -10,7 +10,6 @@ import SwiftUI
 import DeviceKit
 
 class DSTTestViewController: UIViewController {
-    
     @IBOutlet weak var spokenDigitsLabel: UILabel!
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var resetButton: UIButton!
@@ -425,7 +424,7 @@ extension DSTTestViewController {
         }
         
         speechRecognition.startRecognitionTask(answer: answer)
-        print("Start recognition task")
+        print("Start recognition task - DSTTestViewController")
     }
     
     @objc private func stopPlayingGif() {

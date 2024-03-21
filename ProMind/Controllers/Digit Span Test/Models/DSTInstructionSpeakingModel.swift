@@ -140,6 +140,7 @@ class AVSpeechFullSentenceSpeaker: NSObject, AVSpeechSynthesizerDelegate {
     
     internal func pause() {
         synthesizer.pauseSpeaking(at: .immediate)
+        print("---------IMPORTANT FOR iOS 17.4----------")
         print("Speaker is paused!")
     }
     

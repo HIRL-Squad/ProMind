@@ -100,8 +100,8 @@ class ExperimentProfileMasterViewController: UITableViewController {
         detailViewController?.delegate = self
         
         let alert = UIAlertController(
-            title: "Experiment Details",
-            message: "For trial, please select 'Trial' under Experiment Type.\n\nOtherwise, please select 'Test' and fill up all the required information.",
+            title: "⚠️ DO NOT UPDATE iPad ⚠️",
+            message: "\nPlease do not update your iPadOS version to iPadOS 17.4! Refer to troubleshoot section below for more information.\n\n‼️When you encounter issues, DO NOT UNINSTALL ProMind. Contact e0376983@u.nus.edu for support.\n\nFor trial, please select 'Trial' under Experiment Type.\n\nOtherwise, please select 'Test' and fill up all the required information.",
             preferredStyle: .alert
         )
         self.displayAlert(
@@ -281,8 +281,8 @@ extension ExperimentProfileMasterViewController: DetailViewControllerDelegate {
                     
                     guard Experiment.shared.experimentType != nil else {
                         let alert = UIAlertController(
-                            title: "Experiment Type",
-                            message: "Please select your experiment type.\n\nFor trial, please select 'Trial'. Otherwise, please select 'Test' and fill up all the required information.",
+                            title: "⚠️ DO NOT UPDATE iPad ⚠️",
+                            message: "\nPlease do not update your iPadOS version to iPadOS 17.4! Refer to troubleshoot section below for more information.\n\n‼️When you encounter issues, DO NOT UNINSTALL ProMind. Contact e0376983@u.nus.edu for support.\n\nFor trial, please select 'Trial' under Experiment Type.\n\nOtherwise, please select 'Test' and fill up all the required information.",
                             preferredStyle: .alert
                         )
                         self.displayAlert(
