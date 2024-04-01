@@ -103,7 +103,10 @@ class AVSpeechFullSentenceSpeaker: NSObject, AVSpeechSynthesizerDelegate {
             utterance.voice = voice
             utterance.rate = 0.5
             utterance.postUtteranceDelay = 0.5
-            synthesizer.speak(utterance)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.synthesizer.speak(utterance)
+            }
         }
     }
     
@@ -114,7 +117,10 @@ class AVSpeechFullSentenceSpeaker: NSObject, AVSpeechSynthesizerDelegate {
         
         utterance.voice = voice
         utterance.rate = 0.4
-        synthesizer.speak(utterance)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.synthesizer.speak(utterance)
+        }
     }
     
     private func initializeAudioSession() throws {
@@ -139,13 +145,18 @@ class AVSpeechFullSentenceSpeaker: NSObject, AVSpeechSynthesizerDelegate {
     }
     
     internal func pause() {
-        synthesizer.pauseSpeaking(at: .immediate)
-        print("---------IMPORTANT FOR iOS 17.4----------")
         print("Speaker is paused!")
+        if synthesizer.isSpeaking {
+            synthesizer.pauseSpeaking(at: .immediate)
+            synthesizer.pauseSpeaking(at: .immediate)
+        }
     }
     
     internal func resume() {
-        synthesizer.continueSpeaking()
+        print("Speaker is resumed!")
+        if synthesizer.isPaused {
+            synthesizer.continueSpeaking()
+        }
     }
     
     internal func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {

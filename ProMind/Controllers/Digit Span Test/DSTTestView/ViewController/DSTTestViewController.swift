@@ -513,9 +513,12 @@ extension DSTTestViewController {
     }
     
     @objc private func showResultButton() {
-        resultButton.isHidden = false
         resetButton.isHidden = true
         submitButton.isHidden = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.resultButton.isHidden = false
+        }
     }
     
     @objc private func removeDigitRectangle(notification: Notification) throws {

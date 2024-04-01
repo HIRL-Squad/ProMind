@@ -93,7 +93,6 @@ class DSTTestSpeechRecognitionViewModel: NSObject, ObservableObject, SFSpeechDig
     }
     
     @objc private func submitAnswer() {
-        print("-----------IMPORTANT FOR iOS 17.4-----------")
         print("Submit answer button pressed - DSTTestSpeechRecognitionViewModel")
         pauseRecognition()
         notificationBroadcast.post("Hide Recording Indicator \(viewModel)", object: nil)

@@ -317,7 +317,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
-                speaker.pause()
+                DispatchQueue.main.async { [weak self] in
+                    self?.speaker.pause()
+                }
             }
             
         /// "6 - 1 - 8 - 9" -> three pauses between digits.
@@ -340,7 +342,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
-                speaker.pause()
+                DispatchQueue.main.async { [weak self] in
+                    self?.speaker.pause()
+                }
             }
             
         /// "7 - 5 - 9 - 2 - 6" -> four pauses between digits.
@@ -363,7 +367,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
-                speaker.pause()
+                DispatchQueue.main.async { [weak self] in
+                    self?.speaker.pause()
+                }
             }
             
         /// For (Bell Sound), we don't want to trigger speechDidStart() to speak it out but just play a bell sound instead.
@@ -478,7 +484,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
-                speaker.pause()
+                DispatchQueue.main.async { [weak self] in
+                    self?.speaker.pause()
+                }
             }
             
         case 28, 29:
@@ -501,7 +509,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
-                speaker.pause()
+                DispatchQueue.main.async { [weak self] in
+                    self?.speaker.pause()
+                }
             }
             
         case 30, 31:
@@ -524,7 +534,9 @@ class DSTTestInstructionSpeakingViewModel: NSObject, ObservableObject, AVSpeechF
                 speechStatus.counter_1 = 0
                 speechStatus.index += 1
                 
-                speaker.pause()
+                DispatchQueue.main.async { [weak self] in
+                    self?.speaker.pause()
+                }
             }
         
         default:
