@@ -100,8 +100,8 @@ class ExperimentProfileMasterViewController: UITableViewController {
         detailViewController?.delegate = self
         
         let alert = UIAlertController(
-            title: "⚠️ DO NOT UPDATE iPad ⚠️",
-            message: "\nPlease do not update your iPadOS version to iPadOS 17.4! Refer to troubleshoot section below for more information.\n\n‼️When you encounter issues, DO NOT UNINSTALL ProMind. Contact e0376983@u.nus.edu for support.\n\nFor trial, please select 'Trial' under Experiment Type.\n\nOtherwise, please select 'Test' and fill up all the required information.",
+            title: "Reminder",
+            message: "\n😄Digit Span Test issue under iPadOS 17.4 has been resolved. You should be able to run ProMind on an iPadOS 17.4 device right now.\n\n‼️When you encounter issues, DO NOT UNINSTALL ProMind. Contact e0376983@u.nus.edu for support.\n\nFor trial, please select 'Trial' under Experiment Type.\n\nOtherwise, please select 'Test' and fill up all the required information.",
             preferredStyle: .alert
         )
         self.displayAlert(
