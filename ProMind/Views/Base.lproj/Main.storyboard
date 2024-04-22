@@ -1593,7 +1593,9 @@ Lifts: 0</string>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="actionButtonsStackView" destination="KDU-kQ-Baf" id="SKl-81-DKE"/>
+                        <outlet property="beginButton" destination="XXf-Gh-jW7" id="ILA-5A-OeJ"/>
                         <outlet property="instructionLabel" destination="sRh-mH-Yom" id="psR-6V-dID"/>
+                        <outlet property="restartButton" destination="ukS-wc-Awc" id="vtY-sp-RUp"/>
                         <outlet property="statsLabel" destination="Szh-H4-5cN" id="bfO-VH-QkG"/>
                         <outlet property="statsStackView" destination="lEW-gu-Bb8" id="0KN-J7-StD"/>
                         <outlet property="testInformationLabel" destination="QIj-k9-1D6" id="er0-MA-e3P"/>
@@ -3296,7 +3298,7 @@ We will go through them one by one.</string>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="0wi-nK-Tnv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="TFM-0Q-83V">
-                        <rect key="frame" x="0.0" y="0.0" width="704" height="108"/>
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="116.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3334,7 +3336,7 @@ We will go through them one by one.</string>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="c00-em-7hI"/>
+        <segue reference="A15-0l-DtF"/>
         <segue reference="oPQ-jE-2Sz"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -18,6 +18,9 @@ class TMTGameViewController: UIViewController {
     @IBOutlet weak var actionButtonsStackView: UIStackView!
     @IBOutlet weak var testInformationLabel: UILabel!
     
+    @IBOutlet weak var restartButton: UIButton!
+    @IBOutlet weak var beginButton: UIButton!
+    
     private var speechIndex: Int = 0
     private var isSpeakingTestInfo: Bool = false
     
@@ -97,6 +100,8 @@ class TMTGameViewController: UIViewController {
         instructionLabel.isHidden = false
         speechIndex = 0
         isSpeakingTestInfo = false
+        
+        prepareStoryboardLocalization()
         // initTest()
     }
     
@@ -122,6 +127,25 @@ class TMTGameViewController: UIViewController {
         synthesizer?.stopSpeaking(at: .immediate)
         synthesizer = nil
         navigationController?.isNavigationBarHidden = false
+    }
+    
+    private func prepareStoryboardLocalization() {
+        let appLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+        switch appLanguage {
+        case "en":
+            break
+            
+        case "ms":
+            restartButton.setTitle("Mula Semula", for: .normal)
+            beginButton.setTitle("Mulakan", for: .normal)
+            
+        case "zh-Hans":
+            restartButton.setTitle("重新开始", for: .normal)
+            beginButton.setTitle("开始", for: .normal)
+            
+        default:
+            break
+        }
     }
     
     private func setInstructionLabelText(message: String) {
