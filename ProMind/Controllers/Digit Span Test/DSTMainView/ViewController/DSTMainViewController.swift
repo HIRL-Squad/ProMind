@@ -92,6 +92,7 @@ class DSTMainViewController: UIViewController {
         speechRecognition.resetRecognizer()
         
         UIOptimization()
+        prepareStoryboardLocalization()
         
         /// Set up Notification Observer.
         notification.addObserver(self, #selector(updateUILabelText(notification:)), "Instruction Text \(mainViewModel)", object: nil)
@@ -175,6 +176,53 @@ class DSTMainViewController: UIViewController {
 //        coachMarksController.stop(immediately: true)
         
         notification.removeAllObserverFrom(self)
+    }
+    
+    private func prepareStoryboardLocalization() {
+        let appLanguage = UserDefaults.standard.string(forKey: "i18n_language")
+        switch appLanguage {
+        case "en":
+            break
+            
+        case "ms":
+            playTutorialAgainLabel.text = "Main tutorial lagi"
+            recordingLabel.text = "Rakaman, sila bercakap"
+            
+            samePageInstructionLabel1.text = "Ingat: "
+            samePageInstructionLabel2.text = "Cakap perlahan-lahan. "
+            samePageInstructionLabel3.text = "Jangan tergesa-gesa ketika bercakap. "
+            samePageInstructionLabel4.text = "Jangan ulangi jawapan anda. "
+            samePageInstructionLabel5.text = "Klik \"Mula\" untuk memulakan ujian. "
+            
+            resetButtonLabel.text = "Cuba sekali lagi!"
+            resetAnswerButton.setTitle("Buat Asal", for: .normal)
+            
+            submitButtonLabel.text = "Selesai atau tidak tahu jawapannya!"
+            submitAnswerButton.setTitle("Seterusnya", for: .normal)
+            
+            beginButton.setTitle("Mulakan", for: .normal)
+            
+        case "zh-Hans":
+            playTutorialAgainLabel.text = "重新观看教程"
+            recordingLabel.text = "语音识别中，请说"
+            
+            samePageInstructionLabel1.text = "记住："
+            samePageInstructionLabel2.text = "慢一点说。"
+            samePageInstructionLabel3.text = "说的时候请不要抢答。"
+            samePageInstructionLabel4.text = "请不要重复答案。"
+            samePageInstructionLabel5.text = "点击\"开始\"按钮来开始测试。"
+            
+            resetButtonLabel.text = "再试一次！"
+            resetAnswerButton.setTitle("重试", for: .normal)
+            
+            submitButtonLabel.text = "已完成或不知道答案"
+            submitAnswerButton.setTitle("下一个", for: .normal)
+            
+            beginButton.setTitle("开始", for: .normal)
+            
+        default:
+            break
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

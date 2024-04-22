@@ -169,6 +169,6 @@ class DSTResultViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         storyboard.instantiateInitialViewController()
         
-        self.dismiss(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }
